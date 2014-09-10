@@ -1,0 +1,87 @@
+-- *********** cas sans erreur *********
+--
+-- création des livres
+acquerir 1 t1 a1 1999-01-03
+acquerir 2 t2 a2 1999-01-04
+acquerir 3 t3 a1 1999-01-05
+--
+-- création des membres
+inscrire 1 n1 8198218001 1
+inscrire 2 n2 8198218002 2
+inscrire 3 n3 8198218002 2
+--
+-- prêts
+preter 1 1 1999-01-06
+renouveler 1 1999-01-07
+reserver 1 1 2 1999-01-08
+reserver 2 1 3 1999-01-09
+retourner 1 1999-01-08
+prendre 1 1999-01-09
+retourner 1 1999-01-10
+annuler 2
+--
+-- *********** cas d'erreur *********
+--
+-- *** Livres ***
+--
+-- livre existe deja
+acquerir 1 t1 a1 1999-01-03
+--
+-- *** Membres ***
+--
+-- membre existe déjà
+inscrire 1 n1 8198218001 1
+--
+-- *** Prêts ***
+--
+-- erreur : livre inexistant
+preter 999 1 1999-01-06
+--
+-- erreur : membre inexistant
+preter 1 999 1999-01-06
+--
+-- création d'un prêt
+preter 1 1 1999-01-06
+--
+-- erreur : livre déjà prêté
+preter 1 2 1999-01-06
+--
+-- erreur : limite de prêt atteinte
+preter 2 1 1999-01-06
+--
+-- réservation d'un livre
+reserver 1 1 2 1999-01-09
+reserver 2 1 3 1999-01-10
+--
+-- retour du livre 1
+retourner 1 1999-01-08
+--
+-- erreur : livre réservé
+preter 1 3 1999-01-06
+--
+-- retourner livre non prêté
+retourner 2 1999-01-11
+--
+-- *** Réservation ***
+-- erreur : livre inexistant
+--
+reserver 3 998 2 1999-01-09
+--
+-- créer un pret
+preter 2 2 1999-01-09
+preter 3 2 1999-01-09
+--
+-- erreur : membre inexistant
+--
+reserver 3 2 998 1999-01-09
+--
+-- erreur : no réservation existant
+--
+reserver 2 2 3 1999-01-09
+--
+-- prendre deuxième réservation dans la file
+--
+prendre 2 1999-01-10
+prendre 1 1999-01-10
+listerLivres
+listerLivresTitre t

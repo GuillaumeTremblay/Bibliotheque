@@ -1,0 +1,17 @@
+/Biblio.class
+/BiblioException.class
+/Connexion.class
+/CreerBD.class
+/FormatDate.class
+/GestionBibliotheque.class
+/GestionInterrogation.class
+/GestionLivre.class
+/GestionMembre.class
+/GestionPret.class
+/GestionReservation.class
+/Livre.class
+/Membre.class
+/Reservation.class
+/TupleLivre.class
+/TupleMembre.class
+/TupleReservation.class
