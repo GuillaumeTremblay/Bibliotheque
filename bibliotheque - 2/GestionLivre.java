@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gestion des transactions de reliées à la création et
  * suppresion de livres dans une bibliothèque.
@@ -17,15 +18,21 @@ import java.sql.SQLException;
  */
 public class GestionLivre {
 
+    /** The livre. */
     private Livre livre;
 
+    /** The reservation. */
     private Reservation reservation;
 
+    /** The cx. */
     private Connexion cx;
 
     /**
-      * Creation d'une instance
-      */
+     * Creation d'une instance.
+     *
+     * @param livre the livre
+     * @param reservation the reservation
+     */
     public GestionLivre(Livre livre,
         Reservation reservation) {
         this.cx = livre.getConnexion();
@@ -34,9 +41,17 @@ public class GestionLivre {
     }
 
     /**
-      * Ajout d'un nouveau livre dans la base de données.
-      * S'il existe deja, une exception est levée.
-      */
+     * Ajout d'un nouveau livre dans la base de données.
+     * S'il existe deja, une exception est levée.
+     *
+     * @param idLivre the id livre
+     * @param titre the titre
+     * @param auteur the auteur
+     * @param dateAcquisition the date acquisition
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void acquerir(int idLivre,
         String titre,
         String auteur,
@@ -64,8 +79,13 @@ public class GestionLivre {
     }
 
     /**
-      * Vente d'un livre.
-      */
+     * Vente d'un livre.
+     *
+     * @param idLivre the id livre
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void vendre(int idLivre) throws SQLException,
         BiblioException,
         Exception {

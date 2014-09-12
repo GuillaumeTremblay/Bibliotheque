@@ -2,6 +2,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Permet d'effectuer les accès à la table membre.
  * Cette classe gère tous les accès à la table membre.
@@ -11,21 +12,30 @@ import java.sql.SQLException;
 
 public class Membre {
 
+    /** The stmt existe. */
     private PreparedStatement stmtExiste;
 
+    /** The stmt insert. */
     private PreparedStatement stmtInsert;
 
+    /** The stmt update incr nb pret. */
     private PreparedStatement stmtUpdateIncrNbPret;
 
+    /** The stmt update dec nb pret. */
     private PreparedStatement stmtUpdateDecNbPret;
 
+    /** The stmt delete. */
     private PreparedStatement stmtDelete;
 
+    /** The cx. */
     private Connexion cx;
 
     /**
-      * Creation d'une instance. Précompilation d'énoncés SQL.
-      */
+     * Creation d'une instance. Précompilation d'énoncés SQL.
+     *
+     * @param cx the cx
+     * @throws SQLException the SQL exception
+     */
     public Membre(Connexion cx) throws SQLException {
         this.cx = cx;
         this.stmtExiste = cx.getConnection().prepareStatement("select idMembre, nom, telephone, limitePret, nbpret from membre where idmembre = ?");
@@ -37,16 +47,22 @@ public class Membre {
     }
 
     /**
-      * Retourner la connexion associée.
-      */
+     * Retourner la connexion associée.
+     *
+     * @return the connexion
+     */
     public Connexion getConnexion() {
 
         return this.cx;
     }
 
     /**
-      * Verifie si un membre existe.
-      */
+     * Verifie si un membre existe.
+     *
+     * @param idMembre the id membre
+     * @return true, if successful
+     * @throws SQLException the SQL exception
+     */
     public boolean existe(int idMembre) throws SQLException {
         this.stmtExiste.setInt(1,
             idMembre);
@@ -59,8 +75,12 @@ public class Membre {
     }
 
     /**
-      * Lecture d'un membre.
-      */
+     * Lecture d'un membre.
+     *
+     * @param idMembre the id membre
+     * @return the membre
+     * @throws SQLException the SQL exception
+     */
     public TupleMembre getMembre(int idMembre) throws SQLException {
         this.stmtExiste.setInt(1,
             idMembre);
@@ -82,8 +102,14 @@ public class Membre {
     }
 
     /**
-      * Ajout d'un nouveau membre.
-      */
+     * Ajout d'un nouveau membre.
+     *
+     * @param idMembre the id membre
+     * @param nom the nom
+     * @param telephone the telephone
+     * @param limitePret the limite pret
+     * @throws SQLException the SQL exception
+     */
     public void inscrire(int idMembre,
         String nom,
         long telephone,
@@ -101,8 +127,12 @@ public class Membre {
     }
 
     /**
-      * Incrementer le nb de pret d'un membre.
-      */
+     * Incrementer le nb de pret d'un membre.
+     *
+     * @param idMembre the id membre
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int preter(int idMembre) throws SQLException {
         this.stmtUpdateIncrNbPret.setInt(1,
             idMembre);
@@ -110,8 +140,12 @@ public class Membre {
     }
 
     /**
-      * Decrementer le nb de pret d'un membre.
-      */
+     * Decrementer le nb de pret d'un membre.
+     *
+     * @param idMembre the id membre
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int retourner(int idMembre) throws SQLException {
         this.stmtUpdateDecNbPret.setInt(1,
             idMembre);
@@ -119,8 +153,12 @@ public class Membre {
     }
 
     /**
-      * Suppression d'un membre.
-      */
+     * Suppression d'un membre.
+     *
+     * @param idMembre the id membre
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int desinscrire(int idMembre) throws SQLException {
         this.stmtDelete.setInt(1,
             idMembre);

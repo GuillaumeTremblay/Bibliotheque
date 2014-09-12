@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Système de gestion d'une bibliothèque
  *
@@ -18,35 +19,47 @@ import java.sql.SQLException;
  * </pre>
  */
 public class GestionBibliotheque {
+    
+    /** The cx. */
     public Connexion cx;
 
+    /** The livre. */
     public Livre livre;
 
+    /** The membre. */
     public Membre membre;
 
+    /** The reservation. */
     public Reservation reservation;
 
+    /** The gestion livre. */
     public GestionLivre gestionLivre;
 
+    /** The gestion membre. */
     public GestionMembre gestionMembre;
 
+    /** The gestion pret. */
     public GestionPret gestionPret;
 
+    /** The gestion reservation. */
     public GestionReservation gestionReservation;
 
+    /** The gestion interrogation. */
     public GestionInterrogation gestionInterrogation;
 
     /**
-      * Ouvre une connexion avec la BD relationnelle et
-      * alloue les gestionnaires de transactions et de tables.
-      * <pre>
-      * 
-      * @param serveur SQL
-      * @param bd nom de la bade de données
-      * @param user user id pour établir une connexion avec le serveur SQL
-      * @param password mot de passe pour le user id
-      *</pre>
-      */
+     * Ouvre une connexion avec la BD relationnelle et
+     * alloue les gestionnaires de transactions et de tables.
+     * <pre>
+     *
+     * @param serveur SQL
+     * @param bd nom de la bade de données
+     * @param user user id pour établir une connexion avec le serveur SQL
+     * @param password mot de passe pour le user id
+     * </pre>
+     * @throws BiblioException the biblio exception
+     * @throws SQLException the SQL exception
+     */
     public GestionBibliotheque(String serveur,
         String bd,
         String user,
@@ -73,6 +86,11 @@ public class GestionBibliotheque {
         this.gestionInterrogation = new GestionInterrogation(this.cx);
     }
 
+    /**
+     * Fermer.
+     *
+     * @throws SQLException the SQL exception
+     */
     public void fermer() throws SQLException {
         // fermeture de la connexion
         this.cx.fermer();

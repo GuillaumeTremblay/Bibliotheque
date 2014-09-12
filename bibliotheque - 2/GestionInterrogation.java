@@ -2,6 +2,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gestion des transactions d'interrogation dans une bibliothèque.
  * 
@@ -23,14 +24,20 @@ import java.sql.SQLException;
 
 public class GestionInterrogation {
 
+    /** The stmt livres titre mot. */
     private PreparedStatement stmtLivresTitreMot;
 
+    /** The stmt liste tous livres. */
     private PreparedStatement stmtListeTousLivres;
 
+    /** The cx. */
     private Connexion cx;
 
     /**
-     * Creation d'une instance
+     * Creation d'une instance.
+     *
+     * @param cx the cx
+     * @throws SQLException the SQL exception
      */
     public GestionInterrogation(Connexion cx) throws SQLException {
 
@@ -44,7 +51,10 @@ public class GestionInterrogation {
     }
 
     /**
-     * Affiche les livres contenu un mot dans le titre
+     * Affiche les livres contenu un mot dans le titre.
+     *
+     * @param mot the mot
+     * @throws SQLException the SQL exception
      */
     public void listerLivresTitre(String mot) throws SQLException {
 
@@ -80,7 +90,9 @@ public class GestionInterrogation {
     }
 
     /**
-     * Affiche tous les livres de la BD
+     * Affiche tous les livres de la BD.
+     *
+     * @throws SQLException the SQL exception
      */
     public void listerLivres() throws SQLException {
 

@@ -1,6 +1,7 @@
 import java.sql.Date;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gestion des transactions de reliées aux réservations de livres
  * par les membres dans une bibliothèque.
@@ -19,19 +20,28 @@ import java.sql.SQLException;
 
 public class GestionReservation {
 
+    /** The livre. */
     private Livre livre;
 
+    /** The membre. */
     private Membre membre;
 
+    /** The reservation. */
     private Reservation reservation;
 
+    /** The cx. */
     private Connexion cx;
 
     /**
-      * Creation d'une instance.
-      * La connection de l'instance de livre et de membre doit être la même que cx,
-      * afin d'assurer l'intégrité des transactions.
-      */
+     * Creation d'une instance.
+     * La connection de l'instance de livre et de membre doit être la même que cx,
+     * afin d'assurer l'intégrité des transactions.
+     *
+     * @param livre the livre
+     * @param membre the membre
+     * @param reservation the reservation
+     * @throws BiblioException the biblio exception
+     */
     public GestionReservation(Livre livre,
         Membre membre,
         Reservation reservation) throws BiblioException {
@@ -46,9 +56,17 @@ public class GestionReservation {
     }
 
     /**
-      * Réservation d'un livre par un membre.
-      * Le livre doit être prêté.
-      */
+     * Réservation d'un livre par un membre.
+     * Le livre doit être prêté.
+     *
+     * @param idReservation the id reservation
+     * @param idLivre the id livre
+     * @param idMembre the id membre
+     * @param dateReservation the date reservation
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void reserver(int idReservation,
         int idLivre,
         int idMembre,
@@ -105,11 +123,17 @@ public class GestionReservation {
     }
 
     /**
-      * Prise d'une réservation.
-      * Le livre ne doit pas être prêté.
-      * Le membre ne doit pas avoir dépassé sa limite de pret.
-      * La réservation doit la être la première en liste.
-      */
+     * Prise d'une réservation.
+     * Le livre ne doit pas être prêté.
+     * Le membre ne doit pas avoir dépassé sa limite de pret.
+     * La réservation doit la être la première en liste.
+     *
+     * @param idReservation the id reservation
+     * @param datePret the date pret
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void prendreRes(int idReservation,
         String datePret) throws SQLException,
         BiblioException,
@@ -179,9 +203,14 @@ public class GestionReservation {
     }
 
     /**
-      * Annulation d'une réservation.
-      * La réservation doit exister.
-      */
+     * Annulation d'une réservation.
+     * La réservation doit exister.
+     *
+     * @param idReservation the id reservation
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void annulerRes(int idReservation) throws SQLException,
         BiblioException,
         Exception {

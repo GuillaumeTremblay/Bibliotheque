@@ -1,6 +1,7 @@
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// TODO: Auto-generated Javadoc
 /**
  *<pre>
  *
@@ -13,6 +14,14 @@ import java.sql.Statement;
  *</pre>
  */
 class CreerBD {
+    
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws Exception the exception
+     * @throws SQLException the SQL exception
+     */
     public static void main(String args[]) throws Exception,
         SQLException {
 

@@ -4,25 +4,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+// TODO: Auto-generated Javadoc
 /**
  * Permet d'effectuer les accès à la table livre.
  */
 
 public class Livre {
 
+    /** The stmt existe. */
     private PreparedStatement stmtExiste;
 
+    /** The stmt insert. */
     private PreparedStatement stmtInsert;
 
+    /** The stmt update. */
     private PreparedStatement stmtUpdate;
 
+    /** The stmt delete. */
     private PreparedStatement stmtDelete;
 
+    /** The cx. */
     private Connexion cx;
 
     /**
-      * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
-      */
+     * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
+     *
+     * @param cx the cx
+     * @throws SQLException the SQL exception
+     */
     public Livre(Connexion cx) throws SQLException {
 
         this.cx = cx;
@@ -36,16 +45,22 @@ public class Livre {
     }
 
     /**
-      * Retourner la connexion associée.
-      */
+     * Retourner la connexion associée.
+     *
+     * @return the connexion
+     */
     public Connexion getConnexion() {
 
         return this.cx;
     }
 
     /**
-      * Verifie si un livre existe.
-      */
+     * Verifie si un livre existe.
+     *
+     * @param idLivre the id livre
+     * @return true, if successful
+     * @throws SQLException the SQL exception
+     */
     public boolean existe(int idLivre) throws SQLException {
 
         this.stmtExiste.setInt(1,
@@ -61,8 +76,12 @@ public class Livre {
     }
 
     /**
-      * Lecture d'un livre.
-      */
+     * Lecture d'un livre.
+     *
+     * @param idLivre the id livre
+     * @return the livre
+     * @throws SQLException the SQL exception
+     */
     public TupleLivre getLivre(int idLivre) throws SQLException {
 
         this.stmtExiste.setInt(1,
@@ -86,8 +105,14 @@ public class Livre {
     }
 
     /**
-      * Ajout d'un nouveau livre dans la base de donnees.
-      */
+     * Ajout d'un nouveau livre dans la base de donnees.
+     *
+     * @param idLivre the id livre
+     * @param titre the titre
+     * @param auteur the auteur
+     * @param dateAcquisition the date acquisition
+     * @throws SQLException the SQL exception
+     */
     public void acquerir(int idLivre,
         String titre,
         String auteur,
@@ -105,8 +130,14 @@ public class Livre {
     }
 
     /**
-      * Enregistrement de l'emprunteur d'un livre.
-      */
+     * Enregistrement de l'emprunteur d'un livre.
+     *
+     * @param idLivre the id livre
+     * @param idMembre the id membre
+     * @param datePret the date pret
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int preter(int idLivre,
         int idMembre,
         String datePret) throws SQLException {
@@ -121,8 +152,12 @@ public class Livre {
     }
 
     /**
-      * Rendre le livre disponible (non-prêté)
-      */
+     * Rendre le livre disponible (non-prêté).
+     *
+     * @param idLivre the id livre
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int retourner(int idLivre) throws SQLException {
         /* Enregistrement du pret. */
         this.stmtUpdate.setNull(1,
@@ -135,8 +170,12 @@ public class Livre {
     }
 
     /**
-      * Suppression d'un livre.
-      */
+     * Suppression d'un livre.
+     *
+     * @param idLivre the id livre
+     * @return the int
+     * @throws SQLException the SQL exception
+     */
     public int vendre(int idLivre) throws SQLException {
         /* Suppression du livre. */
         this.stmtDelete.setInt(1,

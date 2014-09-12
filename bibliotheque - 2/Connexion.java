@@ -4,6 +4,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gestionnaire d'une connexion avec une BD relationnelle via JDBC.
  *
@@ -20,11 +21,17 @@ import java.sql.SQLException;
  */
 public class Connexion {
 
+    /** The conn. */
     private Connection conn;
 
     /**
-     * Ouverture d'une connexion en mode autocommit false et sérialisable (si supporté)
+     * Ouverture d'une connexion en mode autocommit false et sérialisable (si supporté).
+     *
      * @param serveur serveur SQL de la BD
+     * @param bd the bd
+     * @param user the user
+     * @param pass the pass
+     * @throws SQLException the SQL exception
      * @bd nom de la base de données
      * @user userid sur le serveur SQL
      * @pass mot de passe sur le serveur SQL
@@ -97,7 +104,9 @@ public class Connexion {
     }
 
     /**
-     *fermeture d'une connexion
+     * fermeture d'une connexion.
+     *
+     * @throws SQLException the SQL exception
      */
     public void fermer() throws SQLException {
         this.conn.rollback();
@@ -108,29 +117,37 @@ public class Connexion {
     }
 
     /**
-     *commit
+     * commit.
+     *
+     * @throws SQLException the SQL exception
      */
     public void commit() throws SQLException {
         this.conn.commit();
     }
 
     /**
-     *rollback
+     * rollback.
+     *
+     * @throws SQLException the SQL exception
      */
     public void rollback() throws SQLException {
         this.conn.rollback();
     }
 
     /**
-     *retourne la Connection jdbc
+     * retourne la Connection jdbc.
+     *
+     * @return the connection
      */
     public Connection getConnection() {
         return this.conn;
     }
 
     /**
-      * Retourne la liste des serveurs supportés par ce gestionnaire de connexions
-      */
+     * Retourne la liste des serveurs supportés par ce gestionnaire de connexions.
+     *
+     * @return the string
+     */
     public static String serveursSupportes() {
         return "local : MySQL installé localement\n"
             + "distant : Oracle installé au Département d'Informatique du Collège Ahuntsic\n"

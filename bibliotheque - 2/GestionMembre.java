@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Gestion des transactions de reliées à la création et
  * suppresion de membres dans une bibliothèque.
@@ -18,15 +19,21 @@ import java.sql.SQLException;
 
 public class GestionMembre {
 
+    /** The cx. */
     private Connexion cx;
 
+    /** The membre. */
     private Membre membre;
 
+    /** The reservation. */
     private Reservation reservation;
 
     /**
-      * Creation d'une instance
-      */
+     * Creation d'une instance.
+     *
+     * @param membre the membre
+     * @param reservation the reservation
+     */
     public GestionMembre(Membre membre,
         Reservation reservation) {
 
@@ -36,9 +43,17 @@ public class GestionMembre {
     }
 
     /**
-      * Ajout d'un nouveau membre dans la base de donnees.
-      * S'il existe deja, une exception est levee.
-      */
+     * Ajout d'un nouveau membre dans la base de donnees.
+     * S'il existe deja, une exception est levee.
+     *
+     * @param idMembre the id membre
+     * @param nom the nom
+     * @param telephone the telephone
+     * @param limitePret the limite pret
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void inscrire(int idMembre,
         String nom,
         long telephone,
@@ -65,8 +80,13 @@ public class GestionMembre {
     }
 
     /**
-      * Suppression d'un membre de la base de donnees.
-      */
+     * Suppression d'un membre de la base de donnees.
+     *
+     * @param idMembre the id membre
+     * @throws SQLException the SQL exception
+     * @throws BiblioException the biblio exception
+     * @throws Exception the exception
+     */
     public void desinscrire(int idMembre) throws SQLException,
         BiblioException,
         Exception {

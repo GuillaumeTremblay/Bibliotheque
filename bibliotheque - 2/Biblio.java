@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 
+// TODO: Auto-generated Javadoc
 /**
  * Interface du système de gestion d'une bibliothèque
  *
@@ -33,14 +34,20 @@ import java.util.StringTokenizer;
  * </pre>
  */
 public class Biblio {
+    
+    /** The gestion biblio. */
     private static GestionBibliotheque gestionBiblio;
 
+    /** The lecture au clavier. */
     private static boolean lectureAuClavier;
 
     /**
      * Ouverture de la BD,
      * traitement des transactions et
      * fermeture de la BD.
+     *
+     * @param argv the arguments
+     * @throws Exception the exception
      */
     public static void main(String argv[]) throws Exception {
         // validation du nombre de paramétres
@@ -79,8 +86,11 @@ public class Biblio {
     }
 
     /**
-      * Traitement des transactions de la bibliothéque
-      */
+     * Traitement des transactions de la bibliothéque.
+     *
+     * @param reader the reader
+     * @throws Exception the exception
+     */
     static void traiterTransactions(BufferedReader reader) throws Exception {
         afficherAide();
         String transaction = lireTransaction(reader);
@@ -96,8 +106,12 @@ public class Biblio {
     }
 
     /**
-      * Lecture d'une transaction
-      */
+     * Lecture d'une transaction.
+     *
+     * @param reader the reader
+     * @return the string
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     static String lireTransaction(BufferedReader reader) throws IOException {
         System.out.print("> ");
         String transaction = reader.readLine();
@@ -109,8 +123,11 @@ public class Biblio {
     }
 
     /**
-      * Décodage et traitement d'une transaction
-      */
+     * Décodage et traitement d'une transaction.
+     *
+     * @param tokenizer the tokenizer
+     * @throws Exception the exception
+     */
     static void executerTransaction(StringTokenizer tokenizer) throws Exception {
         try {
             String command = tokenizer.nextToken();
@@ -173,7 +190,9 @@ public class Biblio {
         }
     }
 
-    /** Affiche le menu des transactions acceptées par le systéme */
+    /**
+     *  Affiche le menu des transactions acceptées par le systéme.
+     */
     static void afficherAide() {
         System.out.println();
         System.out.println("Chaque transaction comporte un nom et une liste d'arguments");
@@ -201,6 +220,9 @@ public class Biblio {
     /**
      * Vérifie si la fin du traitement des transactions est
      * atteinte.
+     *
+     * @param transaction the transaction
+     * @return true, if successful
      */
     static boolean finTransaction(String transaction) {
         /* fin de fichier atteinte */
@@ -224,7 +246,13 @@ public class Biblio {
         return false;
     }
 
-    /** lecture d'une chaéne de caractéres de la transaction entrée é l'écran */
+    /**
+     *  lecture d'une chaéne de caractéres de la transaction entrée é l'écran.
+     *
+     * @param tokenizer the tokenizer
+     * @return the string
+     * @throws BiblioException the biblio exception
+     */
     static String readString(StringTokenizer tokenizer) throws BiblioException {
         if(tokenizer.hasMoreElements()) {
             return tokenizer.nextToken();
@@ -233,8 +261,12 @@ public class Biblio {
     }
 
     /**
-      * lecture d'un int java de la transaction entrée é l'écran
-      */
+     * lecture d'un int java de la transaction entrée é l'écran.
+     *
+     * @param tokenizer the tokenizer
+     * @return the int
+     * @throws BiblioException the biblio exception
+     */
     static int readInt(StringTokenizer tokenizer) throws BiblioException {
         if(tokenizer.hasMoreElements()) {
             String token = tokenizer.nextToken();
@@ -250,8 +282,12 @@ public class Biblio {
     }
 
     /**
-      * lecture d'un long java de la transaction entrée à l'écran
-      */
+     * lecture d'un long java de la transaction entrée à l'écran.
+     *
+     * @param tokenizer the tokenizer
+     * @return the long
+     * @throws BiblioException the biblio exception
+     */
     static long readLong(StringTokenizer tokenizer) throws BiblioException {
         if(tokenizer.hasMoreElements()) {
             String token = tokenizer.nextToken();
@@ -267,8 +303,12 @@ public class Biblio {
     }
 
     /**
-      * lecture d'une date en format YYYY-MM-DD
-      */
+     * lecture d'une date en format YYYY-MM-DD.
+     *
+     * @param tokenizer the tokenizer
+     * @return the string
+     * @throws BiblioException the biblio exception
+     */
     static String readDate(StringTokenizer tokenizer) throws BiblioException {
         if(tokenizer.hasMoreElements()) {
             String token = tokenizer.nextToken();
