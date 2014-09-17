@@ -1,3 +1,4 @@
+package ca.qc.collegeahuntsic.bibliotheque.dto;
 import java.sql.Date;
 
 // TODO: Auto-generated Javadoc

@@ -1,3 +1,4 @@
+package ca.qc.collegeahuntsic.bibliotheque.dto;
 // TODO: Auto-generated Javadoc
 /**
  * Permet de représenter un tuple de la table membre.

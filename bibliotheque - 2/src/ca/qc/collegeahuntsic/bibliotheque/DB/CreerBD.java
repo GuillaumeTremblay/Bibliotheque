@@ -1,3 +1,6 @@
+
+package ca.qc.collegeahuntsic.bibliotheque.DB;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -7,14 +10,14 @@ import java.sql.Statement;
  *
  *Permet de créer la BD utilisée par Biblio.java.
  *
- *Paramètres:0- serveur SQL 
- *           1- bd nom de la BD 
+ *Paramètres:0- serveur SQL
+ *           1- bd nom de la BD
  *           2- user id pour établir une connexion avec le serveur SQL
  *           3- mot de passe pour le user id
  *</pre>
  */
 class CreerBD {
-    
+
     /**
      * The main method.
      *
@@ -23,7 +26,7 @@ class CreerBD {
      * @throws SQLException the SQL exception
      */
     public static void main(String args[]) throws Exception,
-        SQLException {
+    SQLException {
 
         if(args.length < 3) {
             System.out.println("Usage: java CreerBD <serveur> <bd> <user> <password>");
@@ -38,7 +41,7 @@ class CreerBD {
         try(
             Statement stmt = cx.getConnection().createStatement()) {
 
-            stmt.executeUpdate("DROP TABLE membre CASCADE CONSTRAINTS");
+            // stmt.executeUpdate("DROP TABLE membre CASCADE CONSTRAINTS");
             stmt.executeUpdate("CREATE TABLE membre ( "
                 + "idMembre        number(3) check(idMembre > 0), "
                 + "nom             varchar(10) NOT NULL, "
@@ -49,7 +52,7 @@ class CreerBD {
                 + "CONSTRAINT limiteNbPret check(nbpret <= limitePret) "
                 + ")");
 
-            stmt.executeUpdate("DROP TABLE livre CASCADE CONSTRAINTS");
+            //stmt.executeUpdate("DROP TABLE livre CASCADE CONSTRAINTS");
             stmt.executeUpdate("CREATE TABLE livre ( "
                 + "idLivre         number(3) check(idLivre > 0) , "
                 + "titre           varchar(10) NOT NULL, "
@@ -61,7 +64,7 @@ class CreerBD {
                 + "CONSTRAINT refPretMembre FOREIGN KEY (idMembre) REFERENCES membre "
                 + ")");
 
-            stmt.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS");
+            //stmt.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS");
             stmt.executeUpdate("CREATE TABLE reservation ( "
                 + "idReservation   number(3) , "
                 + "idMembre        number(3) , "

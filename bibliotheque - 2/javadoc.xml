@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="javadoc">
-    <target name="javadoc">
-        <javadoc access="public" author="true" classpath="ojdbc7.jar" destdir="doc" doctitle="Biblio2doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.7" sourcefiles="TupleLivre.java,TupleMembre.java,CreerBD.java,GestionLivre.java,BiblioException.java,Membre.java,TupleReservation.java,FormatDate.java,GestionInterrogation.java,GestionMembre.java,GestionPret.java,GestionReservation.java,Reservation.java,Livre.java,GestionBibliotheque.java,Biblio.java,Connexion.java" sourcepath="." splitindex="true" use="true" version="true">
-            <link href="file:/C:/Users/Vincent/git/Bibliotheque/bibliotheque%20-%202/doc/"/>
-            <link href="http://docs.oracle.com/javase/7/docs/api/"/>
-        </javadoc>
-    </target>
-</project>

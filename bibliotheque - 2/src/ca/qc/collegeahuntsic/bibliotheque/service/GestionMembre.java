@@ -1,4 +1,10 @@
+package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
+import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.dao.Membre;
+import ca.qc.collegeahuntsic.bibliotheque.dao.Reservation;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembre;
+import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
 /**

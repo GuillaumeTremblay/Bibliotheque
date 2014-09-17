@@ -1,8 +1,11 @@
+package ca.qc.collegeahuntsic.bibliotheque.dao;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivre;
 
 // TODO: Auto-generated Javadoc
 /**

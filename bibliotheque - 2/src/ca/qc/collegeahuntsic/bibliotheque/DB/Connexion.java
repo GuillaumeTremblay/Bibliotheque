@@ -1,3 +1,4 @@
+package ca.qc.collegeahuntsic.bibliotheque.DB;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;

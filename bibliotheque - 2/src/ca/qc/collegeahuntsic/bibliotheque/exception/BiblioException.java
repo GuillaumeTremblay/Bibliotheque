@@ -1,3 +1,4 @@
+package ca.qc.collegeahuntsic.bibliotheque.exception;
 // TODO: Auto-generated Javadoc
 /**
  * L'exception BiblioException est levée lorsqu'une transaction est inadéquate.

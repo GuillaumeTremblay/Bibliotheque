@@ -1,6 +1,8 @@
+package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
 
 // TODO: Auto-generated Javadoc
 /**
