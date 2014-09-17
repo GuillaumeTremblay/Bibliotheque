@@ -16,7 +16,7 @@ import java.sql.Statement;
  *           3- mot de passe pour le user id
  *</pre>
  */
-class CreerBD {
+class CreerBDDb {
 
     /**
      * The main method.
@@ -33,7 +33,7 @@ class CreerBD {
             return;
         }
 
-        Connexion cx = new Connexion(args[0],
+        ConnexionDb cx = new ConnexionDb(args[0],
             args[1],
             args[2],
             args[3]);

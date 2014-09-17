@@ -1,9 +1,9 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Livre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Membre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Reservation;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -24,34 +24,34 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
  *   transaction
  * </pre>
  */
-public class GestionBibliotheque {
+public class GestionBibliothequeSrv {
     
     /** The cx. */
-    public Connexion cx;
+    public ConnexionDb cx;
 
     /** The livre. */
-    public Livre livre;
+    public LivreDao livre;
 
     /** The membre. */
-    public Membre membre;
+    public MembreDao membre;
 
     /** The reservation. */
-    public Reservation reservation;
+    public ReservationDao reservation;
 
     /** The gestion livre. */
-    public GestionLivre gestionLivre;
+    public GestionLivreSrv gestionLivre;
 
     /** The gestion membre. */
-    public GestionMembre gestionMembre;
+    public GestionMembreSrv gestionMembre;
 
     /** The gestion pret. */
-    public GestionPret gestionPret;
+    public GestionPretSrv gestionPret;
 
     /** The gestion reservation. */
-    public GestionReservation gestionReservation;
+    public GestionReservationSrv gestionReservation;
 
     /** The gestion interrogation. */
-    public GestionInterrogation gestionInterrogation;
+    public GestionInterrogationSrv gestionInterrogation;
 
     /**
      * Ouvre une connexion avec la BD relationnelle et
@@ -66,30 +66,30 @@ public class GestionBibliotheque {
      * @throws BiblioException the biblio exception
      * @throws SQLException the SQL exception
      */
-    public GestionBibliotheque(String serveur,
+    public GestionBibliothequeSrv(String serveur,
         String bd,
         String user,
         String password) throws BiblioException,
         SQLException {
         // allocation des objets pour le traitement des transactions
-        this.cx = new Connexion(serveur,
+        this.cx = new ConnexionDb(serveur,
             bd,
             user,
             password);
-        this.livre = new Livre(this.cx);
-        this.membre = new Membre(this.cx);
-        this.reservation = new Reservation(this.cx);
-        this.gestionLivre = new GestionLivre(this.livre,
+        this.livre = new LivreDao(this.cx);
+        this.membre = new MembreDao(this.cx);
+        this.reservation = new ReservationDao(this.cx);
+        this.gestionLivre = new GestionLivreSrv(this.livre,
             this.reservation);
-        this.gestionMembre = new GestionMembre(this.membre,
+        this.gestionMembre = new GestionMembreSrv(this.membre,
             this.reservation);
-        this.gestionPret = new GestionPret(this.livre,
+        this.gestionPret = new GestionPretSrv(this.livre,
             this.membre,
             this.reservation);
-        this.gestionReservation = new GestionReservation(this.livre,
+        this.gestionReservation = new GestionReservationSrv(this.livre,
             this.membre,
             this.reservation);
-        this.gestionInterrogation = new GestionInterrogation(this.cx);
+        this.gestionInterrogation = new GestionInterrogationSrv(this.cx);
     }
 
     /**

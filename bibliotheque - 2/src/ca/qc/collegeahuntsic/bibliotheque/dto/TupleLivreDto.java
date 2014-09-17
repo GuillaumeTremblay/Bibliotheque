@@ -7,7 +7,7 @@ import java.sql.Date;
  * 
 */
 
-public class TupleLivre {
+public class TupleLivreDto {
 
   /** The id livre. */
   public int    idLivre;

@@ -2,8 +2,8 @@ package ca.qc.collegeahuntsic.bibliotheque.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembre;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -13,7 +13,7 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembre;
  *</pre>
  */
 
-public class Membre {
+public class MembreDao {
 
     /** The stmt existe. */
     private PreparedStatement stmtExiste;
@@ -31,7 +31,7 @@ public class Membre {
     private PreparedStatement stmtDelete;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance. Précompilation d'énoncés SQL.
@@ -39,7 +39,7 @@ public class Membre {
      * @param cx the cx
      * @throws SQLException the SQL exception
      */
-    public Membre(Connexion cx) throws SQLException {
+    public MembreDao(ConnexionDb cx) throws SQLException {
         this.cx = cx;
         this.stmtExiste = cx.getConnection().prepareStatement("select idMembre, nom, telephone, limitePret, nbpret from membre where idmembre = ?");
         this.stmtInsert = cx.getConnection().prepareStatement("insert into membre (idmembre, nom, telephone, limitepret, nbpret) "
@@ -54,7 +54,7 @@ public class Membre {
      *
      * @return the connexion
      */
-    public Connexion getConnexion() {
+    public ConnexionDb getConnexion() {
 
         return this.cx;
     }
@@ -84,14 +84,14 @@ public class Membre {
      * @return the membre
      * @throws SQLException the SQL exception
      */
-    public TupleMembre getMembre(int idMembre) throws SQLException {
+    public TupleMembreDto getMembre(int idMembre) throws SQLException {
         this.stmtExiste.setInt(1,
             idMembre);
         try(
             ResultSet rset = this.stmtExiste.executeQuery();) {
 
             if(rset.next()) {
-                TupleMembre tupleMembre = new TupleMembre();
+                TupleMembreDto tupleMembre = new TupleMembreDto();
                 tupleMembre.idMembre = idMembre;
                 tupleMembre.nom = rset.getString(2);
                 tupleMembre.telephone = rset.getLong(3);

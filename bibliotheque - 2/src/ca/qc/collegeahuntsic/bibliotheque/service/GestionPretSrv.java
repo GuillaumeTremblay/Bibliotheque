@@ -1,13 +1,13 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.Date;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Livre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Membre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Reservation;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivre;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembre;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservation;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -27,19 +27,19 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
  * </pre>
  */
 
-public class GestionPret {
+public class GestionPretSrv {
 
     /** The livre. */
-    private Livre livre;
+    private LivreDao livre;
 
     /** The membre. */
-    private Membre membre;
+    private MembreDao membre;
 
     /** The reservation. */
-    private Reservation reservation;
+    private ReservationDao reservation;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance.
@@ -51,9 +51,9 @@ public class GestionPret {
      * @param reservation the reservation
      * @throws BiblioException the biblio exception
      */
-    public GestionPret(Livre livre,
-        Membre membre,
-        Reservation reservation) throws BiblioException {
+    public GestionPretSrv(LivreDao livre,
+        MembreDao membre,
+        ReservationDao reservation) throws BiblioException {
         if(livre.getConnexion() != membre.getConnexion()
             || reservation.getConnexion() != membre.getConnexion()) {
             throw new BiblioException("Les instances de livre, de membre et de reservation n'utilisent pas la même connexion au serveur");
@@ -83,7 +83,7 @@ public class GestionPret {
         Exception {
         try {
             /* Verfier si le livre est disponible */
-            TupleLivre tupleLivre = this.livre.getLivre(idLivre);
+            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);
@@ -96,7 +96,7 @@ public class GestionPret {
             }
 
             /* Vérifie si le membre existe et sa limite de pret */
-            TupleMembre tupleMembre = this.membre.getMembre(idMembre);
+            TupleMembreDto tupleMembre = this.membre.getMembre(idMembre);
             if(tupleMembre == null) {
                 throw new BiblioException("Membre inexistant: "
                     + idMembre);
@@ -108,7 +108,7 @@ public class GestionPret {
             }
 
             /* Vérifie s'il existe une réservation pour le livre */
-            TupleReservation tupleReservation = this.reservation.getReservationLivre(idLivre);
+            TupleReservationDto tupleReservation = this.reservation.getReservationLivre(idLivre);
             if(tupleReservation != null) {
                 throw new BiblioException("Livre réservé par : "
                     + tupleReservation.idMembre
@@ -151,7 +151,7 @@ public class GestionPret {
         Exception {
         try {
             /* Verifier si le livre est prêté */
-            TupleLivre tupleLivre = this.livre.getLivre(idLivre);
+            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);
@@ -168,7 +168,7 @@ public class GestionPret {
             }
 
             /* Vérifie s'il existe une réservation pour le livre */
-            TupleReservation tupleReservation = this.reservation.getReservationLivre(idLivre);
+            TupleReservationDto tupleReservation = this.reservation.getReservationLivre(idLivre);
             if(tupleReservation != null) {
                 throw new BiblioException("Livre réservé par : "
                     + tupleReservation.idMembre
@@ -206,7 +206,7 @@ public class GestionPret {
         Exception {
         try {
             /* Verifier si le livre est prêté */
-            TupleLivre tupleLivre = this.livre.getLivre(idLivre);
+            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);

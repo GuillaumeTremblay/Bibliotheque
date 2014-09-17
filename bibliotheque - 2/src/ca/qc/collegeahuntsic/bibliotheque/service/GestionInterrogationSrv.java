@@ -2,7 +2,7 @@ package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,7 +24,7 @@ import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
  * </pre>
  */
 
-public class GestionInterrogation {
+public class GestionInterrogationSrv {
 
     /** The stmt livres titre mot. */
     private PreparedStatement stmtLivresTitreMot;
@@ -33,7 +33,7 @@ public class GestionInterrogation {
     private PreparedStatement stmtListeTousLivres;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance.
@@ -41,7 +41,7 @@ public class GestionInterrogation {
      * @param cx the cx
      * @throws SQLException the SQL exception
      */
-    public GestionInterrogation(Connexion cx) throws SQLException {
+    public GestionInterrogationSrv(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
         this.stmtLivresTitreMot = cx.getConnection().prepareStatement("select t1.idLivre, t1.titre, t1.auteur, t1.idmembre, t1.datePret + 14 "

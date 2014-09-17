@@ -6,10 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.StringTokenizer;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
-import ca.qc.collegeahuntsic.bibliotheque.service.FormatDate;
-import ca.qc.collegeahuntsic.bibliotheque.service.GestionBibliotheque;
+import ca.qc.collegeahuntsic.bibliotheque.service.FormatDateSrv;
+import ca.qc.collegeahuntsic.bibliotheque.service.GestionBibliothequeSrv;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -41,7 +41,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.GestionBibliotheque;
 public class Biblio {
     
     /** The gestion biblio. */
-    private static GestionBibliotheque gestionBiblio;
+    private static GestionBibliothequeSrv gestionBiblio;
 
     /** The lecture au clavier. */
     private static boolean lectureAuClavier;
@@ -58,7 +58,7 @@ public class Biblio {
         // validation du nombre de paramétres
         if(argv.length < 4) {
             System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
-            System.out.println(Connexion.serveursSupportes());
+            System.out.println(ConnexionDb.serveursSupportes());
             return;
         }
 
@@ -72,7 +72,7 @@ public class Biblio {
                 lectureAuClavier = false;
             }
 
-            gestionBiblio = new GestionBibliotheque(argv[0],
+            gestionBiblio = new GestionBibliothequeSrv(argv[0],
                 argv[1],
                 argv[2],
                 argv[3]);
@@ -318,7 +318,7 @@ public class Biblio {
         if(tokenizer.hasMoreElements()) {
             String token = tokenizer.nextToken();
             try {
-                FormatDate.convertirDate(token);
+                FormatDateSrv.convertirDate(token);
                 return token;
             } catch(ParseException e) {
                 throw new BiblioException("Date en format YYYY-MM-DD attendue à la place  de \""

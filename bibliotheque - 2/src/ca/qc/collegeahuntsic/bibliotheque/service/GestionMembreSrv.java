@@ -1,9 +1,9 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Membre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Reservation;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembre;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -23,16 +23,16 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
  * </pre>
  */
 
-public class GestionMembre {
+public class GestionMembreSrv {
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /** The membre. */
-    private Membre membre;
+    private MembreDao membre;
 
     /** The reservation. */
-    private Reservation reservation;
+    private ReservationDao reservation;
 
     /**
      * Creation d'une instance.
@@ -40,8 +40,8 @@ public class GestionMembre {
      * @param membre the membre
      * @param reservation the reservation
      */
-    public GestionMembre(Membre membre,
-        Reservation reservation) {
+    public GestionMembreSrv(MembreDao membre,
+        ReservationDao reservation) {
 
         this.cx = membre.getConnexion();
         this.membre = membre;
@@ -98,7 +98,7 @@ public class GestionMembre {
         Exception {
         try {
             /* Vérifie si le membre existe et son nombre de pret en cours */
-            TupleMembre tupleMembre = this.membre.getMembre(idMembre);
+            TupleMembreDto tupleMembre = this.membre.getMembre(idMembre);
             if(tupleMembre == null) {
                 throw new BiblioException("Membre inexistant: "
                     + idMembre);

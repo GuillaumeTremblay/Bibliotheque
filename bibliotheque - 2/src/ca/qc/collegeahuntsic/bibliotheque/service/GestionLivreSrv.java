@@ -1,9 +1,9 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Livre;
-import ca.qc.collegeahuntsic.bibliotheque.dao.Reservation;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivre;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDao;
+import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -22,16 +22,16 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
  *   transaction
  * </pre>
  */
-public class GestionLivre {
+public class GestionLivreSrv {
 
     /** The livre. */
-    private Livre livre;
+    private LivreDao livre;
 
     /** The reservation. */
-    private Reservation reservation;
+    private ReservationDao reservation;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance.
@@ -39,8 +39,8 @@ public class GestionLivre {
      * @param livre the livre
      * @param reservation the reservation
      */
-    public GestionLivre(Livre livre,
-        Reservation reservation) {
+    public GestionLivreSrv(LivreDao livre,
+        ReservationDao reservation) {
         this.cx = livre.getConnexion();
         this.livre = livre;
         this.reservation = reservation;
@@ -96,7 +96,7 @@ public class GestionLivre {
         BiblioException,
         Exception {
         try {
-            TupleLivre tupleLivre = this.livre.getLivre(idLivre);
+            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);

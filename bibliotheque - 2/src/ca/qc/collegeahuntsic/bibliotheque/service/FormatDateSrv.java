@@ -9,7 +9,7 @@ import java.util.Date;
  * objet Date.
  * 
  */
-public class FormatDate
+public class FormatDateSrv
 {
 
 /** The format amj. */

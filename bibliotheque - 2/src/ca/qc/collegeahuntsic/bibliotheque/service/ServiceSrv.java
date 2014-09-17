@@ -9,6 +9,6 @@ package ca.qc.collegeahuntsic.bibliotheque.service;
  *
  * @author Vincent
  */
-public class service {
+public class ServiceSrv {
     //rien a ajouter
 }

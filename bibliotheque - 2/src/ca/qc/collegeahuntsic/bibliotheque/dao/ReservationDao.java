@@ -2,8 +2,8 @@ package ca.qc.collegeahuntsic.bibliotheque.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservation;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,7 +15,7 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservation;
  *</pre>
  */
 
-public class Reservation {
+public class ReservationDao {
 
     /** The stmt existe. */
     private PreparedStatement stmtExiste;
@@ -33,7 +33,7 @@ public class Reservation {
     private PreparedStatement stmtDelete;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance.
@@ -41,7 +41,7 @@ public class Reservation {
      * @param cx the cx
      * @throws SQLException the SQL exception
      */
-    public Reservation(Connexion cx) throws SQLException {
+    public ReservationDao(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
         this.stmtExiste = cx.getConnection().prepareStatement("select idReservation, idLivre, idMembre, dateReservation "
@@ -61,7 +61,7 @@ public class Reservation {
      *
      * @return the connexion
      */
-    public Connexion getConnexion() {
+    public ConnexionDb getConnexion() {
 
         return this.cx;
     }
@@ -92,7 +92,7 @@ public class Reservation {
      * @return the reservation
      * @throws SQLException the SQL exception
      */
-    public TupleReservation getReservation(int idReservation) throws SQLException {
+    public TupleReservationDto getReservation(int idReservation) throws SQLException {
 
         this.stmtExiste.setInt(1,
             idReservation);
@@ -100,7 +100,7 @@ public class Reservation {
             ResultSet rset = this.stmtExiste.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservation tupleReservation = new TupleReservation();
+                TupleReservationDto tupleReservation = new TupleReservationDto();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
                 tupleReservation.idMembre = rset.getInt(3);
@@ -119,7 +119,7 @@ public class Reservation {
      * @return the reservation livre
      * @throws SQLException the SQL exception
      */
-    public TupleReservation getReservationLivre(int idLivre) throws SQLException {
+    public TupleReservationDto getReservationLivre(int idLivre) throws SQLException {
 
         this.stmtExisteLivre.setInt(1,
             idLivre);
@@ -127,7 +127,7 @@ public class Reservation {
             ResultSet rset = this.stmtExisteLivre.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservation tupleReservation = new TupleReservation();
+                TupleReservationDto tupleReservation = new TupleReservationDto();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
 
@@ -147,7 +147,7 @@ public class Reservation {
      * @return the reservation membre
      * @throws SQLException the SQL exception
      */
-    public TupleReservation getReservationMembre(int idMembre) throws SQLException {
+    public TupleReservationDto getReservationMembre(int idMembre) throws SQLException {
 
         this.stmtExisteMembre.setInt(1,
             idMembre);
@@ -155,7 +155,7 @@ public class Reservation {
             ResultSet rset = this.stmtExisteMembre.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservation tupleReservation = new TupleReservation();
+                TupleReservationDto tupleReservation = new TupleReservationDto();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
 

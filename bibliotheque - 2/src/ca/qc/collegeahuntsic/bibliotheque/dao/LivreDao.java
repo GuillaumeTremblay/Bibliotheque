@@ -4,15 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import ca.qc.collegeahuntsic.bibliotheque.DB.Connexion;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivre;
+import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
 
 // TODO: Auto-generated Javadoc
 /**
  * Permet d'effectuer les accès à la table livre.
  */
 
-public class Livre {
+public class LivreDao {
 
     /** The stmt existe. */
     private PreparedStatement stmtExiste;
@@ -27,7 +27,7 @@ public class Livre {
     private PreparedStatement stmtDelete;
 
     /** The cx. */
-    private Connexion cx;
+    private ConnexionDb cx;
 
     /**
      * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
@@ -35,7 +35,7 @@ public class Livre {
      * @param cx the cx
      * @throws SQLException the SQL exception
      */
-    public Livre(Connexion cx) throws SQLException {
+    public LivreDao(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
         this.stmtExiste = cx.getConnection()
@@ -52,7 +52,7 @@ public class Livre {
      *
      * @return the connexion
      */
-    public Connexion getConnexion() {
+    public ConnexionDb getConnexion() {
 
         return this.cx;
     }
@@ -85,7 +85,7 @@ public class Livre {
      * @return the livre
      * @throws SQLException the SQL exception
      */
-    public TupleLivre getLivre(int idLivre) throws SQLException {
+    public TupleLivreDto getLivre(int idLivre) throws SQLException {
 
         this.stmtExiste.setInt(1,
             idLivre);
@@ -93,7 +93,7 @@ public class Livre {
             ResultSet rset = this.stmtExiste.executeQuery()) {
 
             if(rset.next()) {
-                TupleLivre tupleLivre = new TupleLivre();
+                TupleLivreDto tupleLivre = new TupleLivreDto();
                 tupleLivre.idLivre = idLivre;
                 tupleLivre.titre = rset.getString(2);
                 tupleLivre.auteur = rset.getString(3);

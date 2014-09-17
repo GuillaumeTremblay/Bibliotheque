@@ -20,7 +20,7 @@ import java.sql.SQLException;
  *   (s'il est supporté par le serveur).
  * </pre>
  */
-public class Connexion {
+public class ConnexionDb {
 
     /** The conn. */
     private Connection conn;
@@ -37,7 +37,7 @@ public class Connexion {
      * @user userid sur le serveur SQL
      * @pass mot de passe sur le serveur SQL
      */
-    public Connexion(String serveur,
+    public ConnexionDb(String serveur,
         String bd,
         String user,
         String pass) throws SQLException {
