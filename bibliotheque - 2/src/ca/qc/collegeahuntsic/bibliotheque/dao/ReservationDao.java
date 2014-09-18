@@ -1,5 +1,6 @@
+
 package ca.qc.collegeahuntsic.bibliotheque.dao;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
@@ -15,32 +16,8 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
  *</pre>
  */
 
-public class ReservationDao {
+public class ReservationDao extends dao {
 
-    /** The stmt existe. */
-    private PreparedStatement stmtExiste;
-
-    /** The stmt existe livre. */
-    private PreparedStatement stmtExisteLivre;
-
-    /** The stmt existe membre. */
-    private PreparedStatement stmtExisteMembre;
-
-    /** The stmt insert. */
-    private PreparedStatement stmtInsert;
-
-    /** The stmt delete. */
-    private PreparedStatement stmtDelete;
-
-    /** The cx. */
-    private ConnexionDb cx;
-
-    /**
-     * Creation d'une instance.
-     *
-     * @param cx the cx
-     * @throws SQLException the SQL exception
-     */
     public ReservationDao(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
@@ -61,18 +38,7 @@ public class ReservationDao {
      *
      * @return the connexion
      */
-    public ConnexionDb getConnexion() {
 
-        return this.cx;
-    }
-
-    /**
-     * Verifie si une reservation existe.
-     *
-     * @param idReservation the id reservation
-     * @return true, if successful
-     * @throws SQLException the SQL exception
-     */
     public boolean existe(int idReservation) throws SQLException {
 
         this.stmtExiste.setInt(1,

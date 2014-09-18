@@ -1,6 +1,7 @@
+
 package ca.qc.collegeahuntsic.bibliotheque.dao;
+
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -12,29 +13,8 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
  * Permet d'effectuer les accès à la table livre.
  */
 
-public class LivreDao {
+public class LivreDao extends dao {
 
-    /** The stmt existe. */
-    private PreparedStatement stmtExiste;
-
-    /** The stmt insert. */
-    private PreparedStatement stmtInsert;
-
-    /** The stmt update. */
-    private PreparedStatement stmtUpdate;
-
-    /** The stmt delete. */
-    private PreparedStatement stmtDelete;
-
-    /** The cx. */
-    private ConnexionDb cx;
-
-    /**
-     * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
-     *
-     * @param cx the cx
-     * @throws SQLException the SQL exception
-     */
     public LivreDao(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
@@ -52,18 +32,7 @@ public class LivreDao {
      *
      * @return the connexion
      */
-    public ConnexionDb getConnexion() {
 
-        return this.cx;
-    }
-
-    /**
-     * Verifie si un livre existe.
-     *
-     * @param idLivre the id livre
-     * @return true, if successful
-     * @throws SQLException the SQL exception
-     */
     public boolean existe(int idLivre) throws SQLException {
 
         this.stmtExiste.setInt(1,

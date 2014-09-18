@@ -1,5 +1,6 @@
+
 package ca.qc.collegeahuntsic.bibliotheque.dao;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
@@ -13,32 +14,8 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
  *</pre>
  */
 
-public class MembreDao {
+public class MembreDao extends dao {
 
-    /** The stmt existe. */
-    private PreparedStatement stmtExiste;
-
-    /** The stmt insert. */
-    private PreparedStatement stmtInsert;
-
-    /** The stmt update incr nb pret. */
-    private PreparedStatement stmtUpdateIncrNbPret;
-
-    /** The stmt update dec nb pret. */
-    private PreparedStatement stmtUpdateDecNbPret;
-
-    /** The stmt delete. */
-    private PreparedStatement stmtDelete;
-
-    /** The cx. */
-    private ConnexionDb cx;
-
-    /**
-     * Creation d'une instance. Précompilation d'énoncés SQL.
-     *
-     * @param cx the cx
-     * @throws SQLException the SQL exception
-     */
     public MembreDao(ConnexionDb cx) throws SQLException {
         this.cx = cx;
         this.stmtExiste = cx.getConnection().prepareStatement("select idMembre, nom, telephone, limitePret, nbpret from membre where idmembre = ?");
@@ -54,6 +31,7 @@ public class MembreDao {
      *
      * @return the connexion
      */
+    @Override
     public ConnexionDb getConnexion() {
 
         return this.cx;
