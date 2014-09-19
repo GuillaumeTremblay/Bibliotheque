@@ -13,7 +13,7 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
  * Permet d'effectuer les accès à la table livre.
  */
 
-public class LivreDao extends dao {
+public class LivreDao extends DAO {
 
     public LivreDao(ConnexionDb cx) throws SQLException {
 

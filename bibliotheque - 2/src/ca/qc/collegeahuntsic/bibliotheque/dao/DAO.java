@@ -13,7 +13,7 @@ import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
  *
  * @author 
  */
-public class dao {
+public class DAO {
 
     /** The stmt existe. */
     protected PreparedStatement stmtExiste;
@@ -48,6 +48,11 @@ public class dao {
      * @param cx the cx
      * @throws SQLException the SQL exception
      */
+
+    @SuppressWarnings("unused")
+    private void setConnexion(ConnexionDb connexion) {
+        this.cx = connexion;
+    }
 
     public ConnexionDb getConnexion() {
 

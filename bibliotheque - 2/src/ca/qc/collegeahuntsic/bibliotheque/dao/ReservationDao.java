@@ -16,7 +16,7 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
  *</pre>
  */
 
-public class ReservationDao extends dao {
+public class ReservationDao extends DAO {
 
     public ReservationDao(ConnexionDb cx) throws SQLException {
 

@@ -14,7 +14,7 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
  *</pre>
  */
 
-public class MembreDao extends dao {
+public class MembreDao extends DAO {
 
     public MembreDao(ConnexionDb cx) throws SQLException {
         this.cx = cx;

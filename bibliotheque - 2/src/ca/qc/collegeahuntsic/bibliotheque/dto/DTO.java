@@ -9,7 +9,7 @@ package ca.qc.collegeahuntsic.bibliotheque.dto;
  *
  * @author Vincent
  */
-public class dto {
+public class DTO {
     //rien a ajouter
 
 }
