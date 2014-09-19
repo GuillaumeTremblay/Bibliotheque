@@ -1,10 +1,11 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,8 +16,10 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
  *
  *</pre>
  */
-
 public class ReservationDao extends DAO {
+    private PreparedStatement stmtExisteMembre;
+
+    private PreparedStatement stmtExisteLivre;
 
     public ReservationDao(ConnexionDb cx) throws SQLException {
 
@@ -58,7 +61,7 @@ public class ReservationDao extends DAO {
      * @return the reservation
      * @throws SQLException the SQL exception
      */
-    public TupleReservationDto getReservation(int idReservation) throws SQLException {
+    public ReservationDTO getReservation(int idReservation) throws SQLException {
 
         this.stmtExiste.setInt(1,
             idReservation);
@@ -66,7 +69,7 @@ public class ReservationDao extends DAO {
             ResultSet rset = this.stmtExiste.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservationDto tupleReservation = new TupleReservationDto();
+                ReservationDTO tupleReservation = new ReservationDTO();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
                 tupleReservation.idMembre = rset.getInt(3);
@@ -85,7 +88,7 @@ public class ReservationDao extends DAO {
      * @return the reservation livre
      * @throws SQLException the SQL exception
      */
-    public TupleReservationDto getReservationLivre(int idLivre) throws SQLException {
+    public ReservationDTO getReservationLivre(int idLivre) throws SQLException {
 
         this.stmtExisteLivre.setInt(1,
             idLivre);
@@ -93,7 +96,7 @@ public class ReservationDao extends DAO {
             ResultSet rset = this.stmtExisteLivre.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservationDto tupleReservation = new TupleReservationDto();
+                ReservationDTO tupleReservation = new ReservationDTO();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
 
@@ -113,7 +116,7 @@ public class ReservationDao extends DAO {
      * @return the reservation membre
      * @throws SQLException the SQL exception
      */
-    public TupleReservationDto getReservationMembre(int idMembre) throws SQLException {
+    public ReservationDTO getReservationMembre(int idMembre) throws SQLException {
 
         this.stmtExisteMembre.setInt(1,
             idMembre);
@@ -121,7 +124,7 @@ public class ReservationDao extends DAO {
             ResultSet rset = this.stmtExisteMembre.executeQuery()) {
 
             if(rset.next()) {
-                TupleReservationDto tupleReservation = new TupleReservationDto();
+                ReservationDTO tupleReservation = new ReservationDTO();
                 tupleReservation.idReservation = rset.getInt(1);
                 tupleReservation.idLivre = rset.getInt(2);
 

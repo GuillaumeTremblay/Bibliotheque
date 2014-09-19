@@ -4,11 +4,18 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade;
 
+import java.io.Serializable;
+
 /**
  * TODO Auto-generated class javadoc
  *
  * @author Vincent
  */
-public class facade {
+public class facade implements Serializable {
     //rien a ajouter
+    private static final long serialVersionUID = 1;
+
+    public facade() {
+        super();
+    }
 }

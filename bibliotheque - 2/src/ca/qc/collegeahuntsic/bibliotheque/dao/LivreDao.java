@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,7 +14,6 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
  */
 
 public class LivreDao extends DAO {
-
     public LivreDao(ConnexionDb cx) throws SQLException {
 
         this.cx = cx;
@@ -54,7 +53,7 @@ public class LivreDao extends DAO {
      * @return the livre
      * @throws SQLException the SQL exception
      */
-    public TupleLivreDto getLivre(int idLivre) throws SQLException {
+    public LivreDTO getLivre(int idLivre) throws SQLException {
 
         this.stmtExiste.setInt(1,
             idLivre);
@@ -62,7 +61,7 @@ public class LivreDao extends DAO {
             ResultSet rset = this.stmtExiste.executeQuery()) {
 
             if(rset.next()) {
-                TupleLivreDto tupleLivre = new TupleLivreDto();
+                LivreDTO tupleLivre = new LivreDTO();
                 tupleLivre.idLivre = idLivre;
                 tupleLivre.titre = rset.getString(2);
                 tupleLivre.auteur = rset.getString(3);

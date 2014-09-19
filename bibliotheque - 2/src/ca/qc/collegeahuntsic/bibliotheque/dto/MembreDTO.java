@@ -7,7 +7,7 @@ package ca.qc.collegeahuntsic.bibliotheque.dto;
  * 
  */
 
-public class TupleMembreDto extends DTO {
+public class MembreDTO extends DTO {
 
     /** The id membre. */
     public int idMembre;

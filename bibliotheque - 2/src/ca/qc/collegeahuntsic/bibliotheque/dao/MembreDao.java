@@ -1,10 +1,11 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,6 +16,9 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
  */
 
 public class MembreDao extends DAO {
+    private PreparedStatement stmtUpdateIncrNbPret;
+
+    private PreparedStatement stmtUpdateDecNbPret;
 
     public MembreDao(ConnexionDb cx) throws SQLException {
         this.cx = cx;
@@ -62,14 +66,14 @@ public class MembreDao extends DAO {
      * @return the membre
      * @throws SQLException the SQL exception
      */
-    public TupleMembreDto getMembre(int idMembre) throws SQLException {
+    public MembreDTO getMembre(int idMembre) throws SQLException {
         this.stmtExiste.setInt(1,
             idMembre);
         try(
             ResultSet rset = this.stmtExiste.executeQuery();) {
 
             if(rset.next()) {
-                TupleMembreDto tupleMembre = new TupleMembreDto();
+                MembreDTO tupleMembre = new MembreDTO();
                 tupleMembre.idMembre = idMembre;
                 tupleMembre.nom = rset.getString(2);
                 tupleMembre.telephone = rset.getLong(3);

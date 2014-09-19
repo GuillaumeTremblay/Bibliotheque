@@ -6,10 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.StringTokenizer;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
-import ca.qc.collegeahuntsic.bibliotheque.service.FormatDateSrv;
 import ca.qc.collegeahuntsic.bibliotheque.service.GestionBibliothequeSrv;
+import ca.qc.collegeahuntsic.bibliotheque.util.FormatDateSrv;
 
 // TODO: Auto-generated Javadoc
 /**

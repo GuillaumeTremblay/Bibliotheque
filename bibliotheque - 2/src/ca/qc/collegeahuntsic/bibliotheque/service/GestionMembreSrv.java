@@ -1,9 +1,9 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDao;
 import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -98,7 +98,7 @@ public class GestionMembreSrv {
         Exception {
         try {
             /* Vérifie si le membre existe et son nombre de pret en cours */
-            TupleMembreDto tupleMembre = this.membre.getMembre(idMembre);
+            MembreDTO tupleMembre = this.membre.getMembre(idMembre);
             if(tupleMembre == null) {
                 throw new BiblioException("Membre inexistant: "
                     + idMembre);

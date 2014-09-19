@@ -1,9 +1,9 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
 import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDao;
 import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -96,7 +96,7 @@ public class GestionLivreSrv {
         BiblioException,
         Exception {
         try {
-            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
+            LivreDTO tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);

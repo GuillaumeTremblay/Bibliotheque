@@ -9,7 +9,7 @@ import java.sql.Date;
  * 
 */
 
-public class TupleLivreDto extends DTO {
+public class LivreDTO extends DTO {
 
     /** The id livre. */
     public int idLivre;

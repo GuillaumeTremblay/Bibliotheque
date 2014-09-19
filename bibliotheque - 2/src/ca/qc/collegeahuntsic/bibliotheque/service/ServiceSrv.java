@@ -4,11 +4,18 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.service;
 
+import java.io.Serializable;
+
 /**
  * TODO Auto-generated class javadoc
  *
  * @author Vincent
  */
-public class ServiceSrv {
+public class ServiceSrv implements Serializable {
     //rien a ajouter
+    private static final long serialVersionUID = 1;
+
+    public ServiceSrv() {
+        super();
+    }
 }

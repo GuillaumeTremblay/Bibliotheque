@@ -1,13 +1,13 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.sql.Date;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
 import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDao;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDao;
 import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDao;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleLivreDto;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleMembreDto;
-import ca.qc.collegeahuntsic.bibliotheque.dto.TupleReservationDto;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BiblioException;
 
 // TODO: Auto-generated Javadoc
@@ -84,7 +84,7 @@ public class GestionReservationSrv {
         Exception {
         try {
             /* Verifier que le livre est preté */
-            TupleLivreDto tupleLivre = this.livre.getLivre(idLivre);
+            LivreDTO tupleLivre = this.livre.getLivre(idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + idLivre);
@@ -101,7 +101,7 @@ public class GestionReservationSrv {
             }
 
             /* Vérifier que le membre existe */
-            TupleMembreDto tupleMembre = this.membre.getMembre(idMembre);
+            MembreDTO tupleMembre = this.membre.getMembre(idMembre);
             if(tupleMembre == null) {
                 throw new BiblioException("Membre inexistant: "
                     + idMembre);
@@ -149,14 +149,14 @@ public class GestionReservationSrv {
         Exception {
         try {
             /* Vérifie s'il existe une réservation pour le livre */
-            TupleReservationDto tupleReservation = this.reservation.getReservation(idReservation);
+            ReservationDTO tupleReservation = this.reservation.getReservation(idReservation);
             if(tupleReservation == null) {
                 throw new BiblioException("Réservation inexistante : "
                     + idReservation);
             }
 
             /* Vérifie que c'est la première réservation pour le livre */
-            TupleReservationDto tupleReservationPremiere = this.reservation.getReservationLivre(tupleReservation.idLivre);
+            ReservationDTO tupleReservationPremiere = this.reservation.getReservationLivre(tupleReservation.idLivre);
             if(tupleReservation.idReservation != tupleReservationPremiere.idReservation) {
                 throw new BiblioException("La réservation n'est pas la première de la liste "
                     + "pour ce livre; la premiere est "
@@ -164,7 +164,7 @@ public class GestionReservationSrv {
             }
 
             /* Verifier si le livre est disponible */
-            TupleLivreDto tupleLivre = this.livre.getLivre(tupleReservation.idLivre);
+            LivreDTO tupleLivre = this.livre.getLivre(tupleReservation.idLivre);
             if(tupleLivre == null) {
                 throw new BiblioException("Livre inexistant: "
                     + tupleReservation.idLivre);
@@ -177,7 +177,7 @@ public class GestionReservationSrv {
             }
 
             /* Vérifie si le membre existe et sa limite de pret */
-            TupleMembreDto tupleMembre = this.membre.getMembre(tupleReservation.idMembre);
+            MembreDTO tupleMembre = this.membre.getMembre(tupleReservation.idMembre);
             if(tupleMembre == null) {
                 throw new BiblioException("Membre inexistant: "
                     + tupleReservation.idMembre);

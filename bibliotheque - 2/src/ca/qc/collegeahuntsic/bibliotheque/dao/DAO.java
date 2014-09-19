@@ -6,7 +6,7 @@ package ca.qc.collegeahuntsic.bibliotheque.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.DB.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
 
 /**
  * TODO Auto-generated class javadoc
@@ -29,18 +29,6 @@ public class DAO {
 
     /** The cx. */
     protected ConnexionDb cx;
-
-    /** The stmt update incr nb pret. */
-    protected PreparedStatement stmtUpdateIncrNbPret;
-
-    /** The stmt update dec nb pret. */
-    protected PreparedStatement stmtUpdateDecNbPret;
-
-    /** The stmt existe livre. */
-    protected PreparedStatement stmtExisteLivre;
-
-    /** The stmt existe membre. */
-    protected PreparedStatement stmtExisteMembre;
 
     /**
      * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
