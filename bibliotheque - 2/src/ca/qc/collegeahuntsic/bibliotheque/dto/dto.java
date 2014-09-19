@@ -11,4 +11,5 @@ package ca.qc.collegeahuntsic.bibliotheque.dto;
  */
 public class dto {
     //rien a ajouter
+
 }

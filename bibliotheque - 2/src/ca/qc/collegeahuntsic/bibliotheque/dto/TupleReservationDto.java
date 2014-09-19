@@ -1,4 +1,6 @@
+
 package ca.qc.collegeahuntsic.bibliotheque.dto;
+
 import java.sql.Date;
 
 // TODO: Auto-generated Javadoc
@@ -7,17 +9,17 @@ import java.sql.Date;
  * 
  */
 
-public class TupleReservationDto {
+public class TupleReservationDto extends dto {
 
-  /** The id reservation. */
-  public int    idReservation;
-  
-  /** The id livre. */
-  public int    idLivre;
-  
-  /** The id membre. */
-  public int    idMembre;
-  
-  /** The date reservation. */
-  public Date   dateReservation;
+    /** The id reservation. */
+    public int idReservation;
+
+    /** The id livre. */
+    public int idLivre;
+
+    /** The id membre. */
+    public int idMembre;
+
+    /** The date reservation. */
+    public Date dateReservation;
 }
