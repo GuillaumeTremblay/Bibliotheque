@@ -138,7 +138,7 @@ public class MembreService extends Service {
      * @return La liste des membres correspondants ; une liste vide sinon
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public List<MembreDTO> findByTel(long telephone) throws ServiceException {
+    public MembreDTO findByTel(long telephone) throws ServiceException {
         try {
             return getMembreDAO().findByTel(telephone);
         } catch(DAOException daoException) {

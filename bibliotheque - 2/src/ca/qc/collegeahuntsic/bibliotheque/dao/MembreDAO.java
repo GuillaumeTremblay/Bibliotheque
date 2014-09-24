@@ -227,31 +227,26 @@ public class MembreDAO extends DAO {
      * @return La liste des membres correspondants ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public List<MembreDTO> findByTel(long tel) throws DAOException {
-        List<MembreDTO> membres = Collections.EMPTY_LIST;
+    public MembreDTO findByTel(long tel) throws DAOException {
+        MembreDTO membreDTO = null;
         try(
             PreparedStatement findByTelPreparedStatement = getConnection().prepareStatement(MembreDAO.FIND_BY_PHONE)) {
             findByTelPreparedStatement.setLong(1,
                 tel);
             try(
                 ResultSet resultSet = findByTelPreparedStatement.executeQuery()) {
-                MembreDTO membreDTO = null;
                 if(resultSet.next()) {
-                    membres = new ArrayList<>();
-                    do {
-                        membreDTO = new MembreDTO();
-                        membreDTO.setIdMembre(resultSet.getInt(1));
-                        membreDTO.setNom(resultSet.getString(2));
-                        membreDTO.setTelephone(resultSet.getLong(3));
-                        membreDTO.setLimitePret(resultSet.getInt(4));
-                        membreDTO.setNbPret(resultSet.getInt(5));
-                        membres.add(membreDTO);
-                    } while(resultSet.next());
+                    membreDTO = new MembreDTO();
+                    membreDTO.setIdMembre(resultSet.getInt(1));
+                    membreDTO.setNom(resultSet.getString(2));
+                    membreDTO.setTelephone(resultSet.getLong(3));
+                    membreDTO.setLimitePret(resultSet.getInt(4));
+                    membreDTO.setNbPret(resultSet.getInt(5));
                 }
             }
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-        return membres;
+        return membreDTO;
     }
 }

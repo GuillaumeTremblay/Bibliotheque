@@ -214,63 +214,91 @@ public class ReservationService extends Service {
         }
     }
 
-    //    public void reserver(ReservationDTO reservationDTO, LivreDTO livreDTO, MembreDTO membreDTO) throws ServiceException{
-    //        if (findBy)
+    //    public void reserver(ReservationDTO reservationDTO,
+    //        LivreDTO livreDTO,
+    //        MembreDTO membreDTO) throws ServiceException {
+    //        try {
+    //            if(getLivreDAO().read(reservationDTO.getIdLivre()) == null) {
+    //                throw new ServiceException("Le livre "
+    //                    + livreDTO.getIdLivre()
+    //                    + " n'existe pas");
+    //            }
+    //            if(getLivreDAO().findByMembre(membreDTO).getIdMembre() == reservationDTO.getIdMembre()) {
+    //                throw new ServiceException("Le livre "
+    //                    + livreDTO.getIdLivre()
+    //                    + " est deja prete a se membre");
+    //            }
+    //            if(getMembreDAO().read(reservationDTO.getIdMembre()) == null) {
+    //                throw new ServiceException("Le membre "
+    //                    + reservationDTO.getIdMembre()
+    //                    + " n'existe pas");
+    //            }
+    //            if(reservationDTO.getDateReservation().before(getLivreDAO().read(reservationDTO.getIdLivre()).getDatePret())) {
+    //                throw new ServiceException("La date de reservation "
+    //                    + reservationDTO.getDateReservation()
+    //                    + " est avant la date de pret du livre");
+    //            }
+    //            getReservationDAO().add(reservationDTO);
+    //        } catch(DAOException e) {
+    //            // TODO Auto-generated catch block
+    //            e.printStackTrace();
+    //        }
+    //
     //    }
-    //        /**
-    //         * Réservation d'un livre par un membre.
-    //         * Le livre doit être prêté.
-    //         *
-    //         * @param idReservation the id reservation
-    //         * @param idLivre the id livre
-    //         * @param idMembre the id membre
-    //         * @param dateReservation the date reservation
-    //         * @throws SQLException the SQL exception
-    //         * @throws BibliothequeException the biblio exception
-    //         * @throws Exception the exception
-    //         */
-    //        public void reserver(int idReservation,
-    //            int idLivre,
-    //            int idMembre,
-    //            String dateReservation) throws SQLException,
-    //            BibliothequeException,
-    //            Exception {
-    //            try {
-    //                /* Verifier que le livre est preté */
-    //                LivreDTO tupleLivre = this.livre.getLivre(idLivre);
-    //                if(tupleLivre == null) {
-    //                    throw new BibliothequeException("Livre inexistant: "
-    //                        + idLivre);
-    //                }
-    //                if(tupleLivre.idMembre == 0) {
-    //                    throw new BibliothequeException("Livre "
-    //                        + idLivre
-    //                        + " n'est pas prete");
-    //                }
-    //                if(tupleLivre.idMembre == idMembre) {
-    //                    throw new BibliothequeException("Livre "
-    //                        + idLivre
-    //                        + " deja prete a ce membre");
-    //                }
-    //
-    //                /* Vérifier que le membre existe */
-    //                MembreDTO tupleMembre = this.membre.getMembre(idMembre);
-    //                if(tupleMembre == null) {
-    //                    throw new BibliothequeException("Membre inexistant: "
-    //                        + idMembre);
-    //                }
-    //
-    //                /* Verifier si date reservation >= datePret */
-    //                if(Date.valueOf(dateReservation).before(tupleLivre.datePret)) {
-    //                    throw new BibliothequeException("Date de reservation inferieure à la date de pret");
-    //                }
-    //
-    //                /* Vérifier que la réservation n'existe pas */
-    //                if(this.reservation.existe(idReservation)) {
-    //                    throw new BibliothequeException("Réservation "
-    //                        + idReservation
-    //                        + " existe deja");
-    //                }
+    //            /**
+    //             * Réservation d'un livre par un membre.
+    //             * Le livre doit être prêté.
+    //             *
+    //             * @param idReservation the id reservation
+    //             * @param idLivre the id livre
+    //             * @param idMembre the id membre
+    //             * @param dateReservation the date reservation
+    //             * @throws SQLException the SQL exception
+    //             * @throws BibliothequeException the biblio exception
+    //             * @throws Exception the exception
+    //             */
+    //            public void reserver(int idReservation,
+    //                int idLivre,
+    //                int idMembre,
+    //                String dateReservation) throws SQLException,
+    //                BibliothequeException,
+    //                Exception {
+    //                try {
+    //                    /* Verifier que le livre est preté */
+    //                    LivreDTO tupleLivre = this.livre.getLivre(idLivre);
+    //                    if(tupleLivre == null) {
+    //                        throw new BibliothequeException("Livre inexistant: "
+    //                            + idLivre);
+    //                    }
+    //                    if(tupleLivre.idMembre == 0) {
+    //                        throw new BibliothequeException("Livre "
+    //                            + idLivre
+    //                            + " n'est pas prete");
+    //                    }
+    //                    if(tupleLivre.idMembre == idMembre) {
+    //                        throw new BibliothequeException("Livre "
+    //                            + idLivre
+    //                            + " deja prete a ce membre");
+    //                    }
+    //    
+    //                    /* Vérifier que le membre existe */
+    //                    MembreDTO tupleMembre = this.membre.getMembre(idMembre);
+    //                    if(tupleMembre == null) {
+    //                        throw new BibliothequeException("Membre inexistant: "
+    //                            + idMembre);
+    //                    }
+    //    
+    //                    /* Verifier si date reservation >= datePret */
+    //                    if(Date.valueOf(dateReservation).before(tupleLivre.datePret)) {
+    //                        throw new BibliothequeException("Date de reservation inferieure à la date de pret");
+    //                    }
+    //    
+    //                    /* Vérifier que la réservation n'existe pas */
+    //                    if(this.reservation.existe(idReservation)) {
+    //                        throw new BibliothequeException("Réservation "
+    //                            + idReservation
+    //                            + " existe deja");
+    //                    }
     //
     //                /* Creation de la reservation */
     //                this.reservation.reserver(idReservation,

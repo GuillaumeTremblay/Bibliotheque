@@ -17,7 +17,7 @@ import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
  *           3- mot de passe pour le user id
  *</pre>
  */
-class CreerBDDb {
+class BDCreateur {
 
     /**
      * The main method.
