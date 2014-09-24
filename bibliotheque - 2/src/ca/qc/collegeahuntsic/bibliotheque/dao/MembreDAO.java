@@ -249,4 +249,26 @@ public class MembreDAO extends DAO {
         }
         return membreDTO;
     }
+
+    /**
+     * Emprunte un livre.
+     *
+     * @param membreDTO Le membre à mettre à jour
+     * @throws DAOException S'il y a une erreur avec la base de données
+     */
+    public void emprunter(MembreDTO membreDTO) throws DAOException {
+        membreDTO.setNbPret(membreDTO.getNbPret() + 1);
+        update(membreDTO);
+    }
+
+    /**
+     * Retourne un livre.
+     *
+     * @param membreDTO Le membre à mettre à jour
+     * @throws DAOException S'il y a une erreur avec la base de données
+     */
+    public void retourner(MembreDTO membreDTO) throws DAOException {
+        membreDTO.setNbPret(membreDTO.getNbPret() - 1);
+        update(membreDTO);
+    }
 }

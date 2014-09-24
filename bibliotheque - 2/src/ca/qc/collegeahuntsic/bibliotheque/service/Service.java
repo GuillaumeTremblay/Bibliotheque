@@ -15,7 +15,7 @@ public class Service implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Crée un Service à partir d'une connexion à la base de données.
+     * Crée un Service
      */
     public Service() {
         super();
