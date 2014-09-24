@@ -2,9 +2,7 @@
 package ca.qc.collegeahuntsic.bibliotheque.service;
 
 import java.util.List;
-import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
@@ -21,9 +19,7 @@ public class MembreService extends Service {
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      */
-    public MembreService(LivreDAO livreDAO,
-        MembreDAO membreDAO,
-        ReservationDAO reservationDAO) {
+    public MembreService(MembreDAO membreDAO) {
         super();
         setMembreDAO(membreDAO);
     }
