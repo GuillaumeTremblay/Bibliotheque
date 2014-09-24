@@ -1,15 +1,23 @@
-// Fichier dto.java
-// Auteur : Vincent
-// Date de création : Sep 17, 2014
+// Fichier DTO.java
+// Auteur : Chou Huynh
+// Date de création : 2014-09-23
 
 package ca.qc.collegeahuntsic.bibliotheque.dto;
 
-/**
- * TODO Auto-generated class javadoc
- *
- * @author Vincent
- */
-public class DTO {
-    //rien a ajouter
+import java.io.Serializable;
 
+/**
+ * Classe de base pour tous les DTOs.
+ *
+ * @author Chou Huynh
+ */
+public class DTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Crée un nouveau DTO vide.
+	 */
+	public DTO() {
+		super();
+	}
 }

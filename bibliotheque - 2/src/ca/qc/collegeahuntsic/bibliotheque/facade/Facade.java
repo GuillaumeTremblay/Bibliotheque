@@ -1,8 +1,8 @@
-// Fichier service.java
+// Fichier facade.java
 // Auteur : Vincent
 // Date de création : Sep 17, 2014
 
-package ca.qc.collegeahuntsic.bibliotheque.service;
+package ca.qc.collegeahuntsic.bibliotheque.facade;
 
 import java.io.Serializable;
 
@@ -11,11 +11,11 @@ import java.io.Serializable;
  *
  * @author Vincent
  */
-public class ServiceSrv implements Serializable {
+public class Facade implements Serializable {
     //rien a ajouter
     private static final long serialVersionUID = 1;
 
-    public ServiceSrv() {
+    public Facade() {
         super();
     }
 }

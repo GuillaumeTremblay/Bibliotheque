@@ -1,58 +1,55 @@
-// Fichier dao.java
-// Auteur : Vincent
-// Date de création : Sep 17, 2014
+// Fichier DAO.java
+// Auteur : Gilles Bénichou
+// Date de création : 2014-08-24
 
 package ca.qc.collegeahuntsic.bibliotheque.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import java.io.Serializable;
+import java.sql.Connection;
+import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 
 /**
- * TODO Auto-generated class javadoc
+ * Classe de base pour tous les DAOs.
  *
- * @author 
+ * @author Chou Huynh
  */
-public class DAO {
+public class DAO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    /** The stmt existe. */
-    protected PreparedStatement stmtExiste;
-
-    /** The stmt insert. */
-    protected PreparedStatement stmtInsert;
-
-    /** The stmt update. */
-    protected PreparedStatement stmtUpdate;
-
-    /** The stmt delete. */
-    protected PreparedStatement stmtDelete;
-
-    /** The cx. */
-    protected ConnexionDb cx;
+    private Connexion connexion;
 
     /**
-     * Creation d'une instance. Des énoncés SQL pour chaque requête sont précompilés.
-     *
-     * @param cx the cx
-     * @throws SQLException the SQL exception
+     * Crée un DAO à partir d'une connexion à la base de données.
      */
-
-    @SuppressWarnings("unused")
-    private void setConnexion(ConnexionDb connexion) {
-        this.cx = connexion;
-    }
-
-    public ConnexionDb getConnexion() {
-
-        return this.cx;
+    public DAO(Connexion connexion) {
+        super();
+        setConnexion(connexion);
     }
 
     /**
-     * Verifie si une reservation existe.
+     * Getter de la variable d'instance <code>this.connexion</code>.
      *
-     * @param idReservation the id reservation
-     * @return true, if successful
-     * @throws SQLException the SQL exception
+     * @return La variable d'instance <code>this.connexion</code>
      */
-    //rien a ajouter
+    private Connexion getConnexion() {
+        return this.connexion;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.connexion</code>.
+     *
+     * @param connexion La valeur à utiliser pour la variable d'instance <code>this.connexion</code>
+     */
+    private void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
+    }
+
+    /**
+     * Retourne la {@link java.sql.Connection} JDBC.
+     *
+     * @return La {@link java.sql.Connection} JDBC
+     */
+    protected Connection getConnection() {
+        return getConnexion().getConnection();
+    }
 }

@@ -3,7 +3,7 @@ package ca.qc.collegeahuntsic.bibliotheque.util;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import ca.qc.collegeahuntsic.bibliotheque.db.ConnexionDb;
+import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -34,7 +34,7 @@ class CreerBDDb {
             return;
         }
 
-        ConnexionDb cx = new ConnexionDb(args[0],
+        Connexion cx = new Connexion(args[0],
             args[1],
             args[2],
             args[3]);
