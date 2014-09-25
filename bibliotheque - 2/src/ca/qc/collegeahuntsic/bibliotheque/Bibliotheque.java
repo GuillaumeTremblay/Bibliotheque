@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.StringTokenizer;
-
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
@@ -47,7 +46,8 @@ import ca.qc.collegeahuntsic.bibliotheque.util.FormatteurDate;
  */
 public class Bibliotheque {
     private static BibliothequeCreateur gestionBiblio;
-	private static boolean lectureAuClavier;
+
+    private static boolean lectureAuClavier;
 
     /**
      * Ouverture de la BD,
@@ -55,14 +55,14 @@ public class Bibliotheque {
      * fermeture de la BD.
      */
     public static void main(String argv[]) throws Exception {
-    	
-    	// validation du nombre de param�tres
+
+        // validation du nombre de param�tres
         if(argv.length < 4) {
             System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
             System.out.println(Connexion.getServeursSupportes());
             return;
         }
-		
+
         try {
             // ouverture du fichier de transactions
             // s'il est sp�cifi� comme argument
@@ -71,49 +71,49 @@ public class Bibliotheque {
             if(argv.length > 4) {
                 sourceTransaction = new FileInputStream(argv[4]);
                 lectureAuClavier = false;
-            }
-            try(
-                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
-                gestionBiblio = new BibliothequeCreateur(argv[0],
-                    argv[1],
-                    argv[2],
-                    argv[3]);
-                traiterTransactions(reader);
-            }
 
+                try(
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
+                    gestionBiblio = new BibliothequeCreateur(argv[0],
+                        argv[1],
+                        argv[2],
+                        argv[3]);
+                    traiterTransactions(reader);
+                }
+            }
         } catch(Exception e) {
             e.printStackTrace(System.out);
         } finally {
             gestionBiblio.close();
         }
-    	
-//        // validation du nombre de paramï¿½tres
-//        if(argv.length < 5) {
-//            System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
-//            System.out.println(Connexion.getServeursSupportes());
-//            return;
-//        }
-//        
-//        try {
-//            // ouverture du fichier de transactions
-//            InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
-//                + argv[4]);
-//            try(
-//                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
-//            	
-//                gestionBiblio = new BibliothequeCreateur(argv[0],
-//                    argv[1],
-//                    argv[2],
-//                    argv[3]);
-//                traiterTransactions(reader);
-//            }
-//        } catch(Exception e) {
-//            gestionBiblio.rollback();
-//            e.printStackTrace(System.out);
-//        } finally {
-//            gestionBiblio.close();
-//        }
     }
+
+    //        // validation du nombre de paramï¿½tres
+    //        if(argv.length < 5) {
+    //            System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
+    //            System.out.println(Connexion.getServeursSupportes());
+    //            return;
+    //        }
+    //
+    //        try {
+    //            // ouverture du fichier de transactions
+    //            InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
+    //                + argv[4]);
+    //            try(
+    //                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
+    //
+    //                gestionBiblio = new BibliothequeCreateur(argv[0],
+    //                    argv[1],
+    //                    argv[2],
+    //                    argv[3]);
+    //                traiterTransactions(reader);
+    //            }
+    //        } catch(Exception e) {
+    //            gestionBiblio.rollback();
+    //            e.printStackTrace(System.out);
+    //        } finally {
+    //            gestionBiblio.close();
+    //        }
 
     /**
      * Traitement des transactions de la bibliothèque
