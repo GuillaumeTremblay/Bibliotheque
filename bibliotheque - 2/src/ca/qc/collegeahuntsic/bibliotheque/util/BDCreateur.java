@@ -47,9 +47,9 @@ public class BDCreateur {
                 try(
                     Statement statement = connexion.getConnection().createStatement()) {
 
-                    statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
+                    /*statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
                     statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
-                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
+                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");*/
 
                     statement.executeUpdate("CREATE TABLE membre ("
                         + "                               idMembre   NUMBER(3) CHECK (idMembre > 0), "

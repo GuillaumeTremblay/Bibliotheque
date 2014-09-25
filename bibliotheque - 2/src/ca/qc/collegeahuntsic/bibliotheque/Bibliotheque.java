@@ -2,12 +2,14 @@
 package ca.qc.collegeahuntsic.bibliotheque;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.StringTokenizer;
+
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
@@ -45,6 +47,7 @@ import ca.qc.collegeahuntsic.bibliotheque.util.FormatteurDate;
  */
 public class Bibliotheque {
     private static BibliothequeCreateur gestionBiblio;
+	private static boolean lectureAuClavier;
 
     /**
      * Ouverture de la BD,
@@ -52,32 +55,64 @@ public class Bibliotheque {
      * fermeture de la BD.
      */
     public static void main(String argv[]) throws Exception {
-        // validation du nombre de paramï¿½tres
-        if(argv.length < 5) {
+    	
+    	// validation du nombre de param�tres
+        if(argv.length < 4) {
             System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
             System.out.println(Connexion.getServeursSupportes());
             return;
         }
-
+		
         try {
             // ouverture du fichier de transactions
-            InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
-                + argv[4]);
+            // s'il est sp�cifi� comme argument
+            lectureAuClavier = true;
+            InputStream sourceTransaction = System.in;
+            if(argv.length > 4) {
+                sourceTransaction = new FileInputStream(argv[4]);
+                lectureAuClavier = false;
+            }
             try(
                 BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
-
                 gestionBiblio = new BibliothequeCreateur(argv[0],
                     argv[1],
                     argv[2],
                     argv[3]);
                 traiterTransactions(reader);
             }
+
         } catch(Exception e) {
-            gestionBiblio.rollback();
             e.printStackTrace(System.out);
         } finally {
             gestionBiblio.close();
         }
+    	
+//        // validation du nombre de paramï¿½tres
+//        if(argv.length < 5) {
+//            System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
+//            System.out.println(Connexion.getServeursSupportes());
+//            return;
+//        }
+//        
+//        try {
+//            // ouverture du fichier de transactions
+//            InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
+//                + argv[4]);
+//            try(
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
+//            	
+//                gestionBiblio = new BibliothequeCreateur(argv[0],
+//                    argv[1],
+//                    argv[2],
+//                    argv[3]);
+//                traiterTransactions(reader);
+//            }
+//        } catch(Exception e) {
+//            gestionBiblio.rollback();
+//            e.printStackTrace(System.out);
+//        } finally {
+//            gestionBiblio.close();
+//        }
     }
 
     /**
@@ -103,7 +138,7 @@ public class Bibliotheque {
      */
     static String lireTransaction(BufferedReader reader) throws IOException {
         String transaction = reader.readLine();
-        if(transaction != null) {
+        if(!lectureAuClavier) {
             System.out.print("> ");
             System.out.println(transaction);
         }
