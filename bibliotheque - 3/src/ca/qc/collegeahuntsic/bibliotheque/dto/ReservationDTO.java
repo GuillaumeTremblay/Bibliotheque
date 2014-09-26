@@ -1,31 +1,27 @@
+// Fichier ReservationDTO.java
+// Auteur : Gilles Bénichou
+// Date de création : 2014-08-24
 
 package ca.qc.collegeahuntsic.bibliotheque.dto;
 
 import java.sql.Timestamp;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-// TODO: Auto-generated Javadoc
 /**
- * Permet de représenter un tuple de la table membre.
- *
+ * DTO de la table <code>reservation</code>.
+ * 
+ * @author Gilles Benichou
  */
-
 public class ReservationDTO extends DTO {
-
-    /**
-     * TODO Auto-generated field javadoc
-     */
     private static final long serialVersionUID = 1L;
 
-    /** The id reservation. */
     private int idReservation;
 
-    /** The id livre. */
-    private int idLivre;
+    private MembreDTO membreDTO;
 
-    /** The id membre. */
-    private int idMembre;
+    private LivreDTO livreDTO;
 
-    /** The date reservation. */
     private Timestamp dateReservation;
 
     /**
@@ -47,39 +43,39 @@ public class ReservationDTO extends DTO {
     }
 
     /**
-     * Getter de la variable d'instance <code>this.idLivre</code>.
+     * Getter de la variable d'instance <code>this.membreDTO</code>.
      *
-     * @return La variable d'instance <code>this.idLivre</code>
+     * @return La variable d'instance <code>this.membreDTO</code>
      */
-    public int getIdLivre() {
-        return this.idLivre;
+    public MembreDTO getMembreDTO() {
+        return this.membreDTO;
     }
 
     /**
-     * Setter de la variable d'instance <code>this.idLivre</code>.
+     * Setter de la variable d'instance <code>this.membreDTO</code>.
      *
-     * @param idLivre La valeur à utiliser pour la variable d'instance <code>this.idLivre</code>
+     * @param membreDTO La valeur à utiliser pour la variable d'instance <code>this.membreDTO</code>
      */
-    public void setIdLivre(int idLivre) {
-        this.idLivre = idLivre;
+    public void setMembreDTO(MembreDTO membreDTO) {
+        this.membreDTO = membreDTO;
     }
 
     /**
-     * Getter de la variable d'instance <code>this.idMembre</code>.
+     * Getter de la variable d'instance <code>this.livreDTO</code>.
      *
-     * @return La variable d'instance <code>this.idMembre</code>
+     * @return La variable d'instance <code>this.livreDTO</code>
      */
-    public int getIdMembre() {
-        return this.idMembre;
+    public LivreDTO getLivreDTO() {
+        return this.livreDTO;
     }
 
     /**
-     * Setter de la variable d'instance <code>this.idMembre</code>.
+     * Setter de la variable d'instance <code>this.livreDTO</code>.
      *
-     * @param idMembre La valeur à utiliser pour la variable d'instance <code>this.idMembre</code>
+     * @param livreDTO La valeur à utiliser pour la variable d'instance <code>this.livreDTO</code>
      */
-    public void setIdMembre(int idMembre) {
-        this.idMembre = idMembre;
+    public void setLivreDTO(LivreDTO livreDTO) {
+        this.livreDTO = livreDTO;
     }
 
     /**
@@ -98,5 +94,38 @@ public class ReservationDTO extends DTO {
      */
     public void setDateReservation(Timestamp dateReservation) {
         this.dateReservation = dateReservation;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean equals = this == obj;
+        if(!equals) {
+            equals = obj != null
+                && obj instanceof ReservationDTO;
+            if(equals) {
+                ReservationDTO reservationDTO = (ReservationDTO) obj;
+                EqualsBuilder equalsBuilder = new EqualsBuilder();
+                equalsBuilder.appendSuper(super.equals(reservationDTO));
+                equalsBuilder.append(getIdReservation(),
+                    reservationDTO.getIdReservation());
+                equals = equalsBuilder.isEquals();
+            }
+        }
+        return equals;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(25,
+            15);
+        hashCodeBuilder.appendSuper(super.hashCode());
+        hashCodeBuilder.append(getIdReservation());
+        return hashCodeBuilder.toHashCode();
     }
 }

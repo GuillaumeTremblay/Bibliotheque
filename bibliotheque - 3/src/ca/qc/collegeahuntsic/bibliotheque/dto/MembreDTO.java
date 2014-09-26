@@ -1,32 +1,28 @@
+// Fichier MembreDTO.java
+// Auteur : Gilles Bénichou
+// Date de création : 2014-08-24
 
 package ca.qc.collegeahuntsic.bibliotheque.dto;
 
-// TODO: Auto-generated Javadoc
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
- * Permet de représenter un tuple de la table membre.
+ * DTO de la table <code>membre</code>.
  * 
+ * @author Gilles Benichou
  */
-
 public class MembreDTO extends DTO {
-
-    /**
-     * TODO Auto-generated field javadoc 
-     */
     private static final long serialVersionUID = 1L;
 
-    /** The id membre. */
     private int idMembre;
 
-    /** The nom. */
     private String nom;
 
-    /** The telephone. */
     private long telephone;
 
-    /** The limite pret. */
     private int limitePret;
 
-    /** The nb pret. */
     private int nbPret;
 
     /**
@@ -119,4 +115,36 @@ public class MembreDTO extends DTO {
         this.nbPret = nbPret;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean equals = this == obj;
+        if(!equals) {
+            equals = obj != null
+                && obj instanceof MembreDTO;
+            if(equals) {
+                MembreDTO membreDTO = (MembreDTO) obj;
+                EqualsBuilder equalsBuilder = new EqualsBuilder();
+                equalsBuilder.appendSuper(super.equals(membreDTO));
+                equalsBuilder.append(getIdMembre(),
+                    membreDTO.getIdMembre());
+                equals = equalsBuilder.isEquals();
+            }
+        }
+        return equals;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(461,
+            451);
+        hashCodeBuilder.appendSuper(super.hashCode());
+        hashCodeBuilder.append(getIdMembre());
+        return hashCodeBuilder.toHashCode();
+    }
 }
