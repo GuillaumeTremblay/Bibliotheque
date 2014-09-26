@@ -108,8 +108,6 @@ public class LivreDAO extends DAO {
                     livreDTO.setTitre(resultSet.getString(2));
                     livreDTO.setAuteur(resultSet.getString(3));
                     livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                    livreDTO.setIdMembre(resultSet.getInt(5));
-                    livreDTO.setDatePret(resultSet.getTimestamp(6));
                 }
             }
         } catch(SQLException sqlException) {
@@ -133,10 +131,6 @@ public class LivreDAO extends DAO {
                 livreDTO.getAuteur());
             updatePreparedStatement.setTimestamp(3,
                 livreDTO.getDateAcquisition());
-            updatePreparedStatement.setInt(4,
-                livreDTO.getIdMembre());
-            updatePreparedStatement.setTimestamp(5,
-                livreDTO.getDatePret());
             updatePreparedStatement.setInt(6,
                 livreDTO.getIdLivre());
             updatePreparedStatement.executeUpdate();
@@ -183,8 +177,6 @@ public class LivreDAO extends DAO {
                         livreDTO.setTitre(resultSet.getString(2));
                         livreDTO.setAuteur(resultSet.getString(3));
                         livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                        livreDTO.setIdMembre(resultSet.getInt(5));
-                        livreDTO.setDatePret(resultSet.getTimestamp(6));
                         livres.add(livreDTO);
                     } while(resultSet.next());
                 }
@@ -219,8 +211,6 @@ public class LivreDAO extends DAO {
                         livreDTO.setTitre(resultSet.getString(2));
                         livreDTO.setAuteur(resultSet.getString(3));
                         livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                        livreDTO.setIdMembre(resultSet.getInt(5));
-                        livreDTO.setDatePret(resultSet.getTimestamp(6));
                         livres.add(livreDTO);
                     } while(resultSet.next());
                 }
@@ -252,8 +242,6 @@ public class LivreDAO extends DAO {
                     livreDTO.setTitre(resultSet.getString(2));
                     livreDTO.setAuteur(resultSet.getString(3));
                     livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                    livreDTO.setIdMembre(resultSet.getInt(5));
-                    livreDTO.setDatePret(resultSet.getTimestamp(6));
                 }
             }
         } catch(SQLException sqlException) {
@@ -277,8 +265,6 @@ public class LivreDAO extends DAO {
                 livreDTO.getAuteur());
             updatePreparedStatement.setTimestamp(3,
                 livreDTO.getDateAcquisition());
-            updatePreparedStatement.setInt(4,
-                livreDTO.getIdMembre());
             updatePreparedStatement.setInt(5,
                 livreDTO.getIdLivre());
             updatePreparedStatement.executeUpdate();

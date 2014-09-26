@@ -213,49 +213,14 @@ public class LivreService extends Service {
     }
 
     /**
-     * Emprunte un livre.
-     *
-     * @param membreDTO Le membre qui emprunte
-     * @param livreDTO Le livre à emprunter
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public void emprunter(MembreDTO membreDTO,
-        // On voit le manque de la table prêt avec le décalage illogique (bancal) entre MembreService.emprunte et cette méthode
-        LivreDTO livreDTO) throws ServiceException {
-        try {
-            livreDTO.setIdMembre(membreDTO.getIdMembre());
-            getLivreDAO().emprunter(livreDTO);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
-     * Retourne un livre.
-     *
-     * @param membreDTO Le membre qui retourne le livre
-     * @param livreDTO Le livre à retourner
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public void retourner(MembreDTO membreDTO,
-        LivreDTO livreDTO) throws ServiceException {
-        // On voit le manque de la table prêt avec le décalage illogique (bancal) entre MembreService.emprunte et cette méthode
-        try {
-            livreDTO.setIdMembre(membreDTO.getIdMembre());
-            getLivreDAO().retourner(livreDTO);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
      * Vendre un livre.
      *
      * @param livreDTO Le livre à vendre
      * @throws ServiceException Si le livre n'existe pas, si le livre a été prêté, si le livre a été réservé ou s'il y a une erreur avec la base
      *         de données
      */
-    public void vendre(LivreDTO livreDTO) throws ServiceException {
+    public void vendre(LivreDTO livreDTO,
+        MembreDTO membreDTO) throws ServiceException {
         try {
             LivreDTO unLivreDTO = read(livreDTO.getIdLivre());
             if(unLivreDTO == null) {
@@ -263,8 +228,8 @@ public class LivreService extends Service {
                     + livreDTO.getIdLivre()
                     + " n'existe pas");
             }
-            MembreDTO membreDTO = getMembreDAO().read(unLivreDTO.getIdMembre());
-            if(getLivreDAO().findByMembre(membreDTO) != null) {
+            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO.getIdMembre());
+            if(getLivreDAO().findByMembre(unMembreDTO) != null) {
                 throw new ServiceException("Le livre "
                     + unLivreDTO.getTitre()
                     + " (ID de livre : "
