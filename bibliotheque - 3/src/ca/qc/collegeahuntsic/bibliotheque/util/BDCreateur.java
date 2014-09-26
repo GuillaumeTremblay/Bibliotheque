@@ -47,40 +47,59 @@ public class BDCreateur {
                 try(
                     Statement statement = connexion.getConnection().createStatement()) {
 
-                    /*statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
+                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_RESERVATION");
+                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_PRET");
+                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_LIVRE");
+                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_MEMBRE");
+
+                    System.out.println("drop seq");
+
+                    statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
                     statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
-                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");*/
+                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
+                    statement.executeUpdate("DROP TABLE pret      CASCADE CONSTRAINTS PURGE");
 
-                    statement.executeUpdate("CREATE TABLE membre ("
-                        + "                               idMembre   NUMBER(3) CHECK (idMembre > 0), "
-                        + "                               nom        VARCHAR(10) NOT NULL, "
-                        + "                               telephone  NUMBER(10), "
-                        + "                               limitePret NUMBER(2) CHECK (limitePret > 0 AND limitePret <= 10), "
-                        + "                               nbPret     NUMBER(2) DEFAULT 0 CHECK (nbpret >= 0), "
-                        + "                               CONSTRAINT cleMembre PRIMARY KEY (idMembre), "
-                        + "                               CONSTRAINT limiteNbPret CHECK (nbPret <= limitePret))");
+                    System.out.println("drop table");
 
-                    statement.executeUpdate("CREATE TABLE livre ("
-                        + "                               idLivre         NUMBER(3) CHECK (idLivre > 0), "
-                        + "                               titre           VARCHAR(10) NOT NULL, "
-                        + "                               auteur          VARCHAR(10) NOT NULL, "
-                        + "                               dateAcquisition TIMESTAMP NOT NULL, "
-                        + "                               idMembre        NUMBER(3), "
-                        + "                               datePret        TIMESTAMP, "
-                        + "                               CONSTRAINT      cleLivre PRIMARY KEY (idLivre), "
-                        + "                               CONSTRAINT      refPretMembre FOREIGN KEY (idMembre) REFERENCES membre (idMembre))");
+                    statement.executeUpdate("CREATE SEQUENCE SEQ_ID_MEMBRE      START WITH 1 INCREMENT BY 1");
+                    statement.executeUpdate("CREATE SEQUENCE SEQ_ID_LIVRE       START WITH 1 INCREMENT BY 1");
+                    statement.executeUpdate("CREATE SEQUENCE SEQ_ID_PRET        START WITH 1 INCREMENT BY 1");
+                    statement.executeUpdate("CREATE SEQUENCE SEQ_ID_RESERVATION START WITH 1 INCREMENT BY 1");
 
-                    statement.executeUpdate("CREATE TABLE reservation ("
-                        + "                               idReservation   NUMBER(3), "
-                        + "                               idMembre        NUMBER(3), "
-                        + "                               idLivre         NUMBER(3), "
-                        + "                               dateReservation TIMESTAMP, "
-                        + "                               CONSTRAINT      clePrimaireReservation PRIMARY KEY (idReservation), "
-                        + "                               CONSTRAINT      cleEtrangereReservation UNIQUE (idMembre, idLivre), "
-                        + "                               CONSTRAINT      refReservationMembre FOREIGN KEY (idMembre) REFERENCES membre (idMembre) "
-                        + "                                                                    ON DELETE CASCADE, "
-                        + "                               CONSTRAINT      refReservationLivre  FOREIGN KEY (idLivre) REFERENCES livre (idLivre) "
-                        + "                                                                    ON DELETE CASCADE)");
+                    System.out.println("create seq");
+
+                    statement.executeUpdate("CREATE TABLE membre (idMembre   NUMBER(3)    CHECK (idMembre > 0),"
+                        + "                     nom        VARCHAR(100) NOT NULL,"
+                        + "                     telephone  NUMBER(10),"
+                        + "                     limitePret NUMBER(2)    CHECK (limitePret > 0 AND limitePret <= 10),"
+                        + "                     nbPret     NUMBER(2)    DEFAULT 0 CHECK (nbpret >= 0),"
+                        + "                     CONSTRAINT cleMembre    PRIMARY KEY (idMembre),"
+                        + "                     CONSTRAINT limiteNbPret CHECK (nbPret <= limitePret))");
+
+                    statement.executeUpdate("CREATE TABLE livre (idLivre         NUMBER(3)    CHECK (idLivre > 0),"
+                        + "                    titre           VARCHAR(100) NOT NULL,"
+                        + "                    auteur          VARCHAR(100) NOT NULL,"
+                        + "                    dateAcquisition TIMESTAMP    NOT NULL,"
+                        + "                    CONSTRAINT      cleLivre     PRIMARY KEY (idLivre))");
+
+                    statement.executeUpdate("CREATE TABLE pret (idPret     NUMBER(3)  CHECK (idPret > 0),"
+                        + "                   idMembre   NUMBER(3)  CHECK (idMembre > 0),"
+                        + "                   idLivre    NUMBER(3)  CHECK (idLivre > 0),"
+                        + "                   datePret   TIMESTAMP,"
+                        + "                   dateRetour TIMESTAMP,"
+                        + "                   CONSTRAINT clePrimairePret PRIMARY KEY (idPret),"
+                        + "                   CONSTRAINT refPretMembre   FOREIGN KEY (idMembre) REFERENCES membre (idMembre) ON DELETE CASCADE,"
+                        + "                   CONSTRAINT refPretLivre    FOREIGN KEY (idLivre)  REFERENCES livre (idLivre)   ON DELETE CASCADE)");
+
+                    statement
+                    .executeUpdate("CREATE TABLE reservation (idReservation   NUMBER(3)  CHECK (idReservation > 0),"
+                        + "                          idMembre        NUMBER(3)  CHECK (idMembre > 0),"
+                        + "                          idLivre         NUMBER(3)  CHECK (idLivre > 0),"
+                        + "                          dateReservation TIMESTAMP,"
+                        + "                          CONSTRAINT      clePrimaireReservation  PRIMARY KEY (idReservation),"
+                        + "                          CONSTRAINT      cleEtrangereReservation UNIQUE (idMembre, idLivre),"
+                        + "                          CONSTRAINT      refReservationMembre    FOREIGN KEY (idMembre) REFERENCES membre (idMembre) ON DELETE CASCADE,"
+                        + "                          CONSTRAINT      refReservationLivre     FOREIGN KEY (idLivre)  REFERENCES livre (idLivre)   ON DELETE CASCADE)");
 
                     connexion.commit();
 
