@@ -65,7 +65,7 @@ public class Bibliotheque {
 
         try {
             // ouverture du fichier de transactions
-            // s'il est sp�cifi� comme argument
+            // s'il est spécifié comme argument
             lectureAuClavier = true;
             InputStream sourceTransaction = System.in;
             if(argv.length > 4) {
@@ -88,7 +88,7 @@ public class Bibliotheque {
         }
     }
 
-    //        // validation du nombre de paramï¿½tres
+    //        // validation du nombre de paramètres
     //        if(argv.length < 5) {
     //            System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
     //            System.out.println(Connexion.getServeursSupportes());
