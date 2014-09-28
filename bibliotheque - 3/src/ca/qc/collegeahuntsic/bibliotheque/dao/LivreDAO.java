@@ -17,7 +17,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 
 /**
  * DAO pour effectuer des CRUDs avec la table <code>livre</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class LivreDAO extends DAO {
@@ -58,7 +58,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Crée un DAO à partir d'une connexion à la base de données.
-     * 
+     *
      * @param connexion La connexion à utiliser
      */
     public LivreDAO(Connexion connexion) {
@@ -67,7 +67,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Ajoute un nouveau livre.
-     * 
+     *
      * @param livreDTO Le livre à ajouter
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -90,7 +90,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Lit un livre.
-     * 
+     *
      * @param idLivre L'ID du livre à lire
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -118,7 +118,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Met à jour un livre.
-     * 
+     *
      * @param livreDTO Le livre à mettre à jour
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -141,7 +141,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Supprime un livre.
-     * 
+     *
      * @param livreDTO Le livre à supprimer
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -158,7 +158,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Trouve tous les livres.
-     * 
+     *
      * @return La liste des livres ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -189,7 +189,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Trouve les livres à partir d'un titre.
-     * 
+     *
      * @param titre Le titre à utiliser
      * @return La liste des livres correspondants ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
@@ -223,7 +223,7 @@ public class LivreDAO extends DAO {
 
     /**
      * Trouve les livres à partir d'un membre.
-     * 
+     *
      * @param membreDTO Le membre à utiliser
      * @return Le livre correspondant ; null sinon
      * @throws DAOException S'il y a une erreur avec la base de données
@@ -252,7 +252,7 @@ public class LivreDAO extends DAO {
 
     //    /**
     //     * Emprunte un livre.
-    //     * 
+    //     *
     //     * @param livreDTO Le livre à emprunter
     //     * @throws DAOException S'il y a une erreur avec la base de données
     //     */
@@ -275,7 +275,7 @@ public class LivreDAO extends DAO {
     //
     //    /**
     //     * Retourne un livre.
-    //     * 
+    //     *
     //     * @param livreDTO Le livre à retourner
     //     * @throws DAOException S'il y a une erreur avec la base de données
     //     */
