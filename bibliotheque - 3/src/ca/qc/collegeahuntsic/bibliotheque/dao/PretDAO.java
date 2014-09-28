@@ -4,7 +4,6 @@ package ca.qc.collegeahuntsic.bibliotheque.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,13 +30,19 @@ public class PretDAO extends DAO {
         + "SET idPret = ?, idMembre = ?, idLivre = ?, datePret = ?, dateRetour = ? "
         + "WHERE idPret = ?";
 
-    private static final String DELETE_REQUEST = "DELETE FROM pret WHERE idPret = ?";
+    private static final String DELETE_REQUEST = "DELETE FROM pret "
+        + "WHERE idPret = ?";
 
-    private static final String GET_ALL_REQUEST = "SELECT idPret, idMembre, idLivre, datePret, dateRetour FROM pret";
+    private static final String GET_ALL_REQUEST = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
+        + "FROM pret";
 
-    private static final String FIND_BY_MEMBRE = "SELECT idPret, idMembre, idLivre, datePret, dateRetour, dateAcquisition "
+    private static final String FIND_BY_MEMBRE = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
         + "FROM pret "
         + "WHERE idMembre = ?";
+
+    private static final String FIND_BY_LIVRE = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
+        + "FROM pret "
+        + "WHERE idLivre = ?";
 
     /**
      * Crée un nouveau prêt avec l'objet passé en paramètre
@@ -46,10 +51,8 @@ public class PretDAO extends DAO {
      * @throws DAOException
      */
     public void add(PretDTO pretDTO) throws DAOException {
-
         try(
             PreparedStatement addPreparedStatement = getConnection().prepareStatement(PretDAO.ADD_REQUEST)) {
-
             // configuration de la requête paramètrée
             addPreparedStatement.setInt(1,
                 pretDTO.getIdPret());
@@ -63,11 +66,9 @@ public class PretDAO extends DAO {
                 pretDTO.getDateRetour());
 
             addPreparedStatement.executeUpdate();
-
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-
     }
 
     /**
@@ -78,39 +79,27 @@ public class PretDAO extends DAO {
      * @throws DAOException
      */
     public PretDTO read(int idPret) throws DAOException {
-
         PretDTO pretDTO = null;
-
         try(
             PreparedStatement readPreparedStatement = getConnection().prepareStatement(PretDAO.READ_REQUEST)) {
-
             readPreparedStatement.setInt(1,
                 idPret);
-
             try(
                 ResultSet resultat = readPreparedStatement.executeQuery()) {
-
                 if(resultat.next()) {
-
                     // configuration de l'objet pretDTO avec le résultat de la requête
                     pretDTO = new PretDTO();
                     pretDTO.setIdPret(resultat.getInt(1));
-
                     MembreDTO membreDTO = new MembreDTO();
                     membreDTO.setIdMembre(resultat.getInt(2));
                     pretDTO.setMembreDTO(membreDTO);
-
                     LivreDTO livreDTO = new LivreDTO();
                     livreDTO.setIdLivre(resultat.getInt(3));
                     pretDTO.setLivreDTO(livreDTO);
-
                     pretDTO.setDatePret(resultat.getTimestamp(4));
                     pretDTO.setDateRetour(resultat.getTimestamp(5));
-
                 }
-
             }
-
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
@@ -175,44 +164,63 @@ public class PretDAO extends DAO {
      *
      * @return
      */
-    public List<PretDTO> getAll () throws DAOException {
-
-        PretDTO pretDTO = null;
-        List<PretDTO> listePrets = Collections.EMPTY_LIST;
-
-        try (
-            Statement getAllStatement = getConnection().createStatement()) {
-            ResultSet resultat = getAllStatement.executeQuery(PretDAO.GET_ALL_REQUEST);
-
-            if (resultat != null) {
-                listePrets = new ArrayList<>();
-                while (resultat.next()) {
-
-                    // configuration de l'objet pretDTO avec le résultat de la requête
-                    pretDTO.setIdPret(resultat.getInt(1));
-
-                    MembreDTO membreDTO = new MembreDTO();
-                    membreDTO.setIdMembre(resultat.getInt(2));
-                    pretDTO.setMembreDTO(membreDTO);
-
-                    pretDTO.setLivreDTO().setIdLivre(resultat.getInt(3));
-                    pretDTO.get
-
-
-                    listePrets.add(pretDTO);
-
+    public List<PretDTO> getAll() throws DAOException {
+        List<PretDTO> prets = Collections.EMPTY_LIST;
+        try(
+            PreparedStatement getAllPreparedStatement = getConnection().prepareStatement(PretDAO.GET_ALL_REQUEST)) {
+            try(
+                ResultSet resultSet = getAllPreparedStatement.executeQuery()) {
+                PretDTO pretDTO = null;
+                if(resultSet != null) {
+                    prets = new ArrayList<>();
+                    while(resultSet.next()) {
+                        // configuration de l'objet pretDTO avec le résultat de la requête
+                        pretDTO = new PretDTO();
+                        pretDTO.setIdPret(resultSet.getInt(1));
+                        MembreDTO membreDTO = new MembreDTO();
+                        membreDTO.setIdMembre(resultSet.getInt(2));
+                        pretDTO.setMembreDTO(membreDTO);
+                        LivreDTO livreDTO = new LivreDTO();
+                        livreDTO.setIdLivre(resultSet.getInt(3));
+                        pretDTO.setLivreDTO(livreDTO);
+                        pretDTO.setDatePret(resultSet.getTimestamp(4));
+                        pretDTO.setDateRetour(resultSet.getTimestamp(5));
+                        prets.add(pretDTO);
+                    }
                 }
             }
 
-        } catch (SQLException sqlException) {
+        } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-
-        return listePrets;
-
+        return prets;
     }
 
-    public void findByLivre() {/**/
+    public PretDTO findByLivre(LivreDTO livreDTO) throws DAOException {
+        PretDTO pretDTO = null;
+        try(
+            PreparedStatement findByMembrePreparedStatement = getConnection().prepareStatement(PretDAO.FIND_BY_LIVRE)) {
+            findByMembrePreparedStatement.setInt(1,
+                livreDTO.getIdLivre());
+            try(
+                ResultSet resultSet = findByMembrePreparedStatement.executeQuery()) {
+                if(resultSet.next()) {
+                    pretDTO = new PretDTO();
+                    pretDTO.setIdPret(resultSet.getInt(1));
+                    MembreDTO unMembreDTO = new MembreDTO();
+                    unMembreDTO.setIdMembre(resultSet.getInt(2));
+                    pretDTO.setMembreDTO(unMembreDTO);
+                    LivreDTO unLivreDTO = new LivreDTO();
+                    unLivreDTO.setIdLivre(resultSet.getInt(3));
+                    pretDTO.setLivreDTO(unLivreDTO);
+                    pretDTO.setDatePret(resultSet.getTimestamp(4));
+                    pretDTO.setDateRetour(resultSet.getTimestamp(5));
+                }
+            }
+        } catch(SQLException sqlException) {
+            throw new DAOException(sqlException);
+        }
+        return pretDTO;
     }
 
     public PretDTO findByMembre(MembreDTO membreDTO) throws DAOException {
@@ -226,9 +234,12 @@ public class PretDAO extends DAO {
                 if(resultSet.next()) {
                     pretDTO = new PretDTO();
                     pretDTO.setIdPret(resultSet.getInt(1));
-                    //besoin d'un fix
-                    pretDTO.setTitre(resultSet.getInt(2));
-                    pretDTO.setAuteur(resultSet.getInt(3));
+                    MembreDTO unMembreDTO = new MembreDTO();
+                    unMembreDTO.setIdMembre(resultSet.getInt(2));
+                    pretDTO.setMembreDTO(unMembreDTO);
+                    LivreDTO livreDTO = new LivreDTO();
+                    livreDTO.setIdLivre(resultSet.getInt(3));
+                    pretDTO.setLivreDTO(livreDTO);
                     pretDTO.setDatePret(resultSet.getTimestamp(4));
                     pretDTO.setDateRetour(resultSet.getTimestamp(5));
                 }
@@ -237,9 +248,6 @@ public class PretDAO extends DAO {
             throw new DAOException(sqlException);
         }
         return pretDTO;
-    }
-
-    public void findByDatePret() {/**/
     }
 
 }
