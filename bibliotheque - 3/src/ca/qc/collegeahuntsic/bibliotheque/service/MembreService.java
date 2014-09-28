@@ -93,7 +93,7 @@ public class MembreService extends Service {
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
 
-    public void add(MembreDTO membreDTO) throws ServiceException {
+    private void add(MembreDTO membreDTO) throws ServiceException {
         try {
             getMembreDAO().add(membreDTO);
         } catch(DAOException daoException) {
@@ -107,23 +107,9 @@ public class MembreService extends Service {
      * @param idMembre L'ID du membre à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public MembreDTO read(MembreDTO membreDTO) throws ServiceException {
+    private MembreDTO read(MembreDTO membreDTO) throws ServiceException {
         try {
             return getMembreDAO().read(membreDTO);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
-     * Met à jour un membre.
-     *
-     * @param MembreDTO Le membre à mettre à jour
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public void update(MembreDTO membreDTO) throws ServiceException {
-        try {
-            getMembreDAO().update(membreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -135,7 +121,7 @@ public class MembreService extends Service {
      * @param membreDTO Le membre à supprimer
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public void delete(MembreDTO membreDTO) throws ServiceException {
+    private void delete(MembreDTO membreDTO) throws ServiceException {
         try {
             getMembreDAO().delete(membreDTO);
         } catch(DAOException daoException) {
@@ -158,47 +144,12 @@ public class MembreService extends Service {
     }
 
     /**
-     * Trouve les membres à partir d'un nom.
-     *
-     * @param nom Le nom à utiliser
-     * @return La liste des membres correspondants ; une liste vide sinon
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public List<MembreDTO> findByNom(String nom) throws ServiceException {
-        try {
-            return getMembreDAO().findByNom(nom);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
-     * Trouve les membres à partir d'un telephone.
-     *
-     * @param telephone Le telephone à utiliser
-     * @return La liste des membres correspondants ; une liste vide sinon
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public MembreDTO findByTel(long telephone) throws ServiceException {
-        try {
-            return getMembreDAO().findByTel(telephone);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
      * Inscrit un membre.
      *
      * @param membreDTO Le membre à ajouter
      * @throws ServiceException Si le membre existe déjà ou s'il y a une erreur avec la base de données
      */
     public void inscrire(MembreDTO membreDTO) throws ServiceException {
-        if(read(membreDTO) != null) {
-            throw new ServiceException("Le membre "
-                + membreDTO.getIdMembre()
-                + " existe déjà");
-        }
         add(membreDTO);
     }
 

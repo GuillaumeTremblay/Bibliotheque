@@ -190,24 +190,24 @@ public class MembreDAO extends DAO {
      * @return La liste des membres correspondants ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public List<MembreDTO> findByNom(String nom) throws DAOException {
+    public List<MembreDTO> findByNom(MembreDTO membreDTO) throws DAOException {
         List<MembreDTO> membres = Collections.EMPTY_LIST;
         try(
             PreparedStatement findByNomPreparedStatement = getConnection().prepareStatement(MembreDAO.FIND_BY_NAME)) {
             findByNomPreparedStatement.setString(1,
-                nom);
+                membreDTO.getNom());
             try(
                 ResultSet resultSet = findByNomPreparedStatement.executeQuery()) {
-                MembreDTO membreDTO = null;
+                MembreDTO unMembreDTO = null;
                 if(resultSet.next()) {
                     membres = new ArrayList<>();
                     do {
-                        membreDTO = new MembreDTO();
-                        membreDTO.setIdMembre(resultSet.getInt(1));
-                        membreDTO.setNom(resultSet.getString(2));
-                        membreDTO.setTelephone(resultSet.getLong(3));
-                        membreDTO.setLimitePret(resultSet.getInt(4));
-                        membreDTO.setNbPret(resultSet.getInt(5));
+                        unMembreDTO = new MembreDTO();
+                        unMembreDTO.setIdMembre(resultSet.getInt(1));
+                        unMembreDTO.setNom(resultSet.getString(2));
+                        unMembreDTO.setTelephone(resultSet.getLong(3));
+                        unMembreDTO.setLimitePret(resultSet.getInt(4));
+                        unMembreDTO.setNbPret(resultSet.getInt(5));
                         membres.add(membreDTO);
                     } while(resultSet.next());
                 }
@@ -225,48 +225,26 @@ public class MembreDAO extends DAO {
      * @return La liste des membres correspondants ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public MembreDTO findByTel(long tel) throws DAOException {
-        MembreDTO membreDTO = null;
+    public MembreDTO findByTel(MembreDTO membreDTO) throws DAOException {
+        MembreDTO unMembreDTO = null;
         try(
             PreparedStatement findByTelPreparedStatement = getConnection().prepareStatement(MembreDAO.FIND_BY_PHONE)) {
             findByTelPreparedStatement.setLong(1,
-                tel);
+                membreDTO.getTelephone());
             try(
                 ResultSet resultSet = findByTelPreparedStatement.executeQuery()) {
                 if(resultSet.next()) {
-                    membreDTO = new MembreDTO();
-                    membreDTO.setIdMembre(resultSet.getInt(1));
-                    membreDTO.setNom(resultSet.getString(2));
-                    membreDTO.setTelephone(resultSet.getLong(3));
-                    membreDTO.setLimitePret(resultSet.getInt(4));
-                    membreDTO.setNbPret(resultSet.getInt(5));
+                    unMembreDTO = new MembreDTO();
+                    unMembreDTO.setIdMembre(resultSet.getInt(1));
+                    unMembreDTO.setNom(resultSet.getString(2));
+                    unMembreDTO.setTelephone(resultSet.getLong(3));
+                    unMembreDTO.setLimitePret(resultSet.getInt(4));
+                    unMembreDTO.setNbPret(resultSet.getInt(5));
                 }
             }
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-        return membreDTO;
+        return unMembreDTO;
     }
-
-    //    /**
-    //     * Emprunte un livre.
-    //     *
-    //     * @param membreDTO Le membre à mettre à jour
-    //     * @throws DAOException S'il y a une erreur avec la base de données
-    //     */
-    //    public void emprunter(MembreDTO membreDTO) throws DAOException {
-    //        membreDTO.setNbPret(membreDTO.getNbPret() + 1);
-    //        update(membreDTO);
-    //    }
-    //
-    //    /**
-    //     * Retourne un livre.
-    //     *
-    //     * @param membreDTO Le membre à mettre à jour
-    //     * @throws DAOException S'il y a une erreur avec la base de données
-    //     */
-    //    public void retourner(MembreDTO membreDTO) throws DAOException {
-    //        membreDTO.setNbPret(membreDTO.getNbPret() - 1);
-    //        update(membreDTO);
-    //    }
 }

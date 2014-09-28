@@ -105,7 +105,7 @@ public class LivreService extends Service {
      * @param livreDTO Le livre à ajouter
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public void add(LivreDTO livreDTO) throws ServiceException {
+    private void add(LivreDTO livreDTO) throws ServiceException {
         try {
             getLivreDAO().add(livreDTO);
         } catch(DAOException daoException) {
@@ -119,23 +119,9 @@ public class LivreService extends Service {
      * @param idLivre L'ID du livre à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public LivreDTO read(LivreDTO livreDTO) throws ServiceException {
+    private LivreDTO read(LivreDTO livreDTO) throws ServiceException {
         try {
             return getLivreDAO().read(livreDTO);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
-     * Met à jour un livre.
-     *
-     * @param livreDTO Le livre à mettre à jour
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public void update(LivreDTO livreDTO) throws ServiceException {
-        try {
-            getLivreDAO().update(livreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -147,7 +133,7 @@ public class LivreService extends Service {
      * @param livreDTO Le livre à supprimer
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public void delete(LivreDTO livreDTO) throws ServiceException {
+    private void delete(LivreDTO livreDTO) throws ServiceException {
         try {
             getLivreDAO().delete(livreDTO);
         } catch(DAOException daoException) {
@@ -176,9 +162,10 @@ public class LivreService extends Service {
      * @return La liste des livres correspondants ; une liste vide sinon
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public List<LivreDTO> findByTitre(String titre) throws ServiceException {
+    @SuppressWarnings("unused")
+    private List<LivreDTO> findByTitre(LivreDTO livreDTO) throws ServiceException {
         try {
-            return getLivreDAO().findByTitre(titre);
+            return getLivreDAO().findByTitre(livreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -191,11 +178,6 @@ public class LivreService extends Service {
      * @throws ServiceException Si le livre existe déjà ou s'il y a une erreur avec la base de données
      */
     public void acquerir(LivreDTO livreDTO) throws ServiceException {
-        if(read(livreDTO) != null) {
-            throw new ServiceException("Le livre "
-                + livreDTO.getIdLivre()
-                + " existe déjà");
-        }
         add(livreDTO);
     }
 

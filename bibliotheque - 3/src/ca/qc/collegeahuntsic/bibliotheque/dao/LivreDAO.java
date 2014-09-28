@@ -187,24 +187,24 @@ public class LivreDAO extends DAO {
      * @return La liste des livres correspondants ; une liste vide sinon
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public List<LivreDTO> findByTitre(String titre) throws DAOException {
+    public List<LivreDTO> findByTitre(LivreDTO livreDTO) throws DAOException {
         List<LivreDTO> livres = Collections.EMPTY_LIST;
         try(
             PreparedStatement findByTitrePreparedStatement = getConnection().prepareStatement(LivreDAO.FIND_BY_TITRE)) {
             findByTitrePreparedStatement.setString(1,
-                titre);
+                livreDTO.getTitre());
             try(
                 ResultSet resultSet = findByTitrePreparedStatement.executeQuery()) {
-                LivreDTO livreDTO = null;
+                LivreDTO unLivreDTO = null;
                 if(resultSet.next()) {
                     livres = new ArrayList<>();
                     do {
-                        livreDTO = new LivreDTO();
-                        livreDTO.setIdLivre(resultSet.getInt(1));
-                        livreDTO.setTitre(resultSet.getString(2));
-                        livreDTO.setAuteur(resultSet.getString(3));
-                        livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                        livres.add(livreDTO);
+                        unLivreDTO = new LivreDTO();
+                        unLivreDTO.setIdLivre(resultSet.getInt(1));
+                        unLivreDTO.setTitre(resultSet.getString(2));
+                        unLivreDTO.setAuteur(resultSet.getString(3));
+                        unLivreDTO.setDateAcquisition(resultSet.getTimestamp(4));
+                        livres.add(unLivreDTO);
                     } while(resultSet.next());
                 }
             }
@@ -213,50 +213,4 @@ public class LivreDAO extends DAO {
         }
         return livres;
     }
-
-    //    /**
-    //     * Emprunte un livre.
-    //     *
-    //     * @param livreDTO Le livre à emprunter
-    //     * @throws DAOException S'il y a une erreur avec la base de données
-    //     */
-    //    public void emprunter(LivreDTO livreDTO) throws DAOException {
-    //        try(
-    //            PreparedStatement updatePreparedStatement = getConnection().prepareStatement(LivreDAO.EMPRUNT_REQUEST)) {
-    //            updatePreparedStatement.setString(1,
-    //                livreDTO.getTitre());
-    //            updatePreparedStatement.setString(2,
-    //                livreDTO.getAuteur());
-    //            updatePreparedStatement.setTimestamp(3,
-    //                livreDTO.getDateAcquisition());
-    //            updatePreparedStatement.setInt(5,
-    //                livreDTO.getIdLivre());
-    //            updatePreparedStatement.executeUpdate();
-    //        } catch(SQLException sqlException) {
-    //            throw new DAOException(sqlException);
-    //        }
-    //    }
-    //
-    //    /**
-    //     * Retourne un livre.
-    //     *
-    //     * @param livreDTO Le livre à retourner
-    //     * @throws DAOException S'il y a une erreur avec la base de données
-    //     */
-    //    public void retourner(LivreDTO livreDTO) throws DAOException {
-    //        try(
-    //            PreparedStatement updatePreparedStatement = getConnection().prepareStatement(LivreDAO.RETOUR_REQUEST)) {
-    //            updatePreparedStatement.setString(1,
-    //                livreDTO.getTitre());
-    //            updatePreparedStatement.setString(2,
-    //                livreDTO.getAuteur());
-    //            updatePreparedStatement.setTimestamp(3,
-    //                livreDTO.getDateAcquisition());
-    //            updatePreparedStatement.setInt(4,
-    //                livreDTO.getIdLivre());
-    //            updatePreparedStatement.executeUpdate();
-    //        } catch(SQLException sqlException) {
-    //            throw new DAOException(sqlException);
-    //        }
-    //    }
 }
