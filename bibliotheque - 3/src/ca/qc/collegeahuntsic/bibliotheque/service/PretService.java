@@ -112,9 +112,9 @@ public class PretService {
         }
     }
 
-    public PretDTO read(int idPret) throws ServiceException {
+    public PretDTO read(PretDTO pretDTO) throws ServiceException {
         try {
-            return getPretDAO().read(idPret);
+            return getPretDAO().read(pretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }

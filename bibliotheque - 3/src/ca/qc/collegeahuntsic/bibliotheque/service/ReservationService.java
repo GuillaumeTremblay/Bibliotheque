@@ -134,9 +134,9 @@ public class ReservationService extends Service {
      * @param idMembre L'ID de la reservation à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public ReservationDTO read(int idReservation) throws ServiceException {
+    public ReservationDTO read(ReservationDTO reservationDTO) throws ServiceException {
         try {
-            return getReservationDAO().read(idReservation);
+            return getReservationDAO().read(reservationDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -228,19 +228,19 @@ public class ReservationService extends Service {
         MembreDTO membreDTO,
         LivreDTO livreDTO) throws ServiceException {
         try {
-            ReservationDTO uneReservationDTO = read(reservationDTO.getIdReservation());
+            ReservationDTO uneReservationDTO = read(reservationDTO);
             if(uneReservationDTO != null) {
                 throw new ServiceException("La réservation "
                     + reservationDTO.getIdReservation()
                     + " existe déjà");
             }
-            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO.getIdMembre());
+            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO);
             if(unMembreDTO == null) {
                 throw new ServiceException("Le membre "
                     + membreDTO.getIdMembre()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = getLivreDAO().read(livreDTO.getIdLivre());
+            LivreDTO unLivreDTO = getLivreDAO().read(livreDTO);
             if(unLivreDTO == null) {
                 throw new ServiceException("Le livre "
                     + livreDTO.getIdLivre()
@@ -307,19 +307,19 @@ public class ReservationService extends Service {
         MembreDTO membreDTO,
         LivreDTO livreDTO) throws ServiceException {
         try {
-            ReservationDTO uneReservationDTO = read(reservationDTO.getIdReservation());
+            ReservationDTO uneReservationDTO = read(reservationDTO);
             if(uneReservationDTO == null) {
                 throw new ServiceException("La réservation "
                     + reservationDTO.getIdReservation()
                     + " n'existe pas");
             }
-            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO.getIdMembre());
+            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO);
             if(unMembreDTO == null) {
                 throw new ServiceException("Le membre "
                     + membreDTO.getIdMembre()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = getLivreDAO().read(livreDTO.getIdLivre());
+            LivreDTO unLivreDTO = getLivreDAO().read(livreDTO);
             if(unLivreDTO == null) {
                 throw new ServiceException("Le livre "
                     + livreDTO.getIdLivre()
@@ -329,7 +329,7 @@ public class ReservationService extends Service {
             if(!reservations.isEmpty()) {
                 uneReservationDTO = reservations.get(0);
                 if(uneReservationDTO.getMembreDTO().getIdMembre() != unMembreDTO.getIdMembre()) {
-                    MembreDTO booker = getMembreDAO().read(uneReservationDTO.getMembreDTO().getIdMembre());
+                    MembreDTO booker = getMembreDAO().read(uneReservationDTO.getMembreDTO());
                     throw new ServiceException("Le livre "
                         + unLivreDTO.getTitre()
                         + " (ID de livre : "
@@ -387,7 +387,7 @@ public class ReservationService extends Service {
      * @throws ServiceException Si la réservation n'existe pas ou s'il y a une erreur avec la base de données
      */
     public void annuler(ReservationDTO reservationDTO) throws ServiceException {
-        ReservationDTO uneReservationDTO = read(reservationDTO.getIdReservation());
+        ReservationDTO uneReservationDTO = read(reservationDTO);
         if(uneReservationDTO == null) {
             throw new ServiceException("La réservation "
                 + reservationDTO.getLivreDTO().getIdLivre()

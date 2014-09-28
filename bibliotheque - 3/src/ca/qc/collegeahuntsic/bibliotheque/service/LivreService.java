@@ -117,9 +117,9 @@ public class LivreService extends Service {
      * @param idLivre L'ID du livre à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public LivreDTO read(int idLivre) throws ServiceException {
+    public LivreDTO read(LivreDTO livreDTO) throws ServiceException {
         try {
-            return getLivreDAO().read(idLivre);
+            return getLivreDAO().read(livreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -204,7 +204,7 @@ public class LivreService extends Service {
      * @throws ServiceException Si le livre existe déjà ou s'il y a une erreur avec la base de données
      */
     public void acquerir(LivreDTO livreDTO) throws ServiceException {
-        if(read(livreDTO.getIdLivre()) != null) {
+        if(read(livreDTO) != null) {
             throw new ServiceException("Le livre "
                 + livreDTO.getIdLivre()
                 + " existe déjà");
@@ -222,13 +222,13 @@ public class LivreService extends Service {
     public void vendre(LivreDTO livreDTO,
         MembreDTO membreDTO) throws ServiceException {
         try {
-            LivreDTO unLivreDTO = read(livreDTO.getIdLivre());
+            LivreDTO unLivreDTO = read(livreDTO);
             if(unLivreDTO == null) {
                 throw new ServiceException("Le livre "
                     + livreDTO.getIdLivre()
                     + " n'existe pas");
             }
-            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO.getIdMembre());
+            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO);
             if(getLivreDAO().findByMembre(unMembreDTO) != null) {
                 throw new ServiceException("Le livre "
                     + unLivreDTO.getTitre()

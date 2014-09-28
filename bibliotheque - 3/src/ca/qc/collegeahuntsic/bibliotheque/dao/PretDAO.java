@@ -24,7 +24,8 @@ public class PretDAO extends DAO {
         + "VALUES (?, ?, ?, ?, ?)";
 
     private static final String READ_REQUEST = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
-        + "FROM pret WHERE idPret = ?";
+        + "FROM pret "
+        + "WHERE idPret = ?";
 
     private static final String UPDATE_REQUEST = "UPDATE pret "
         + "SET idPret = ?, idMembre = ?, idLivre = ?, datePret = ?, dateRetour = ? "
@@ -78,33 +79,33 @@ public class PretDAO extends DAO {
      * @return PretDTO pretDTO
      * @throws DAOException
      */
-    public PretDTO read(int idPret) throws DAOException {
-        PretDTO pretDTO = null;
+    public PretDTO read(PretDTO pretDTO) throws DAOException {
+        PretDTO unPretDTO = null;
         try(
             PreparedStatement readPreparedStatement = getConnection().prepareStatement(PretDAO.READ_REQUEST)) {
             readPreparedStatement.setInt(1,
-                idPret);
+                pretDTO.getIdPret());
             try(
                 ResultSet resultat = readPreparedStatement.executeQuery()) {
                 if(resultat.next()) {
                     // configuration de l'objet pretDTO avec le résultat de la requête
-                    pretDTO = new PretDTO();
-                    pretDTO.setIdPret(resultat.getInt(1));
+                    unPretDTO = new PretDTO();
+                    unPretDTO.setIdPret(resultat.getInt(1));
                     MembreDTO membreDTO = new MembreDTO();
                     membreDTO.setIdMembre(resultat.getInt(2));
-                    pretDTO.setMembreDTO(membreDTO);
+                    unPretDTO.setMembreDTO(membreDTO);
                     LivreDTO livreDTO = new LivreDTO();
                     livreDTO.setIdLivre(resultat.getInt(3));
-                    pretDTO.setLivreDTO(livreDTO);
-                    pretDTO.setDatePret(resultat.getTimestamp(4));
-                    pretDTO.setDateRetour(resultat.getTimestamp(5));
+                    unPretDTO.setLivreDTO(livreDTO);
+                    unPretDTO.setDatePret(resultat.getTimestamp(4));
+                    unPretDTO.setDateRetour(resultat.getTimestamp(5));
                 }
             }
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
 
-        return pretDTO;
+        return unPretDTO;
     }
 
     /**

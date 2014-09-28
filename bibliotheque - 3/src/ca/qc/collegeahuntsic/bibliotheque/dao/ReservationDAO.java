@@ -91,30 +91,30 @@ public class ReservationDAO extends DAO {
      * @param idReservation L'id d'une reservation à lire
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public ReservationDTO read(int idReservation) throws DAOException {
-        ReservationDTO reservationDTO = null;
+    public ReservationDTO read(ReservationDTO reservationDTO) throws DAOException {
+        ReservationDTO unReservationDTO = null;
         try(
             PreparedStatement readPreparedStatement = getConnection().prepareStatement(ReservationDAO.READ_REQUEST)) {
             readPreparedStatement.setInt(1,
-                idReservation);
+                reservationDTO.getIdReservation());
             try(
                 ResultSet resultSet = readPreparedStatement.executeQuery()) {
                 if(resultSet.next()) {
-                    reservationDTO = new ReservationDTO();
-                    reservationDTO.setIdReservation(resultSet.getInt(1));
+                    unReservationDTO = new ReservationDTO();
+                    unReservationDTO.setIdReservation(resultSet.getInt(1));
                     MembreDTO membreDTO = new MembreDTO();
                     membreDTO.setIdMembre(resultSet.getInt(2));
-                    reservationDTO.setMembreDTO(membreDTO);
+                    unReservationDTO.setMembreDTO(membreDTO);
                     LivreDTO livreDTO = new LivreDTO();
                     livreDTO.setIdLivre(resultSet.getInt(3));
-                    reservationDTO.setLivreDTO(livreDTO);
-                    reservationDTO.setDateReservation(resultSet.getTimestamp(4));
+                    unReservationDTO.setLivreDTO(livreDTO);
+                    unReservationDTO.setDateReservation(resultSet.getTimestamp(4));
                 }
             }
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-        return reservationDTO;
+        return unReservationDTO;
     }
 
     /**

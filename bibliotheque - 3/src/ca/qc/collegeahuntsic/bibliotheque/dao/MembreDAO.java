@@ -88,27 +88,27 @@ public class MembreDAO extends DAO {
      * @param idMembre L'ID du membre à lire
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    public MembreDTO read(int idMembre) throws DAOException {
-        MembreDTO membreDTO = null;
+    public MembreDTO read(MembreDTO membreDTO) throws DAOException {
+        MembreDTO unMembreDTO = null;
         try(
             PreparedStatement readPreparedStatement = getConnection().prepareStatement(MembreDAO.READ_REQUEST)) {
             readPreparedStatement.setInt(1,
-                idMembre);
+                membreDTO.getIdMembre());
             try(
                 ResultSet resultSet = readPreparedStatement.executeQuery()) {
                 if(resultSet.next()) {
-                    membreDTO = new MembreDTO();
-                    membreDTO.setIdMembre(resultSet.getInt(1));
-                    membreDTO.setNom(resultSet.getString(2));
-                    membreDTO.setTelephone(resultSet.getLong(3));
-                    membreDTO.setLimitePret(resultSet.getInt(4));
-                    membreDTO.setNbPret(resultSet.getInt(5));
+                    unMembreDTO = new MembreDTO();
+                    unMembreDTO.setIdMembre(resultSet.getInt(1));
+                    unMembreDTO.setNom(resultSet.getString(2));
+                    unMembreDTO.setTelephone(resultSet.getLong(3));
+                    unMembreDTO.setLimitePret(resultSet.getInt(4));
+                    unMembreDTO.setNbPret(resultSet.getInt(5));
                 }
             }
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
-        return membreDTO;
+        return unMembreDTO;
     }
 
     /**

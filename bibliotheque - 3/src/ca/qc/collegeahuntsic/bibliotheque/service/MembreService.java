@@ -107,9 +107,9 @@ public class MembreService extends Service {
      * @param idMembre L'ID du membre à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    public MembreDTO read(int idMembre) throws ServiceException {
+    public MembreDTO read(MembreDTO membreDTO) throws ServiceException {
         try {
-            return getMembreDAO().read(idMembre);
+            return getMembreDAO().read(membreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
@@ -194,7 +194,7 @@ public class MembreService extends Service {
      * @throws ServiceException Si le membre existe déjà ou s'il y a une erreur avec la base de données
      */
     public void inscrire(MembreDTO membreDTO) throws ServiceException {
-        if(read(membreDTO.getIdMembre()) != null) {
+        if(read(membreDTO) != null) {
             throw new ServiceException("Le membre "
                 + membreDTO.getIdMembre()
                 + " existe déjà");
@@ -394,7 +394,7 @@ public class MembreService extends Service {
      */
     public void desinscrire(MembreDTO membreDTO) throws ServiceException {
         try {
-            MembreDTO unMembreDTO = read(membreDTO.getIdMembre());
+            MembreDTO unMembreDTO = read(membreDTO);
             if(unMembreDTO == null) {
                 throw new ServiceException("Le membre "
                     + membreDTO.getIdMembre()
