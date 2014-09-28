@@ -5,6 +5,7 @@ import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.PretDAO;
+import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
@@ -27,12 +28,19 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
  * </pre>
  */
 
-public class PretService {
+public class PretService extends Service {
+    /**
+     * TODO Auto-generated field javadoc
+     */
+    private static final long serialVersionUID = 1L;
+
     private LivreDAO livreDAO;
 
     private MembreDAO membreDAO;
 
     private PretDAO pretDAO;
+
+    private ReservationDAO reservationDAO;
 
     /**
      * Crée un service à partir des DAOs de livre, member et réservation
@@ -43,11 +51,13 @@ public class PretService {
      */
     public PretService(LivreDAO livreDAO,
         MembreDAO membreDAO,
-        PretDAO pretDAO) {
+        PretDAO pretDAO,
+        ReservationDAO reservationDAO) {
         super();
         setLivreDAO(livreDAO);
         setMembreDAO(membreDAO);
         setPretDAO(pretDAO);
+        setReservationDAO(reservationDAO);
     }
 
     /**
@@ -93,6 +103,24 @@ public class PretService {
      */
     public PretDAO getPretDAO() {
         return this.pretDAO;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.reservationDAO</code>.
+     *
+     * @return La variable d'instance <code>this.reservationDAO</code>
+     */
+    public ReservationDAO getReservationDAO() {
+        return this.reservationDAO;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.reservationDAO</code>.
+     *
+     * @param reservationDAO La valeur à utiliser pour la variable d'instance <code>this.reservationDAO</code>
+     */
+    public void setReservationDAO(ReservationDAO reservationDAO) {
+        this.reservationDAO = reservationDAO;
     }
 
     /**

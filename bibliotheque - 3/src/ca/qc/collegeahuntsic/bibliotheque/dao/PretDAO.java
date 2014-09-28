@@ -15,6 +15,11 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 
 public class PretDAO extends DAO {
 
+    /**
+     * TODO Auto-generated field javadoc
+     */
+    private static final long serialVersionUID = 1L;
+
     public PretDAO(Connexion connexion) {
         super(connexion);
     }
