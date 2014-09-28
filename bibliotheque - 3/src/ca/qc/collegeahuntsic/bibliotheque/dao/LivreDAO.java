@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 
 /**
@@ -24,7 +23,7 @@ public class LivreDAO extends DAO {
     private static final long serialVersionUID = 1L;
 
     private static final String ADD_REQUEST = "INSERT INTO livre (idLivre, titre, auteur, dateAcquisition, idMembre, datePret) "
-        + "VALUES (?, ?, ?, ?, NULL, NULL)";
+        + "VALUES (SEQ_ID_LIVRE.NEXTVAL, ?, ?, ?, NULL, NULL)";
 
     private static final String READ_REQUEST = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
         + "FROM livre "
@@ -43,10 +42,6 @@ public class LivreDAO extends DAO {
     private static final String FIND_BY_TITRE = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
         + "FROM livre "
         + "WHERE LOWER(titre) like %?%";
-
-    private static final String FIND_BY_MEMBRE = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
-        + "FROM livre "
-        + "WHERE idMembre = ?";
 
     //    private static final String EMPRUNT_REQUEST = "UPDATE livre "
     //        + "SET titre = ?, auteur = ?, dateAcquisition = ?, idMembre = ?, datePret = SYSTIMESTAMP "
@@ -74,13 +69,11 @@ public class LivreDAO extends DAO {
     public void add(LivreDTO livreDTO) throws DAOException {
         try(
             PreparedStatement addPreparedStatement = getConnection().prepareStatement(LivreDAO.ADD_REQUEST)) {
-            addPreparedStatement.setInt(1,
-                livreDTO.getIdLivre());
-            addPreparedStatement.setString(2,
+            addPreparedStatement.setString(1,
                 livreDTO.getTitre());
-            addPreparedStatement.setString(3,
+            addPreparedStatement.setString(2,
                 livreDTO.getAuteur());
-            addPreparedStatement.setTimestamp(4,
+            addPreparedStatement.setTimestamp(3,
                 livreDTO.getDateAcquisition());
             addPreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
@@ -219,35 +212,6 @@ public class LivreDAO extends DAO {
             throw new DAOException(sqlException);
         }
         return livres;
-    }
-
-    /**
-     * Trouve les livres à partir d'un membre.
-     *
-     * @param membreDTO Le membre à utiliser
-     * @return Le livre correspondant ; null sinon
-     * @throws DAOException S'il y a une erreur avec la base de données
-     */
-    public LivreDTO findByMembre(MembreDTO membreDTO) throws DAOException {
-        LivreDTO livreDTO = null;
-        try(
-            PreparedStatement findByMembrePreparedStatement = getConnection().prepareStatement(LivreDAO.FIND_BY_MEMBRE)) {
-            findByMembrePreparedStatement.setInt(1,
-                membreDTO.getIdMembre());
-            try(
-                ResultSet resultSet = findByMembrePreparedStatement.executeQuery()) {
-                if(resultSet.next()) {
-                    livreDTO = new LivreDTO();
-                    livreDTO.setIdLivre(resultSet.getInt(1));
-                    livreDTO.setTitre(resultSet.getString(2));
-                    livreDTO.setAuteur(resultSet.getString(3));
-                    livreDTO.setDateAcquisition(resultSet.getTimestamp(4));
-                }
-            }
-        } catch(SQLException sqlException) {
-            throw new DAOException(sqlException);
-        }
-        return livreDTO;
     }
 
     //    /**

@@ -26,7 +26,7 @@ public class PretDAO extends DAO {
 
     // constantes contenant les chaînes
     private static final String ADD_REQUEST = "INSERT INTO pret (idPret, idMembre, idLivre, datePret, dateRetour "
-        + "VALUES (?, ?, ?, ?, ?)";
+        + "VALUES (SEQ_ID_PRET.NEXTVAL, ?, ?, ?, ?)";
 
     private static final String READ_REQUEST = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
         + "FROM pret "
@@ -61,14 +61,12 @@ public class PretDAO extends DAO {
             PreparedStatement addPreparedStatement = getConnection().prepareStatement(PretDAO.ADD_REQUEST)) {
             // configuration de la requête paramètrée
             addPreparedStatement.setInt(1,
-                pretDTO.getIdPret());
-            addPreparedStatement.setInt(2,
                 pretDTO.getMembreDTO().getIdMembre());
-            addPreparedStatement.setInt(3,
+            addPreparedStatement.setInt(2,
                 pretDTO.getLivreDTO().getIdLivre());
-            addPreparedStatement.setTimestamp(4,
+            addPreparedStatement.setTimestamp(3,
                 pretDTO.getDatePret());
-            addPreparedStatement.setTimestamp(5,
+            addPreparedStatement.setTimestamp(4,
                 pretDTO.getDateRetour());
 
             addPreparedStatement.executeUpdate();

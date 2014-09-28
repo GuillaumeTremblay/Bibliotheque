@@ -29,7 +29,7 @@ public class ReservationDAO extends DAO {
     private static final long serialVersionUID = 1L;
 
     private static final String ADD_REQUEST = "INSERT INTO reservation (idReservation, idMembre, idLivre, dateReservation) "
-        + "VALUES (?, ?, ?,SYSTIMESTAMP)";
+        + "VALUES (SEQ_ID_RESERVATION.NEXTVAL, ?, ?,SYSTIMESTAMP)";
 
     private static final String READ_REQUEST = "SELECT idReservation, idMembre, idLivre, dateReservation"
         + "FROM reservation "
@@ -72,13 +72,9 @@ public class ReservationDAO extends DAO {
         try(
             PreparedStatement addPreparedStatement = getConnection().prepareStatement(ReservationDAO.ADD_REQUEST)) {
             addPreparedStatement.setInt(1,
-                reservationDTO.getIdReservation());
-            addPreparedStatement.setInt(2,
                 reservationDTO.getMembreDTO().getIdMembre());
-            addPreparedStatement.setInt(3,
+            addPreparedStatement.setInt(2,
                 reservationDTO.getLivreDTO().getIdLivre());
-            addPreparedStatement.setTimestamp(4,
-                reservationDTO.getDateReservation());
             addPreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);

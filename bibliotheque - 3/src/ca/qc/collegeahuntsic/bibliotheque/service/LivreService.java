@@ -7,9 +7,10 @@ package ca.qc.collegeahuntsic.bibliotheque.service;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDAO;
+import ca.qc.collegeahuntsic.bibliotheque.dao.PretDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
 
@@ -23,9 +24,9 @@ public class LivreService extends Service {
 
     private LivreDAO livreDAO;
 
-    private MembreDAO membreDAO;
-
     private ReservationDAO reservationDAO;
+
+    private PretDAO pretDAO;
 
     /**
      * Crée un service à partir des DAOs de livre, member et réservation
@@ -36,11 +37,12 @@ public class LivreService extends Service {
      */
     public LivreService(LivreDAO livreDAO,
         MembreDAO membreDAO,
-        ReservationDAO reservationDAO) {
+        ReservationDAO reservationDAO,
+        PretDAO pretDAO) {
         super();
         setLivreDAO(livreDAO);
-        setMembreDAO(membreDAO);
         setReservationDAO(reservationDAO);
+        setPretDAO(pretDAO);
     }
 
     /**
@@ -62,24 +64,6 @@ public class LivreService extends Service {
     }
 
     /**
-     * Getter de la variable d'instance <code>this.membreDAO</code>.
-     *
-     * @return La variable d'instance <code>this.membreDAO</code>
-     */
-    private MembreDAO getMembreDAO() {
-        return this.membreDAO;
-    }
-
-    /**
-     * Setter de la variable d'instance <code>this.membreDAO</code>.
-     *
-     * @param membreDAO La valeur à utiliser pour la variable d'instance <code>this.membreDAO</code>
-     */
-    private void setMembreDAO(MembreDAO membreDAO) {
-        this.membreDAO = membreDAO;
-    }
-
-    /**
      * Getter de la variable d'instance <code>this.reservationDAO</code>.
      *
      * @return La variable d'instance <code>this.reservationDAO</code>
@@ -95,6 +79,24 @@ public class LivreService extends Service {
      */
     private void setReservationDAO(ReservationDAO reservationDAO) {
         this.reservationDAO = reservationDAO;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.pretDAO</code>.
+     *
+     * @return La variable d'instance <code>this.pretDAO</code>
+     */
+    public PretDAO getPretDAO() {
+        return this.pretDAO;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.pretDAO</code>.
+     *
+     * @param pretDAO La valeur à utiliser pour la variable d'instance <code>this.pretDAO</code>
+     */
+    public void setPretDAO(PretDAO pretDAO) {
+        this.pretDAO = pretDAO;
     }
 
     /**
@@ -183,21 +185,6 @@ public class LivreService extends Service {
     }
 
     /**
-     * Trouve les livres à partir d'un membre.
-     *
-     * @param membreDTO Le membre à utiliser
-     * @return Le livre correspondant ; null sinon
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    public LivreDTO findByMembre(MembreDTO membreDTO) throws ServiceException {
-        try {
-            return getLivreDAO().findByMembre(membreDTO);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
-        }
-    }
-
-    /**
      * Acquiert un livre.
      *
      * @param livreDTO Le livre à ajouter
@@ -219,8 +206,7 @@ public class LivreService extends Service {
      * @throws ServiceException Si le livre n'existe pas, si le livre a été prêté, si le livre a été réservé ou s'il y a une erreur avec la base
      *         de données
      */
-    public void vendre(LivreDTO livreDTO,
-        MembreDTO membreDTO) throws ServiceException {
+    public void vendre(LivreDTO livreDTO) throws ServiceException {
         try {
             LivreDTO unLivreDTO = read(livreDTO);
             if(unLivreDTO == null) {
@@ -228,16 +214,16 @@ public class LivreService extends Service {
                     + livreDTO.getIdLivre()
                     + " n'existe pas");
             }
-            MembreDTO unMembreDTO = getMembreDAO().read(membreDTO);
-            if(getLivreDAO().findByMembre(unMembreDTO) != null) {
+            PretDTO pretDTO = getPretDAO().findByLivre(unLivreDTO);
+            if(pretDTO != null) {
                 throw new ServiceException("Le livre "
                     + unLivreDTO.getTitre()
                     + " (ID de livre : "
                     + unLivreDTO.getIdLivre()
                     + ") a été prêté à "
-                    + membreDTO.getNom()
+                    + pretDTO.getMembreDTO().getNom()
                     + " (ID de membre : "
-                    + membreDTO.getIdMembre()
+                    + pretDTO.getMembreDTO().getIdMembre()
                     + ")");
             }
             if(!getReservationDAO().findByLivre(unLivreDTO).isEmpty()) {

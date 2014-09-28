@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
@@ -210,15 +211,18 @@ public class Bibliotheque {
                 Thread.sleep(1);
                 ReservationDTO reservationDTO = new ReservationDTO();
                 reservationDTO.setIdReservation(readInt(tokenizer));
-                reservationDTO.setIdMembre(readInt(tokenizer));
-                reservationDTO.setIdLivre(readInt(tokenizer));
                 MembreDTO membreDTO = new MembreDTO();
-                membreDTO.setIdMembre(reservationDTO.getIdMembre());
+                membreDTO.setIdMembre(readInt(tokenizer));
+                reservationDTO.setMembreDTO(membreDTO);
                 LivreDTO livreDTO = new LivreDTO();
-                livreDTO.setIdLivre(reservationDTO.getIdLivre());
+                livreDTO.setIdLivre(readInt(tokenizer));
+                reservationDTO.setLivreDTO(livreDTO);
+                PretDTO pretDTO = new PretDTO();
+                pretDTO.setIdPret(readInt(tokenizer));
                 gestionBiblio.getReservationService().reserver(reservationDTO,
                     membreDTO,
-                    livreDTO);
+                    livreDTO,
+                    pretDTO);
                 gestionBiblio.commit();
             } else if("utiliser".startsWith(command)) {
                 ReservationDTO reservationDTO = new ReservationDTO();
@@ -281,7 +285,7 @@ public class Bibliotheque {
         System.out.println("  vendre <idLivre>");
         System.out.println("  inscrire <idMembre> <nom> <telephone> <limitePret>");
         System.out.println("  desinscrire <idMembre>");
-        System.out.println("  reserver <idReservation> <idMembre> <idLivre>");
+        System.out.println("  reserver <idReservation> <idMembre> <idLivre> <idPret>");
         System.out.println("  utiliser <idReservation>");
         System.out.println("  annuler <idReservation>");
         //		System.out.println("  listerLivresRetard <dateCourante>");

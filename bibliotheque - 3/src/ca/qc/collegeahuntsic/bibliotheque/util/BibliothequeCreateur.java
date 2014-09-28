@@ -57,7 +57,8 @@ public class BibliothequeCreateur {
             PretDAO pretDAO = new PretDAO(getConnexion());
             setLivreService(new LivreService(livreDAO,
                 membreDAO,
-                reservationDAO));
+                reservationDAO,
+                pretDAO));
             setMembreService(new MembreService(membreDAO,
                 livreDAO,
                 reservationDAO));
