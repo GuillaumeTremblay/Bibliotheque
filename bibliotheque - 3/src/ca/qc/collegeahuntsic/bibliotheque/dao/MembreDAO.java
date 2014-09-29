@@ -26,9 +26,9 @@ public class MembreDAO extends DAO {
     private static final long serialVersionUID = 1L;
 
     private static final String ADD_REQUEST = "INSERT INTO membre (idMembre, nom, telephone, limitePret, nbpret) "
-        + "VALUES (SEQ_ID_MEMBRE.NEXTVAL, ?, ?, ?,0)";
+        + "VALUES (SEQ_ID_MEMBRE.NEXTVAL, ?, ?, ?, 0)";
 
-    private static final String READ_REQUEST = "SELECT idMembre, nom, telephone, limitePret, nbpret"
+    private static final String READ_REQUEST = "SELECT idMembre, nom, telephone, limitePret, nbpret "
         + "FROM membre "
         + "WHERE idMembre = ?";
 

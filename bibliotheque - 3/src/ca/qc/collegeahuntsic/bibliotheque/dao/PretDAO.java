@@ -25,9 +25,9 @@ public class PretDAO extends DAO {
     }
 
     // constantes contenant les chaînes
-    private static final String ADD_REQUEST = "INSERT INTO pret (idPret, idMembre, idLivre, datePret, dateRetour "
-        + "VALUES (SEQ_ID_PRET.NEXTVAL, ?, ?, ?, ?)";
-
+    private static final String ADD_REQUEST = "INSERT INTO pret (idPret, idMembre, idLivre, datePret, dateRetour) "
+        + "VALUES (SEQ_ID_PRET.NEXTVAL, ?, ?, ?, null)";
+    
     private static final String READ_REQUEST = "SELECT idPret, idMembre, idLivre, datePret, dateRetour "
         + "FROM pret "
         + "WHERE idPret = ?";

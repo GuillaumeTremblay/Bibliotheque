@@ -29,7 +29,7 @@ public class ReservationDAO extends DAO {
     private static final long serialVersionUID = 1L;
 
     private static final String ADD_REQUEST = "INSERT INTO reservation (idReservation, idMembre, idLivre, dateReservation) "
-        + "VALUES (SEQ_ID_RESERVATION.NEXTVAL, ?, ?,SYSTIMESTAMP)";
+        + "VALUES (SEQ_ID_RESERVATION.NEXTVAL, ?, ?, SYSTIMESTAMP)";
 
     private static final String READ_REQUEST = "SELECT idReservation, idMembre, idLivre, dateReservation"
         + "FROM reservation "
@@ -45,11 +45,11 @@ public class ReservationDAO extends DAO {
     private static final String GET_ALL_REQUEST = "SELECT idReservation, idMembre, idLivre, dateReservation "
         + "FROM reservation";
 
-    private static final String FIND_BY_MEMBRE = "idReservation, idMembre, idLivre, dateReservation "
+    private static final String FIND_BY_MEMBRE = "SELECT idReservation, idMembre, idLivre, dateReservation "
         + "FROM reservation "
         + "WHERE idMembre = ?";
 
-    private static final String FIND_BY_LIVRE = "idReservation, idMembre, idLivre, dateReservation"
+    private static final String FIND_BY_LIVRE = "SELECT idReservation, idMembre, idLivre, dateReservation "
         + "FROM reservation "
         + "WHERE idLivre = ?";
 
@@ -237,7 +237,7 @@ public class ReservationDAO extends DAO {
         List<ReservationDTO> reservations = Collections.EMPTY_LIST;
         try(
             PreparedStatement findByIDPreparedStatement = getConnection().prepareStatement(ReservationDAO.FIND_BY_LIVRE)) {
-            findByIDPreparedStatement.setInt(1,
+            findByIDPreparedStatement.setInt(1, 
                 livreDTO.getIdLivre());
             try(
                 ResultSet resultSet = findByIDPreparedStatement.executeQuery()) {

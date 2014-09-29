@@ -1,7 +1,9 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.service;
 
+import java.sql.Timestamp;
 import java.util.List;
+
 import ca.qc.collegeahuntsic.bibliotheque.dao.LivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.MembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.PretDAO;
@@ -236,6 +238,12 @@ public class PretService extends Service {
             PretDTO unPretDTO = new PretDTO();
             unPretDTO.setLivreDTO(unLivreDTO);
             unPretDTO.setMembreDTO(unMembreDTO);
+            
+            // estampille de la date du prêt
+            long temps = System.currentTimeMillis();
+            Timestamp estampille = new Timestamp(temps);
+            unPretDTO.setDatePret(estampille);
+            
             add(unPretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);

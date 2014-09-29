@@ -22,24 +22,24 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 public class LivreDAO extends DAO {
     private static final long serialVersionUID = 1L;
 
-    private static final String ADD_REQUEST = "INSERT INTO livre (idLivre, titre, auteur, dateAcquisition, idMembre, datePret) "
-        + "VALUES (SEQ_ID_LIVRE.NEXTVAL, ?, ?, ?, NULL, NULL)";
+    private static final String ADD_REQUEST = "INSERT INTO livre (idLivre, titre, auteur, dateAcquisition) "
+        + "VALUES (SEQ_ID_LIVRE.NEXTVAL, ?, ?, ?)";
 
-    private static final String READ_REQUEST = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
+    private static final String READ_REQUEST = "SELECT idLivre, titre, auteur, dateAcquisition "
         + "FROM livre "
         + "WHERE idLivre = ?";
 
     private static final String UPDATE_REQUEST = "UPDATE livre "
-        + "SET titre = ?, auteur = ?, dateAcquisition = ?, idMembre = ?, datePret = ? "
+        + "SET titre = ?, auteur = ?, dateAcquisition = ? "
         + "WHERE idLivre = ?";
 
     private static final String DELETE_REQUEST = "DELETE FROM livre "
         + "WHERE idLivre = ?";
 
-    private static final String GET_ALL_REQUEST = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
+    private static final String GET_ALL_REQUEST = "SELECT idLivre, titre, auteur, dateAcquisition "
         + "FROM livre";
 
-    private static final String FIND_BY_TITRE = "SELECT idLivre, titre, auteur, dateAcquisition, idMembre, datePret "
+    private static final String FIND_BY_TITRE = "SELECT idLivre, titre, auteur, dateAcquisition "
         + "FROM livre "
         + "WHERE LOWER(titre) like %?%";
 
