@@ -7,7 +7,7 @@ package ca.qc.collegeahuntsic.bibliotheque.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.ConnexionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.db.ConnexionException;
 
 /**
  * Cette classe encapsule une connexion JDBC en fonction d'un type et d'une instance de base de données.<br /><br />
@@ -50,7 +50,7 @@ public class Connexion implements AutoCloseable {
     private static final String SERVEUR_ACCESS_URL = "jdbc:postgresql:";
 
     /**
-     * Crée une connexion en mode autocommit false et sérialisable (si supporté).
+     * Crée une connexion en mode autocommit false.
      * 
      * @param typeServeur Type de serveur SQL de la BD
      * @param schema Nom du schéma de la base de données
@@ -110,10 +110,10 @@ public class Connexion implements AutoCloseable {
 
     // Region Getters and Setters
     /**
-     * Getter de la variable d'instance <code>this.connection</code>.
-     *
-     * @return La variable d'instance <code>this.connection</code>
-     */
+      * Getter de la variable d'instance <code>this.connection</code>.
+      *
+      * @return La variable d'instance <code>this.connection</code>
+      */
     public Connection getConnection() {
         return this.connection;
     }

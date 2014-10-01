@@ -13,10 +13,20 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * 
  * @author Gilles Benichou
  */
-public class PretDTO extends DTO {
+public final class PretDTO extends DTO {
+    public static final String ID_PRET_COLUMN_NAME = "idPret";
+
+    public static final String ID_MEMBRE_COLUMN_NAME = "idMembre";
+
+    public static final String ID_LIVRE_COLUMN_NAME = "idLivre";
+
+    public static final String DATE_PRET_COLUMN_NAME = "datePret";
+
+    public static final String DATE_RETOUR_COLUMN_NAME = "dateRetour";
+
     private static final long serialVersionUID = 1L;
 
-    private int idPret;
+    private String idPret;
 
     private MembreDTO membreDTO;
 
@@ -26,13 +36,20 @@ public class PretDTO extends DTO {
 
     private Timestamp dateRetour;
 
+    /**
+     * Crée un DTO de la table <code>pret</code>.
+     */
+    public PretDTO() {
+        super();
+    }
+
     // Region Getters and Setters
     /**
      * Getter de la variable d'instance <code>this.idPret</code>.
      *
      * @return La variable d'instance <code>this.idPret</code>
      */
-    public int getIdPret() {
+    public String getIdPret() {
         return this.idPret;
     }
 
@@ -41,7 +58,7 @@ public class PretDTO extends DTO {
      *
      * @param idPret La valeur à utiliser pour la variable d'instance <code>this.idPret</code>
      */
-    public void setIdPret(int idPret) {
+    public void setIdPret(String idPret) {
         this.idPret = idPret;
     }
 

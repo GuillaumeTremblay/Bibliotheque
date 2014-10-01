@@ -11,6 +11,8 @@ import java.util.Date;
 
 /**
  * Utilitaire de création d'un {@link java.sql.Timestamp} dans un format défini.
+ * 
+ * @author Gilles Benichou
  */
 public class FormatteurDate {
     private static final String FORMAT_DATE = "yyyy-MM-dd";

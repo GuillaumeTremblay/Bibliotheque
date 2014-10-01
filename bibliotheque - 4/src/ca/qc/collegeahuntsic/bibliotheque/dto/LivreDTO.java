@@ -13,10 +13,18 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * 
  * @author Gilles Benichou
  */
-public class LivreDTO extends DTO {
+public final class LivreDTO extends DTO {
+    public static final String ID_LIVRE_COLUMN_NAME = "idLivre";
+
+    public static final String TITRE_COLUMN_NAME = "titre";
+
+    public static final String AUTEUR_COLUMN_NAME = "auteur";
+
+    public static final String DATE_ACQUISITION_COLUMN_NAME = "dateAcquisition";
+
     private static final long serialVersionUID = 1L;
 
-    private int idLivre;
+    private String idLivre;
 
     private String titre;
 
@@ -24,13 +32,20 @@ public class LivreDTO extends DTO {
 
     private Timestamp dateAcquisition;
 
+    /**
+     * Crée un DTO de la table <code>livre</code>.
+     */
+    public LivreDTO() {
+        super();
+    }
+
     // Region Getters and Setters
     /**
      * Getter de la variable d'instance <code>this.idLivre</code>.
      *
      * @return La variable d'instance <code>this.idLivre</code>
      */
-    public int getIdLivre() {
+    public String getIdLivre() {
         return this.idLivre;
     }
 
@@ -39,7 +54,7 @@ public class LivreDTO extends DTO {
      *
      * @param idLivre La valeur à utiliser pour la variable d'instance <code>this.idLivre</code>
      */
-    public void setIdLivre(int idLivre) {
+    public void setIdLivre(String idLivre) {
         this.idLivre = idLivre;
     }
 

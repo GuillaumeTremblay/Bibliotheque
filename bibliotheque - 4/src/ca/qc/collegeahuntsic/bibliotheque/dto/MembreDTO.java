@@ -12,18 +12,35 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * 
  * @author Gilles Benichou
  */
-public class MembreDTO extends DTO {
+public final class MembreDTO extends DTO {
+    public static final String ID_MEMBRE_COLUMN_NAME = "idMembre";
+
+    public static final String NOM_COLUMN_NAME = "nom";
+
+    public static final String TELEPHONE_COLUMN_NAME = "telephone";
+
+    public static final String LIMITE_PRET_COLUMN_NAME = "limitePret";
+
+    public static final String NB_PRET_COLUMN_NAME = "nbPret";
+
     private static final long serialVersionUID = 1L;
 
-    private int idMembre;
+    private String idMembre;
 
     private String nom;
 
-    private long telephone;
+    private String telephone;
 
-    private int limitePret;
+    private String limitePret;
 
-    private int nbPret;
+    private String nbPret;
+
+    /**
+     * Crée un DTO de la table <code>membre</code>.
+     */
+    public MembreDTO() {
+        super();
+    }
 
     // Region Getters and Setters
     /**
@@ -31,7 +48,7 @@ public class MembreDTO extends DTO {
      *
      * @return La variable d'instance <code>this.idMembre</code>
      */
-    public int getIdMembre() {
+    public String getIdMembre() {
         return this.idMembre;
     }
 
@@ -40,7 +57,7 @@ public class MembreDTO extends DTO {
      *
      * @param idMembre La valeur à utiliser pour la variable d'instance <code>this.idMembre</code>
      */
-    public void setIdMembre(int idMembre) {
+    public void setIdMembre(String idMembre) {
         this.idMembre = idMembre;
     }
 
@@ -67,7 +84,7 @@ public class MembreDTO extends DTO {
      *
      * @return La variable d'instance <code>this.telephone</code>
      */
-    public long getTelephone() {
+    public String getTelephone() {
         return this.telephone;
     }
 
@@ -76,7 +93,7 @@ public class MembreDTO extends DTO {
      *
      * @param telephone La valeur à utiliser pour la variable d'instance <code>this.telephone</code>
      */
-    public void setTelephone(long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
@@ -85,7 +102,7 @@ public class MembreDTO extends DTO {
      *
      * @return La variable d'instance <code>this.limitePret</code>
      */
-    public int getLimitePret() {
+    public String getLimitePret() {
         return this.limitePret;
     }
 
@@ -94,7 +111,7 @@ public class MembreDTO extends DTO {
      *
      * @param limitePret La valeur à utiliser pour la variable d'instance <code>this.limitePret</code>
      */
-    public void setLimitePret(int limitePret) {
+    public void setLimitePret(String limitePret) {
         this.limitePret = limitePret;
     }
 
@@ -103,7 +120,7 @@ public class MembreDTO extends DTO {
      *
      * @return La variable d'instance <code>this.nbPret</code>
      */
-    public int getNbPret() {
+    public String getNbPret() {
         return this.nbPret;
     }
 
@@ -112,7 +129,7 @@ public class MembreDTO extends DTO {
      *
      * @param nbPret La valeur à utiliser pour la variable d'instance <code>this.nbPret</code>
      */
-    public void setNbPret(int nbPret) {
+    public void setNbPret(String nbPret) {
         this.nbPret = nbPret;
     }
 
