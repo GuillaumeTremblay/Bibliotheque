@@ -1,0 +1,8 @@
+ca.qc.collegeahuntsic.bibliotheque
+ca.qc.collegeahuntsic.bibliotheque.dao
+ca.qc.collegeahuntsic.bibliotheque.db
+ca.qc.collegeahuntsic.bibliotheque.dto
+ca.qc.collegeahuntsic.bibliotheque.exception
+ca.qc.collegeahuntsic.bibliotheque.facade
+ca.qc.collegeahuntsic.bibliotheque.service
+ca.qc.collegeahuntsic.bibliotheque.util
