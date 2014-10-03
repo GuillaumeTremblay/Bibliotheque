@@ -4,28 +4,35 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.dao.implementations;
 
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.dto.DTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
-import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 
 /**
  * DAO pour effectuer des CRUDs avec la table <code>membre</code>.
  * 
  * @author Gilles Benichou
  */
-public class MembreDAO extends DAO {
-    private static final long serialVersionUID = 1L;
-
+public class MembreDAO extends DAO implements IMembreDAO {
     private static final String CREATE_PRIMARY_KEY = "SELECT SEQ_ID_MEMBRE.NEXTVAL "
         + "FROM DUAL";
 
-    private static final String ADD_REQUEST = "INSERT INTO membre (idMembre, nom, telephone, limitePret, nbPret) "
+    private static final String CREATE_REQUEST = "INSERT INTO membre (idMembre, nom, telephone, limitePret, nbPret) "
         + "VALUES (? ,? ,? ,? , 0)";
 
     private static final String READ_REQUEST = "SELECT idMembre, nom, telephone, limitePret, nbPret "
@@ -33,7 +40,7 @@ public class MembreDAO extends DAO {
         + "WHERE idMembre = ?";
 
     private static final String UPDATE_REQUEST = "UPDATE membre "
-        + "SET idMembre = ?, nom = ?,  telephone = ?, limitePret = ?, nbPret = ? "
+        + "SET nom = ?,  telephone = ?, limitePret = ?, nbPret = ? "
         + "WHERE idMembre = ?";
 
     private static final String DELETE_REQUEST = "DELETE FROM membre "
@@ -43,69 +50,100 @@ public class MembreDAO extends DAO {
         + "FROM membre";
 
     /**
-     * Crée un DAO à partir d'une connexion à la base de données.
+     * Crée le DAO de la table <code>livre</code>.
+     * 
+     * @param livreDTOClass The classe de livre DTO to use
+     * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
+     */
+    public MembreDAO(Class<MembreDTO> membreDTOClass) throws InvalidDTOClassException { // TODO: Change to package when switching to Spring
+        super(membreDTOClass);
+    }
+
+    /**
+     * Crée une nouvelle clef primaire pour la table <code>livre</code>.
      * 
      * @param connexion La connexion à utiliser
-     */
-    public MembreDAO(Connexion connexion) {
-        super(connexion);
-    }
-
-    /**
-     * Crée une nouvelle clef primaire.
-     * 
      * @return La nouvelle clef primaire
+     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du livre est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    private int getPrimaryKey() throws DAOException {
-        return getPrimaryKey(MembreDAO.CREATE_PRIMARY_KEY);
+    private static String getPrimaryKey(Connexion connexion) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyRequestException,
+        DAOException {
+        return DAO.getPrimaryKey(connexion,
+            MembreDAO.CREATE_PRIMARY_KEY);
     }
 
     /**
-     * Ajoute un nouveau membre.
-     * 
-     * @param membreDTO Le membre à ajouter
-     * @throws DAOException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void add(MembreDTO membreDTO) throws DAOException {
+    @Override
+    public void add(Connexion connexion,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException,
+        DAOException {
+        if(connexion == null) {
+            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        if(!dto.getClass().equals(getDtoClass())) {
+            throw new InvalidDTOClassException("Le DTO doit être un "
+                + getDtoClass().getName());
+        }
+        MembreDTO membreDTO = (MembreDTO) dto;
         try(
-            PreparedStatement addPreparedStatement = getConnection().prepareStatement(MembreDAO.ADD_REQUEST)) {
-            membreDTO.setIdMembre(getPrimaryKey());
-            addPreparedStatement.setInt(1,
+            PreparedStatement createPreparedStatement = connexion.getConnection().prepareStatement(MembreDAO.CREATE_REQUEST)) {
+            membreDTO.setIdMembre(MembreDAO.getPrimaryKey(connexion));
+            createPreparedStatement.setString(1,
                 membreDTO.getIdMembre());
-            addPreparedStatement.setString(2,
+            createPreparedStatement.setString(2,
                 membreDTO.getNom());
-            addPreparedStatement.setLong(3,
+            createPreparedStatement.setString(3,
                 membreDTO.getTelephone());
-            addPreparedStatement.setInt(4,
+            createPreparedStatement.setString(4,
                 membreDTO.getLimitePret());
-            addPreparedStatement.executeUpdate();
+            createPreparedStatement.setString(5,
+                membreDTO.getNbPret());
+            createPreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
         }
     }
 
     /**
-     * Lit un membre.
-     * 
-     * @param idMembre Le membre à lire
-     * @throws DAOException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public MembreDTO read(int idMembre) throws DAOException {
+    @Override
+    public MembreDTO get(Connexion connexion,
+        Serializable primaryKey) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        DAOException {
+        if(connexion == null) {
+            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        }
+        if(primaryKey == null) {
+            throw new InvalidPrimaryKeyException("La clef primaire ne peut être null");
+        }
+        String idMembre = (String) primaryKey;
         MembreDTO membreDTO = null;
         try(
-            PreparedStatement readPreparedStatement = getConnection().prepareStatement(MembreDAO.READ_REQUEST)) {
-            readPreparedStatement.setInt(1,
+            PreparedStatement readPreparedStatement = connexion.getConnection().prepareStatement(MembreDAO.READ_REQUEST)) {
+            readPreparedStatement.setString(1,
                 idMembre);
             try(
                 ResultSet resultSet = readPreparedStatement.executeQuery()) {
                 if(resultSet.next()) {
                     membreDTO = new MembreDTO();
-                    membreDTO.setIdMembre(resultSet.getInt(1));
+                    membreDTO.setIdMembre(resultSet.getString(1));
                     membreDTO.setNom(resultSet.getString(2));
-                    membreDTO.setTelephone(resultSet.getLong(3));
-                    membreDTO.setLimitePret(resultSet.getInt(4));
-                    membreDTO.setNbPret(resultSet.getInt(5));
+                    membreDTO.setTelephone(resultSet.getString(3));
+                    membreDTO.setLimitePret(resultSet.getString(4));
+                    membreDTO.setNbPret(resultSet.getString(5));
                 }
             }
         } catch(SQLException sqlException) {
@@ -115,25 +153,36 @@ public class MembreDAO extends DAO {
     }
 
     /**
-     * Met à jour un membre.
-     * 
-     * @param membreDTO Le membre à mettre à jour
-     * @throws DAOException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void update(MembreDTO membreDTO) throws DAOException {
+    @Override
+    public void update(Connexion connexion,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        DAOException {
+        if(connexion == null) {
+            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        if(!dto.getClass().equals(getDtoClass())) {
+            throw new InvalidDTOClassException("Le DTO doit être un "
+                + getDtoClass().getName());
+        }
+        MembreDTO membreDTO = (MembreDTO) dto;
         try(
-            PreparedStatement updatePreparedStatement = getConnection().prepareStatement(MembreDAO.UPDATE_REQUEST)) {
-            updatePreparedStatement.setInt(1,
-                membreDTO.getIdMembre());
-            updatePreparedStatement.setString(2,
+            PreparedStatement updatePreparedStatement = connexion.getConnection().prepareStatement(MembreDAO.UPDATE_REQUEST)) {
+            updatePreparedStatement.setString(1,
                 membreDTO.getNom());
-            updatePreparedStatement.setLong(3,
+            updatePreparedStatement.setString(2,
                 membreDTO.getTelephone());
-            updatePreparedStatement.setInt(4,
+            updatePreparedStatement.setString(3,
                 membreDTO.getLimitePret());
-            updatePreparedStatement.setInt(5,
+            updatePreparedStatement.setString(4,
                 membreDTO.getNbPret());
-            updatePreparedStatement.setInt(6,
+            updatePreparedStatement.setString(5,
                 membreDTO.getIdMembre());
             updatePreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
@@ -142,15 +191,28 @@ public class MembreDAO extends DAO {
     }
 
     /**
-     * Supprime un membre.
-     * 
-     * @param membreDTO Le membre à supprimer
-     * @throws DAOException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void delete(MembreDTO membreDTO) throws DAOException {
+    @Override
+    public void delete(Connexion connexion,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        DAOException {
+        if(connexion == null) {
+            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        if(!dto.getClass().equals(getDtoClass())) {
+            throw new InvalidDTOClassException("Le DTO doit être un "
+                + getDtoClass().getName());
+        }
+        MembreDTO membreDTO = (MembreDTO) dto;
         try(
-            PreparedStatement deletePreparedStatement = getConnection().prepareStatement(MembreDAO.DELETE_REQUEST)) {
-            deletePreparedStatement.setInt(1,
+            PreparedStatement deletePreparedStatement = connexion.getConnection().prepareStatement(MembreDAO.DELETE_REQUEST)) {
+            deletePreparedStatement.setString(1,
                 membreDTO.getIdMembre());
             deletePreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
@@ -159,27 +221,34 @@ public class MembreDAO extends DAO {
     }
 
     /**
-     * Trouve tous les membres.
-     * 
-     * @return La liste des membres ; une liste vide sinon
-     * @throws DAOException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public List<MembreDTO> getAll() throws DAOException {
+    @Override
+    public List<MembreDTO> getAll(Connexion connexion,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidSortByPropertyException,
+        DAOException {
+        if(connexion == null) {
+            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        }
+        if(sortByPropertyName == null) {
+            throw new InvalidSortByPropertyException("La propriété utilisée pour classer ne peut être null");
+        }
         List<MembreDTO> membres = Collections.EMPTY_LIST;
         try(
-            PreparedStatement getAll = getConnection().prepareStatement(MembreDAO.GET_ALL_REQUEST)) {
+            PreparedStatement getAllPreparedStatement = connexion.getConnection().prepareStatement(MembreDAO.GET_ALL_REQUEST)) {
             try(
-                ResultSet resultSet = getAll.executeQuery()) {
+                ResultSet resultSet = getAllPreparedStatement.executeQuery()) {
                 MembreDTO membreDTO = null;
                 if(resultSet.next()) {
                     membres = new ArrayList<>();
                     do {
                         membreDTO = new MembreDTO();
-                        membreDTO.setIdMembre(resultSet.getInt(1));
+                        membreDTO.setIdMembre(resultSet.getString(1));
                         membreDTO.setNom(resultSet.getString(2));
-                        membreDTO.setTelephone(resultSet.getLong(3));
-                        membreDTO.setLimitePret(resultSet.getInt(4));
-                        membreDTO.setNbPret(resultSet.getInt(5));
+                        membreDTO.setTelephone(resultSet.getString(3));
+                        membreDTO.setLimitePret(resultSet.getString(4));
+                        membreDTO.setNbPret(resultSet.getString(5));
                         membres.add(membreDTO);
                     } while(resultSet.next());
                 }
