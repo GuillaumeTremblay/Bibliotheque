@@ -63,25 +63,25 @@ public class BDCreateur {
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_RESERVATION START WITH 1 INCREMENT BY 1");
 
                     statement.executeUpdate("CREATE TABLE membre ("
-                        + "                               idMembre   NUMBER(3) CHECK (idMembre > 0), "
+                        + "                               idMembre   NUMBER() CHECK (idMembre > 0), "
                         + "                               nom        VARCHAR(100) NOT NULL, "
-                        + "                               telephone  NUMBER(10), "
-                        + "                               limitePret NUMBER(2) CHECK (limitePret > 0 AND limitePret <= 10), "
-                        + "                               nbPret     NUMBER(2) DEFAULT 0 CHECK (nbpret >= 0), "
+                        + "                               telephone  NUMBER(), "
+                        + "                               limitePret NUMBER() CHECK (limitePret > 0 AND limitePret <= 10), "
+                        + "                               nbPret     NUMBER() DEFAULT 0 CHECK (nbpret >= 0), "
                         + "                               CONSTRAINT cleMembre PRIMARY KEY (idMembre), "
                         + "                               CONSTRAINT limiteNbPret CHECK (nbPret <= limitePret))");
 
                     statement.executeUpdate("CREATE TABLE livre ("
-                        + "                               idLivre         NUMBER(3) CHECK (idLivre > 0), "
+                        + "                               idLivre         NUMBER() CHECK (idLivre > 0), "
                         + "                               titre           VARCHAR(100) NOT NULL, "
                         + "                               auteur          VARCHAR(100) NOT NULL, "
                         + "                               dateAcquisition TIMESTAMP NOT NULL, "
                         + "                               CONSTRAINT      cleLivre PRIMARY KEY (idLivre))");
 
                     statement.executeUpdate("CREATE TABLE pret ("
-                        + "                               idPret     NUMBER(3) CHECK (idPret > 0), "
-                        + "                               idMembre   NUMBER(3) CHECK (idMembre > 0), "
-                        + "                               idLivre    NUMBER(3) CHECK (idLivre > 0), "
+                        + "                               idPret     NUMBER() CHECK (idPret > 0), "
+                        + "                               idMembre   NUMBER() CHECK (idMembre > 0), "
+                        + "                               idLivre    NUMBER() CHECK (idLivre > 0), "
                         + "                               datePret   TIMESTAMP, "
                         + "                               dateRetour TIMESTAMP, "
                         + "                               CONSTRAINT clePrimairePret PRIMARY KEY (idPret), "
@@ -91,9 +91,9 @@ public class BDCreateur {
                         + "                                                          ON DELETE CASCADE)");
 
                     statement.executeUpdate("CREATE TABLE reservation ("
-                        + "                               idReservation   NUMBER(3) CHECK (idReservation > 0), "
-                        + "                               idMembre        NUMBER(3) CHECK (idMembre > 0), "
-                        + "                               idLivre         NUMBER(3) CHECK (idLivre > 0), "
+                        + "                               idReservation   NUMBER() CHECK (idReservation > 0), "
+                        + "                               idMembre        NUMBER() CHECK (idMembre > 0), "
+                        + "                               idLivre         NUMBER() CHECK (idLivre > 0), "
                         + "                               dateReservation TIMESTAMP, "
                         + "                               CONSTRAINT      clePrimaireReservation PRIMARY KEY (idReservation), "
                         + "                               CONSTRAINT      cleEtrangereReservation UNIQUE (idMembre, idLivre), "
