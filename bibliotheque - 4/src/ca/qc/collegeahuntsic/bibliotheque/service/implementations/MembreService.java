@@ -5,7 +5,6 @@
 package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
 
 import java.util.List;
-import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.MembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
@@ -38,7 +37,7 @@ public class MembreService extends Service implements IMembreService {
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      */
-    public MembreService(MembreDAO membreDAO,
+    public MembreService(IMembreDAO membreDAO,
         IReservationDAO reservationDAO) {
         super();
         setMembreDAO(membreDAO);
@@ -58,10 +57,10 @@ public class MembreService extends Service implements IMembreService {
     /**
      * Setter de la variable d'instance <code>this.membreDAO</code>.
      *
-     * @param membreDAO La valeur à utiliser pour la variable d'instance <code>this.membreDAO</code>
+     * @param membreDAO2 La valeur à utiliser pour la variable d'instance <code>this.membreDAO</code>
      */
-    private void setMembreDAO(MembreDAO membreDAO) {
-        this.membreDAO = membreDAO;
+    private void setMembreDAO(IMembreDAO membreDAO2) {
+        this.membreDAO = membreDAO2;
     }
 
     /**

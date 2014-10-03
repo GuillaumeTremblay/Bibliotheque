@@ -49,8 +49,9 @@ public interface IPretFacade extends IFacade {
         InvalidDTOClassException,
         FacadeException;
 
-    void terminer(Connexion connexion,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
+    void retourner(Connexion connexion,
+        PretDTO pretDTO,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
         MissingDTOException,

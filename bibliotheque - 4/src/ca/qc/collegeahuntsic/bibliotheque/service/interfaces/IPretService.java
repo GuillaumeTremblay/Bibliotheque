@@ -17,112 +17,136 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyExc
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.DTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
-//[endRegion] Fin package, importations
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
- 
-public interface IPretService extends IService{
-	
-//[region] Opérations CRUD
 
-	/**
-	 * 
-	 * Retourne un prêt
-	 * 
-	 */
-	PretDTO get (Connexion connexion, String idPret) throws ServiceException, 
-	    InvalidHibernateSessionException, 
-	    InvalidPrimaryKeyException ;
-	
-	/**
-	 * 
-	 * Ajoute un prêt
-	 * 
-	 */
-	void add (Connexion connexion, PretDTO pretDTO) throws ServiceException, 
-	    InvalidHibernateSessionException, 
-	    InvalidDTOException, 
-	    InvalidDTOClassException, 
-	    InvalidPrimaryKeyRequestException;
-	
-	/**
-	 * 
-	 * Modifie un prêt
-	 * 
-	 */
-	void update (Connexion connexion, PretDTO pretDTO) throws ServiceException, 
-	InvalidHibernateSessionException,
-	InvalidDTOException, 
-	InvalidDTOClassException;
-	
-	/**
-	 * 
-	 * Suprimme un prêt
-	 * 
-	 */
-	void delete (Connexion connexion, PretDTO pretDTO) throws ServiceException, 
-	InvalidHibernateSessionException, 
-	InvalidDTOException, 
-	InvalidDTOClassException ;
-//[endRegion] Fin opérations CRUD
-	
-//[region] Opérations de recherche
-	
-	
-	List<PretDTO> getAll (Connexion connexion, String sortByPropertyName) throws 
-		ServiceException, 
-		InvalidHibernateSessionException, 
-		InvalidSortByPropertyException;
-	
-	List<PretDTO> findByMembre (Connexion connexion, String idMembre, String sortByPropertyName) throws 
-		ServiceException, 
-		InvalidHibernateSessionException, 
-		InvalidCriterionException, 
-		InvalidSortByPropertyException;
-	
-	List<PretDTO> findByLivre (Connexion connexion, String idLivre, String sortByPropertyName) throws 
-		ServiceException, 
-		InvalidHibernateSessionException, 
-		InvalidCriterionException, 
-		InvalidSortByPropertyException;
-	
-	List<PretDTO> findByDatePret (Connexion connexion, Timestamp datePret) throws 
-		ServiceException, 
-		InvalidHibernateSessionException, 
-		InvalidCriterionException, 
-		InvalidSortByPropertyException;
-	
-	List<PretDTO> findByDateRetour (Connexion connexion, Timestamp dateRetour, String sortByPropertyName) throws 
-		ServiceException, 
-		InvalidHibernateSessionException, 
-		InvalidCriterionException, 
-		InvalidSortByPropertyException;
-		
-//[endRegion] Fin opérations de recherche
-	
-//[region] Commandes
-	// REVOIR :(
-	/**
-	 * 
-	 * Suprimme le prêt ??
-	 * 
-	 */
-	void retourner (Connexion connexion, PretDTO pretDTO, String sortByPropertyName) throws  
-		ServiceException, 
-	    InvalidHibernateSessionException, 
-	    InvalidPrimaryKeyException, 
-	    DTOException, 
-	    InvalidDTOException, 
-	    InvalidDTOClassException, 
-	    InvalidCriterionException, 
-	    InvalidSortByPropertyException;
-	
-	void renouveler (Connexion connexion, PretDTO pretDTO, String sortByPropertyName) throws ServiceException, 
-	    InvalidHibernateSessionException, 
-	    InvalidPrimaryKeyException, 
-	    DTOException, InvalidCriterionException, 
-	    InvalidSortByPropertyException, 
-	    InvalidDTOException, 
-	    InvalidDTOClassException;
-//[endRegion] Fin commandes
-	
+//[endRegion] Fin package, importations
+
+public interface IPretService extends IService {
+
+    //[region] Opérations CRUD
+
+    /**
+     * 
+     * Retourne un prêt
+     * 
+     */
+    PretDTO get(Connexion connexion,
+        String idPret) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidPrimaryKeyException;
+
+    /**
+     * 
+     * Ajoute un prêt
+     * 
+     */
+    void add(Connexion connexion,
+        PretDTO pretDTO) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException;
+
+    /**
+     * 
+     * Modifie un prêt
+     * 
+     */
+    void update(Connexion connexion,
+        PretDTO pretDTO) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException;
+
+    /**
+     * 
+     * Suprimme un prêt
+     * 
+     */
+    void delete(Connexion connexion,
+        PretDTO pretDTO) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException;
+
+    //[endRegion] Fin opérations CRUD
+
+    //[region] Opérations de recherche
+
+    List<PretDTO> getAll(Connexion connexion,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidSortByPropertyException;
+
+    List<PretDTO> findByMembre(Connexion connexion,
+        String idMembre,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException;
+
+    List<PretDTO> findByLivre(Connexion connexion,
+        String idLivre,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException;
+
+    List<PretDTO> findByDatePret(Connexion connexion,
+        Timestamp datePret) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException;
+
+    List<PretDTO> findByDateRetour(Connexion connexion,
+        Timestamp dateRetour,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException;
+
+    //[endRegion] Fin opérations de recherche
+
+    //[region] Commandes
+    // REVOIR :(
+    /**
+     * 
+     * Suprimme le prêt ??
+     * 
+     */
+    void commencer(Connexion connexion,
+        PretDTO pretDTO,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        DTOException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException;
+
+    void retourner(Connexion connexion,
+        PretDTO pretDTO,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        DTOException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException;
+
+    void renouveler(Connexion connexion,
+        PretDTO pretDTO,
+        String sortByPropertyName) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        DTOException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException,
+        InvalidDTOException,
+        InvalidDTOClassException;
+    //[endRegion] Fin commandes
+
 }

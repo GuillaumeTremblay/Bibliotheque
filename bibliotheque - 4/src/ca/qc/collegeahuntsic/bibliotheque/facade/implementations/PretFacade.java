@@ -11,6 +11,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionE
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.DTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
@@ -124,8 +125,9 @@ public class PretFacade extends Facade implements IPretFacade {
      * @see ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IPretFacade#terminer(ca.qc.collegeahuntsic.bibliotheque.db.Connexion, ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO)
      */
     @Override
-    public void terminer(Connexion connexion,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
+    public void retourner(Connexion connexion,
+        PretDTO pretDTO,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
         MissingDTOException,
@@ -137,10 +139,14 @@ public class PretFacade extends Facade implements IPretFacade {
         FacadeException {
         // TODO Auto-generated method stub
         try {
-            getPretService().terminer(connexion,
-                pretDTO);
+            getPretService().retourner(connexion,
+                pretDTO,
+                sortByPropertyName);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
+        } catch(DTOException e) {
+            // TODO Auto-generated catch block
+            throw new FacadeException(e);
         }
 
     }
