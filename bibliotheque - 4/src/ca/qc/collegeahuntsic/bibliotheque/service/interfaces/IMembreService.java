@@ -97,4 +97,10 @@ public interface IMembreService extends IService {
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidSortByPropertyException,
         ServiceException;
+
+	void inscrire(Connexion connexion, MembreDTO membreDTO)
+			throws InvalidHibernateSessionException, InvalidDTOException,
+			InvalidDTOClassException, InvalidPrimaryKeyRequestException,
+			ServiceException;
+
 }

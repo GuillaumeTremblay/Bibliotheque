@@ -7,6 +7,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionE
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
@@ -20,6 +21,8 @@ import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.service.Service;
@@ -124,55 +127,67 @@ public class MembreService extends Service implements IMembreService {
     }
 
     /**
-     * Met à jour un membre.
-     * 
-     * @param membreDTO Le membre à mettre à jour
-     * @throws ServiceException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void update(MembreDTO membreDTO) throws ServiceException {
+    @Override
+    public void update(Connexion connexion,
+    	MembreDTO membreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        ServiceException {
         try {
-            getMembreDAO().update(membreDTO);
+            getMembreDAO().update(connexion,
+            	membreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
     }
 
     /**
-     * Supprime un membre.
-     * 
-     * @param membreDTO Le membre à supprimer
-     * @throws ServiceException Si le membre a encore des prêts, s'il a des réservations ou s'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void delete(MembreDTO membreDTO) throws ServiceException {
+    @Override
+    public void delete(Connexion connexion,
+        MembreDTO membreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        ServiceException {
         try {
-            getMembreDAO().delete(membreDTO);
+            getMembreDAO().delete(connexion,
+                membreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
     }
 
     /**
-     * Trouve tous les membres.
-     * 
-     * @return La liste des membres ; une liste vide sinon
-     * @throws ServiceException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public List<MembreDTO> getAll() throws ServiceException {
+    @SuppressWarnings("unchecked")
+	@Override
+    public List<MembreDTO> getAll(Connexion connexion,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidSortByPropertyException,
+        ServiceException {
         try {
-            return getMembreDAO().getAll();
+            return (List<MembreDTO>) getMembreDAO().getAll(connexion,
+                sortByPropertyName);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
     }
 
     /**
-     * Inscrit un membre.
-     * 
-     * @param membreDTO Le membre à inscrire
-     * @throws ServiceException Si le membre existe déjà ou s'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void inscrire(MembreDTO membreDTO) throws ServiceException {
-        add(membreDTO);
+    public void inscrire(Connexion connexion,
+        MembreDTO membreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException,
+        ServiceException {
+        add(connexion,
+            membreDTO);
     }
 
     /**
@@ -182,29 +197,33 @@ public class MembreService extends Service implements IMembreService {
      * @throws ServiceException Si le membre n'existe pas, si le membre a encore des prêts, s'il a des réservations ou s'il y a une erreur avec
      *         la base de données
      */
-    public void desincrire(MembreDTO membreDTO) throws ServiceException {
+    	
+    public void desincrire(Connexion connexion ,MembreDTO membreDTO) throws ServiceException {
         try {
-            MembreDTO unMembreDTO = read(membreDTO.getIdMembre());
+            MembreDTO unMembreDTO = get(connexion,membreDTO.getIdMembre());
             if(unMembreDTO == null) {
                 throw new ServiceException("Le membre "
                     + membreDTO.getIdMembre()
                     + " n'existe pas");
             }
-            if(unMembreDTO.getNbPret() > 0) {
+            if(Integer.parseInt(unMembreDTO.getNbPret()) > 0) {
                 throw new ServiceException("Le membre "
                     + unMembreDTO.getNom()
                     + " (ID de membre : "
                     + unMembreDTO.getIdMembre()
                     + ") a encore des prêts");
             }
-            if(!getReservationDAO().findByMembre(unMembreDTO.getIdMembre()).isEmpty()) {
+            List<ReservationDTO> reservationList =getReservationDAO().findByMembre(connexion,
+                    unMembreDTO.getIdMembre(),
+                    ReservationDTO.DATE_RESERVATION_COLUMN_NAME);
+            if(!reservationList.isEmpty()) {
                 throw new ServiceException("Le membre "
                     + unMembreDTO.getNom()
                     + " (ID de membre : "
                     + unMembreDTO.getIdMembre()
                     + ") a des réservations");
             }
-            delete(unMembreDTO);
+            delete(connexion,unMembreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
