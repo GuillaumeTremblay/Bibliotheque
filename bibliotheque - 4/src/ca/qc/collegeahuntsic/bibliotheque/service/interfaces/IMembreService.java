@@ -7,6 +7,7 @@ package ca.qc.collegeahuntsic.bibliotheque.service.interfaces;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
@@ -98,9 +99,19 @@ public interface IMembreService extends IService {
         InvalidSortByPropertyException,
         ServiceException;
 
-	void inscrire(Connexion connexion, MembreDTO membreDTO)
-			throws InvalidHibernateSessionException, InvalidDTOException,
-			InvalidDTOClassException, InvalidPrimaryKeyRequestException,
-			ServiceException;
+    void inscrire(Connexion connexion,
+        MembreDTO membreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException,
+        ServiceException;
 
+    void desincrire(Connexion connexion,
+        MembreDTO membreDTO) throws ServiceException,
+        InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        InvalidCriterionException,
+        InvalidSortByPropertyException,
+        InvalidDTOException,
+        InvalidDTOClassException;
 }
