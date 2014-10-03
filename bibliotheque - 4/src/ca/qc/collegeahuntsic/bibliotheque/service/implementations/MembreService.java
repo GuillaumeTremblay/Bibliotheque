@@ -3,26 +3,39 @@
 // Date de création : 2014-08-24
 
 package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 
 import java.util.List;
+
 import ca.qc.collegeahuntsic.bibliotheque.dao.ReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.MembreDAO;
+import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
+import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
+import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.service.Service;
+import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IMembreService;
 
 /**
  * Service de la table <code>membre</code>.
  * 
  * @author Gilles Benichou
  */
-public class MembreService extends Service {
+public class MembreService extends Service implements IMembreService {
     private static final long serialVersionUID = 1L;
 
-    private MembreDAO membreDAO;
+    private IMembreDAO membreDAO;
 
-    private ReservationDAO reservationDAO;
+    private IReservationDAO reservationDAO;
 
     /**
      * Crée le service de la table <code>membre</code>.
@@ -31,7 +44,7 @@ public class MembreService extends Service {
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      */
     public MembreService(MembreDAO membreDAO,
-        ReservationDAO reservationDAO) {
+        IReservationDAO reservationDAO) {
         super();
         setMembreDAO(membreDAO);
         setReservationDAO(reservationDAO);
@@ -43,7 +56,7 @@ public class MembreService extends Service {
      *
      * @return La variable d'instance <code>this.membreDAO</code>
      */
-    private MembreDAO getMembreDAO() {
+    private IMembreDAO getMembreDAO() {
         return this.membreDAO;
     }
 
@@ -61,7 +74,7 @@ public class MembreService extends Service {
      *
      * @return La variable d'instance <code>this.reservationDAO</code>
      */
-    private ReservationDAO getReservationDAO() {
+    private IReservationDAO getReservationDAO() {
         return this.reservationDAO;
     }
 
@@ -70,35 +83,41 @@ public class MembreService extends Service {
      *
      * @param reservationDAO La valeur à utiliser pour la variable d'instance <code>this.reservationDAO</code>
      */
-    private void setReservationDAO(ReservationDAO reservationDAO) {
+    private void setReservationDAO(IReservationDAO reservationDAO) {
         this.reservationDAO = reservationDAO;
     }
 
     // EndRegion Getters and Setters
-
+    
     /**
-     * Ajoute un nouveau membre.
-     * 
-     * @param membreDTO Le membre à ajouter
-     * @throws ServiceException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public void add(MembreDTO membreDTO) throws ServiceException {
+    @Override
+    public void add(Connexion connexion,
+        MembreDTO membreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        InvalidDTOClassException,
+        InvalidPrimaryKeyRequestException,
+        ServiceException {
         try {
-            getMembreDAO().add(membreDTO);
+            getMembreDAO().add(connexion,
+                membreDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
     }
 
     /**
-     * Lit un membre.
-     * 
-     * @param idMembre L'ID du membre à lire
-     * @throws ServiceException S'il y a une erreur avec la base de données
+     * {@inheritDoc}
      */
-    public MembreDTO read(int idMembre) throws ServiceException {
+    @Override
+    public MembreDTO get(Connexion connexion,
+        String idMembre) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        ServiceException {
         try {
-            return getMembreDAO().read(idMembre);
+            return (MembreDTO) getMembreDAO().get(connexion,
+                idMembre);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
         }
