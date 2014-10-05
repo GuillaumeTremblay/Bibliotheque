@@ -26,9 +26,9 @@ public interface IPretService extends IService {
     //[region] Opérations CRUD
 
     /**
-     * 
+     *
      * Retourne un prêt
-     * 
+     *
      */
     PretDTO get(Connexion connexion,
         String idPret) throws ServiceException,
@@ -36,9 +36,9 @@ public interface IPretService extends IService {
         InvalidPrimaryKeyException;
 
     /**
-     * 
+     *
      * Ajoute un prêt
-     * 
+     *
      */
     void add(Connexion connexion,
         PretDTO pretDTO) throws ServiceException,
@@ -48,9 +48,9 @@ public interface IPretService extends IService {
         InvalidPrimaryKeyRequestException;
 
     /**
-     * 
+     *
      * Modifie un prêt
-     * 
+     *
      */
     void update(Connexion connexion,
         PretDTO pretDTO) throws ServiceException,
@@ -59,9 +59,9 @@ public interface IPretService extends IService {
         InvalidDTOClassException;
 
     /**
-     * 
+     *
      * Suprimme un prêt
-     * 
+     *
      */
     void delete(Connexion connexion,
         PretDTO pretDTO) throws ServiceException,
@@ -110,13 +110,12 @@ public interface IPretService extends IService {
     //[region] Commandes
     // REVOIR :(
     /**
-     * 
+     *
      * Suprimme le prêt ??
-     * 
+     *
      */
     void commencer(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,
@@ -127,8 +126,7 @@ public interface IPretService extends IService {
         InvalidPrimaryKeyRequestException;
 
     void retourner(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,
@@ -138,8 +136,7 @@ public interface IPretService extends IService {
         InvalidSortByPropertyException;
 
     void renouveler(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,

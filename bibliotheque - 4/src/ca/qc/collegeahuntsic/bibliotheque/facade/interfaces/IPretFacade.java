@@ -11,6 +11,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionE
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.DTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
@@ -34,7 +35,8 @@ public interface IPretFacade extends IFacade {
         ExistingReservationException,
         InvalidDTOClassException,
         InvalidPrimaryKeyRequestException,
-        FacadeException;
+        FacadeException,
+        DTOException;
 
     void renouveler(Connexion connexion,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
@@ -47,11 +49,11 @@ public interface IPretFacade extends IFacade {
         ExistingLoanException,
         ExistingReservationException,
         InvalidDTOClassException,
-        FacadeException;
+        FacadeException,
+        DTOException;
 
     void retourner(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
         MissingDTOException,
@@ -60,5 +62,6 @@ public interface IPretFacade extends IFacade {
         MissingLoanException,
         ExistingLoanException,
         InvalidDTOClassException,
-        FacadeException;
+        FacadeException,
+        DTOException;
 }

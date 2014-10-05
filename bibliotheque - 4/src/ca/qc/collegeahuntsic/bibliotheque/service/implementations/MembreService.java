@@ -23,7 +23,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IMembreService;
 
 /**
  * Service de la table <code>membre</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class MembreService extends Service implements IMembreService {
@@ -33,7 +33,7 @@ public class MembreService extends Service implements IMembreService {
 
     /**
      * Crée le service de la table <code>membre</code>.
-     * 
+     *
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      */
@@ -154,6 +154,7 @@ public class MembreService extends Service implements IMembreService {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<MembreDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,
@@ -183,16 +184,16 @@ public class MembreService extends Service implements IMembreService {
 
     /**
      * Désincrit un membre.
-     * 
+     *
      * @param membreDTO Le membre à désinscrire
      * @throws ServiceException Si le membre n'existe pas, si le membre a encore des prêts, s'il a des réservations ou s'il y a une erreur avec
      *         la base de données
-     * @throws InvalidPrimaryKeyException 
-     * @throws InvalidHibernateSessionException 
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
+     * @throws InvalidPrimaryKeyException
+     * @throws InvalidHibernateSessionException
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
      */
 
     @Override

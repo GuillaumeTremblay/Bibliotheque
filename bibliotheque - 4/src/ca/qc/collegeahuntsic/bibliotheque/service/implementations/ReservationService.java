@@ -34,7 +34,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IReservationService
 
 /**
  * Service de la table <code>reservation</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class ReservationService extends Service implements IReservationService {
@@ -48,7 +48,7 @@ public class ReservationService extends Service implements IReservationService {
 
     /**
      * Crée le service de la table <code>reservation</code>.
-     * 
+     *
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param livreDAO Le DAO de la table <code>livre</code>
@@ -225,6 +225,7 @@ public class ReservationService extends Service implements IReservationService {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<ReservationDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,

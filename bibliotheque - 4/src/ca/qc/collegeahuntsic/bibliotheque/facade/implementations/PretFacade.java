@@ -73,6 +73,7 @@ public class PretFacade extends Facade implements IPretFacade {
 
     /**
      * {@inheritDoc}
+     * @throws DTOException
      */
     @Override
     public void commencer(Connexion connexion,
@@ -86,7 +87,8 @@ public class PretFacade extends Facade implements IPretFacade {
         ExistingReservationException,
         InvalidDTOClassException,
         InvalidPrimaryKeyRequestException,
-        FacadeException {
+        FacadeException,
+        DTOException {
         try {
             getPretService().commencer(connexion,
                 pretDTO);
@@ -110,7 +112,8 @@ public class PretFacade extends Facade implements IPretFacade {
         ExistingLoanException,
         ExistingReservationException,
         InvalidDTOClassException,
-        FacadeException {
+        FacadeException,
+        DTOException {
         // TODO Auto-generated method stub
         try {
             getPretService().renouveler(connexion,
@@ -126,8 +129,7 @@ public class PretFacade extends Facade implements IPretFacade {
      */
     @Override
     public void retourner(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
         MissingDTOException,
@@ -136,23 +138,15 @@ public class PretFacade extends Facade implements IPretFacade {
         MissingLoanException,
         ExistingLoanException,
         InvalidDTOClassException,
-        FacadeException {
+        FacadeException,
+        DTOException {
         // TODO Auto-generated method stub
         try {
             getPretService().retourner(connexion,
-                pretDTO,
-                sortByPropertyName);
+                pretDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
-        } catch(DTOException e) {
-            // TODO Auto-generated catch block
-            throw new FacadeException(e);
         }
-
     }
-
-    /**
-     * {@inheritDoc}
-     */
 
 }

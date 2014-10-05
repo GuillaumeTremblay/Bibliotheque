@@ -26,11 +26,12 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IPretService;
+
 //[endRegion] Fin package, importations
 
 /**
  * Service de la table <code>pret</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class PretService extends Service implements IPretService {
@@ -51,7 +52,7 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Crée le service de la table <code>pret</code>.
-     * 
+     *
      * @param pretDAO Le DAO de la table <code>pret</code>
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param livreDAO Le DAO de la table <code>livre</code>
@@ -152,13 +153,13 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Ajoute un nouveau prêt.
-     * 
+     *
      * @param pretDTO Le prêt à ajouter
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidPrimaryKeyRequestException 
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidPrimaryKeyRequestException
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
+     * @throws InvalidHibernateSessionException
      */
     @Override
     public void add(Connexion connexion,
@@ -179,11 +180,11 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Lit un prêt.
-     * 
+     *
      * @param idPret L'ID du prêt à lire
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidPrimaryKeyException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidPrimaryKeyException
+     * @throws InvalidHibernateSessionException
      */
     @Override
     public PretDTO get(Connexion connexion,
@@ -202,12 +203,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Met à jour un prêt.
-     * 
+     *
      * @param pretDTO Le prêt à mettre à jour
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
+     * @throws InvalidHibernateSessionException
      */
     @Override
     public void update(Connexion connexion,
@@ -227,12 +228,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Supprime un prêt.
-     * 
+     *
      * @param pretDTO Le prêt à supprimer
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
+     * @throws InvalidHibernateSessionException
      */
     @Override
     public void delete(Connexion connexion,
@@ -256,12 +257,13 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Trouve tous les prêts.
-     * 
+     *
      * @return La liste des prêts ; une liste vide sinon
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidHibernateSessionException 
-     * @throws ServiceException 
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidHibernateSessionException
+     * @throws ServiceException
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<PretDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,
@@ -279,12 +281,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Trouve les prêts non terminés d'un membre.
-     * 
+     *
      * @param idMembre L'ID du membre à trouver
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidHibernateSessionException
      * @throws DAOException S'il y a une erreur avec la base de données
      */
     @Override
@@ -307,12 +309,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Trouve les livres en cours d'emprunt.
-     * 
+     *
      * @param idLivre L'ID du livre à trouver
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidHibernateSessionException
      * @throws DAOException S'il y a une erreur avec la base de données
      */
     @Override
@@ -333,12 +335,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Trouve les prêts à partir d'une date de prêt.
-     * 
+     *
      * @param datePret La date de prêt à trouver
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidHibernateSessionException
      * @throws DAOException S'il y a une erreur avec la base de données
      */
     @Override
@@ -358,12 +360,12 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Trouve les prêts à partir d'une date de retour.
-     * 
+     *
      * @param dateRetour La date de retour à trouver
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidHibernateSessionException 
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidHibernateSessionException
      * @throws DAOException S'il y a une erreur avec la base de données
      */
     @Override
@@ -387,23 +389,22 @@ public class PretService extends Service implements IPretService {
     //[region] Méthodes de commande
     /**
      * Commence un prêt.
-     * 
+     *
      * @param pretDTO Le prêt à commencer
      * @throws ServiceException Si le membre n'existe pas, si le livre n'existe pas, si le livre a été prêté, si le livre a été réservé, si le
      *         membre a atteint sa limite de prêt ou s'il y a une erreur avec la base de données
-     * @throws InvalidPrimaryKeyException 
-     * @throws InvalidHibernateSessionException 
-     * @throws DTOException 
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidPrimaryKeyRequestException 
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
+     * @throws InvalidPrimaryKeyException
+     * @throws InvalidHibernateSessionException
+     * @throws DTOException
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidPrimaryKeyRequestException
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
      */
     @Override
     public void commencer(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,
@@ -429,7 +430,7 @@ public class PretService extends Service implements IPretService {
             }
             List<PretDTO> prets = findByLivre(connexion,
                 unLivreDTO.getIdLivre(),
-                sortByPropertyName);
+                PretDTO.DATE_PRET_COLUMN_NAME);
             if(!prets.isEmpty()) {
                 PretDTO unPretDTO = prets.get(0);
                 MembreDTO emprunteur = (MembreDTO) getMembreDAO().get(connexion,
@@ -455,7 +456,7 @@ public class PretService extends Service implements IPretService {
             }
             List<ReservationDTO> reservations = getReservationDAO().findByLivre(connexion,
                 unLivreDTO.getIdLivre(),
-                sortByPropertyName);
+                ReservationDTO.DATE_RESERVATION_COLUMN_NAME);
             if(!reservations.isEmpty()) {
                 ReservationDTO uneReservationDTO = reservations.get(0);
                 MembreDTO booker = (MembreDTO) getMembreDAO().get(connexion,
@@ -484,21 +485,20 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Renouvelle le prêt d'un livre.
-     * 
+     *
      * @param pretDTO Le prêt à renouveler
-     * @throws ServiceException 
-     * @throws InvalidPrimaryKeyException 
-     * @throws InvalidHibernateSessionException 
-     * @throws DTOException 
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
+     * @throws ServiceException
+     * @throws InvalidPrimaryKeyException
+     * @throws InvalidHibernateSessionException
+     * @throws DTOException
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
      */
     @Override
     public void renouveler(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,
@@ -530,7 +530,7 @@ public class PretService extends Service implements IPretService {
             }
             List<PretDTO> prets = findByMembre(connexion,
                 unMembreDTO.getIdMembre(),
-                sortByPropertyName);
+                MembreDTO.ID_MEMBRE_COLUMN_NAME);
             if(prets.isEmpty()) {
                 throw new ServiceException("Le livre "
                     + unLivreDTO.getTitre()
@@ -555,7 +555,7 @@ public class PretService extends Service implements IPretService {
             }
             List<ReservationDTO> reservations = getReservationDAO().findByLivre(connexion,
                 unLivreDTO.getIdLivre(),
-                sortByPropertyName);
+                ReservationDTO.DATE_RESERVATION_COLUMN_NAME);
             if(!reservations.isEmpty()) {
                 ReservationDTO uneReservationDTO = reservations.get(0);
                 MembreDTO booker = (MembreDTO) getMembreDAO().get(connexion,
@@ -581,21 +581,20 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Retourne un livre.
-     * 
+     *
      * @param pretDTO Le prêt à terminer
-     * @throws InvalidPrimaryKeyException 
-     * @throws InvalidHibernateSessionException 
-     * @throws ServiceException 
-     * @throws DTOException 
-     * @throws InvalidDTOClassException 
-     * @throws InvalidDTOException 
-     * @throws InvalidSortByPropertyException 
-     * @throws InvalidCriterionException 
+     * @throws InvalidPrimaryKeyException
+     * @throws InvalidHibernateSessionException
+     * @throws ServiceException
+     * @throws DTOException
+     * @throws InvalidDTOClassException
+     * @throws InvalidDTOException
+     * @throws InvalidSortByPropertyException
+     * @throws InvalidCriterionException
      */
     @Override
     public void retourner(Connexion connexion,
-        PretDTO pretDTO,
-        String sortByPropertyName) throws ServiceException,
+        PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         DTOException,
@@ -627,7 +626,7 @@ public class PretService extends Service implements IPretService {
             }
             List<PretDTO> prets = findByMembre(connexion,
                 unMembreDTO.getIdMembre(),
-                sortByPropertyName);
+                MembreDTO.ID_MEMBRE_COLUMN_NAME);
             if(prets.isEmpty()) {
                 throw new ServiceException("Le livre "
                     + unLivreDTO.getTitre()
