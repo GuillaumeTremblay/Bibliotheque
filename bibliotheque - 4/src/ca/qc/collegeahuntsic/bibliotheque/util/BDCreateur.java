@@ -35,8 +35,8 @@ public class BDCreateur {
      * @throws BDCreateurException S'il y a une erreur avec la connexion ou s'il y a une erreur avec la base de données
      */
     public static void main(String args[]) throws BDCreateurException {
-        if(args.length < 4) {
-            System.out.println("Usage : java BDCreateur <type_serveur> <nom_schema> <nom_utilisateur> <mot_passe>");
+        if(args.length < 5) {
+            System.out.println("Usage : java BDCreateur <type_serveur> <nom_schema> <nom_utilisateur> <mot_passe> <bd_existante>");
         } else {
             try(
                 Connexion connexion = new Connexion(args[0],
@@ -46,16 +46,18 @@ public class BDCreateur {
 
                 try(
                     Statement statement = connexion.getConnection().createStatement()) {
-
-                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_RESERVATION");
-                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_PRET");
-                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_LIVRE");
-                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_MEMBRE");
-
-                    statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
-                    statement.executeUpdate("DROP TABLE pret        CASCADE CONSTRAINTS PURGE");
-                    statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
-                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
+                	
+                	if (Boolean.parseBoolean(args[4])) {
+	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_RESERVATION");
+	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_PRET");
+	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_LIVRE");
+	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_MEMBRE");
+	
+	                    statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
+	                    statement.executeUpdate("DROP TABLE pret        CASCADE CONSTRAINTS PURGE");
+	                    statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
+	                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
+                	}
 
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_MEMBRE      START WITH 1 INCREMENT BY 1");
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_LIVRE       START WITH 1 INCREMENT BY 1");
@@ -63,25 +65,25 @@ public class BDCreateur {
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_RESERVATION START WITH 1 INCREMENT BY 1");
 
                     statement.executeUpdate("CREATE TABLE membre ("
-                        + "                               idMembre   NUMBER() CHECK (idMembre > 0), "
+                        + "                               idMembre   NUMBER CHECK (idMembre > 0), "
                         + "                               nom        VARCHAR(100) NOT NULL, "
-                        + "                               telephone  NUMBER(), "
-                        + "                               limitePret NUMBER() CHECK (limitePret > 0 AND limitePret <= 10), "
-                        + "                               nbPret     NUMBER() DEFAULT 0 CHECK (nbpret >= 0), "
+                        + "                               telephone  NUMBER, "
+                        + "                               limitePret NUMBER CHECK (limitePret > 0 AND limitePret <= 10), "
+                        + "                               nbPret     NUMBER DEFAULT 0 CHECK (nbpret >= 0), "
                         + "                               CONSTRAINT cleMembre PRIMARY KEY (idMembre), "
                         + "                               CONSTRAINT limiteNbPret CHECK (nbPret <= limitePret))");
 
                     statement.executeUpdate("CREATE TABLE livre ("
-                        + "                               idLivre         NUMBER() CHECK (idLivre > 0), "
+                        + "                               idLivre         NUMBER CHECK (idLivre > 0), "
                         + "                               titre           VARCHAR(100) NOT NULL, "
                         + "                               auteur          VARCHAR(100) NOT NULL, "
                         + "                               dateAcquisition TIMESTAMP NOT NULL, "
                         + "                               CONSTRAINT      cleLivre PRIMARY KEY (idLivre))");
 
                     statement.executeUpdate("CREATE TABLE pret ("
-                        + "                               idPret     NUMBER() CHECK (idPret > 0), "
-                        + "                               idMembre   NUMBER() CHECK (idMembre > 0), "
-                        + "                               idLivre    NUMBER() CHECK (idLivre > 0), "
+                        + "                               idPret     NUMBER CHECK (idPret > 0), "
+                        + "                               idMembre   NUMBER CHECK (idMembre > 0), "
+                        + "                               idLivre    NUMBER CHECK (idLivre > 0), "
                         + "                               datePret   TIMESTAMP, "
                         + "                               dateRetour TIMESTAMP, "
                         + "                               CONSTRAINT clePrimairePret PRIMARY KEY (idPret), "
@@ -91,9 +93,9 @@ public class BDCreateur {
                         + "                                                          ON DELETE CASCADE)");
 
                     statement.executeUpdate("CREATE TABLE reservation ("
-                        + "                               idReservation   NUMBER() CHECK (idReservation > 0), "
-                        + "                               idMembre        NUMBER() CHECK (idMembre > 0), "
-                        + "                               idLivre         NUMBER() CHECK (idLivre > 0), "
+                        + "                               idReservation   NUMBER CHECK (idReservation > 0), "
+                        + "                               idMembre        NUMBER CHECK (idMembre > 0), "
+                        + "                               idLivre         NUMBER CHECK (idLivre > 0), "
                         + "                               dateReservation TIMESTAMP, "
                         + "                               CONSTRAINT      clePrimaireReservation PRIMARY KEY (idReservation), "
                         + "                               CONSTRAINT      cleEtrangereReservation UNIQUE (idMembre, idLivre), "
