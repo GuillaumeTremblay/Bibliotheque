@@ -107,8 +107,6 @@ public class MembreDAO extends DAO implements IMembreDAO {
                 membreDTO.getTelephone());
             createPreparedStatement.setString(4,
                 membreDTO.getLimitePret());
-            createPreparedStatement.setString(5,
-                membreDTO.getNbPret());
             createPreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);

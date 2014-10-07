@@ -399,6 +399,9 @@ public class PretDAO extends DAO implements IPretDAO {
                 pretDTO.getLivreDTO().getIdLivre());
             createPreparedStatement.setTimestamp(4,
                 pretDTO.getDatePret());
+            createPreparedStatement.setTimestamp(5,
+                pretDTO.getDateRetour());
+
             createPreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);
@@ -468,15 +471,15 @@ public class PretDAO extends DAO implements IPretDAO {
         try(
             PreparedStatement updatePreparedStatement = connexion.getConnection().prepareStatement(PretDAO.UPDATE_REQUEST)) {
             updatePreparedStatement.setString(1,
-                pretDTO.getIdPret());
-            updatePreparedStatement.setString(2,
                 pretDTO.getMembreDTO().getIdMembre());
-            updatePreparedStatement.setString(3,
+            updatePreparedStatement.setString(2,
                 pretDTO.getLivreDTO().getIdLivre());
-            updatePreparedStatement.setTimestamp(4,
+            updatePreparedStatement.setTimestamp(3,
                 pretDTO.getDatePret());
-            updatePreparedStatement.setTimestamp(5,
+            updatePreparedStatement.setTimestamp(4,
                 pretDTO.getDateRetour());
+            updatePreparedStatement.setString(5,
+                pretDTO.getIdPret());
             updatePreparedStatement.executeUpdate();
         } catch(SQLException sqlException) {
             throw new DAOException(sqlException);

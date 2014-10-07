@@ -15,7 +15,6 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.db.ConnexionException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur;
 import ca.qc.collegeahuntsic.bibliotheque.util.FormatteurDate;
 
@@ -117,10 +116,11 @@ public class Bibliotheque {
      * Décodage et traitement d'une transaction
      * @throws ConnexionException
      */
+    @SuppressWarnings("resource")
     static void executerTransaction(StringTokenizer tokenizer) throws BibliothequeException,
         ConnexionException {
-        try(
-            Connexion connexion = gestionBiblio.getConnexion();) {
+        Connexion connexion = gestionBiblio.getConnexion();
+        try {
             String command = tokenizer.nextToken();
 
             if("aide".startsWith(command)) {
@@ -209,10 +209,6 @@ public class Bibliotheque {
         } catch(InterruptedException interruptedException) {
             System.out.println("** "
                 + interruptedException.toString());
-            gestionBiblio.rollback();
-        } catch(ServiceException serviceException) {
-            System.out.println("** "
-                + serviceException.toString());
             gestionBiblio.rollback();
         } catch(BibliothequeException bibliothequeException) {
             System.out.println("** "

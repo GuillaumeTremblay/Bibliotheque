@@ -46,18 +46,18 @@ public class BDCreateur {
 
                 try(
                     Statement statement = connexion.getConnection().createStatement()) {
-                	
-                	if (Boolean.parseBoolean(args[4])) {
-	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_RESERVATION");
-	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_PRET");
-	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_LIVRE");
-	                    statement.executeUpdate("DROP SEQUENCE SEQ_ID_MEMBRE");
-	
-	                    statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
-	                    statement.executeUpdate("DROP TABLE pret        CASCADE CONSTRAINTS PURGE");
-	                    statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
-	                    statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
-                	}
+
+                    if(Boolean.parseBoolean(args[4])) {
+                        statement.executeUpdate("DROP SEQUENCE SEQ_ID_RESERVATION");
+                        statement.executeUpdate("DROP SEQUENCE SEQ_ID_PRET");
+                        statement.executeUpdate("DROP SEQUENCE SEQ_ID_LIVRE");
+                        statement.executeUpdate("DROP SEQUENCE SEQ_ID_MEMBRE");
+
+                        statement.executeUpdate("DROP TABLE reservation CASCADE CONSTRAINTS PURGE");
+                        statement.executeUpdate("DROP TABLE pret        CASCADE CONSTRAINTS PURGE");
+                        statement.executeUpdate("DROP TABLE livre       CASCADE CONSTRAINTS PURGE");
+                        statement.executeUpdate("DROP TABLE membre      CASCADE CONSTRAINTS PURGE");
+                    }
 
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_MEMBRE      START WITH 1 INCREMENT BY 1");
                     statement.executeUpdate("CREATE SEQUENCE SEQ_ID_LIVRE       START WITH 1 INCREMENT BY 1");

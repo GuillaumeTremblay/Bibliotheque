@@ -263,7 +263,6 @@ public class PretService extends Service implements IPretService {
      * @throws InvalidHibernateSessionException
      * @throws ServiceException
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<PretDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,
@@ -649,7 +648,7 @@ public class PretService extends Service implements IPretService {
                     + unMembreDTO.getIdMembre()
                     + ")");
             }
-            unMembreDTO.setNbPret(/*unMembreDTO.getNbPret() - 1*/"deux");
+            unMembreDTO.setNbPret(Integer.toString((Integer.parseInt(unMembreDTO.getNbPret()) - 1)));
             getMembreDAO().update(connexion,
                 unMembreDTO);
             unPretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));
