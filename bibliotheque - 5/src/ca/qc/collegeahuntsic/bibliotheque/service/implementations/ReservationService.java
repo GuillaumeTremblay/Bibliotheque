@@ -225,7 +225,6 @@ public class ReservationService extends Service implements IReservationService {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<ReservationDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,
