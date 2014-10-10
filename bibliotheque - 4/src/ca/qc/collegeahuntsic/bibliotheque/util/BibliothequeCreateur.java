@@ -76,30 +76,25 @@ public class BibliothequeCreateur {
                 nomUtilisateur,
                 motPasse));
 
-            LivreDAO livreDAO = new LivreDAO(LivreDTO.class);
-            MembreDAO membreDAO = new MembreDAO(MembreDTO.class);
-            ReservationDAO reservationDAO = new ReservationDAO(ReservationDTO.class);
-            PretDAO pretDAO = new PretDAO(PretDTO.class);
+            ILivreDAO livreDAO = new LivreDAO(LivreDTO.class);
+            IMembreDAO membreDAO = new MembreDAO(MembreDTO.class);
+            IReservationDAO reservationDAO = new ReservationDAO(ReservationDTO.class);
+            IPretDAO pretDAO = new PretDAO(PretDTO.class);
 
-            ILivreDAO iLivreDAO = livreDAO;
-            IMembreDAO iMembreDAO = membreDAO;
-            IReservationDAO iReservationDAO = reservationDAO;
-            IPretDAO iPretDAO = pretDAO;
-
-            LivreService livreService = new LivreService(iLivreDAO,
-                iMembreDAO,
-                iPretDAO,
-                iReservationDAO);
-            MembreService membreService = new MembreService(iMembreDAO,
-                iReservationDAO);
-            ReservationService reservationService = new ReservationService(iReservationDAO,
-                iMembreDAO,
-                iLivreDAO,
-                iPretDAO);
-            PretService pretService = new PretService(iPretDAO,
-                iMembreDAO,
-                iLivreDAO,
-                iReservationDAO);
+            LivreService livreService = new LivreService(livreDAO,
+                membreDAO,
+                pretDAO,
+                reservationDAO);
+            MembreService membreService = new MembreService(membreDAO,
+                reservationDAO);
+            ReservationService reservationService = new ReservationService(reservationDAO,
+                membreDAO,
+                livreDAO,
+                pretDAO);
+            PretService pretService = new PretService(pretDAO,
+                membreDAO,
+                livreDAO,
+                reservationDAO);
 
             ILivreService iLivreService = livreService;
             IMembreService iMembreService = membreService;
