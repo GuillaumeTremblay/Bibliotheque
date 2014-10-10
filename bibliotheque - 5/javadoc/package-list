@@ -1,0 +1,17 @@
+ca.qc.collegeahuntsic.bibliotheque
+ca.qc.collegeahuntsic.bibliotheque.dao.implementations
+ca.qc.collegeahuntsic.bibliotheque.dao.interfaces
+ca.qc.collegeahuntsic.bibliotheque.db
+ca.qc.collegeahuntsic.bibliotheque.dto
+ca.qc.collegeahuntsic.bibliotheque.exception
+ca.qc.collegeahuntsic.bibliotheque.exception.dao
+ca.qc.collegeahuntsic.bibliotheque.exception.db
+ca.qc.collegeahuntsic.bibliotheque.exception.dto
+ca.qc.collegeahuntsic.bibliotheque.exception.facade
+ca.qc.collegeahuntsic.bibliotheque.exception.service
+ca.qc.collegeahuntsic.bibliotheque.exception.util
+ca.qc.collegeahuntsic.bibliotheque.facade.implementations
+ca.qc.collegeahuntsic.bibliotheque.facade.interfaces
+ca.qc.collegeahuntsic.bibliotheque.service.implementations
+ca.qc.collegeahuntsic.bibliotheque.service.interfaces
+ca.qc.collegeahuntsic.bibliotheque.util
