@@ -87,8 +87,7 @@ public class PretFacade extends Facade implements IPretFacade {
         ExistingReservationException,
         InvalidDTOClassException,
         InvalidPrimaryKeyRequestException,
-        FacadeException,
-        DTOException {
+        FacadeException {
         try {
             getPretService().commencer(connexion,
                 pretDTO);
@@ -112,8 +111,7 @@ public class PretFacade extends Facade implements IPretFacade {
         ExistingLoanException,
         ExistingReservationException,
         InvalidDTOClassException,
-        FacadeException,
-        DTOException {
+        FacadeException {
         // TODO Auto-generated method stub
         try {
             getPretService().renouveler(connexion,
@@ -138,8 +136,7 @@ public class PretFacade extends Facade implements IPretFacade {
         MissingLoanException,
         ExistingLoanException,
         InvalidDTOClassException,
-        FacadeException,
-        DTOException {
+        FacadeException {
         // TODO Auto-generated method stub
         try {
             getPretService().retourner(connexion,

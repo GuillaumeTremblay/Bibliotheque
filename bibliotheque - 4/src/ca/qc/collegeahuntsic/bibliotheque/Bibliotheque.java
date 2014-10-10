@@ -14,7 +14,20 @@ import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.db.ConnexionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.facade.FacadeException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingLoanException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.service.InvalidLoanLimitException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.service.MissingLoanException;
 import ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur;
 import ca.qc.collegeahuntsic.bibliotheque.util.FormatteurDate;
 
@@ -117,8 +130,7 @@ public class Bibliotheque {
      * @throws ConnexionException
      */
     @SuppressWarnings("resource")
-    static void executerTransaction(StringTokenizer tokenizer) throws BibliothequeException,
-        ConnexionException {
+    static void executerTransaction(StringTokenizer tokenizer) throws ConnexionException {
         Connexion connexion = gestionBiblio.getConnexion();
         try {
             String command = tokenizer.nextToken();
@@ -214,8 +226,45 @@ public class Bibliotheque {
             System.out.println("** "
                 + bibliothequeException.toString());
             gestionBiblio.rollback();
-        } catch(Exception e) {
-            throw new BibliothequeException(e);
+        } catch(InvalidHibernateSessionException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidDTOException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidDTOClassException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidPrimaryKeyRequestException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(FacadeException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidPrimaryKeyException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(MissingDTOException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidCriterionException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidSortByPropertyException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(ExistingLoanException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(ExistingReservationException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(MissingLoanException e) {
+            System.out.println("** "
+                + e.toString());
+        } catch(InvalidLoanLimitException e) {
+            System.out.println("** "
+                + e.toString());
         }
     }
 

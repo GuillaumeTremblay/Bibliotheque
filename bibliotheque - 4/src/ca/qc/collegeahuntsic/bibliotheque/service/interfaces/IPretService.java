@@ -14,7 +14,6 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionE
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dto.DTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
@@ -118,7 +117,6 @@ public interface IPretService extends IService {
         PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
-        DTOException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         InvalidDTOException,
@@ -129,7 +127,6 @@ public interface IPretService extends IService {
         PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
-        DTOException,
         InvalidDTOException,
         InvalidDTOClassException,
         InvalidCriterionException,
@@ -139,7 +136,6 @@ public interface IPretService extends IService {
         PretDTO pretDTO) throws ServiceException,
         InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
-        DTOException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         InvalidDTOException,

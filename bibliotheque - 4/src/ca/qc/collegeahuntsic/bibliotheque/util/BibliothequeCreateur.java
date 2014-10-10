@@ -65,7 +65,7 @@ public class BibliothequeCreateur {
      * @throws BibliothequeException S'il y a une erreur avec la base de données
      */
 
-    @SuppressWarnings({"resource"})
+    @SuppressWarnings("resource")
     public BibliothequeCreateur(String typeServeur,
         String schema,
         String nomUtilisateur,
