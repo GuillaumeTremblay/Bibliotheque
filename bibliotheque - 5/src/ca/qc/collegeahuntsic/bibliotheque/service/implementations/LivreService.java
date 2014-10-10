@@ -31,7 +31,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.ILivreService;
 
 /**
  * Service de la table <code>livre</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class LivreService extends Service implements ILivreService {
@@ -45,7 +45,7 @@ public class LivreService extends Service implements ILivreService {
 
     /**
      * Crée le service de la table <code>livre</code>.
-     * 
+     *
      * @param livreDAO Le DAO de la table <code>livre</code>
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param pretDAO Le DAO de la table <code>pret</code>
@@ -222,6 +222,7 @@ public class LivreService extends Service implements ILivreService {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<LivreDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,

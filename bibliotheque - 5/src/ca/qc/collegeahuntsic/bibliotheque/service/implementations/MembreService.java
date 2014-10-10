@@ -26,7 +26,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IMembreService;
 
 /**
  * Service de la table <code>membre</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class MembreService extends Service implements IMembreService {
@@ -36,7 +36,7 @@ public class MembreService extends Service implements IMembreService {
 
     /**
      * Crée le service de la table <code>membre</code>.
-     * 
+     *
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @throws InvalidDAOException Si le DAO de membre est <code>null</code> ou si le DAO de réservation est <code>null</code>
@@ -164,6 +164,7 @@ public class MembreService extends Service implements IMembreService {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<MembreDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,

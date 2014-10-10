@@ -34,7 +34,7 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IPretService;
 
 /**
  * Service de la table <code>pret</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class PretService extends Service implements IPretService {
@@ -48,7 +48,7 @@ public class PretService extends Service implements IPretService {
 
     /**
      * Crée le service de la table <code>pret</code>.
-     * 
+     *
      * @param pretDAO Le DAO de la table <code>pret</code>
      * @param membreDAO Le DAO de la table <code>membre</code>
      * @param livreDAO Le DAO de la table <code>livre</code>
@@ -225,6 +225,7 @@ public class PretService extends Service implements IPretService {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<PretDTO> getAll(Connexion connexion,
         String sortByPropertyName) throws InvalidHibernateSessionException,
