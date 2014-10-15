@@ -6,12 +6,13 @@ package ca.qc.collegeahuntsic.bibliotheque.dao.interfaces;
 
 import java.sql.Timestamp;
 import java.util.List;
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
+import org.hibernate.Session;
 
 /**
  * Interface DAO pour manipuler les prêts dans la base de données.
@@ -32,10 +33,11 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByMembre(Connexion connexion,
+    List<PretDTO> findByMembre(Session session,
         String idMembre,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         DAOException;
 
@@ -52,10 +54,11 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByLivre(Connexion connexion,
+    List<PretDTO> findByLivre(Session session,
         String idLivre,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         DAOException;
 
@@ -72,10 +75,11 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByDatePret(Connexion connexion,
+    List<PretDTO> findByDatePret(Session session,
         Timestamp datePret,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         DAOException;
 
@@ -92,10 +96,11 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByDateRetour(Connexion connexion,
+    List<PretDTO> findByDateRetour(Session session,
         Timestamp dateRetour,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         DAOException;
 }
