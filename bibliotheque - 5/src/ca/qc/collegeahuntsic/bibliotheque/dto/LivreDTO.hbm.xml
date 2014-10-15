@@ -1,0 +1,63 @@
+<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+   - LivreDTO mapping file.
+   -
+   - Author: Gilles Benichou
+-->
+
+<hibernate-mapping>
+  <class name="ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO"
+         table="LIVRE">
+         <id name="idLivre"
+             type="string">
+             <column name="IDLIVRE">
+             </column>
+             <generator class="sequence">
+                        <param name="sequence">SEQ_ID_LIVRE</param>
+             </generator>
+         </id>
+
+         <property name="titre"
+                   type="string"
+                   length="100">
+                   <column name="TITRE">
+                   </column>
+         </property>
+         <property name="auteur"
+                   type="string"
+                   length="100">
+                   <column name="AUTEUR">
+                   </column>
+         </property>
+         <property name="dateAcquisition"
+                   type="timestamp">
+                   <column name="DATEACQUISITION">
+                   </column>
+         </property>
+
+         <set name="prets"
+              order-by="DATEPRET ASC"
+              cascade="all">
+              <key>
+                <column name="IDLIVRE">
+                </column>
+              </key>
+              <one-to-many class="ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO"/>
+         </set>
+         <set name="reservations"
+              order-by="DATERESERVATION ASC"
+              cascade="all">
+              <key>
+                <column name="IDLIVRE">
+                </column>
+              </key>
+              <one-to-many class="ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO"/>
+         </set>
+  </class>
+</hibernate-mapping>

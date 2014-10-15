@@ -5,6 +5,8 @@
 package ca.qc.collegeahuntsic.bibliotheque.dto;
 
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Set;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -32,11 +34,17 @@ public final class LivreDTO extends DTO {
 
     private Timestamp dateAcquisition;
 
+    private Set<PretDTO> prets;
+
+    private Set<ReservationDTO> reservations;
+
     /**
      * Crée un DTO de la table <code>livre</code>.
      */
     public LivreDTO() {
         super();
+        setPrets(Collections.EMPTY_SET);
+        setReservations(Collections.EMPTY_SET);
     }
 
     // Region Getters and Setters
@@ -112,6 +120,42 @@ public final class LivreDTO extends DTO {
         this.dateAcquisition = dateAcquisition;
     }
 
+    /**
+     * Getter de la variable d'instance <code>this.prets</code>.
+     *
+     * @return La variable d'instance <code>this.prets</code>
+     */
+    public Set<PretDTO> getPrets() {
+        return this.prets;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.prets</code>.
+     *
+     * @param prets La valeur à utiliser pour la variable d'instance <code>this.prets</code>
+     */
+    public void setPrets(Set<PretDTO> prets) {
+        this.prets = prets;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.reservations</code>.
+     *
+     * @return La variable d'instance <code>this.reservations</code>
+     */
+    public Set<ReservationDTO> getReservations() {
+        return this.reservations;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.reservations</code>.
+     *
+     * @param reservations La valeur à utiliser pour la variable d'instance <code>this.reservations</code>
+     */
+    public void setReservations(Set<ReservationDTO> reservations) {
+        this.reservations = reservations;
+    }
+
     // EndRegion Getters and Setters
 
     /**
@@ -124,8 +168,8 @@ public final class LivreDTO extends DTO {
             equals = obj != null
                 && obj instanceof LivreDTO;
             if(equals) {
-                LivreDTO livreDTO = (LivreDTO) obj;
-                EqualsBuilder equalsBuilder = new EqualsBuilder();
+                final LivreDTO livreDTO = (LivreDTO) obj;
+                final EqualsBuilder equalsBuilder = new EqualsBuilder();
                 equalsBuilder.appendSuper(super.equals(livreDTO));
                 equalsBuilder.append(getIdLivre(),
                     livreDTO.getIdLivre());
@@ -140,7 +184,7 @@ public final class LivreDTO extends DTO {
      */
     @Override
     public int hashCode() {
-        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(459,
+        final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(459,
             449);
         hashCodeBuilder.appendSuper(super.hashCode());
         hashCodeBuilder.append(getIdLivre());

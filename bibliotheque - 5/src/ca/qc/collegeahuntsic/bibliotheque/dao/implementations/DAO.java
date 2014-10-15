@@ -4,14 +4,26 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.dao.implementations;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IDAO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.DTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
+import ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeDate;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Classe de base pour tous les DAOs.<br />
@@ -19,7 +31,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException
  *
  * @author Gilles Benichou
  */
-public class DAO {
+public class DAO implements IDAO {
     private Class<?> dtoClass;
 
     /**
@@ -58,36 +70,239 @@ public class DAO {
     // EndRegion Getters and Setters
 
     /**
-     * Crée une nouvelle clef primaire.
+     * {@inheritDoc}
+     */
+    @Override
+    public void add(Session session,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        try {
+            session.save(dto);
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DTO get(Session session,
+        Serializable primaryKey) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(primaryKey == null) {
+            throw new InvalidPrimaryKeyException("La clef primaire ne peut être null");
+        }
+        try {
+            DTO dto = (DTO) session.get(getDtoClass(),
+                primaryKey);
+            return dto;
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update(Session session,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        try {
+            session.update(dto);
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void save(Session session,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        try {
+            session.saveOrUpdate(dto);
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void delete(Session session,
+        DTO dto) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(dto == null) {
+            throw new InvalidDTOException("Le DTO ne peut être null");
+        }
+        try {
+            session.delete(dto);
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<?> getAll(Session session,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidSortByPropertyException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(sortByPropertyName == null) {
+            throw new InvalidSortByPropertyException("La propriété utilisée pour classer ne peut être null");
+        }
+        try {
+            List<?> results = Collections.EMPTY_LIST;
+            Criteria criteria = session.createCriteria(getDtoClass());
+            criteria.addOrder(Order.asc(sortByPropertyName));
+            results = criteria.list();
+            return results;
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * Trouve les DTOs à partir d'une propriété <code>propertyName</code> étant égale à une valeur <code>value</code>. La liste est classée par
+     * ordre croissant sur <code>sortByPropertyName</code>. Si aucun DTO n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
-     * @param createPrimaryKeyRequest La requête à utiliser pour générer la clef primaire
-     * @return La nouvelle clef primaire
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du DTO est <code>null</code>
+     * @param session La session Hibernate à utiliser
+     * @param propertyName Le nom de la propriété à utiliser
+     * @param value La valeur à trouver
+     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
+     * @return La liste des DTOs correspondants ; une liste vide sinon
+     * @throws InvalidHibernateSessionException Si la session Hibernate est <code>null</code>
+     * @throws InvalidCriterionException Si la propriété à utiliser est <code>null</code>
+     * @throws InvalidCriterionValueException Si la valeur à trouver est <code>null</code>
+     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    protected static String getPrimaryKey(Connexion connexion,
-        String createPrimaryKeyRequest) throws InvalidHibernateSessionException,
-        InvalidPrimaryKeyRequestException,
+    protected List<?> find(Session session,
+        String propertyName,
+        Object value,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidCriterionValueException,
+        InvalidSortByPropertyException,
         DAOException {
-        if(connexion == null) {
-            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
         }
-        if(createPrimaryKeyRequest == null) {
-            throw new InvalidPrimaryKeyRequestException("La requête de création de clef primaire ne peut être null");
+        if(propertyName == null) {
+            throw new InvalidCriterionException("La propriété à utiliser ne peut être null");
         }
-        try(
-            PreparedStatement createPreparedStatement = connexion.getConnection().prepareStatement(createPrimaryKeyRequest)) {
-            try(
-                ResultSet resultSet = createPreparedStatement.executeQuery()) {
-                if(resultSet.next()) {
-                    return resultSet.getString(1);
-                }
-                throw new DAOException("Impossible de lire la séquence");
+        if(value == null) {
+            throw new InvalidCriterionValueException("La valeur à trouver ne peut être null");
+        }
+        if(sortByPropertyName == null) {
+            throw new InvalidSortByPropertyException("La propriété utilisée pour classer ne peut être null");
+        }
+        try {
+            List<?> results = Collections.EMPTY_LIST;
+            if(value instanceof Date) {
+                results = findByDate(session,
+                    propertyName,
+                    (Date) value,
+                    sortByPropertyName);
+            } else {
+                Criteria criteria = session.createCriteria(getDtoClass());
+                criteria.add(Restrictions.eq(propertyName,
+                    value));
+                criteria.addOrder(Order.asc(sortByPropertyName));
+                results = criteria.list();
             }
-        } catch(SQLException sqlException) {
-            throw new DAOException(sqlException);
+            return results;
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
+        }
+    }
+
+    /**
+     * Trouve les DTOs à partir d'une propriété <code>propertyName</code> étant comprise entre la veille et le lendemain de la date
+     * <code>date</code>. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun DTO n'est trouvé, une
+     * {@link List} vide est retournée.
+     * 
+     * @param session La session Hibernate à utiliser
+     * @param propertyName Le nom de la propriété à utiliser
+     * @param date La date à trouver
+     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
+     * @return La liste des DTOs correspondants ; une liste vide sinon
+     * @throws InvalidHibernateSessionException Si la session Hibernate est <code>null</code>
+     * @throws InvalidCriterionException Si la propriété à utiliser est <code>null</code>
+     * @throws InvalidCriterionValueException Si la date à trouver est <code>null</code>
+     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
+     * @throws DAOException S'il y a une erreur avec la base de données
+     */
+    private List<?> findByDate(Session session,
+        String propertyName,
+        Date date,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidCriterionException,
+        InvalidCriterionValueException,
+        InvalidSortByPropertyException,
+        DAOException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
+        }
+        if(propertyName == null) {
+            throw new InvalidCriterionException("La propriété à utiliser ne peut être null");
+        }
+        if(date == null) {
+            throw new InvalidCriterionValueException("La date à trouver ne peut être null");
+        }
+        if(sortByPropertyName == null) {
+            throw new InvalidSortByPropertyException("La propriété utilisée pour classer ne peut être null");
+        }
+        try {
+            List<?> results = Collections.EMPTY_LIST;
+            Criteria criteria = session.createCriteria(getDtoClass());
+            criteria.add(Restrictions.between(propertyName,
+                BibliothequeDate.getStartDate(date),
+                BibliothequeDate.getEndDate(date)));
+            criteria.addOrder(Order.asc(sortByPropertyName));
+            results = criteria.list();
+            return results;
+        } catch(HibernateException hibernateException) {
+            throw new DAOException(hibernateException);
         }
     }
 }

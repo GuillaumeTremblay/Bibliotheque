@@ -147,7 +147,7 @@ public class DTO implements Serializable {
                             + Constants.EQUALS.toString()
                             + Constants.SPACE.toString()
                             + getter.invoke(this,
-                                (Object[]) null)
+                                (Object) null)
                             + Constants.COMMA.toString();
                     } catch(NullPointerException nullPointerException) {
                         // Nothing to do.
