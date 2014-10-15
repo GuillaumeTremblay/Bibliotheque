@@ -37,35 +37,6 @@ public class PretDAO extends DAO implements IPretDAO {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> findByMembre(Session session,
-        String idMembre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
-        InvalidCriterionValueException,
-        InvalidSortByPropertyException,
-        DAOException {
-
-        return prets;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<PretDTO> findByLivre(Session session,
-        String idLivre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
-        InvalidCriterionValueException,
-        InvalidSortByPropertyException,
-        DAOException {
-        return prets;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<PretDTO> findByDatePret(Session session,
         Timestamp datePret,
         String sortByPropertyName) throws InvalidHibernateSessionException,

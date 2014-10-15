@@ -5,12 +5,11 @@
 package ca.qc.collegeahuntsic.bibliotheque.service.interfaces;
 
 import java.util.List;
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
@@ -18,6 +17,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
+import org.hibernate.Session;
 
 /**
  * Interface de service pour manipuler les membres dans la base de données.
@@ -36,11 +36,10 @@ public interface IMembreService extends IService {
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void add(Connexion connexion,
+    void addMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         ServiceException;
 
     /**
@@ -53,7 +52,7 @@ public interface IMembreService extends IService {
      * @throws InvalidPrimaryKeyException Si la clef primaire du membre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    MembreDTO get(Connexion connexion,
+    MembreDTO getMembre(Session session,
         String idMembre) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         ServiceException;
@@ -68,7 +67,7 @@ public interface IMembreService extends IService {
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void update(Connexion connexion,
+    void updateMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -84,7 +83,7 @@ public interface IMembreService extends IService {
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void delete(Connexion connexion,
+    void deleteMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -101,7 +100,7 @@ public interface IMembreService extends IService {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    List<MembreDTO> getAll(Connexion connexion,
+    List<MembreDTO> getAllMembres(Session session,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidSortByPropertyException,
         ServiceException;
@@ -118,13 +117,15 @@ public interface IMembreService extends IService {
      * @throws InvalidCriterionException Si le nom est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
+     * @throws InvalidCriterionValueException 
      */
-    List<MembreDTO> findByNom(Connexion connexion,
+    List<MembreDTO> findMembreByNom(Session session,
         String nom,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
-        ServiceException;
+        ServiceException,
+        InvalidCriterionValueException;
 
     /**
      * Inscrit un membre.
@@ -137,11 +138,10 @@ public interface IMembreService extends IService {
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void inscrire(Connexion connexion,
+    void inscrire(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         ServiceException;
 
     /**
@@ -160,7 +160,7 @@ public interface IMembreService extends IService {
      * @throws ExistingReservationException Si le membre a des réservations
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void desinscrire(Connexion connexion,
+    void desinscrire(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,

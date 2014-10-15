@@ -21,48 +21,6 @@ import org.hibernate.Session;
  */
 public interface IPretDAO extends IDAO {
     /**
-     * Trouve les prêts non retournés d'un membre. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
-     * n'est trouvé, une {@link List} vide est retournée.
-     * 
-     * @param connexion La connexion à utiliser
-     * @param idMembre L'ID du membre à trouver
-     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
-     * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidCriterionException Si l'ID du membre est <code>null</code>
-     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws DAOException S'il y a une erreur avec la base de données
-     */
-    List<PretDTO> findByMembre(Session session,
-        String idMembre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
-        InvalidCriterionValueException,
-        InvalidSortByPropertyException,
-        DAOException;
-
-    /**
-     * Trouve les livres en cours d'emprunt. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt n'est
-     * trouvé, une {@link List} vide est retournée.
-     * 
-     * @param connexion La connexion à utiliser
-     * @param idLivre L'ID du livre à trouver
-     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
-     * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidCriterionException Si l'ID du livre est <code>null</code>
-     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws DAOException S'il y a une erreur avec la base de données
-     */
-    List<PretDTO> findByLivre(Session session,
-        String idLivre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
-        InvalidCriterionValueException,
-        InvalidSortByPropertyException,
-        DAOException;
-
-    /**
      * Trouve les prêts à partir d'une date de prêt. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
      * 
