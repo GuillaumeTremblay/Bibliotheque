@@ -4,12 +4,12 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.interfaces;
 
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import org.hibernate.Session;
+
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
@@ -27,27 +27,26 @@ public interface IMembreFacade extends IFacade {
     /**
      * Inscrit un membre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param membreDTO Le membre à inscrire
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le membre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
-    void inscrire(Connexion connexion,
+    void inscrire(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         FacadeException;
 
     /**
      * Désincrit un membre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param membreDTO Le membre à désinscrire
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws InvalidPrimaryKeyException Si la clef primaire du membre est <code>null</code>
@@ -58,7 +57,7 @@ public interface IMembreFacade extends IFacade {
      * @throws ExistingReservationException Si le membre a des réservations
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
-    void desinscrire(Connexion connexion,
+    void desinscrire(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,

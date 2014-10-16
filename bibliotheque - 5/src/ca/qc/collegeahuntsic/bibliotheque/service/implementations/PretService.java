@@ -6,11 +6,13 @@ package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
 
 import java.sql.Timestamp;
 import java.util.List;
+
+import org.hibernate.Session;
+
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.ILivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IPretDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
@@ -19,7 +21,6 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
@@ -158,14 +159,13 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void add(Connexion connexion,
+    public void add(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         ServiceException {
         try {
-            getPretDAO().add(connexion,
+            getPretDAO().add(session,
                 pretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -176,12 +176,12 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public PretDTO get(Connexion connexion,
+    public PretDTO get(Session session,
         String idPret) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         ServiceException {
         try {
-            return (PretDTO) getPretDAO().get(connexion,
+            return (PretDTO) getPretDAO().get(session,
                 idPret);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -192,13 +192,13 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void update(Connexion connexion,
+    public void update(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
         ServiceException {
         try {
-            getPretDAO().update(connexion,
+            getPretDAO().update(session,
                 pretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -209,13 +209,13 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void delete(Connexion connexion,
+    public void delete(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
         ServiceException {
         try {
-            getPretDAO().delete(connexion,
+            getPretDAO().delete(session,
                 pretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -226,12 +226,12 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> getAll(Connexion connexion,
+    public List<PretDTO> getAll(Session session,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidSortByPropertyException,
         ServiceException {
         try {
-            return (List<PretDTO>) getPretDAO().getAll(connexion,
+            return (List<PretDTO>) getPretDAO().getAll(session,
                 sortByPropertyName);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -242,14 +242,14 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> findByMembre(Connexion connexion,
+    public List<PretDTO> findByMembre(Session session,
         String idMembre,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         ServiceException {
         try {
-            return getPretDAO().findByMembre(connexion,
+            return getPretDAO().findByMembre(session,
                 idMembre,
                 sortByPropertyName);
         } catch(DAOException daoException) {
@@ -261,14 +261,14 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> findByLivre(Connexion connexion,
+    public List<PretDTO> findByLivre(Session session,
         String idLivre,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         ServiceException {
         try {
-            return getPretDAO().findByLivre(connexion,
+            return getPretDAO().findByLivre(session,
                 idLivre,
                 sortByPropertyName);
         } catch(DAOException daoException) {
@@ -280,14 +280,14 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> findByDatePret(Connexion connexion,
+    public List<PretDTO> findByDatePret(Session session,
         Timestamp datePret,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         ServiceException {
         try {
-            return getPretDAO().findByDatePret(connexion,
+            return getPretDAO().findByDatePret(session,
                 datePret,
                 sortByPropertyName);
         } catch(DAOException daoException) {
@@ -299,14 +299,14 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public List<PretDTO> findByDateRetour(Connexion connexion,
+    public List<PretDTO> findByDateRetour(Session session,
         Timestamp dateRetour,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
         InvalidSortByPropertyException,
         ServiceException {
         try {
-            return getPretDAO().findByDateRetour(connexion,
+            return getPretDAO().findByDateRetour(session,
                 dateRetour,
                 sortByPropertyName);
         } catch(DAOException daoException) {
@@ -318,7 +318,7 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void commencer(Connexion connexion,
+    public void commencer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
@@ -329,35 +329,34 @@ public class PretService extends Service implements IPretService {
         InvalidLoanLimitException,
         ExistingReservationException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         ServiceException {
-        if(connexion == null) {
-            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session ne peut être null");
         }
         if(pretDTO == null) {
             throw new InvalidDTOException("Le prêt ne peut être null");
         }
         try {
-            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(connexion,
+            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(session,
                 pretDTO.getMembreDTO().getIdMembre());
             if(unMembreDTO == null) {
                 throw new MissingDTOException("Le membre "
                     + pretDTO.getMembreDTO().getIdMembre()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(connexion,
+            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(session,
                 pretDTO.getLivreDTO().getIdLivre());
             if(unLivreDTO == null) {
                 throw new MissingDTOException("Le livre "
                     + pretDTO.getLivreDTO().getIdLivre()
                     + " n'existe pas");
             }
-            List<PretDTO> prets = findByLivre(connexion,
+            List<PretDTO> prets = findByLivre(session,
                 unLivreDTO.getIdLivre(),
                 PretDTO.DATE_PRET_COLUMN_NAME);
             if(!prets.isEmpty()) {
                 PretDTO unPretDTO = prets.get(0);
-                MembreDTO emprunteur = (MembreDTO) getMembreDAO().get(connexion,
+                MembreDTO emprunteur = (MembreDTO) getMembreDAO().get(session,
                     unPretDTO.getMembreDTO().getIdMembre());
                 throw new ExistingLoanException("Le livre "
                     + unLivreDTO.getTitre()
@@ -378,12 +377,12 @@ public class PretService extends Service implements IPretService {
                     + unMembreDTO.getLimitePret()
                     + " emprunt(s) maximum)");
             }
-            List<ReservationDTO> reservations = getReservationDAO().findByLivre(connexion,
+            List<ReservationDTO> reservations = getReservationDAO().findByLivre(session,
                 unLivreDTO.getIdLivre(),
                 ReservationDTO.DATE_RESERVATION_COLUMN_NAME);
             if(!reservations.isEmpty()) {
                 ReservationDTO uneReservationDTO = reservations.get(0);
-                MembreDTO booker = (MembreDTO) getMembreDAO().get(connexion,
+                MembreDTO booker = (MembreDTO) getMembreDAO().get(session,
                     uneReservationDTO.getMembreDTO().getIdMembre());
                 throw new ExistingReservationException("Le livre "
                     + unLivreDTO.getTitre()
@@ -396,11 +395,11 @@ public class PretService extends Service implements IPretService {
                     + ")");
             }
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) + 1));
-            getMembreDAO().update(connexion,
+            getMembreDAO().update(session,
                 unMembreDTO);
             pretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
             pretDTO.setDateRetour(null);
-            add(connexion,
+            add(session,
                 pretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -411,7 +410,7 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void renouveler(Connexion connexion,
+    public void renouveler(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
@@ -423,35 +422,35 @@ public class PretService extends Service implements IPretService {
         ExistingReservationException,
         InvalidDTOClassException,
         ServiceException {
-        if(connexion == null) {
-            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session ne peut être null");
         }
         if(pretDTO == null) {
             throw new InvalidDTOException("Le prêt ne peut être null");
         }
         try {
-            PretDTO unPretDTO = get(connexion,
+            PretDTO unPretDTO = get(session,
                 pretDTO.getIdPret());
             if(unPretDTO == null) {
                 throw new MissingDTOException("Le prêt "
                     + pretDTO.getIdPret()
                     + " n'existe pas");
             }
-            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(connexion,
+            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(session,
                 unPretDTO.getMembreDTO().getIdMembre());
             if(unMembreDTO == null) {
                 throw new MissingDTOException("Le membre "
                     + unPretDTO.getMembreDTO().getIdMembre()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(connexion,
+            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(session,
                 unPretDTO.getLivreDTO().getIdLivre());
             if(unLivreDTO == null) {
                 throw new MissingDTOException("Le livre "
                     + unPretDTO.getLivreDTO().getIdLivre()
                     + " n'existe pas");
             }
-            List<PretDTO> prets = findByMembre(connexion,
+            List<PretDTO> prets = findByMembre(session,
                 unMembreDTO.getIdMembre(),
                 PretDTO.DATE_PRET_COLUMN_NAME);
             if(prets.isEmpty()) {
@@ -476,12 +475,12 @@ public class PretService extends Service implements IPretService {
                     + unMembreDTO.getIdMembre()
                     + ")");
             }
-            List<ReservationDTO> reservations = getReservationDAO().findByLivre(connexion,
+            List<ReservationDTO> reservations = getReservationDAO().findByLivre(session,
                 unLivreDTO.getIdLivre(),
                 ReservationDTO.DATE_RESERVATION_COLUMN_NAME);
             if(!reservations.isEmpty()) {
                 ReservationDTO uneReservationDTO = reservations.get(0);
-                MembreDTO booker = (MembreDTO) getMembreDAO().get(connexion,
+                MembreDTO booker = (MembreDTO) getMembreDAO().get(session,
                     uneReservationDTO.getMembreDTO().getIdMembre());
                 throw new ExistingReservationException("Le livre "
                     + unLivreDTO.getTitre()
@@ -495,7 +494,7 @@ public class PretService extends Service implements IPretService {
             }
             unPretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
             unPretDTO.setDateRetour(null);
-            update(connexion,
+            update(session,
                 unPretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);
@@ -506,7 +505,7 @@ public class PretService extends Service implements IPretService {
      * {@inheritDoc}
      */
     @Override
-    public void terminer(Connexion connexion,
+    public void terminer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
@@ -517,35 +516,35 @@ public class PretService extends Service implements IPretService {
         ExistingLoanException,
         InvalidDTOClassException,
         ServiceException {
-        if(connexion == null) {
-            throw new InvalidHibernateSessionException("La connexion ne peut être null");
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session ne peut être null");
         }
         if(pretDTO == null) {
             throw new InvalidDTOException("Le prêt ne peut être null");
         }
         try {
-            PretDTO unPretDTO = get(connexion,
+            PretDTO unPretDTO = get(session,
                 pretDTO.getIdPret());
             if(unPretDTO == null) {
                 throw new MissingDTOException("Le prêt "
                     + pretDTO.getIdPret()
                     + " n'existe pas");
             }
-            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(connexion,
+            MembreDTO unMembreDTO = (MembreDTO) getMembreDAO().get(session,
                 unPretDTO.getMembreDTO().getIdMembre());
             if(unMembreDTO == null) {
                 throw new MissingDTOException("Le membre "
                     + unPretDTO.getMembreDTO().getIdMembre()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(connexion,
+            LivreDTO unLivreDTO = (LivreDTO) getLivreDAO().get(session,
                 unPretDTO.getLivreDTO().getIdLivre());
             if(unLivreDTO == null) {
                 throw new MissingDTOException("Le livre "
                     + unPretDTO.getLivreDTO().getIdLivre()
                     + " n'existe pas");
             }
-            List<PretDTO> prets = findByMembre(connexion,
+            List<PretDTO> prets = findByMembre(session,
                 unMembreDTO.getIdMembre(),
                 PretDTO.DATE_PRET_COLUMN_NAME);
             if(prets.isEmpty()) {
@@ -571,10 +570,10 @@ public class PretService extends Service implements IPretService {
                     + ")");
             }
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) - 1));
-            getMembreDAO().update(connexion,
+            getMembreDAO().update(session,
                 unMembreDTO);
             unPretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));
-            update(connexion,
+            update(session,
                 unPretDTO);
         } catch(DAOException daoException) {
             throw new ServiceException(daoException);

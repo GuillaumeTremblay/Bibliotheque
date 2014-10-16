@@ -4,12 +4,12 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.implementations;
 
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import org.hibernate.Session;
+
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
@@ -69,14 +69,13 @@ public class LivreFacade extends Facade implements ILivreFacade {
      * {@inheritDoc}
      */
     @Override
-    public void acquerir(Connexion connexion,
+    public void acquerir(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         FacadeException {
         try {
-            getLivreService().acquerir(connexion,
+            getLivreService().acquerir(session,
                 livreDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
@@ -87,7 +86,7 @@ public class LivreFacade extends Facade implements ILivreFacade {
      * {@inheritDoc}
      */
     @Override
-    public void vendre(Connexion connexion,
+    public void vendre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -99,7 +98,7 @@ public class LivreFacade extends Facade implements ILivreFacade {
         ExistingReservationException,
         FacadeException {
         try {
-            getLivreService().vendre(connexion,
+            getLivreService().vendre(session,
                 livreDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);

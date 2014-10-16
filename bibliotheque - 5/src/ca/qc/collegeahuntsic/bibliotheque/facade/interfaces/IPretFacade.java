@@ -4,12 +4,12 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.interfaces;
 
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
+import org.hibernate.Session;
+
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyRequestException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOException;
@@ -29,9 +29,9 @@ public interface IPretFacade extends IFacade {
     /**
      * Commence un prêt.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à commencer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du membre est <code>null</code> ou si la clef primaire du livre est
      *         <code>null</code>
@@ -45,7 +45,7 @@ public interface IPretFacade extends IFacade {
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
-    void commencer(Connexion connexion,
+    void commencer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
@@ -56,15 +56,14 @@ public interface IPretFacade extends IFacade {
         InvalidLoanLimitException,
         ExistingReservationException,
         InvalidDTOClassException,
-        InvalidPrimaryKeyRequestException,
         FacadeException;
 
     /**
      * Renouvelle le prêt d'un livre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à renouveler
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du prêt est <code>null</code>, si la clef primaire du membre est <code>null</code>
      *         ou si la clef primaire du livre est <code>null</code>
@@ -77,7 +76,7 @@ public interface IPretFacade extends IFacade {
      * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
-    void renouveler(Connexion connexion,
+    void renouveler(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
@@ -93,9 +92,9 @@ public interface IPretFacade extends IFacade {
     /**
      * Termine un prêt.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à terminer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du prêt est <code>null</code>, si la clef primaire du membre est <code>null</code>
      *         ou si la clef primaire du livre est <code>null</code>
@@ -108,7 +107,7 @@ public interface IPretFacade extends IFacade {
      *         celle que prend en charge le DAO
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
-    void terminer(Connexion connexion,
+    void terminer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidPrimaryKeyException,
