@@ -12,13 +12,11 @@ import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.ILivreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IPretDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
-import ca.qc.collegeahuntsic.bibliotheque.db.Connexion;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.db.ConnexionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.facade.InvalidServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.InvalidDAOException;
@@ -45,7 +43,6 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IReservationService
  * @author Gilles Benichou
  */
 public class BibliothequeCreateur {
-    private Connexion connexion;
 
     private ILivreFacade livreFacade;
 
@@ -64,30 +61,19 @@ public class BibliothequeCreateur {
      * @param motPasse Mot de passe sur le serveur SQL
      * @throws BibliothequeException S'il y a une erreur
      */
-    @SuppressWarnings("resource")
     public BibliothequeCreateur(String typeServeur,
         String schema,
         String nomUtilisateur,
         String motPasse) throws BibliothequeException {
         try {
-            setConnexion(new Connexion(typeServeur,
-                schema,
-                nomUtilisateur,
-                motPasse));
             ILivreDAO livreDAO = new LivreDAO(LivreDTO.class);
             IMembreDAO membreDAO = new MembreDAO(MembreDTO.class);
             IPretDAO pretDAO = new PretDAO(PretDTO.class);
             IReservationDAO reservationDAO = new ReservationDAO(ReservationDTO.class);
             IMembreService membreService = new MembreService(membreDAO,
                 reservationDAO);
-            ILivreService livreService = new LivreService(livreDAO,
-                membreDAO,
-                pretDAO,
-                reservationDAO);
-            IPretService pretService = new PretService(pretDAO,
-                membreDAO,
-                livreDAO,
-                reservationDAO);
+            ILivreService livreService = new LivreService(livreDAO);
+            IPretService pretService = new PretService(pretDAO);
             IReservationService reservationService = new ReservationService(reservationDAO,
                 membreDAO,
                 livreDAO,
@@ -96,8 +82,6 @@ public class BibliothequeCreateur {
             setLivreFacade(new LivreFacade(livreService));
             setPretFacade(new PretFacade(pretService));
             setReservationFacade(new ReservationFacade(reservationService));
-        } catch(ConnexionException connexionException) {
-            throw new BibliothequeException(connexionException);
         } catch(InvalidDTOClassException invalidDTOClassException) {
             throw new BibliothequeException(invalidDTOClassException);
         } catch(InvalidDAOException invalidDAOException) {
@@ -108,24 +92,6 @@ public class BibliothequeCreateur {
     }
 
     // Region Getters and Setters
-    /**
-     * Getter de la variable d'instance <code>this.connexion</code>.
-     *
-     * @return La variable d'instance <code>this.connexion</code>
-     */
-    public Connexion getConnexion() {
-        return this.connexion;
-    }
-
-    /**
-     * Setter de la variable d'instance <code>this.connexion</code>.
-     *
-     * @param connexion La valeur à utiliser pour la variable d'instance <code>this.connexion</code>
-     */
-    private void setConnexion(Connexion connexion) {
-        this.connexion = connexion;
-    }
-
     /**
      * Getter de la variable d'instance <code>this.membreFacade</code>.
      *
@@ -200,42 +166,4 @@ public class BibliothequeCreateur {
 
     // EndRegion Getters and Setters
 
-    /**
-     * Effectue un commit sur la connexion.
-     *
-     * @throws BibliothequeException S'il y a une erreur avec la base de données
-     */
-    public void commit() throws BibliothequeException {
-        try {
-            getConnexion().commit();
-        } catch(Exception exception) {
-            throw new BibliothequeException(exception);
-        }
-    }
-
-    /**
-     * Effectue un rollback sur la connexion.
-     *
-     * @throws BibliothequeException S'il y a une erreur avec la base de données
-     */
-    public void rollback() throws BibliothequeException {
-        try {
-            getConnexion().rollback();
-        } catch(Exception exception) {
-            throw new BibliothequeException(exception);
-        }
-    }
-
-    /**
-     * Ferme la connexion.
-     *
-     * @throws BibliothequeException S'il y a une erreur avec la base de données
-     */
-    public void close() throws BibliothequeException {
-        try {
-            getConnexion().close();
-        } catch(Exception exception) {
-            throw new BibliothequeException(exception);
-        }
-    }
 }

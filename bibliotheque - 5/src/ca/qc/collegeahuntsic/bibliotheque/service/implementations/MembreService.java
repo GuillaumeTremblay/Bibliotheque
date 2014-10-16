@@ -4,10 +4,12 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
 
+import java.util.ArrayList;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
+import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
@@ -224,21 +226,18 @@ public class MembreService extends Service implements IMembreService {
                     + unMembreDTO.getIdMembre()
                     + ") a encore des prêts");
             }
-            if(!getReservationDAO().findByMembre(session,
-                unMembreDTO.getIdMembre(),
-                MembreDTO.ID_MEMBRE_COLUMN_NAME).isEmpty()) {
+            List<ReservationDTO> reservations = new ArrayList<>(unMembreDTO.getReservations());
+            if(!reservations.isEmpty()) {
                 throw new ExistingReservationException("Le membre "
                     + unMembreDTO.getNom()
                     + " (ID de membre : "
                     + unMembreDTO.getIdMembre()
                     + ") a des réservations");
             }
-            delete(session,
+            deleteMembre(session,
                 unMembreDTO);
         } catch(NumberFormatException numberFormatException) {
             throw new ServiceException(numberFormatException);
-        } catch(DAOException daoException) {
-            throw new ServiceException(daoException);
         }
     }
 }

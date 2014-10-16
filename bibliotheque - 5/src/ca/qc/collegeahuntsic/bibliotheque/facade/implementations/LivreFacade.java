@@ -4,10 +4,9 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.implementations;
 
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
@@ -21,6 +20,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationE
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.ILivreFacade;
 import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.ILivreService;
+import org.hibernate.Session;
 
 /**
  * Facade pour interagir avec le service de livres.
@@ -96,7 +96,8 @@ public class LivreFacade extends Facade implements ILivreFacade {
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,
-        FacadeException {
+        FacadeException,
+        InvalidCriterionValueException {
         try {
             getLivreService().vendre(session,
                 livreDTO);

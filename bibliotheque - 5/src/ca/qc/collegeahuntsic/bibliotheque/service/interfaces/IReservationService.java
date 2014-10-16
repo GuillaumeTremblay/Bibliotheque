@@ -5,9 +5,6 @@
 package ca.qc.collegeahuntsic.bibliotheque.service.interfaces;
 
 import java.util.List;
-
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
@@ -21,6 +18,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationE
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.InvalidLoanLimitException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.MissingLoanException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
+import org.hibernate.Session;
 
 /**
  * Interface de service pour manipuler les réservations dans la base de données.
@@ -39,7 +37,7 @@ public interface IReservationService extends IService {
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire de la réservation est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void add(Session session,
+    void addReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -55,7 +53,7 @@ public interface IReservationService extends IService {
      * @throws InvalidPrimaryKeyException Si la clef primaire de la réservation est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    ReservationDTO get(Session session,
+    ReservationDTO getReservation(Session session,
         String idReservation) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         ServiceException;
@@ -70,7 +68,7 @@ public interface IReservationService extends IService {
      * @throws InvalidDTOClassException Si la classe de la réservation n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void update(Session session,
+    void updateReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -86,7 +84,7 @@ public interface IReservationService extends IService {
      * @throws InvalidDTOClassException Si la classe de la réservation n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void delete(Session session,
+    void deleteReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         InvalidDTOClassException,
@@ -103,48 +101,8 @@ public interface IReservationService extends IService {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    List<ReservationDTO> getAll(Session session,
+    List<ReservationDTO> getAllReservations(Session session,
         String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidSortByPropertyException,
-        ServiceException;
-
-    /**
-     * Trouve les réservations à partir d'un membre. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucune
-     * réservation n'est trouvée, une {@link List} vide est retournée.
-     * 
-     * @param connexion La connexion à utiliser
-     * @param idMembre L'ID du membre à trouver
-     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
-     * @return La liste des réservations correspondantes ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidCriterionException Si l'ID du membre est <code>null</code>
-     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    List<ReservationDTO> findByMembre(Session session,
-        String idMembre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
-        ServiceException;
-
-    /**
-     * Trouve les réservations à partir d'un livre. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucune
-     * réservation n'est trouvée, une {@link List} vide est retournée.
-     * 
-     * @param connexion La connexion à utiliser
-     * @param idLivre L'ID du livre à trouver
-     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
-     * @return La liste des réservations correspondantes ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidCriterionException Si l'ID du livre est <code>null</code>
-     * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws ServiceException S'il y a une erreur avec la base de données
-     */
-    List<ReservationDTO> findByLivre(Session session,
-        String idLivre,
-        String sortByPropertyName) throws InvalidHibernateSessionException,
-        InvalidCriterionException,
         InvalidSortByPropertyException,
         ServiceException;
 

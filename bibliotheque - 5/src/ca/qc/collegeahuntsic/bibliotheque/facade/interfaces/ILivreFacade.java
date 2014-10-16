@@ -4,10 +4,9 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.interfaces;
 
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
+import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
@@ -17,6 +16,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationException;
+import org.hibernate.Session;
 
 /**
  * Interface de façade pour manipuler les livres dans la base de données.
@@ -64,6 +64,7 @@ public interface ILivreFacade extends IFacade {
         InvalidPrimaryKeyException,
         MissingDTOException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,

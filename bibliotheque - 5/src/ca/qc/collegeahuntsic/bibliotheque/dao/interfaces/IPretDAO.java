@@ -33,7 +33,7 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByDatePret(Session session,
+    List<PretDTO> findPretByDatePret(Session session,
         Timestamp datePret,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
@@ -54,7 +54,7 @@ public interface IPretDAO extends IDAO {
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
-    List<PretDTO> findByDateRetour(Session session,
+    List<PretDTO> findPretByDateRetour(Session session,
         Timestamp dateRetour,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,

@@ -5,6 +5,7 @@
 package ca.qc.collegeahuntsic.bibliotheque.dto;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -31,6 +32,10 @@ public final class ReservationDTO extends DTO {
     private LivreDTO livreDTO;
 
     private Timestamp dateReservation;
+
+    private Set<LivreDTO> livres;
+
+    private Set<MembreDTO> membres;
 
     /**
      * Crée un DTO de la table <code>reservation</code>.
@@ -110,6 +115,42 @@ public final class ReservationDTO extends DTO {
      */
     public void setDateReservation(Timestamp dateReservation) {
         this.dateReservation = dateReservation;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.livres</code>.
+     *
+     * @return La variable d'instance <code>this.livres</code>
+     */
+    public Set<LivreDTO> getLivres() {
+        return this.livres;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.livres</code>.
+     *
+     * @param livres La valeur à utiliser pour la variable d'instance <code>this.livres</code>
+     */
+    public void setLivres(Set<LivreDTO> livres) {
+        this.livres = livres;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.membres</code>.
+     *
+     * @return La variable d'instance <code>this.membres</code>
+     */
+    public Set<MembreDTO> getMembres() {
+        return this.membres;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.membres</code>.
+     *
+     * @param membres La valeur à utiliser pour la variable d'instance <code>this.membres</code>
+     */
+    public void setMembres(Set<MembreDTO> membres) {
+        this.membres = membres;
     }
 
     // EndRegion Getters and Setters
