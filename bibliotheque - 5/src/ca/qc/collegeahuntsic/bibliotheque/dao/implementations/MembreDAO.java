@@ -28,7 +28,7 @@ public class MembreDAO extends DAO implements IMembreDAO {
      * @param membreDTOClass The classe de membre DTO to use
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
-    public MembreDAO(Class<MembreDTO> membreDTOClass) throws InvalidDTOClassException { // TODO: Change to package when switching to Spring
+    MembreDAO(Class<MembreDTO> membreDTOClass) throws InvalidDTOClassException {
         super(membreDTOClass);
     }
 

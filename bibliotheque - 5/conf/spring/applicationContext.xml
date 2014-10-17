@@ -1,0 +1,245 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - Application context
+   -
+   - Author: Gilles Benichou
+-->
+
+<beans>
+  <!-- ========== Data source ==================================================== -->
+  <bean name="dataSource"
+        class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property name="driverClass">
+                  <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="jdbcUrl">
+                  <value>jdbc:oracle:thin:@localhost:1521:orcl</value>
+        </property>
+        <property name="properties">
+                  <props>
+                    <prop key="c3p0.acquire_increment">1</prop>
+                    <prop key="c3p0.idle_test_period">10</prop>
+                    <prop key="c3p0.max_size">1</prop>
+                    <prop key="c3p0.max_statements">0</prop>
+                    <prop key="c3p0.min_size">1</prop>
+                    <prop key="user">bibliotheque</prop>
+                    <prop key="password">123456</prop>
+                  </props>
+        </property>
+  </bean>
+
+  <!-- ========== Transaction manager ============================================ -->
+  <bean name="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+                  <ref bean="sessionFactory"/>
+        </property>
+  </bean>
+
+  <!-- ========== Base transaction proxy ========================================= -->
+  <bean name="transactionProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+        abstract="true">
+        <property name="transactionManager">
+                  <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+                  <props>
+                    <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                    <prop key="add*">PROPAGATION_REQUIRED</prop>
+                    <prop key="save*">PROPAGATION_REQUIRED</prop>
+                    <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                    <prop key="update*">PROPAGATION_REQUIRED</prop>
+                    <prop key="create*">PROPAGATION_REQUIRED</prop>
+                    <prop key="initiate*">PROPAGATION_REQUIRED</prop>
+                    <prop key="confirm*">PROPAGATION_REQUIRED</prop>
+                    <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+                  </props>
+        </property>
+  </bean>
+
+  <!-- ========== Trace interceptor ============================================== -->
+  <bean name="traceInterceptor"
+        class="org.springframework.aop.interceptor.SimpleTraceInterceptor">
+  </bean>
+
+  <!-- ========== Performance monitor interceptor ================================ -->
+  <bean name="performanceMonitorInterceptor"
+        class="org.springframework.aop.interceptor.PerformanceMonitorInterceptor">
+  </bean>
+
+  <!-- ========== DTOs =========================================================== -->
+  <bean name="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="mappingResources">
+                  <list>
+                    <value>ca/qc/collegeahuntsic/bibliotheque/dto/LivreDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliotheque/dto/MembreDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliotheque/dto/PretDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliotheque/dto/ReservationDTO.hbm.xml</value>
+                  </list>
+        </property>
+        <property name="hibernateProperties">
+                  <props>
+                    <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    <prop key="hibernate.format_sql">true</prop>
+                    <prop key="hibernate.max_fetch_depth">3</prop>
+                    <prop key="hibernate.default_batch_fetch_size">16</prop>
+                    <prop key="hibernate.order_updates">true</prop>
+                    <prop key="hibernate.generate_statistics">false</prop>
+                    <prop key="hibernate.jdbc.fetch_size">0</prop>
+                    <prop key="hibernate.jdbc.batch_size">0</prop>
+                    <prop key="hibernate.jdbc.batch_versioned_data">true</prop>
+                    <prop key="hibernate.connection.autocommit">false</prop>
+                    <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                    <prop key="hibernate.cache.use_minimal_puts">true</prop>
+                    <prop key="hibernate.cache.use_query_cache">true</prop>
+                    <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                    <prop key="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</prop>
+                    <prop key="hibernate.cache.use_structured_entries">true</prop>
+                    <prop key="hibernate.transaction.flush_before_completion">false</prop>
+                    <prop key="hibernate.transaction.auto_close_session">false</prop>
+                  </props>
+        </property>
+        <property name="dataSource">
+                  <ref bean="dataSource"/>
+        </property>
+  </bean>
+
+  <!-- ========== DAOs =========================================================== -->
+  <bean name="livreDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.dao.implementations.LivreDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="membreDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.dao.implementations.MembreDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="pretDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.dao.implementations.PretDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="reservationDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.dao.implementations.ReservationDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+
+  <!-- ========== Services ======================================================= -->
+  <bean name="livreService"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.service.implementations.LivreService">
+                        <constructor-arg>
+                          <ref bean="livreDAO"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="membreService"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.service.implementations.MembreService">
+                        <constructor-arg>
+                          <ref bean="membreDAO"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="pretService"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.service.implementations.PretService">
+                        <constructor-arg>
+                          <ref bean="pretDAO"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="reservationService"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.service.implementations.ReservationService">
+                        <constructor-arg>
+                          <ref bean="reservationDAO"/>
+                        </constructor-arg>
+                        <constructor-arg>
+                          <ref bean="pretDAO"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+
+  <!-- ========== Facades ======================================================== -->
+  <bean name="livreFacade"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.facade.implementations.LivreFacade">
+                        <constructor-arg>
+                          <ref bean="livreService"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="membreFacade"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.facade.implementations.MembreFacade">
+                        <constructor-arg>
+                          <ref bean="membreService"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="pretFacade"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.facade.implementations.PretFacade">
+                        <constructor-arg>
+                          <ref bean="pretService"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="reservationFacade"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliotheque.facade.implementations.ReservationFacade">
+                        <constructor-arg>
+                          <ref bean="reservationService"/>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+</beans>

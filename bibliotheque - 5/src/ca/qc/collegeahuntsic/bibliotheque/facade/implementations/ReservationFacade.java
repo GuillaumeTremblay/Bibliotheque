@@ -4,9 +4,6 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.implementations;
 
-
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
@@ -24,6 +21,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.service.MissingLoanException
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IReservationFacade;
 import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IReservationService;
+import org.hibernate.Session;
 
 /**
  * Facade pour interagir avec le service de réservations.
@@ -39,7 +37,7 @@ public class ReservationFacade extends Facade implements IReservationFacade {
      * @param reservationService Le service de la table <code>reservation</code>
      * @throws InvalidServiceException Si le service de réservations est <code>null</code>
      */
-    public ReservationFacade(IReservationService reservationService) throws InvalidServiceException { // TODO: Change to package when switching to Spring
+    ReservationFacade(IReservationService reservationService) throws InvalidServiceException {
         super();
         if(reservationService == null) {
             throw new InvalidServiceException("Le service de réservations ne peut être null");

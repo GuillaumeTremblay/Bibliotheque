@@ -6,7 +6,6 @@ package ca.qc.collegeahuntsic.bibliotheque.facade.implementations;
 
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
@@ -36,7 +35,7 @@ public class LivreFacade extends Facade implements ILivreFacade {
      * @param livreService Le service de la table <code>livre</code>
      * @throws InvalidServiceException Si le service de livres est <code>null</code>
      */
-    public LivreFacade(ILivreService livreService) throws InvalidServiceException { // TODO: Change to package when switching to Spring
+    LivreFacade(ILivreService livreService) throws InvalidServiceException {
         super();
         if(livreService == null) {
             throw new InvalidServiceException("Le service de livres ne peut être null");
@@ -96,8 +95,7 @@ public class LivreFacade extends Facade implements ILivreFacade {
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,
-        FacadeException,
-        InvalidCriterionValueException {
+        FacadeException {
         try {
             getLivreService().vendre(session,
                 livreDTO);

@@ -20,7 +20,7 @@ public class ReservationDAO extends DAO implements IReservationDAO {
      * @param reservationDTOClass The classe de réservation DTO to use
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
-    public ReservationDAO(Class<ReservationDTO> reservationDTOClass) throws InvalidDTOClassException { // TODO: Change to package when switching to Spring
+    ReservationDAO(Class<ReservationDTO> reservationDTOClass) throws InvalidDTOClassException {
         super(reservationDTOClass);
     }
 }

@@ -6,7 +6,6 @@ package ca.qc.collegeahuntsic.bibliotheque.facade.interfaces;
 
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionValueException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidSortByPropertyException;
@@ -64,7 +63,6 @@ public interface ILivreFacade extends IFacade {
         InvalidPrimaryKeyException,
         MissingDTOException,
         InvalidCriterionException,
-        InvalidCriterionValueException,
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,

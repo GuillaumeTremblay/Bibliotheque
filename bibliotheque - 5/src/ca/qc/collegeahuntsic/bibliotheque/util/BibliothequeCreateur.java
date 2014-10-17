@@ -4,38 +4,18 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.util;
 
-import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.LivreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.MembreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.PretDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.implementations.ReservationDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.ILivreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IPretDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
-import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.dto.InvalidDTOClassException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.facade.InvalidServiceException;
-import ca.qc.collegeahuntsic.bibliotheque.exception.service.InvalidDAOException;
-import ca.qc.collegeahuntsic.bibliotheque.facade.implementations.LivreFacade;
-import ca.qc.collegeahuntsic.bibliotheque.facade.implementations.MembreFacade;
-import ca.qc.collegeahuntsic.bibliotheque.facade.implementations.PretFacade;
-import ca.qc.collegeahuntsic.bibliotheque.facade.implementations.ReservationFacade;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.ILivreFacade;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IMembreFacade;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IPretFacade;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IReservationFacade;
-import ca.qc.collegeahuntsic.bibliotheque.service.implementations.LivreService;
-import ca.qc.collegeahuntsic.bibliotheque.service.implementations.MembreService;
-import ca.qc.collegeahuntsic.bibliotheque.service.implementations.PretService;
-import ca.qc.collegeahuntsic.bibliotheque.service.implementations.ReservationService;
-import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.ILivreService;
-import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IMembreService;
-import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IPretService;
-import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IReservationService;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Utilitaire de création des outils de la bibliothèque.
@@ -43,6 +23,25 @@ import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IReservationService
  * @author Gilles Benichou
  */
 public class BibliothequeCreateur {
+    private static final String SPRING_CONFIGURATION_FILE_NAME = "applicationContext.xml";
+
+    private static final String SESSION_FACTORY_NAME = "sessionFactory";
+
+    private static final String LIVRE_FACADE_NAME = "livreFacade";
+
+    private static final String MEMBRE_FACADE_NAME = "membreFacade";
+
+    private static final String PRET_FACADE_NAME = "pretFacade";
+
+    private static final String RESERVATION_FACADE_NAME = "reservationFacade";
+
+    private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(BibliothequeCreateur.SPRING_CONFIGURATION_FILE_NAME);
+
+    private SessionFactory sessionFactory;
+
+    private Session session;
+
+    private Transaction transaction;
 
     private ILivreFacade livreFacade;
 
@@ -53,45 +52,78 @@ public class BibliothequeCreateur {
     private IReservationFacade reservationFacade;
 
     /**
-     * Crée les façades nécessaires à l'application bibliothèque.<br /><br />
+     * Crée le système transactionnel nécessaire à l'application bibliothèque.
      *
-     * @param typeServeur Type de serveur SQL de la BD
-     * @param schema Nom du schéma de la base de données
-     * @param nomUtilisateur Nom d'utilisateur sur le serveur SQL
-     * @param motPasse Mot de passe sur le serveur SQL
-     * @throws BibliothequeException S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur avec la base de données
      */
-    public BibliothequeCreateur(String typeServeur,
-        String schema,
-        String nomUtilisateur,
-        String motPasse) throws BibliothequeException {
+    public BibliothequeCreateur() throws BibliothequeException {
+        super();
         try {
-            ILivreDAO livreDAO = new LivreDAO(LivreDTO.class);
-            IMembreDAO membreDAO = new MembreDAO(MembreDTO.class);
-            IPretDAO pretDAO = new PretDAO(PretDTO.class);
-            IReservationDAO reservationDAO = new ReservationDAO(ReservationDTO.class);
-            IMembreService membreService = new MembreService(membreDAO,
-                reservationDAO);
-            ILivreService livreService = new LivreService(livreDAO);
-            IPretService pretService = new PretService(pretDAO);
-            IReservationService reservationService = new ReservationService(reservationDAO,
-                membreDAO,
-                livreDAO,
-                pretDAO);
-            setMembreFacade(new MembreFacade(membreService));
-            setLivreFacade(new LivreFacade(livreService));
-            setPretFacade(new PretFacade(pretService));
-            setReservationFacade(new ReservationFacade(reservationService));
-        } catch(InvalidDTOClassException invalidDTOClassException) {
-            throw new BibliothequeException(invalidDTOClassException);
-        } catch(InvalidDAOException invalidDAOException) {
-            throw new BibliothequeException(invalidDAOException);
-        } catch(InvalidServiceException invalidServiceException) {
-            throw new BibliothequeException(invalidServiceException);
+            setSessionFactory((SessionFactory) BibliothequeCreateur.APPLICATION_CONTEXT.getBean(BibliothequeCreateur.SESSION_FACTORY_NAME));
+            setMembreFacade((IMembreFacade) BibliothequeCreateur.APPLICATION_CONTEXT.getBean(BibliothequeCreateur.MEMBRE_FACADE_NAME));
+            setLivreFacade((ILivreFacade) BibliothequeCreateur.APPLICATION_CONTEXT.getBean(BibliothequeCreateur.LIVRE_FACADE_NAME));
+            setPretFacade((IPretFacade) BibliothequeCreateur.APPLICATION_CONTEXT.getBean(BibliothequeCreateur.PRET_FACADE_NAME));
+            setReservationFacade((IReservationFacade) BibliothequeCreateur.APPLICATION_CONTEXT.getBean(BibliothequeCreateur.RESERVATION_FACADE_NAME));
+        } catch(BeansException beansException) {
+            throw new BibliothequeException(beansException);
         }
     }
 
     // Region Getters and Setters
+    /**
+     * Getter de la variable d'instance <code>this.sessionFactory</code>.
+     *
+     * @return La variable d'instance <code>this.sessionFactory</code>
+     */
+    private SessionFactory getSessionFactory() {
+        return this.sessionFactory;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.sessionFactory</code>.
+     *
+     * @param sessionFactory La valeur à utiliser pour la variable d'instance <code>this.sessionFactory</code>
+     */
+    private void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.session</code>.
+     *
+     * @return La variable d'instance <code>this.session</code>
+     */
+    public Session getSession() {
+        return this.session;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.session</code>.
+     *
+     * @param session La valeur à utiliser pour la variable d'instance <code>this.session</code>
+     */
+    private void setSession(Session session) {
+        this.session = session;
+    }
+
+    /**
+     * Getter de la variable d'instance <code>this.transaction</code>.
+     *
+     * @return La variable d'instance <code>this.transaction</code>
+     */
+    private Transaction getTransaction() {
+        return this.transaction;
+    }
+
+    /**
+     * Setter de la variable d'instance <code>this.transaction</code>.
+     *
+     * @param transaction La valeur à utiliser pour la variable d'instance <code>this.transaction</code>
+     */
+    private void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
     /**
      * Getter de la variable d'instance <code>this.membreFacade</code>.
      *
@@ -166,4 +198,72 @@ public class BibliothequeCreateur {
 
     // EndRegion Getters and Setters
 
+    /**
+     * Ouvre une session.
+     * 
+     * @return La session Hibernate
+     * @throws BibliothequeException S'il y a une erreur
+     */
+    private Session openSession() throws BibliothequeException {
+        try {
+            setSession(getSessionFactory().openSession());
+        } catch(HibernateException hibernateException) {
+            throw new BibliothequeException(hibernateException);
+        }
+        return getSession();
+    }
+
+    /**
+     * Ouvre une session.
+     * 
+     * @throws BibliothequeException S'il y a une erreur
+     */
+    private void closeSession() throws BibliothequeException {
+        try {
+            getSession().close();
+        } catch(HibernateException hibernateException) {
+            throw new BibliothequeException(hibernateException);
+        }
+    }
+
+    /**
+     * Démarre une transaction.
+     * 
+     * @throws BibliothequeException S'il y a une erreur
+     */
+    public void beginTransaction() throws BibliothequeException {
+        try {
+            setTransaction(openSession().beginTransaction());
+        } catch(HibernateException hibernateException) {
+            throw new BibliothequeException(hibernateException);
+        }
+    }
+
+    /**
+     * Commit une transaction.
+     * 
+     * @throws BibliothequeException S'il y a une erreur
+     */
+    public void commitTransaction() throws BibliothequeException {
+        try {
+            getTransaction().commit();
+            closeSession();
+        } catch(HibernateException hibernateException) {
+            throw new BibliothequeException(hibernateException);
+        }
+    }
+
+    /**
+     * Rollback une transaction.
+     * 
+     * @throws BibliothequeException S'il y a une erreur
+     */
+    public void rollbackTransaction() throws BibliothequeException {
+        try {
+            getTransaction().rollback();
+            closeSession();
+        } catch(HibernateException hibernateException) {
+            throw new BibliothequeException(hibernateException);
+        }
+    }
 }

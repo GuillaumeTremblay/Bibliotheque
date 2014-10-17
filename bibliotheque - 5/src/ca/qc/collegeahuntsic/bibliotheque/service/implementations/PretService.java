@@ -48,7 +48,7 @@ public class PretService extends Service implements IPretService {
      * @throws InvalidDAOException Si le DAO de prêt est <code>null</code>, si le DAO de membre est <code>null</code>, si le DAO de livre est
      *         <code>null</code> ou si le DAO de réservation est <code>null</code>
      */
-    public PretService(IPretDAO pretDAO) throws InvalidDAOException {
+    PretService(IPretDAO pretDAO) throws InvalidDAOException {
         super();
         if(pretDAO == null) {
             throw new InvalidDAOException("Le DAO de prêt ne peut être null");
@@ -273,6 +273,7 @@ public class PretService extends Service implements IPretService {
                     + ")");
             }
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) + 1));
+            //not sure par CHou
             getPretDAO().update(session,
                 unMembreDTO);
             pretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
@@ -433,6 +434,7 @@ public class PretService extends Service implements IPretService {
                     + ")");
             }
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) - 1));
+            //not sure par Chou
             getPretDAO().update(session,
                 unMembreDTO);
             unPretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));

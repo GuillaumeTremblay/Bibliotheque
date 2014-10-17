@@ -33,7 +33,7 @@ public class PretDAO extends DAO implements IPretDAO {
      * @param pretDTOClass The classe de prêt DTO to use
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
-    public PretDAO(Class<PretDTO> pretDTOClass) throws InvalidDTOClassException { // TODO: Change to package when switching to Spring
+    PretDAO(Class<PretDTO> pretDTOClass) throws InvalidDTOClassException {
         super(pretDTOClass);
     }
 

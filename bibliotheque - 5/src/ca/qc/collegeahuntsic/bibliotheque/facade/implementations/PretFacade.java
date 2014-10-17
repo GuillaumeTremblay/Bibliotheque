@@ -4,9 +4,6 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.implementations;
 
-
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
@@ -24,6 +21,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.service.MissingLoanException
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ServiceException;
 import ca.qc.collegeahuntsic.bibliotheque.facade.interfaces.IPretFacade;
 import ca.qc.collegeahuntsic.bibliotheque.service.interfaces.IPretService;
+import org.hibernate.Session;
 
 /**
  * Facade pour interagir avec le service de prêts.
@@ -39,7 +37,7 @@ public class PretFacade extends Facade implements IPretFacade {
      * @param pretService Le service de la table <code>pret</code>
      * @throws InvalidServiceException Si le service de prêts est <code>null</code>
      */
-    public PretFacade(IPretService pretService) throws InvalidServiceException { // TODO: Change to package when switching to Spring
+    PretFacade(IPretService pretService) throws InvalidServiceException {
         super();
         if(pretService == null) {
             throw new InvalidServiceException("Le service de prêts ne peut être null");

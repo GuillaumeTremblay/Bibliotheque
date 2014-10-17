@@ -1,2 +1,5 @@
 /bibliotheque.dat
 /ca/
+/applicationContext.xml
+/log4j.properties
+/conf/log4j/log4j.properties

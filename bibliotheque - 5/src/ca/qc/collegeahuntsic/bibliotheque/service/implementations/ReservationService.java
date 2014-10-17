@@ -7,9 +7,6 @@ package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.ILivreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IPretDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
@@ -50,22 +47,10 @@ public class ReservationService extends Service implements IReservationService {
      * @throws InvalidDAOException Si le DAO de réservation est <code>null</code>, si le DAO de membre est <code>null</code>, si le DAO de livre
      *         est <code>null</code> ou si le DAO de prêt est <code>null</code>
      */
-    public ReservationService(IReservationDAO reservationDAO, // TODO: Change to package when switching to Spring
-        IMembreDAO membreDAO,
-        ILivreDAO livreDAO,
-        IPretDAO pretDAO) throws InvalidDAOException {
+    ReservationService(IReservationDAO reservationDAO) throws InvalidDAOException {
         super();
         if(reservationDAO == null) {
             throw new InvalidDAOException("Le DAO de réservation ne peut être null");
-        }
-        if(membreDAO == null) {
-            throw new InvalidDAOException("Le DAO de membre ne peut être null");
-        }
-        if(livreDAO == null) {
-            throw new InvalidDAOException("Le DAO de livre ne peut être null");
-        }
-        if(pretDAO == null) {
-            throw new InvalidDAOException("Le DAO de prêt ne peut être null");
         }
         setReservationDAO(reservationDAO);
     }

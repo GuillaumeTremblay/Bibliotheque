@@ -27,7 +27,7 @@ public class LivreDAO extends DAO implements ILivreDAO {
      * @param livreDTOClass The classe de livre DTO to use
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
-    public LivreDAO(Class<LivreDTO> livreDTOClass) throws InvalidDTOClassException { // TODO: Change to package when switching to Spring
+    LivreDAO(Class<LivreDTO> livreDTOClass) throws InvalidDTOClassException {
         super(livreDTOClass);
     }
 

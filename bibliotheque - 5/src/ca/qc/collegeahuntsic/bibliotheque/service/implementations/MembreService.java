@@ -7,7 +7,6 @@ package ca.qc.collegeahuntsic.bibliotheque.service.implementations;
 import java.util.ArrayList;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IMembreDAO;
-import ca.qc.collegeahuntsic.bibliotheque.dao.interfaces.IReservationDAO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.DAOException;
@@ -41,14 +40,10 @@ public class MembreService extends Service implements IMembreService {
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @throws InvalidDAOException Si le DAO de membre est <code>null</code> ou si le DAO de réservation est <code>null</code>
      */
-    public MembreService(IMembreDAO membreDAO, // TODO: Change to package when switching to Spring
-        IReservationDAO reservationDAO) throws InvalidDAOException {
+    MembreService(IMembreDAO membreDAO) throws InvalidDAOException {
         super();
         if(membreDAO == null) {
             throw new InvalidDAOException("Le DAO de membre ne peut être null");
-        }
-        if(reservationDAO == null) {
-            throw new InvalidDAOException("Le DAO de réservation ne peut être null");
         }
         setMembreDAO(membreDAO);
     }

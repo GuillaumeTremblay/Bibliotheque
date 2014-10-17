@@ -172,6 +172,5 @@ public interface ILivreService extends IService {
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,
-        ServiceException,
-        InvalidCriterionValueException;
+        ServiceException;
 }

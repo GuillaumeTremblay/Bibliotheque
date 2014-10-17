@@ -205,8 +205,7 @@ public class LivreService extends Service implements ILivreService {
         InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,
-        ServiceException,
-        InvalidCriterionValueException {
+        ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
         }
