@@ -17,13 +17,13 @@ import org.hibernate.Session;
 
 /**
  * DAO pour effectuer des CRUDs avec la table <code>livre</code>.
- * 
+ *
  * @author Gilles Benichou
  */
 public class LivreDAO extends DAO implements ILivreDAO {
     /**
      * Crée le DAO de la table <code>livre</code>.
-     * 
+     *
      * @param livreDTOClass The classe de livre DTO to use
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
@@ -34,6 +34,7 @@ public class LivreDAO extends DAO implements ILivreDAO {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<LivreDTO> findByTitre(Session session,
         String titre,

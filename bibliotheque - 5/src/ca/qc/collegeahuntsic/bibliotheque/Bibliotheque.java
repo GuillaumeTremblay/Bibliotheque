@@ -59,8 +59,6 @@ import org.apache.commons.logging.LogFactory;
 public class Bibliotheque {
     private static BibliothequeCreateur gestionBiblio;
 
-    //a enlever le suppress 
-    @SuppressWarnings("unused")
     private static final Log LOGGER = LogFactory.getLog(Bibliotheque.class);
 
     /**
@@ -71,7 +69,7 @@ public class Bibliotheque {
     public static void main(String argv[]) throws Exception {
         // validation du nombre de paramï¿½tres
         if(argv.length < 1) {
-            System.out.println("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
+            LOGGER.info("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
         }
 
         try {
@@ -85,10 +83,10 @@ public class Bibliotheque {
                 traiterTransactions(reader);
             }
         } catch(Exception e) {
-            gestionBiblio.rollback();
+            gestionBiblio.rollbackTransaction();
             e.printStackTrace(System.out);
         } finally {
-            gestionBiblio.close();
+            gestionBiblio.commitTransaction();
         }
     }
 
@@ -132,20 +130,23 @@ public class Bibliotheque {
             if("aide".startsWith(command)) {
                 afficherAide();
             } else if("acquerir".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 LivreDTO livreDTO = new LivreDTO();
                 livreDTO.setTitre(readString(tokenizer));
                 livreDTO.setAuteur(readString(tokenizer));
                 livreDTO.setDateAcquisition(readDate(tokenizer));
-                gestionBiblio.getLivreFacade().acquerir(gestionBiblio.getConnexion(),
+                gestionBiblio.getLivreFacade().acquerir(gestionBiblio.getSession(),
                     livreDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("vendre".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 LivreDTO livreDTO = new LivreDTO();
                 livreDTO.setIdLivre(readString(tokenizer));
-                gestionBiblio.getLivreFacade().vendre(gestionBiblio.getConnexion(),
+                gestionBiblio.getLivreFacade().vendre(gestionBiblio.getSession(),
                     livreDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("preter".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 PretDTO pretDTO = new PretDTO();
                 MembreDTO membreDTO = new MembreDTO();
                 membreDTO.setIdMembre(readString(tokenizer));
@@ -153,36 +154,41 @@ public class Bibliotheque {
                 livreDTO.setIdLivre(readString(tokenizer));
                 pretDTO.setMembreDTO(membreDTO);
                 pretDTO.setLivreDTO(livreDTO);
-                gestionBiblio.getPretFacade().commencer(gestionBiblio.getConnexion(),
+                gestionBiblio.getPretFacade().commencer(gestionBiblio.getSession(),
                     pretDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("renouveler".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 PretDTO pretDTO = new PretDTO();
                 pretDTO.setIdPret(readString(tokenizer));
-                gestionBiblio.getPretFacade().renouveler(gestionBiblio.getConnexion(),
+                gestionBiblio.getPretFacade().renouveler(gestionBiblio.getSession(),
                     pretDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("retourner".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 PretDTO pretDTO = new PretDTO();
                 pretDTO.setIdPret(readString(tokenizer));
-                gestionBiblio.getPretFacade().terminer(gestionBiblio.getConnexion(),
+                gestionBiblio.getPretFacade().terminer(gestionBiblio.getSession(),
                     pretDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("inscrire".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 MembreDTO membreDTO = new MembreDTO();
                 membreDTO.setNom(readString(tokenizer));
                 membreDTO.setTelephone(readString(tokenizer));
                 membreDTO.setLimitePret(readString(tokenizer));
-                gestionBiblio.getMembreFacade().inscrire(gestionBiblio.getConnexion(),
+                gestionBiblio.getMembreFacade().inscrire(gestionBiblio.getSession(),
                     membreDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("desinscrire".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 MembreDTO membreDTO = new MembreDTO();
                 membreDTO.setIdMembre(readString(tokenizer));
-                gestionBiblio.getMembreFacade().desinscrire(gestionBiblio.getConnexion(),
+                gestionBiblio.getMembreFacade().desinscrire(gestionBiblio.getSession(),
                     membreDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("reserver".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 // Juste pour éviter deux timestamps de réservation strictement identiques
                 Thread.sleep(1);
                 ReservationDTO reservationDTO = new ReservationDTO();
@@ -192,21 +198,23 @@ public class Bibliotheque {
                 livreDTO.setIdLivre(readString(tokenizer));
                 reservationDTO.setMembreDTO(membreDTO);
                 reservationDTO.setLivreDTO(livreDTO);
-                gestionBiblio.getReservationFacade().placer(gestionBiblio.getConnexion(),
+                gestionBiblio.getReservationFacade().placer(gestionBiblio.getSession(),
                     reservationDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("utiliser".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 ReservationDTO reservationDTO = new ReservationDTO();
                 reservationDTO.setIdReservation(readString(tokenizer));
-                gestionBiblio.getReservationFacade().utiliser(gestionBiblio.getConnexion(),
+                gestionBiblio.getReservationFacade().utiliser(gestionBiblio.getSession(),
                     reservationDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("annuler".startsWith(command)) {
+                gestionBiblio.beginTransaction();
                 ReservationDTO reservationDTO = new ReservationDTO();
                 reservationDTO.setIdReservation(readString(tokenizer));
-                gestionBiblio.getReservationFacade().annuler(gestionBiblio.getConnexion(),
+                gestionBiblio.getReservationFacade().annuler(gestionBiblio.getSession(),
                     reservationDTO);
-                gestionBiblio.commit();
+                gestionBiblio.commitTransaction();
             } else if("--".startsWith(command)) {
                 // ne rien faire; c'est un commentaire
             } else {
@@ -216,7 +224,6 @@ public class Bibliotheque {
             InvalidHibernateSessionException
             | InvalidDTOException
             | InvalidDTOClassException
-            | InvalidPrimaryKeyRequestException
             | FacadeException
             | InvalidPrimaryKeyException
             | MissingDTOException
@@ -226,13 +233,13 @@ public class Bibliotheque {
             | ExistingReservationException
             | InvalidLoanLimitException
             | MissingLoanException exception) {
-            System.out.println("**** "
+            LOGGER.info("**** "
                 + exception.getMessage());
-            gestionBiblio.rollback();
+            gestionBiblio.rollbackTransaction();
         } catch(InterruptedException interruptedException) {
-            System.out.println("**** "
+            LOGGER.info("**** "
                 + interruptedException.toString());
-            gestionBiblio.rollback();
+            gestionBiblio.rollbackTransaction();
         }
     }
 
