@@ -69,24 +69,16 @@ public class Bibliotheque {
     public static void main(String argv[]) throws Exception {
         // validation du nombre de paramï¿½tres
         if(argv.length < 1) {
-            LOGGER.info("Usage: java Biblio <serveur> <bd> <user> <password> [<fichier-transactions>]");
+            LOGGER.info("Usage: java Biblio [<fichier-transactions>]");
         }
 
-        try {
-            // ouverture du fichier de transactions
-            InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
-                + argv[0]);
-            try(
-                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
-
-                gestionBiblio = new BibliothequeCreateur();
-                traiterTransactions(reader);
-            }
-        } catch(Exception e) {
-            gestionBiblio.rollbackTransaction();
-            e.printStackTrace(System.out);
-        } finally {
-            gestionBiblio.commitTransaction();
+        // ouverture du fichier de transactions
+        InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
+            + argv[0]);
+        try(
+            BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
+            gestionBiblio = new BibliothequeCreateur();
+            traiterTransactions(reader);
         }
     }
 
@@ -95,7 +87,7 @@ public class Bibliotheque {
      */
     static void traiterTransactions(BufferedReader reader) throws Exception {
         afficherAide();
-        System.out.println("\n\n\n");
+        LOGGER.info("\n\n\n");
         String transaction = lireTransaction(reader);
         while(!finTransaction(transaction)) {
             /* découpage de la transaction en mots*/
@@ -114,7 +106,7 @@ public class Bibliotheque {
     static String lireTransaction(BufferedReader reader) throws IOException {
         String transaction = reader.readLine();
         if(transaction != null) {
-            System.out.println(transaction);
+            LOGGER.info(transaction);
         }
         /* echo si lecture dans un fichier */
         return transaction;
@@ -218,7 +210,7 @@ public class Bibliotheque {
             } else if("--".startsWith(command)) {
                 // ne rien faire; c'est un commentaire
             } else {
-                System.out.println("  Transactions non reconnue.  Essayer \"aide\"");
+                LOGGER.info("  Transactions non reconnue.  Essayer \"aide\"");
             }
         } catch(
             InvalidHibernateSessionException
@@ -233,11 +225,11 @@ public class Bibliotheque {
             | ExistingReservationException
             | InvalidLoanLimitException
             | MissingLoanException exception) {
-            LOGGER.info("**** "
+            LOGGER.error("**** "
                 + exception.getMessage());
             gestionBiblio.rollbackTransaction();
         } catch(InterruptedException interruptedException) {
-            LOGGER.info("**** "
+            LOGGER.error("**** "
                 + interruptedException.toString());
             gestionBiblio.rollbackTransaction();
         }
@@ -247,27 +239,27 @@ public class Bibliotheque {
      * Affiche le menu des transactions acceptées par le système
      */
     static void afficherAide() {
-        System.out.println();
-        System.out.println("Chaque transaction comporte un nom et une liste d'arguments");
-        System.out.println("separes par des espaces. La liste peut etre vide.");
-        System.out.println(" Les dates sont en format yyyy-mm-dd.");
-        System.out.println("");
-        System.out.println("Les transactions sont :");
-        System.out.println("  aide");
-        System.out.println("  exit");
-        System.out.println("  acquerir <titre> <auteur> <dateAcquisition>");
-        System.out.println("  preter <idMembre> <idLivre>");
-        System.out.println("  renouveler <idLivre>");
-        System.out.println("  retourner <idLivre>");
-        System.out.println("  vendre <idLivre>");
-        System.out.println("  inscrire <nom> <telephone> <limitePret>");
-        System.out.println("  desinscrire <idMembre>");
-        System.out.println("  reserver <idMembre> <idLivre>");
-        System.out.println("  utiliser <idReservation>");
-        System.out.println("  annuler <idReservation>");
-        //		System.out.println("  listerLivresRetard <dateCourante>");
-        //		System.out.println("  listerLivresTitre <mot>");
-        //		System.out.println("  listerLivres");
+        LOGGER.info("");
+        LOGGER.info("Chaque transaction comporte un nom et une liste d'arguments");
+        LOGGER.info("separes par des espaces. La liste peut etre vide.");
+        LOGGER.info(" Les dates sont en format yyyy-mm-dd.");
+        LOGGER.info("");
+        LOGGER.info("Les transactions sont :");
+        LOGGER.info("  aide");
+        LOGGER.info("  exit");
+        LOGGER.info("  acquerir <titre> <auteur> <dateAcquisition>");
+        LOGGER.info("  preter <idMembre> <idLivre>");
+        LOGGER.info("  renouveler <idLivre>");
+        LOGGER.info("  retourner <idLivre>");
+        LOGGER.info("  vendre <idLivre>");
+        LOGGER.info("  inscrire <nom> <telephone> <limitePret>");
+        LOGGER.info("  desinscrire <idMembre>");
+        LOGGER.info("  reserver <idMembre> <idLivre>");
+        LOGGER.info("  utiliser <idReservation>");
+        LOGGER.info("  annuler <idReservation>");
+        //		LOGGER.info("  listerLivresRetard <dateCourante>");
+        //		LOGGER.info("  listerLivresTitre <mot>");
+        //		LOGGER.info("  listerLivres");
     }
 
     /**

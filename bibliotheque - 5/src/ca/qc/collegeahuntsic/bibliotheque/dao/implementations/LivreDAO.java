@@ -34,7 +34,6 @@ public class LivreDAO extends DAO implements ILivreDAO {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<LivreDTO> findByTitre(Session session,
         String titre,

@@ -20,7 +20,7 @@
                   <value>oracle.jdbc.driver.OracleDriver</value>
         </property>
         <property name="jdbcUrl">
-                  <value>jdbc:oracle:thin:@localhost:1521:orcl</value>
+                  <value>jdbc:oracle:thin:@localhost:1521:xe</value>
         </property>
         <property name="properties">
                   <props>
@@ -193,9 +193,6 @@
                   <bean class="ca.qc.collegeahuntsic.bibliotheque.service.implementations.ReservationService">
                         <constructor-arg>
                           <ref bean="reservationDAO"/>
-                        </constructor-arg>
-                        <constructor-arg>
-                          <ref bean="pretDAO"/>
                         </constructor-arg>
                   </bean>
         </property>

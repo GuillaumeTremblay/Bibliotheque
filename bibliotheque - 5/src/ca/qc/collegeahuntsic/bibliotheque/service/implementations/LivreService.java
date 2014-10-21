@@ -145,7 +145,6 @@ public class LivreService extends Service implements ILivreService {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<LivreDTO> getAllLivres(Session session,
         String sortByPropertyName) throws InvalidHibernateSessionException,

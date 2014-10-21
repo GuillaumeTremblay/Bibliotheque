@@ -23,16 +23,6 @@
              </generator>
          </id>
 
-         <property name="idMembre"
-                   type="string">
-                   <column name="IDMBEMBRE">
-                   </column>
-         </property>
-         <property name="idLivre"
-                   type="string">
-                   <column name="IDLIVRE">
-                   </column>
-         </property>
          <property name="datePret"
                    type="timestamp">
                    <column name="DATEPRET">

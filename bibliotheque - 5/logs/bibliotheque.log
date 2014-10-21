@@ -1,0 +1,58 @@
+2014-10-21 13:34:11-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:37:46-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:38:21-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:38:21-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:41:41-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:42:16-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:42:16-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:57:45-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:58:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:58:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas

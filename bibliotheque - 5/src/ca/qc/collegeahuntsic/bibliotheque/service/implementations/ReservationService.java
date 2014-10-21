@@ -146,7 +146,6 @@ public class ReservationService extends Service implements IReservationService {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<ReservationDTO> getAllReservations(Session session,
         String sortByPropertyName) throws InvalidHibernateSessionException,
@@ -182,44 +181,62 @@ public class ReservationService extends Service implements IReservationService {
         if(reservationDTO == null) {
             throw new InvalidDTOException("La réservation ne peut être null");
         }
-        LivreDTO unLivreDTO = reservationDTO.getLivreDTO();
-        List<PretDTO> prets = new ArrayList<>(unLivreDTO.getPrets());
-        if(prets.isEmpty()) {
-            throw new MissingLoanException("Le livre "
-                + unLivreDTO.getTitre()
-                + " (ID de livre : "
-                + unLivreDTO.getIdLivre()
-                + ") n'est pas encore prêté");
-        }
-        MembreDTO unMembreDTO = reservationDTO.getMembreDTO();
-        boolean aEteEmprunteParMembre = false;
-        for(PretDTO pretDTO : prets) {
-            aEteEmprunteParMembre = unMembreDTO.equals(pretDTO.getMembreDTO());
-        }
-        if(aEteEmprunteParMembre) {
-            throw new ExistingLoanException("Le livre "
-                + unLivreDTO.getTitre()
-                + " (ID de livre : "
-                + unLivreDTO.getIdLivre()
-                + ") est déjà prêté à "
-                + unMembreDTO.getNom()
-                + " (ID de membre : "
-                + unMembreDTO.getIdMembre()
-                + ")");
-        }
-        List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
-        for(ReservationDTO uneAutreReservationDTO : reservations) {
-            if(unLivreDTO.equals(uneAutreReservationDTO.getLivreDTO())) {
-                throw new ExistingReservationException("Le livre "
+        try {
+            MembreDTO unMembreDTO = (MembreDTO) getReservationDAO().get(session,
+                reservationDTO.getMembreDTO().getIdMembre());
+            if(unMembreDTO == null) {
+                throw new MissingDTOException("Le membre "
+                    + reservationDTO.getMembreDTO().getIdMembre()
+                    + " n'existe pas");
+            }
+            LivreDTO unLivreDTO = (LivreDTO) getReservationDAO().get(session,
+                reservationDTO.getLivreDTO().getIdLivre());
+            if(unLivreDTO == null) {
+                throw new MissingDTOException("Le livre "
+                    + reservationDTO.getLivreDTO().getIdLivre()
+                    + " n'existe pas");
+            }
+            List<PretDTO> prets = new ArrayList<>(unLivreDTO.getPrets());
+            if(prets.isEmpty()) {
+                throw new MissingLoanException("Le livre "
                     + unLivreDTO.getTitre()
                     + " (ID de livre : "
                     + unLivreDTO.getIdLivre()
-                    + ") est déjà réservé pour quelqu'un d'autre");
+                    + ") n'est pas encore prêté");
             }
+            boolean aEteEmprunteParMembre = false;
+            for(PretDTO pretDTO : prets) {
+                aEteEmprunteParMembre = unMembreDTO.equals(pretDTO.getMembreDTO());
+            }
+            if(aEteEmprunteParMembre) {
+                throw new ExistingLoanException("Le livre "
+                    + unLivreDTO.getTitre()
+                    + " (ID de livre : "
+                    + unLivreDTO.getIdLivre()
+                    + ") est déjà prêté à "
+                    + unMembreDTO.getNom()
+                    + " (ID de membre : "
+                    + unMembreDTO.getIdMembre()
+                    + ")");
+            }
+            List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
+            for(ReservationDTO uneAutreReservationDTO : reservations) {
+                if(unLivreDTO.equals(uneAutreReservationDTO.getLivreDTO())) {
+                    throw new ExistingReservationException("Le livre "
+                        + unLivreDTO.getTitre()
+                        + " (ID de livre : "
+                        + unLivreDTO.getIdLivre()
+                        + ") est déjà réservé pour quelqu'un d'autre");
+                }
+            }
+            reservationDTO.setDateReservation(new Timestamp(System.currentTimeMillis()));
+            reservationDTO.setMembreDTO(unMembreDTO);
+            reservationDTO.setLivreDTO(unLivreDTO);
+            addReservation(session,
+                reservationDTO);
+        } catch(DAOException daoException) {
+            throw new ServiceException(daoException);
         }
-        reservationDTO.setDateReservation(new Timestamp(System.currentTimeMillis()));
-        addReservation(session,
-            reservationDTO);
     }
 
     /**
@@ -252,8 +269,8 @@ public class ReservationService extends Service implements IReservationService {
                     + reservationDTO.getIdReservation()
                     + " n'existe pas");
             }
-            LivreDTO unLivreDTO = reservationDTO.getLivreDTO();
-            MembreDTO unMembreDTO = reservationDTO.getMembreDTO();
+            LivreDTO unLivreDTO = uneReservationDTO.getLivreDTO();
+            MembreDTO unMembreDTO = uneReservationDTO.getMembreDTO();
             List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
             if(!reservations.isEmpty()) {
                 uneReservationDTO = reservations.get(0);
@@ -296,7 +313,6 @@ public class ReservationService extends Service implements IReservationService {
             annuler(session,
                 uneReservationDTO);
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) + 1));
-            //not sure par Chou
             getReservationDAO().update(session,
                 unMembreDTO);
             PretDTO unPretDTO = new PretDTO();
@@ -304,7 +320,6 @@ public class ReservationService extends Service implements IReservationService {
             unPretDTO.setLivreDTO(unLivreDTO);
             unPretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
             unPretDTO.setDateRetour(null);
-            //not sure par CHOU
             getReservationDAO().add(session,
                 unPretDTO);
         } catch(DAOException daoException) {

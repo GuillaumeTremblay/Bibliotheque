@@ -36,7 +36,6 @@ public class MembreDAO extends DAO implements IMembreDAO {
      * {@inheritDoc}
      * @throws InvalidCriterionValueException
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<MembreDTO> findByNom(Session session,
         String nom,
