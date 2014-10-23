@@ -129,3 +129,52 @@
 2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
 2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
 2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:20:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 13:20:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:30:21-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:51:25-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:56:14-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:56:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 13:56:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 13:59:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 13:59:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:00:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:00:43-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:02:03-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:02:03-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:17:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:20:31-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:20:31-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:21:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:21:17-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:21:17-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:21:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:21:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:25:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:37:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:37:38-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:41:16-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:41:20-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 14:41:20-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:43:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:43:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 14:44:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:44:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas

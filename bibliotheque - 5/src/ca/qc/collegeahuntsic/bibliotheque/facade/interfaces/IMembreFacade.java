@@ -4,8 +4,6 @@
 
 package ca.qc.collegeahuntsic.bibliotheque.facade.interfaces;
 
-import org.hibernate.Session;
-
 import ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.dao.InvalidHibernateSessionException;
@@ -17,6 +15,7 @@ import ca.qc.collegeahuntsic.bibliotheque.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliotheque.exception.service.ExistingReservationException;
+import org.hibernate.Session;
 
 /**
  * Interface de façade pour manipuler les membres dans la base de données.
@@ -67,5 +66,10 @@ public interface IMembreFacade extends IFacade {
         InvalidCriterionException,
         InvalidSortByPropertyException,
         ExistingReservationException,
+        FacadeException;
+
+    public MembreDTO getMembre(Session session,
+        String idMembre) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
         FacadeException;
 }

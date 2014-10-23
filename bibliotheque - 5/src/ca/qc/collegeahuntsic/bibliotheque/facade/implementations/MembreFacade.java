@@ -103,4 +103,17 @@ public class MembreFacade extends Facade implements IMembreFacade {
             throw new FacadeException(serviceException);
         }
     }
+
+    @Override
+    public MembreDTO getMembre(Session session,
+        String idMembre) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        FacadeException {
+        try {
+            return getMembreService().getMembre(session,
+                idMembre);
+        } catch(ServiceException e) {
+            throw new FacadeException(e);
+        }
+    }
 }

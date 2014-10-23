@@ -67,4 +67,9 @@ public interface ILivreFacade extends IFacade {
         ExistingLoanException,
         ExistingReservationException,
         FacadeException;
+
+    public LivreDTO getLivre(Session session,
+        String idLivre) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        FacadeException;
 }
