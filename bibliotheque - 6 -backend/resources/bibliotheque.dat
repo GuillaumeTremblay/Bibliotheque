@@ -1,0 +1,95 @@
+-- *********** cas sans erreur *********
+--
+-- création des membres
+inscrire Gilles 5143895921 1
+inscrire Antonio 5143895921 2
+inscrire Aïcha 5143895921 2
+--
+--
+-- création des livres
+acquerir Life_&_Games_of_Mikhail_Tal Mikhail_Tal 2014-01-03
+acquerir Game_of_Thrones_Tome_1 George_R._R._Martin 2014-01-04
+acquerir Dune Frank_Herbert 2014-01-05
+--
+--
+-- prêts et réservations
+preter 1 1
+renouveler 1
+reserver 2 1
+reserver 3 1
+retourner 1
+utiliser 1
+retourner 2
+annuler 2
+--
+--
+--
+--
+-- *********** cas d'erreur *********
+--
+-- *** Prêts ***
+--
+-- erreur : livre inexistant
+preter 1 999
+--
+--
+-- erreur : membre inexistant
+preter 999 1
+--
+--
+-- création d'un prêt
+preter 1 1
+--
+--
+-- erreur : livre en cours de prêt
+vendre 1
+--
+--
+-- erreur : livre déjà prété
+preter 2 1
+--
+--
+-- erreur : limite de prêt atteinte
+preter 1 2
+--
+--
+-- réservation de livres
+reserver 2 1
+reserver 3 1
+--
+--
+-- retour du livre 1 (prêt 3)
+retourner 3
+--
+--
+-- erreur : livre réservé
+preter 3 1
+--
+--
+-- erreur : retourner livre non prêté
+retourner 3
+--
+--
+--
+--
+-- *** Réservations ***
+--
+-- erreur : livre inexistant
+reserver 2 998
+--
+--
+-- créer des prêts
+preter 2 2
+preter 2 3
+--
+--
+-- erreur : membre inexistant
+reserver 998 2
+--
+--
+-- erreur : livre réservé
+utiliser 4
+--
+--
+-- erreur : limite de prêt atteinte
+utiliser 3

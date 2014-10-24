@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" additionalparam="-encoding UTF-8 -docencoding UTF-8 -charset UTF-8 " author="true" classpath="lib/ojdbc7.jar;lib/commons-lang3-3.3.2.jar" destdir="javadoc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="ca.qc.collegeahuntsic.bibliotheque_backend.exception.db,ca.qc.collegeahuntsic.bibliotheque_backend.exception.dto,ca.qc.collegeahuntsic.bibliotheque_backend.dao.implementations,ca.qc.collegeahuntsic.bibliotheque_backend.facade.implementations,ca.qc.collegeahuntsic.bibliotheque_backend.util,ca.qc.collegeahuntsic.bibliotheque_backend.service.interfaces,ca.qc.collegeahuntsic.bibliotheque_backend.exception.service,ca.qc.collegeahuntsic.bibliotheque_backend.db,ca.qc.collegeahuntsic.bibliotheque_backend.exception,ca.qc.collegeahuntsic.bibliotheque_backend.dto,ca.qc.collegeahuntsic.bibliotheque_backend.exception.util,ca.qc.collegeahuntsic.bibliotheque_backend.exception.facade,ca.qc.collegeahuntsic.bibliotheque_backend.facade.interfaces,ca.qc.collegeahuntsic.bibliotheque_backend.dao.interfaces,ca.qc.collegeahuntsic.bibliotheque_backend.exception.dao,ca.qc.collegeahuntsic.bibliotheque,ca.qc.collegeahuntsic.bibliotheque_backend.service.implementations" source="1.7" sourcepath="src;resources" splitindex="true" use="true" version="true">
+            <link href="http://commons.apache.org/proper/commons-lang/javadocs/api-3.1/"/>
+            <link href="http://docs.oracle.com/javase/7/docs/api/"/>
+        </javadoc>
+    </target>
+</project>
