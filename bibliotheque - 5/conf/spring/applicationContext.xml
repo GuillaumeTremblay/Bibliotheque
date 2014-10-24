@@ -194,6 +194,9 @@
                         <constructor-arg>
                           <ref bean="reservationDAO"/>
                         </constructor-arg>
+                        <constructor-arg>
+                          <ref bean="pretDAO"/>
+                        </constructor-arg>
                   </bean>
         </property>
   </bean>
