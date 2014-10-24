@@ -1,0 +1,445 @@
+2014-10-21 13:34:11-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:37:46-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:38:21-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:38:21-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:41:41-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:42:16-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:42:16-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:57:45-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:58:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 13:58:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-21 14:32:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-21 14:33:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:05-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:01:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-22 12:01:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-22 12:01:06-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-22 12:02:42-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-22 12:07:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:40:48-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 3 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-10-22 12:57:55-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:20:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 13:20:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:30:21-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:51:25-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:56:14-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 13:56:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 13:56:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 13:59:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 13:59:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:00:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:00:43-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:02:03-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:02:03-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:17:35-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:20:31-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:20:31-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:21:07-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:21:17-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:21:17-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:21:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:21:33-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-22 14:25:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-22 14:37:11-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:37:38-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:41:16-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:41:20-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 14:41:20-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-22 14:43:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:43:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-22 14:44:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-22 14:44:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-23 12:44:47-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:44:47-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:44:47-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:44:47-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:44:47-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013014) violated
+
+2014-10-23 12:44:47-[main][ERROR][org.hibernate.event.def.AbstractFlushingEventListener]-Could not synchronize database state with session
+org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:71)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2430)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:2312)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2612)
+	at org.hibernate.action.EntityUpdateAction.execute(EntityUpdateAction.java:96)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:279)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:263)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:168)
+	at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+	at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+	at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+	at org.hibernate.impl.SessionImpl.managedFlush(SessionImpl.java:338)
+	at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:106)
+	at ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur.commitTransaction(BibliothequeCreateur.java:249)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.executerTransaction(Bibliotheque.java:185)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.traiterTransactions(Bibliotheque.java:99)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.main(Bibliotheque.java:81)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013014) violated
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeUpdate(NewProxyPreparedStatement.java:105)
+	at org.hibernate.jdbc.NonBatchingBatcher.addToBatch(NonBatchingBatcher.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2408)
+	... 15 more
+2014-10-23 12:44:47-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre 999 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre 998 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Game_of_Thrones_Tome_1 (ID de livre : 2) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-10-23 12:47:12-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:53:26-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:53:26-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:53:26-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:53:26-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:53:26-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+2014-10-23 12:53:26-[main][ERROR][org.hibernate.event.def.AbstractFlushingEventListener]-Could not synchronize database state with session
+org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:71)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2430)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:2312)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2612)
+	at org.hibernate.action.EntityUpdateAction.execute(EntityUpdateAction.java:96)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:279)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:263)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:168)
+	at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+	at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+	at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+	at org.hibernate.impl.SessionImpl.managedFlush(SessionImpl.java:338)
+	at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:106)
+	at ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur.commitTransaction(BibliothequeCreateur.java:249)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.executerTransaction(Bibliotheque.java:185)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.traiterTransactions(Bibliotheque.java:99)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.main(Bibliotheque.java:81)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeUpdate(NewProxyPreparedStatement.java:105)
+	at org.hibernate.jdbc.NonBatchingBatcher.addToBatch(NonBatchingBatcher.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2408)
+	... 15 more
+2014-10-23 12:53:26-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+2014-10-23 12:57:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:57:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:57:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:57:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:57:36-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+2014-10-23 12:57:36-[main][ERROR][org.hibernate.event.def.AbstractFlushingEventListener]-Could not synchronize database state with session
+org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:71)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2430)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:2312)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2612)
+	at org.hibernate.action.EntityUpdateAction.execute(EntityUpdateAction.java:96)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:279)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:263)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:168)
+	at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+	at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+	at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+	at org.hibernate.impl.SessionImpl.managedFlush(SessionImpl.java:338)
+	at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:106)
+	at ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur.commitTransaction(BibliothequeCreateur.java:249)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.executerTransaction(Bibliotheque.java:185)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.traiterTransactions(Bibliotheque.java:99)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.main(Bibliotheque.java:81)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeUpdate(NewProxyPreparedStatement.java:105)
+	at org.hibernate.jdbc.NonBatchingBatcher.addToBatch(NonBatchingBatcher.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2408)
+	... 15 more
+2014-10-23 12:57:36-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+2014-10-23 12:58:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 12:58:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 12:58:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:58:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 12:58:15-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+2014-10-23 12:58:15-[main][ERROR][org.hibernate.event.def.AbstractFlushingEventListener]-Could not synchronize database state with session
+org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:71)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2430)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:2312)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2612)
+	at org.hibernate.action.EntityUpdateAction.execute(EntityUpdateAction.java:96)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:279)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:263)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:168)
+	at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+	at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+	at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+	at org.hibernate.impl.SessionImpl.managedFlush(SessionImpl.java:338)
+	at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:106)
+	at ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur.commitTransaction(BibliothequeCreateur.java:249)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.executerTransaction(Bibliotheque.java:185)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.traiterTransactions(Bibliotheque.java:99)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.main(Bibliotheque.java:81)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013132) violated
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeUpdate(NewProxyPreparedStatement.java:105)
+	at org.hibernate.jdbc.NonBatchingBatcher.addToBatch(NonBatchingBatcher.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2408)
+	... 15 more
+2014-10-23 12:58:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+2014-10-23 13:03:14-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:28-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:29-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-10-23 13:04:29-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre 999 n'existe pas
+2014-10-23 13:04:29-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-10-23 13:04:29-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:29-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre 998 n'existe pas
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Game_of_Thrones_Tome_1 (ID de livre : 2) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:04:30-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-10-23 13:12:50-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:33:37-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-23 13:33:37-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-23 13:33:37-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 13:33:37-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-23 13:33:37-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013300) violated
+
+2014-10-23 13:33:37-[main][ERROR][org.hibernate.event.def.AbstractFlushingEventListener]-Could not synchronize database state with session
+org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:71)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2430)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:2312)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2612)
+	at org.hibernate.action.EntityUpdateAction.execute(EntityUpdateAction.java:96)
+	at org.hibernate.engine.ActionQueue.execute(ActionQueue.java:279)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:263)
+	at org.hibernate.engine.ActionQueue.executeActions(ActionQueue.java:168)
+	at org.hibernate.event.def.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:298)
+	at org.hibernate.event.def.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:27)
+	at org.hibernate.impl.SessionImpl.flush(SessionImpl.java:1000)
+	at org.hibernate.impl.SessionImpl.managedFlush(SessionImpl.java:338)
+	at org.hibernate.transaction.JDBCTransaction.commit(JDBCTransaction.java:106)
+	at ca.qc.collegeahuntsic.bibliotheque.util.BibliothequeCreateur.commitTransaction(BibliothequeCreateur.java:249)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.executerTransaction(Bibliotheque.java:185)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.traiterTransactions(Bibliotheque.java:99)
+	at ca.qc.collegeahuntsic.bibliotheque.Bibliotheque.main(Bibliotheque.java:81)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check constraint (BIBLIOTHEQUE.SYS_C0013300) violated
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeUpdate(NewProxyPreparedStatement.java:105)
+	at org.hibernate.jdbc.NonBatchingBatcher.addToBatch(NonBatchingBatcher.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:2408)
+	... 15 more
+2014-10-23 13:33:37-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.exception.ConstraintViolationException: could not update: [ca.qc.collegeahuntsic.bibliotheque.dto.MembreDTO#1]
+2014-10-23 13:48:28-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: org.hibernate.ObjectDeletedException: deleted object would be re-saved by cascade (remove deleted object from associations): [ca.qc.collegeahuntsic.bibliotheque.dto.ReservationDTO#1]
+2014-10-23 14:01:18-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
+2014-10-23 14:05:15-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-java.lang.NullPointerException
