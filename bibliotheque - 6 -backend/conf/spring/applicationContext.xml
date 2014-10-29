@@ -118,9 +118,9 @@
   <bean name="livreDAO"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.dao.implementations.LivreDAO">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.LivreDAO">
                         <constructor-arg>
-                          <value>ca.qc.collegeahuntsic.bibliotheque_backend.dto.LivreDTO</value>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO</value>
                         </constructor-arg>
                   </bean>
         </property>
@@ -128,9 +128,9 @@
   <bean name="membreDAO"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.dao.implementations.MembreDAO">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.MembreDAO">
                         <constructor-arg>
-                          <value>ca.qc.collegeahuntsic.bibliotheque_backend.dto.MembreDTO</value>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.MembreDTO</value>
                         </constructor-arg>
                   </bean>
         </property>
@@ -138,9 +138,9 @@
   <bean name="pretDAO"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.dao.implementations.PretDAO">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.PretDAO">
                         <constructor-arg>
-                          <value>ca.qc.collegeahuntsic.bibliotheque_backend.dto.PretDTO</value>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.PretDTO</value>
                         </constructor-arg>
                   </bean>
         </property>
@@ -148,9 +148,9 @@
   <bean name="reservationDAO"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.dao.implementations.ReservationDAO">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.ReservationDAO">
                         <constructor-arg>
-                          <value>ca.qc.collegeahuntsic.bibliotheque_backend.dto.ReservationDTO</value>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO</value>
                         </constructor-arg>
                   </bean>
         </property>
@@ -160,7 +160,7 @@
   <bean name="livreService"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.service.implementations.LivreService">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.service.implementations.LivreService">
                         <constructor-arg>
                           <ref bean="livreDAO"/>
                         </constructor-arg>
@@ -170,7 +170,7 @@
   <bean name="membreService"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.service.implementations.MembreService">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.service.implementations.MembreService">
                         <constructor-arg>
                           <ref bean="membreDAO"/>
                         </constructor-arg>
@@ -180,7 +180,7 @@
   <bean name="pretService"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.service.implementations.PretService">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.service.implementations.PretService">
                         <constructor-arg>
                           <ref bean="pretDAO"/>
                         </constructor-arg>
@@ -190,7 +190,7 @@
   <bean name="reservationService"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.service.implementations.ReservationService">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.service.implementations.ReservationService">
                         <constructor-arg>
                           <ref bean="reservationDAO"/>
                         </constructor-arg>
@@ -205,7 +205,7 @@
   <bean name="livreFacade"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.facade.implementations.LivreFacade">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations.LivreFacade">
                         <constructor-arg>
                           <ref bean="livreService"/>
                         </constructor-arg>
@@ -215,7 +215,7 @@
   <bean name="membreFacade"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.facade.implementations.MembreFacade">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations.MembreFacade">
                         <constructor-arg>
                           <ref bean="membreService"/>
                         </constructor-arg>
@@ -225,7 +225,7 @@
   <bean name="pretFacade"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.facade.implementations.PretFacade">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations.PretFacade">
                         <constructor-arg>
                           <ref bean="pretService"/>
                         </constructor-arg>
@@ -235,7 +235,7 @@
   <bean name="reservationFacade"
         parent="transactionProxy">
         <property name="target">
-                  <bean class="ca.qc.collegeahuntsic.bibliotheque_backend.facade.implementations.ReservationFacade">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations.ReservationFacade">
                         <constructor-arg>
                           <ref bean="reservationService"/>
                         </constructor-arg>
