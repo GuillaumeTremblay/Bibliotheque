@@ -80,10 +80,10 @@
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="mappingResources">
                   <list>
-                    <value>ca/qc/collegeahuntsic/bibliotheque_backend/dto/LivreDTO.hbm.xml</value>
-                    <value>ca/qc/collegeahuntsic/bibliotheque_backend/dto/MembreDTO.hbm.xml</value>
-                    <value>ca/qc/collegeahuntsic/bibliotheque_backend/dto/PretDTO.hbm.xml</value>
-                    <value>ca/qc/collegeahuntsic/bibliotheque_backend/dto/ReservationDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliothequeBackEnd/dto/LivreDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliothequeBackEnd/dto/MembreDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliothequeBackEnd/dto/PretDTO.hbm.xml</value>
+                    <value>ca/qc/collegeahuntsic/bibliothequeBackEnd/dto/ReservationDTO.hbm.xml</value>
                   </list>
         </property>
         <property name="hibernateProperties">
