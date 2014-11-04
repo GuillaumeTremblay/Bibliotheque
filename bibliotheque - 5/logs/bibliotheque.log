@@ -699,3 +699,71 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check c
 2014-10-29 12:32:52-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque_backend.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
 2014-10-29 12:32:52-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque_backend.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
 2014-10-29 12:32:52-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque_backend.Bibliotheque]-**** Le nombre de prets du membre est négative
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le nombre de prets du membre est négative
+2014-10-29 13:23:38-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.BibliothequeException: org.hibernate.ObjectDeletedException: deleted object would be re-saved by cascade (remove deleted object from associations): [ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO#1]
+2014-10-29 13:26:13-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-29 13:26:13-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-29 13:26:13-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:26:13-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:26:13-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le nombre de prets du membre est négative
+2014-10-29 13:26:55-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-10-29 13:26:55-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-10-29 13:26:55-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:26:55-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-10-29 13:26:55-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le nombre de prets du membre est négative
+2014-10-29 13:29:43-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.BibliothequeException: org.hibernate.ObjectDeletedException: deleted object would be re-saved by cascade (remove deleted object from associations): [ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO#1]
+2014-11-04 13:04:57-[main][ERROR][org.hibernate.util.XMLHelper]-Error parsing XML: XML InputStream(39) Attribute "not-null" must be declared for element type "one-to-one".
+2014-11-04 13:04:57-[main][ERROR][org.hibernate.util.XMLHelper]-Error parsing XML: XML InputStream(42) The content of element type "one-to-one" must match "(meta*,formula*)".
+2014-11-04 13:04:57-[main][ERROR][org.hibernate.util.XMLHelper]-Error parsing XML: XML InputStream(45) Attribute "not-null" must be declared for element type "one-to-one".
+2014-11-04 13:04:57-[main][ERROR][org.hibernate.util.XMLHelper]-Error parsing XML: XML InputStream(48) The content of element type "one-to-one" must match "(meta*,formula*)".
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le nombre de prets du membre est négative
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre 999 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Antonio (ID de membre : 2)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Gilles (ID de membre : 1) a atteint sa limite de prêt (1 emprunt(s) maximum)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà prêté à Antonio (ID de membre : 2)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre 998 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Antonio (ID de membre : 2) a atteint sa limite de prêt (2 emprunt(s) maximum)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Antonio (ID de membre : 2) a atteint sa limite de prêt (2 emprunt(s) maximum)
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-11-04 13:07:27-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) n'a pas été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà prêté à Antonio (ID de membre : 2)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) n'a pas été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 1 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 2 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 2 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre 999 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre 999 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Antonio (ID de membre : 2)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Gilles (ID de membre : 1) a atteint sa limite de prêt (1 emprunt(s) maximum)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà prêté à Antonio (ID de membre : 2)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour quelqu'un d'autre
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le prêt 3 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le livre 998 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Antonio (ID de membre : 2) a atteint sa limite de prêt (2 emprunt(s) maximum)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre Antonio (ID de membre : 2) a atteint sa limite de prêt (2 emprunt(s) maximum)
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre 998 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 4 n'existe pas
+2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 3 n'existe pas
