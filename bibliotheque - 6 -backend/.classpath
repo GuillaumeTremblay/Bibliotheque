@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="conf/spring"/>
 	<classpathentry kind="src" path="conf/log4j"/>
-	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/ojdbc7.jar">
 		<attributes>
