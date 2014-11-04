@@ -40,7 +40,6 @@ public class LivreService extends Service implements ILivreService {
      * Crée le service de la table <code>livre</code>.
      *
      * @param livreDAO Le DAO de la table <code>livre</code>
-     * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @throws InvalidDAOException Si le DAO de livre est <code>null</code>, si le DAO de membre est <code>null</code>, si le DAO de prêt est
      *         <code>null</code> ou si le DAO de réservation est <code>null</code>
      */
@@ -210,18 +209,18 @@ public class LivreService extends Service implements ILivreService {
         if(livreDTO == null) {
             throw new InvalidDTOException("Le livre ne peut être null");
         }
-        LivreDTO unLivreDTO = getLivre(session,
+        final LivreDTO unLivreDTO = getLivre(session,
             livreDTO.getIdLivre());
         if(unLivreDTO == null) {
             throw new MissingDTOException("Le livre "
                 + livreDTO.getIdLivre()
                 + " n'existe pas");
         }
-        Set<PretDTO> prets = unLivreDTO.getPrets();
+        final Set<PretDTO> prets = unLivreDTO.getPrets();
         if(!prets.isEmpty()) {
             for(PretDTO pretDTO : prets) {
                 if(pretDTO.getDateRetour() == null) {
-                    MembreDTO emprunteur = pretDTO.getMembreDTO();
+                    final MembreDTO emprunteur = pretDTO.getMembreDTO();
                     throw new ExistingLoanException("Le livre "
                         + unLivreDTO.getTitre()
                         + " (ID de livre : "
@@ -234,9 +233,9 @@ public class LivreService extends Service implements ILivreService {
                 }
             }
         }
-        List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
+        final List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
         if(!reservations.isEmpty()) {
-            ReservationDTO reservationDTO = reservations.get(0);
+            final ReservationDTO reservationDTO = reservations.get(0);
             final MembreDTO booker = reservationDTO.getMembreDTO();
             throw new ExistingReservationException("Le livre "
                 + unLivreDTO.getTitre()

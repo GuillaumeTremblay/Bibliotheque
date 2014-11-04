@@ -126,8 +126,8 @@ public class DTO implements Serializable {
             + Constants.OPENING_BRACE.toString();
         try {
             final BeanInfo beanInfo = Introspector.getBeanInfo(getClass());
-            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-            List<PropertyDescriptor> properties = Arrays.asList(propertyDescriptors);
+            final PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+            final List<PropertyDescriptor> properties = Arrays.asList(propertyDescriptors);
             String propertyName = null;
             Method getter = null;
             for(PropertyDescriptor property : properties) {

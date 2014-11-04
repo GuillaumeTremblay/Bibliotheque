@@ -23,6 +23,12 @@ public final class FormatteurDate {
         FormatteurDate.SIMPLE_DATE_FORMAT.setLenient(false);
     }
 
+    /**.
+     * 
+     * Formatte la Date
+     *
+     */
+
     private FormatteurDate() {
         super();
     }
@@ -35,8 +41,8 @@ public final class FormatteurDate {
      * @throws ParseException Si la chaîne de caractères n'est pas formatée correctement
      */
     public static Timestamp timestampValue(String date) throws ParseException {
-        Date dateFormatee = FormatteurDate.SIMPLE_DATE_FORMAT.parse(date);
-        Timestamp timestamp = new Timestamp(dateFormatee.getTime());
+        final Date dateFormatee = FormatteurDate.SIMPLE_DATE_FORMAT.parse(date);
+        final Timestamp timestamp = new Timestamp(dateFormatee.getTime());
         return timestamp;
     }
 
@@ -45,11 +51,10 @@ public final class FormatteurDate {
      * 
      * @param timestamp Le {@link java.sql.Timestamp}
      * @return La chaîne de caractères issue de la conversion
-     * @throws ParseException Si le {@link java.sql.Timestamp} n'est pas formaté correctement
      */
     public static String stringValue(Timestamp timestamp) {
         final Date date = new Date(timestamp.getTime());
-        String dateFormatee = FormatteurDate.SIMPLE_DATE_FORMAT.format(date);
+        final String dateFormatee = FormatteurDate.SIMPLE_DATE_FORMAT.format(date);
         return dateFormatee;
     }
 }

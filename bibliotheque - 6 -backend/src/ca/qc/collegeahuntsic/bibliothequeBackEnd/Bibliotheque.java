@@ -71,11 +71,11 @@ public final class Bibliotheque {
         super();
     }
 
-    /**
+    /**.
      * 
      * TODO Auto-generated method javadoc
      *
-     * @param argv
+     * @param argv Tableau
      * @throws Exception
      */
     public static void main(String[] argv) throws Exception {
@@ -329,7 +329,7 @@ public final class Bibliotheque {
      * 
      * Vérifie si la fin du traitement des transactions est
      * atteinte.
-     * @param transaction
+     * @param transaction La transaction à uttiliser 
      * @return
      */
     static boolean finTransaction(String transaction) {
@@ -356,7 +356,7 @@ public final class Bibliotheque {
      * lecture d'une chaîne de caractères de la transaction entrée à l'écran
      *
      * @param tokenizer
-     * @return
+     * @return String
      * @throws BibliothequeException
      */
     static String readString(StringTokenizer tokenizer) throws BibliothequeException {
@@ -366,12 +366,17 @@ public final class Bibliotheque {
         throw new BibliothequeException("autre paramètre attendu");
     }
 
-    /**
-     * lecture d'un int java de la transaction entrée à l'écran
+    /**.
+     * 
+     *  lecture d'un int java de la transaction entrée à l'écran
+     *
+     * @param tokenizer ID en string
+     * @return int ID en int
+     * @throws BibliothequeException Si l'ID ne peut etre transformé en Int
      */
     static int readInt(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
-            String token = tokenizer.nextToken();
+            final String token = tokenizer.nextToken();
             try {
                 return Integer.valueOf(token).intValue();
             } catch(NumberFormatException e) {
@@ -389,7 +394,7 @@ public final class Bibliotheque {
      */
     static long readLong(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
-            String token = tokenizer.nextToken();
+            final String token = tokenizer.nextToken();
             try {
                 return Long.valueOf(token).longValue();
             } catch(NumberFormatException e) {
@@ -402,12 +407,17 @@ public final class Bibliotheque {
         throw new BibliothequeException("autre paramètre attendu");
     }
 
-    /**
+    /**.
+     * 
      * lecture d'une date en format YYYY-MM-DD
+     *
+     * @param tokenizer Date en string
+     * @return Timestamp Date en Timestamp
+     * @throws BibliothequeException Si la date ne peut etre transformé en Timestamp
      */
     static Timestamp readDate(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
-            String token = tokenizer.nextToken();
+            final String token = tokenizer.nextToken();
             try {
                 return FormatteurDate.timestampValue(token);
             } catch(ParseException e) {

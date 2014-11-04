@@ -105,7 +105,7 @@ public class DAO implements Idao {
             throw new InvalidPrimaryKeyException("La clef primaire ne peut être null");
         }
         try {
-            DTO dto = (DTO) session.get(getDtoClass(),
+            final DTO dto = (DTO) session.get(getDtoClass(),
                 primaryKey);
             return dto;
         } catch(HibernateException hibernateException) {

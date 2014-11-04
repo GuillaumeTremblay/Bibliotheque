@@ -37,7 +37,6 @@ public class MembreService extends Service implements IMembreService {
      * Crée le service de la table <code>membre</code>.
      *
      * @param membreDAO Le DAO de la table <code>membre</code>
-     * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @throws InvalidDAOException Si le DAO de membre est <code>null</code> ou si le DAO de réservation est <code>null</code>
      */
     MembreService(IMembreDAO membreDAO) throws InvalidDAOException {
@@ -207,7 +206,7 @@ public class MembreService extends Service implements IMembreService {
             throw new InvalidDTOException("Le membre ne peut être null");
         }
         try {
-            MembreDTO unMembreDTO = getMembre(session,
+            final MembreDTO unMembreDTO = getMembre(session,
                 membreDTO.getIdMembre());
             if(unMembreDTO == null) {
                 throw new MissingDTOException("Le membre "
@@ -221,7 +220,7 @@ public class MembreService extends Service implements IMembreService {
                     + unMembreDTO.getIdMembre()
                     + ") a encore des prêts");
             }
-            List<ReservationDTO> reservations = new ArrayList<>(unMembreDTO.getReservations());
+            final List<ReservationDTO> reservations = new ArrayList<>(unMembreDTO.getReservations());
             if(!reservations.isEmpty()) {
                 throw new ExistingReservationException("Le membre "
                     + unMembreDTO.getNom()

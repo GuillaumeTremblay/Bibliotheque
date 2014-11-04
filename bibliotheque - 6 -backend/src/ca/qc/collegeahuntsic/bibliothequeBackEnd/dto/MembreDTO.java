@@ -186,7 +186,7 @@ public final class MembreDTO extends DTO {
             equals = obj != null
                 && obj instanceof MembreDTO;
             if(equals) {
-                MembreDTO membreDTO = (MembreDTO) obj;
+                final MembreDTO membreDTO = (MembreDTO) obj;
                 final EqualsBuilder equalsBuilder = new EqualsBuilder();
                 equalsBuilder.appendSuper(super.equals(membreDTO));
                 equalsBuilder.append(getIdMembre(),

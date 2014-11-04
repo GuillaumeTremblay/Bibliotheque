@@ -53,6 +53,7 @@ public interface IPretDAO extends Idao {
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
+     * @throws InvalidCriterionValueException Si le nom est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
     List<PretDTO> findPretByDateRetour(Session session,

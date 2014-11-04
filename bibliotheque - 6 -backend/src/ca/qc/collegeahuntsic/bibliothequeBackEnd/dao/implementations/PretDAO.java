@@ -49,12 +49,12 @@ public class PretDAO extends DAO implements IPretDAO {
         InvalidSortByPropertyException,
         DAOException {
         final Date dateDebut = BibliothequeDate.getStartDate(datePret);
-        Date dateFin = BibliothequeDate.getEndDate(datePret);
+        final Date dateFin = BibliothequeDate.getEndDate(datePret);
         final Criteria cr = session.createCriteria(getDtoClass());
         cr.add(Restrictions.between(sortByPropertyName,
             dateDebut,
             dateFin));
-        List<PretDTO> prets = cr.list();
+        final List<PretDTO> prets = cr.list();
         return prets;
     }
 
@@ -70,12 +70,12 @@ public class PretDAO extends DAO implements IPretDAO {
         InvalidSortByPropertyException,
         DAOException {
         final Date dateDebut = BibliothequeDate.getStartDate(dateRetour);
-        Date dateFin = BibliothequeDate.getEndDate(dateRetour);
+        final Date dateFin = BibliothequeDate.getEndDate(dateRetour);
         final Criteria cr = session.createCriteria(getDtoClass());
         cr.add(Restrictions.between(sortByPropertyName,
             dateDebut,
             dateFin));
-        List<PretDTO> prets = cr.list();
+        final List<PretDTO> prets = cr.list();
         return prets;
     }
 }

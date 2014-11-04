@@ -92,7 +92,7 @@ public interface ILivreService extends IService {
     /**
      * Trouve tous les livres de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * livre n'est trouvé, une {@link List} vide est retournée.
-     * 
+     * @param sortByPropertyName La colonne à utiliser pour trier la requete
      * @param session La session à utiliser la propriété à utiliser pour classer
      * @return La liste de tous les livres ; une liste vide sinon
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -134,7 +134,6 @@ public interface ILivreService extends IService {
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du livre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void acquerir(Session session,
@@ -158,7 +157,6 @@ public interface ILivreService extends IService {
      * @throws ExistingLoanException Si le livre a été prêté
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidCriterionValueException 
      */
     void vendre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,

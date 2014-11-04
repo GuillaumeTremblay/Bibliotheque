@@ -39,7 +39,7 @@ public interface ILivreFacade extends IFacade {
         InvalidDTOClassException,
         FacadeException;
 
-    /**
+    /**.
      * Vend un livre
      * 
      * @param session La session à utiliser
@@ -67,7 +67,18 @@ public interface ILivreFacade extends IFacade {
         ExistingReservationException,
         FacadeException;
 
-    public LivreDTO getLivre(Session session,
+    /**.
+     * 
+     * TODO Auto-generated method javadoc
+     *
+     * @param session La session à utiliser
+     * @param idLivre L'ID du livre à utiliser
+     * @return Un livre DTO
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidPrimaryKeyException  Si la clef primaire du livre est <code>null</code>
+     * @throws FacadeException S'il y a une erreur avec la base de données
+     */
+    LivreDTO getLivre(Session session,
         String idLivre) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         FacadeException;
