@@ -40,8 +40,6 @@ public class LivreService extends Service implements ILivreService {
      * Crée le service de la table <code>livre</code>.
      *
      * @param livreDAO Le DAO de la table <code>livre</code>
-     * @param membreDAO Le DAO de la table <code>membre</code>
-     * @param pretDAO Le DAO de la table <code>pret</code>
      * @param reservationDAO Le DAO de la table <code>reservation</code>
      * @throws InvalidDAOException Si le DAO de livre est <code>null</code>, si le DAO de membre est <code>null</code>, si le DAO de prêt est
      *         <code>null</code> ou si le DAO de réservation est <code>null</code>
@@ -239,7 +237,7 @@ public class LivreService extends Service implements ILivreService {
         List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
         if(!reservations.isEmpty()) {
             ReservationDTO reservationDTO = reservations.get(0);
-            MembreDTO booker = reservationDTO.getMembreDTO();
+            final MembreDTO booker = reservationDTO.getMembreDTO();
             throw new ExistingReservationException("Le livre "
                 + unLivreDTO.getTitre()
                 + " (ID de livre : "

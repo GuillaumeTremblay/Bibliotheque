@@ -95,7 +95,7 @@ public class DTO implements Serializable {
      */
     @Override
     public int hashCode() {
-        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(15,
+        final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(15,
             5);
         return hashCodeBuilder.toHashCode();
     }
@@ -125,7 +125,7 @@ public class DTO implements Serializable {
         String string = Constants.NEW_LINE.toString()
             + Constants.OPENING_BRACE.toString();
         try {
-            BeanInfo beanInfo = Introspector.getBeanInfo(getClass());
+            final BeanInfo beanInfo = Introspector.getBeanInfo(getClass());
             PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
             List<PropertyDescriptor> properties = Arrays.asList(propertyDescriptors);
             String propertyName = null;

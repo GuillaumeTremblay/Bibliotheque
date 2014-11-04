@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
  * Paramètres
  * 0- site du serveur SQL ("local", "distant" ou "postgres")
  * 1- nom de la BD
- * 2- user id pour établir une connexion avec le serveur SQL
+ * 2- user id pour établir une session avec le serveur SQL
  * 3- mot de passe pour le user id
  * 4- fichier de transaction [optionnel]
  *           si non spécifié, les transactions sont lues au
@@ -54,7 +54,7 @@ import org.apache.commons.logging.LogFactory;
  * Post-condition
  *   le programme effectue les maj associées à chaque
  *   transaction
- * </pre>
+ * @author Chou Huynh
  */
 public final class Bibliotheque {
     private static BibliothequeCreateur gestionBiblio;
@@ -71,21 +71,29 @@ public final class Bibliotheque {
         super();
     }
 
-    public static void main(String argv[]) throws Exception {
+    /**
+     * 
+     * TODO Auto-generated method javadoc
+     *
+     * @param argv
+     * @throws Exception
+     */
+    public static void main(String[] argv) throws Exception {
         // validation du nombre de paramï¿½tres
         if(argv.length < 1) {
             LOGGER.info("Usage: java Biblio [<fichier-transactions>]");
         }
 
         // ouverture du fichier de transactions
-        InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
+        final InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
             + argv[0]);
         try(
             BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
             gestionBiblio = new BibliothequeCreateur();
             traiterTransactions(reader);
         } catch(Exception e) {
-            LOGGER.error(e);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -97,8 +105,8 @@ public final class Bibliotheque {
         LOGGER.info("\n\n\n");
         String transaction = lireTransaction(reader);
         while(!finTransaction(transaction)) {
-            /* découpage de la transaction en mots*/
-            StringTokenizer tokenizer = new StringTokenizer(transaction,
+            // découpage de la transaction en mots
+            final StringTokenizer tokenizer = new StringTokenizer(transaction,
                 " ");
             if(tokenizer.hasMoreTokens()) {
                 executerTransaction(tokenizer);
@@ -109,28 +117,30 @@ public final class Bibliotheque {
 
     /**
      * Lecture d'une transaction
+     * @reader 
+     * @return retourne 
      */
     static String lireTransaction(BufferedReader reader) throws IOException {
-        String transaction = reader.readLine();
+        final String transaction = reader.readLine();
         if(transaction != null) {
             LOGGER.info(transaction);
         }
-        /* echo si lecture dans un fichier */
+        // echo si lecture dans un fichier
         return transaction;
     }
 
-    /**
+    /*
      * Décodage et traitement d'une transaction
      */
     static void executerTransaction(StringTokenizer tokenizer) throws BibliothequeException {
         try {
-            String command = tokenizer.nextToken();
+            final String command = tokenizer.nextToken();
 
             if("aide".startsWith(command)) {
                 afficherAide();
             } else if("acquerir".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                LivreDTO livreDTO = new LivreDTO();
+                final LivreDTO livreDTO = new LivreDTO();
                 livreDTO.setTitre(readString(tokenizer));
                 livreDTO.setAuteur(readString(tokenizer));
                 livreDTO.setDateAcquisition(readDate(tokenizer));
@@ -139,8 +149,8 @@ public final class Bibliotheque {
                 gestionBiblio.commitTransaction();
             } else if("vendre".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                String idLivre = readString(tokenizer);
-                LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
+                final String idLivre = readString(tokenizer);
+                final LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
                     idLivre);
                 if(livreDTO == null) {
                     throw new MissingDTOException("Le livre "
@@ -152,17 +162,17 @@ public final class Bibliotheque {
                 gestionBiblio.commitTransaction();
             } else if("preter".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                PretDTO pretDTO = new PretDTO();
-                String idMembre = readString(tokenizer);
-                MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
+                final PretDTO pretDTO = new PretDTO();
+                final String idMembre = readString(tokenizer);
+                final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                     idMembre);
                 if(membreDTO == null) {
                     throw new MissingDTOException("Le membre "
                         + idMembre
                         + " n'existe pas");
                 }
-                String idLivre = readString(tokenizer);
-                LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
+                final String idLivre = readString(tokenizer);
+                final LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
                     idLivre);
                 if(livreDTO == null) {
                     throw new MissingDTOException("Le livre "
@@ -171,26 +181,35 @@ public final class Bibliotheque {
                 }
                 pretDTO.setMembreDTO(membreDTO);
                 pretDTO.setLivreDTO(livreDTO);
+                pretDTO.getMembreDTO().setNbPret(Integer.toString(Integer.parseInt(membreDTO.getNbPret()) + 1));
+                pretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
+                pretDTO.setDateRetour(null);
                 gestionBiblio.getPretFacade().commencer(gestionBiblio.getSession(),
                     pretDTO);
                 gestionBiblio.commitTransaction();
             } else if("renouveler".startsWith(command)) {
+                final String idPret = readString(tokenizer);
                 gestionBiblio.beginTransaction();
-                PretDTO pretDTO = new PretDTO();
-                pretDTO.setIdPret(readString(tokenizer));
+                final PretDTO pretDTO = gestionBiblio.getPretFacade().getPret(gestionBiblio.getSession(),
+                    idPret);
+                if(pretDTO == null) {
+                    throw new MissingDTOException("Le pret "
+                        + idPret
+                        + " n'existe pas");
+                }
                 gestionBiblio.getPretFacade().renouveler(gestionBiblio.getSession(),
                     pretDTO);
                 gestionBiblio.commitTransaction();
             } else if("retourner".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                PretDTO pretDTO = new PretDTO();
+                final PretDTO pretDTO = new PretDTO();
                 pretDTO.setIdPret(readString(tokenizer));
                 gestionBiblio.getPretFacade().terminer(gestionBiblio.getSession(),
                     pretDTO);
                 gestionBiblio.commitTransaction();
             } else if("inscrire".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                MembreDTO membreDTO = new MembreDTO();
+                final MembreDTO membreDTO = new MembreDTO();
                 membreDTO.setNom(readString(tokenizer));
                 membreDTO.setTelephone(readString(tokenizer));
                 membreDTO.setLimitePret(readString(tokenizer));
@@ -200,8 +219,8 @@ public final class Bibliotheque {
                 gestionBiblio.commitTransaction();
             } else if("desinscrire".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                String idMembre = readString(tokenizer);
-                MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
+                final String idMembre = readString(tokenizer);
+                final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                     idMembre);
                 if(membreDTO == null) {
                     throw new MissingDTOException("Le membre "
@@ -215,17 +234,17 @@ public final class Bibliotheque {
                 gestionBiblio.beginTransaction();
                 // Juste pour éviter deux timestamps de réservation strictement identiques
                 Thread.sleep(1);
-                ReservationDTO reservationDTO = new ReservationDTO();
-                String idMembre = readString(tokenizer);
-                MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
+                final ReservationDTO reservationDTO = new ReservationDTO();
+                final String idMembre = readString(tokenizer);
+                final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                     idMembre);
                 if(membreDTO == null) {
                     throw new MissingDTOException("Le membre "
                         + idMembre
                         + " n'existe pas");
                 }
-                String idLivre = readString(tokenizer);
-                LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
+                final String idLivre = readString(tokenizer);
+                final LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
                     idLivre);
                 if(livreDTO == null) {
                     throw new MissingDTOException("Le livre "
@@ -239,14 +258,14 @@ public final class Bibliotheque {
                 gestionBiblio.commitTransaction();
             } else if("utiliser".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                ReservationDTO reservationDTO = new ReservationDTO();
+                final ReservationDTO reservationDTO = new ReservationDTO();
                 reservationDTO.setIdReservation(readString(tokenizer));
                 gestionBiblio.getReservationFacade().utiliser(gestionBiblio.getSession(),
                     reservationDTO);
                 gestionBiblio.commitTransaction();
             } else if("annuler".startsWith(command)) {
                 gestionBiblio.beginTransaction();
-                ReservationDTO reservationDTO = new ReservationDTO();
+                final ReservationDTO reservationDTO = new ReservationDTO();
                 reservationDTO.setIdReservation(readString(tokenizer));
                 gestionBiblio.getReservationFacade().annuler(gestionBiblio.getSession(),
                     reservationDTO);
@@ -307,30 +326,38 @@ public final class Bibliotheque {
     }
 
     /**
+     * 
      * Vérifie si la fin du traitement des transactions est
      * atteinte.
+     * @param transaction
+     * @return
      */
     static boolean finTransaction(String transaction) {
-        /* fin de fichier atteinte */
+        // fin de fichier atteinte 
         if(transaction == null) {
             return true;
         }
 
-        StringTokenizer tokenizer = new StringTokenizer(transaction,
+        final StringTokenizer tokenizer = new StringTokenizer(transaction,
             " ");
 
-        /* ligne ne contenant que des espaces */
+        // ligne ne contenant que des espaces */
         if(!tokenizer.hasMoreTokens()) {
             return false;
         }
 
-        /* commande "exit" */
-        String commande = tokenizer.nextToken();
-        return commande.equals("exit");
+        // commande "exit"
+        final String commande = tokenizer.nextToken();
+        return "exit".equals(commande);
     }
 
     /**
+     * 
      * lecture d'une chaîne de caractères de la transaction entrée à l'écran
+     *
+     * @param tokenizer
+     * @return
+     * @throws BibliothequeException
      */
     static String readString(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
@@ -348,6 +375,7 @@ public final class Bibliotheque {
             try {
                 return Integer.valueOf(token).intValue();
             } catch(NumberFormatException e) {
+                e.getMessage();
                 throw new BibliothequeException("Nombre attendu à la place de \""
                     + token
                     + "\"");
@@ -365,6 +393,7 @@ public final class Bibliotheque {
             try {
                 return Long.valueOf(token).longValue();
             } catch(NumberFormatException e) {
+                e.toString();
                 throw new BibliothequeException("Nombre attendu à la place de \""
                     + token
                     + "\"");
@@ -382,6 +411,7 @@ public final class Bibliotheque {
             try {
                 return FormatteurDate.timestampValue(token);
             } catch(ParseException e) {
+                e.toString();
                 throw new BibliothequeException("Date en format YYYY-MM-DD attendue à la place  de \""
                     + token
                     + "\"");

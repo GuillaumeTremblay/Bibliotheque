@@ -31,12 +31,11 @@ public interface IPretService extends IService {
     /**
      * Ajoute un nouveau prêt dans la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utliser
      * @param pretDTO Le prêt à ajouter
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du prêt est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void addPret(Session session,
@@ -48,10 +47,10 @@ public interface IPretService extends IService {
     /**
      * Lit un prêt à partir de la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param idPret L'ID du prêt à lire
      * @return Le prêt
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du prêt est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -63,9 +62,9 @@ public interface IPretService extends IService {
     /**
      * Met à jour un prêt dans la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à mettre à jour
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -79,9 +78,9 @@ public interface IPretService extends IService {
     /**
      * Supprime un prêt de la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à supprimer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -96,10 +95,10 @@ public interface IPretService extends IService {
      * Trouve tous les prêts de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste de tous les prêts ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -112,11 +111,11 @@ public interface IPretService extends IService {
      * Trouve les prêts à partir d'une date de prêt. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param datePret La date de prêt à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de prêt est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -133,11 +132,11 @@ public interface IPretService extends IService {
      * Trouve les prêts à partir d'une date de retour. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * prêt n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param dateRetour La date de retour à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -153,9 +152,9 @@ public interface IPretService extends IService {
     /**
      * Commence un prêt.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à commencer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du membre est <code>null</code> ou si la clef primaire du livre est
      *         <code>null</code>
@@ -185,9 +184,9 @@ public interface IPretService extends IService {
     /**
      * Renouvelle le prêt d'un livre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à renouveler
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du prêt est <code>null</code>, si la clef primaire du membre est <code>null</code>
      *         ou si la clef primaire du livre est <code>null</code>
@@ -216,9 +215,9 @@ public interface IPretService extends IService {
     /**
      * Termine un prêt.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param pretDTO Le prêt à terminer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du prêt est <code>null</code>, si la clef primaire du membre est <code>null</code>
      *         ou si la clef primaire du livre est <code>null</code>

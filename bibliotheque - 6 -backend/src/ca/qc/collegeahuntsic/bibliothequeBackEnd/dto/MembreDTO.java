@@ -187,7 +187,7 @@ public final class MembreDTO extends DTO {
                 && obj instanceof MembreDTO;
             if(equals) {
                 MembreDTO membreDTO = (MembreDTO) obj;
-                EqualsBuilder equalsBuilder = new EqualsBuilder();
+                final EqualsBuilder equalsBuilder = new EqualsBuilder();
                 equalsBuilder.appendSuper(super.equals(membreDTO));
                 equalsBuilder.append(getIdMembre(),
                     membreDTO.getIdMembre());
@@ -202,7 +202,7 @@ public final class MembreDTO extends DTO {
      */
     @Override
     public int hashCode() {
-        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(461,
+        final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(461,
             451);
         hashCodeBuilder.appendSuper(super.hashCode());
         hashCodeBuilder.append(getIdMembre());

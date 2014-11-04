@@ -44,8 +44,6 @@ public class ReservationService extends Service implements IReservationService {
      * Crée le service de la table <code>reservation</code>.
      *
      * @param reservationDAO Le DAO de la table <code>reservation</code>
-     * @param membreDAO Le DAO de la table <code>membre</code>
-     * @param livreDAO Le DAO de la table <code>livre</code>
      * @param pretDAO Le DAO de la table <code>pret</code>
      * @throws InvalidDAOException Si le DAO de réservation est <code>null</code>, si le DAO de membre est <code>null</code>, si le DAO de livre
      *         est <code>null</code> ou si le DAO de prêt est <code>null</code>
@@ -277,6 +275,8 @@ public class ReservationService extends Service implements IReservationService {
             }
             LivreDTO unLivreDTO = uneReservationDTO.getLivreDTO();
             MembreDTO unMembreDTO = uneReservationDTO.getMembreDTO();
+
+            //ce check creer le bug deleted object would be re-saved by cascade (remove deleted object from associations)
             List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
             if(!reservations.isEmpty()) {
                 uneReservationDTO = reservations.get(0);
@@ -297,7 +297,7 @@ public class ReservationService extends Service implements IReservationService {
             if(!prets.isEmpty()) {
                 PretDTO unPretDTO = prets.get(0);
                 if(unPretDTO.getDateRetour() == null) {
-                    MembreDTO emprunteur = unPretDTO.getMembreDTO();
+                    final MembreDTO emprunteur = unPretDTO.getMembreDTO();
                     throw new ExistingLoanException("Le livre "
                         + unLivreDTO.getTitre()
                         + " (ID de livre : "
@@ -309,6 +309,7 @@ public class ReservationService extends Service implements IReservationService {
                         + ")");
                 }
             }
+
             if(unMembreDTO.getNbPret().equals(unMembreDTO.getLimitePret())) {
                 throw new InvalidLoanLimitException("Le membre "
                     + unMembreDTO.getNom()
@@ -318,6 +319,7 @@ public class ReservationService extends Service implements IReservationService {
                     + unMembreDTO.getLimitePret()
                     + " emprunt(s) maximum)");
             }
+            reservations.remove(reservations.get(0));
             annuler(session,
                 uneReservationDTO);
             unMembreDTO.setNbPret(Integer.toString(Integer.parseInt(unMembreDTO.getNbPret()) + 1));

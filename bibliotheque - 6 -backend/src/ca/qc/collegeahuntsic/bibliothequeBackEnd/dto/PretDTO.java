@@ -188,7 +188,7 @@ public final class PretDTO extends DTO {
                 && obj instanceof PretDTO;
             if(equals) {
                 PretDTO pretDTO = (PretDTO) obj;
-                EqualsBuilder equalsBuilder = new EqualsBuilder();
+                final EqualsBuilder equalsBuilder = new EqualsBuilder();
                 equalsBuilder.appendSuper(super.equals(pretDTO));
                 equalsBuilder.append(getIdPret(),
                     pretDTO.getIdPret());
@@ -203,7 +203,7 @@ public final class PretDTO extends DTO {
      */
     @Override
     public int hashCode() {
-        HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(23,
+        final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder(23,
             13);
         hashCodeBuilder.appendSuper(super.hashCode());
         hashCodeBuilder.append(getIdPret());

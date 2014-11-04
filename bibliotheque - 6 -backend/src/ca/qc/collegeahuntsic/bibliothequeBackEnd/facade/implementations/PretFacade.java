@@ -136,4 +136,20 @@ public class PretFacade extends Facade implements IPretFacade {
             throw new FacadeException(serviceException);
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PretDTO getPret(Session session,
+        String idPret) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
+        FacadeException {
+        try {
+            return getPretService().getPret(session,
+                idPret);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
 }

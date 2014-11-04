@@ -29,12 +29,11 @@ public interface ILivreService extends IService {
     /**
      * Ajoute un nouveau livre dans la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utliser
      * @param livreDTO Le livre à ajouter
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du livre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void addLivre(Session session,
@@ -46,10 +45,10 @@ public interface ILivreService extends IService {
     /**
      * Lit un livre à partir de la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param idLivre L'ID du livre à lire
      * @return Le livre
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidPrimaryKeyException Si la clef primaire du livre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -61,9 +60,9 @@ public interface ILivreService extends IService {
     /**
      * Met à jour un livre dans la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param livreDTO Le livre à mettre à jour
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -77,9 +76,9 @@ public interface ILivreService extends IService {
     /**
      * Supprime un livre de la base de données.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param livreDTO Le livre à supprimer
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -94,10 +93,9 @@ public interface ILivreService extends IService {
      * Trouve tous les livres de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * livre n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
-     * @param sortByPropertyName The nom de la propriété à utiliser pour classer
+     * @param session La session à utiliser la propriété à utiliser pour classer
      * @return La liste de tous les livres ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -110,11 +108,11 @@ public interface ILivreService extends IService {
      * Trouve les livres à partir d'un titre. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun livre
      * n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param titre Le titre à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des livres correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si le titre est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
@@ -131,9 +129,9 @@ public interface ILivreService extends IService {
     /**
      * Acquiert un livre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param livreDTO Le livre à acquérir
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du livre est <code>null</code>
@@ -148,9 +146,9 @@ public interface ILivreService extends IService {
     /**
      * Vend un livre.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param livreDTO Le livre à vendre
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws InvalidPrimaryKeyException Si la clef primaire du livre est <code>null</code>

@@ -41,7 +41,6 @@ public interface IPretFacade extends IFacade {
      * @throws InvalidLoanLimitException Si le membre a atteint sa limite de prêt
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws FacadeException S'il y a une erreur avec la base de données
      */
     void commencer(Session session,
@@ -116,5 +115,10 @@ public interface IPretFacade extends IFacade {
         MissingLoanException,
         ExistingLoanException,
         InvalidDTOClassException,
+        FacadeException;
+
+    PretDTO getPret(Session session,
+        String idPret) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
         FacadeException;
 }

@@ -24,12 +24,13 @@ public interface IPretDAO extends Idao {
      * Trouve les prêts à partir d'une date de prêt. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utliser
      * @param datePret La date de prêt à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
-     * @throws InvalidCriterionException Si la date de prêt est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidCriterionException Si la propriété est <code>null</code>
+     * @throws InvalidCriterionValueException Si le nom est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
      */
@@ -45,11 +46,11 @@ public interface IPretDAO extends Idao {
      * Trouve les prêts à partir d'une date de retour. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * prêt n'est trouvé, une {@link List} vide est retournée.
      * 
-     * @param connexion La connexion à utiliser
+     * @param session La session à utiliser
      * @param dateRetour La date de retour à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des prêts correspondants ; une liste vide sinon
-     * @throws InvalidHibernateSessionException Si la connexion est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws DAOException S'il y a une erreur avec la base de données
