@@ -49,11 +49,16 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Chou Huynh
  */
-public class Bibliotheque {
+public final class Bibliotheque {
     private static BibliothequeCreateur gestionBiblio;
 
     private static final Log LOGGER = LogFactory.getLog(Bibliotheque.class);
 
+    /**
+     * 
+     * Constructeur de bibliotheque.
+     *
+     */
     private Bibliotheque() {
         super();
     }
@@ -67,7 +72,7 @@ public class Bibliotheque {
      * Ouverture de la BD, traitement des transactions et fermeture de la BD.
      *
      * @param argv = bibliotheque.dat
-     * @throws Exception
+     * @throws Exception lance une exception
      */
     public static void main(String[] argv) throws Exception {
         // validation du nombre de paramètres
@@ -88,14 +93,15 @@ public class Bibliotheque {
     }
 
     /**
-     * Traitement des transactions de la bibliothèque
+     * Traitement des transactions de la bibliothèque.
+     * @param reader recoit un befferedreader
+     * @throws Exception lance Exception
      */
     static void traiterTransactions(BufferedReader reader) throws Exception {
         afficherAide();
         LOGGER.info("\n\n\n");
         String transaction = lireTransaction(reader);
         while(!finTransaction(transaction)) {
-            /* découpage de la transaction en mots */
             final StringTokenizer tokenizer = new StringTokenizer(transaction,
                 " ");
             if(tokenizer.hasMoreTokens()) {
@@ -106,19 +112,22 @@ public class Bibliotheque {
     }
 
     /**
-     * Lecture d'une transaction
+     * Lecture d'une transaction.
+     * @param reader recoit un befferedreader
+     * @throws IOException lance IOException
+     * @return retourne une transaction a effectuer
      */
     static String lireTransaction(BufferedReader reader) throws IOException {
         final String transaction = reader.readLine();
         if(transaction != null) {
             LOGGER.info(transaction);
         }
-        /* echo si lecture dans un fichier */
         return transaction;
     }
 
     /**
-     * Décodage et traitement d'une transaction
+     * Décodage et traitement d'une transaction.
+     * @param tokenizer recoit une string de commande en stringtokenizer
      */
     static void executerTransaction(StringTokenizer tokenizer) {
         final String command = tokenizer.nextToken();
@@ -157,6 +166,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour aquérir un livre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void acquerire(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -177,6 +193,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour vendre un livre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void vendre(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -198,15 +221,19 @@ public class Bibliotheque {
             | FacadeException
             | MissingDTOException
             | InvalidDTOException
-            | InvalidDTOClassException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | ExistingLoanException
             | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
     }
 
+    /**
+     * 
+     * Methode pour preter un livre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void preter(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -249,6 +276,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour renouveler un pret.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void renouveler(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -274,6 +308,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour retourner un livre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void retourner(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -298,6 +339,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour inscrire un membre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void inscrire(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -319,6 +367,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour desinscrire un membre.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void desinscrire(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -349,6 +404,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour faire une reservation.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void reserver(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -395,6 +457,13 @@ public class Bibliotheque {
         }
     }
 
+    /**
+     * 
+     * Methode pour utiliser une reservation.
+     *
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
+     */
     private static void utiliser(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
@@ -421,10 +490,9 @@ public class Bibliotheque {
     }
 
     /**
-     * Affiche le menu des transactions acceptées par le système
-     *
-     * @param tokenizer
-     * @throws BibliothequeException
+     * Affiche le menu des transactions acceptées par le système.
+     * @param tokenizer recoit une string de commande en stringtokenizer
+     * @throws BibliothequeException lance l'exception BibliothequeException
      */
     static void annuler(StringTokenizer tokenizer) throws BibliothequeException {
         try {
@@ -447,7 +515,8 @@ public class Bibliotheque {
     }
 
     /**
-     * Affiche le menu des transactions acceptées par le système
+     * Affiche le menu des transactions acceptées par le système.
+     * 
      */
     static void afficherAide() {
         LOGGER.info("");
@@ -475,28 +544,36 @@ public class Bibliotheque {
 
     /**
      * Vérifie si la fin du traitement des transactions est atteinte.
+     * @param transaction 
+     * @return retourne true ou false si la fichier est vide ou non
      */
     static boolean finTransaction(String transaction) {
-        /* fin de fichier atteinte */
+        // fin de fichier atteinte
+        boolean aReturn = false;
         if(transaction == null) {
-            return true;
+            aReturn = true;
         }
 
         final StringTokenizer tokenizer = new StringTokenizer(transaction,
             " ");
 
-        /* ligne ne contenant que des espaces */
+        // ligne ne contenant que des espaces
         if(!tokenizer.hasMoreTokens()) {
-            return false;
+            aReturn = false;
         }
 
-        /* commande "exit" */
+        // commande "exit"
         final String commande = tokenizer.nextToken();
-        return commande.equals("exit");
+        aReturn = "exit".equals(commande);
+
+        return aReturn;
     }
 
     /**
-     * lecture d'une chaîne de caractères de la transaction entrée à l'écran
+     * lecture d'une chaîne de caractères de la transaction entrée à l'écran.
+     * @param tokenizer recoit un token
+     * @throws BibliothequeException lance une BibliothequeException
+     * @return renvoit un token sous forme de string
      */
     static String readString(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
@@ -506,7 +583,10 @@ public class Bibliotheque {
     }
 
     /**
-     * lecture d'un int java de la transaction entrée à l'écran
+     * lecture d'un int java de la transaction entrée à l'écran.
+     * @param tokenizer recoit un token
+     * @throws BibliothequeException lance une BibliothequeException
+     * @return renvoit un token sous forme de int
      */
     static int readInt(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
@@ -523,7 +603,10 @@ public class Bibliotheque {
     }
 
     /**
-     * lecture d'un long java de la transaction entrée à l'écran
+     * lecture d'un long java de la transaction entrée à l'écran.
+     * @param tokenizer recoit un token
+     * @throws BibliothequeException lance une BibliothequeException
+     * @return renvoit un token sous forme de long
      */
     static long readLong(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
@@ -540,7 +623,10 @@ public class Bibliotheque {
     }
 
     /**
-     * lecture d'une date en format YYYY-MM-DD
+     * lecture d'une date en format YYYY-MM-DD.
+     * @param tokenizer recoit un token
+     * @throws BibliothequeException lance une BibliothequeException
+     * @return renvoit un token sous forme de date
      */
     static Timestamp readDate(StringTokenizer tokenizer) throws BibliothequeException {
         if(tokenizer.hasMoreElements()) {
