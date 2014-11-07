@@ -59,10 +59,18 @@ public class Bibliotheque {
     }
 
     /**
-     * Ouverture de la BD, traitement des transactions et fermeture de la BD.
+     * 
      */
-    public static void main(String argv[]) throws Exception {
-        // validation du nombre de paramï¿½tres
+
+    /**
+     * 
+     * Ouverture de la BD, traitement des transactions et fermeture de la BD.
+     *
+     * @param argv = bibliotheque.dat
+     * @throws Exception
+     */
+    public static void main(String[] argv) throws Exception {
+        // validation du nombre de paramètres
         if(argv.length < 1) {
             LOGGER.info("Usage: java Biblio [<fichier-transactions>]");
         }
@@ -140,6 +148,7 @@ public class Bibliotheque {
                 annuler(tokenizer);
             } else if("--".startsWith(command)) {
                 // ne rien faire; c'est un commentaire
+                LOGGER.info("");
             } else {
                 LOGGER.info("  Transactions non reconnue.  Essayer \"aide\"");
             }
