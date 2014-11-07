@@ -117,6 +117,7 @@ public interface IPretService extends IService {
      * @return La liste des prêts correspondants ; une liste vide sinon
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de prêt est <code>null</code>
+     * @throws InvalidCriterionValueException 
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -139,6 +140,7 @@ public interface IPretService extends IService {
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
+     * @throws InvalidCriterionValueException 
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     List<PretDTO> findPretByDateRetour(Session session,
@@ -165,7 +167,6 @@ public interface IPretService extends IService {
      * @throws InvalidLoanLimitException Si le membre a atteint sa limite de prêt
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
-     * @throws InvalidPrimaryKeyRequestException Si la requête de la clef primaire du membre est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void commencer(Session session,

@@ -67,7 +67,18 @@ public interface IMembreFacade extends IFacade {
         ExistingReservationException,
         FacadeException;
 
-    public MembreDTO getMembre(Session session,
+    /**.
+     *  Retourne un membre a l'aide de son ID
+     * 
+     *
+     * @param session La session à utiliser
+     * @param idMembre L'id du membre à utiliser
+     * @return Un MembreDTO
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidPrimaryKeyException Si la clef primaire du membre est <code>null</code>
+     * @throws FacadeException S'il y a une erreur avec la base de données
+     */
+    MembreDTO getMembre(Session session,
         String idMembre) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         FacadeException;
