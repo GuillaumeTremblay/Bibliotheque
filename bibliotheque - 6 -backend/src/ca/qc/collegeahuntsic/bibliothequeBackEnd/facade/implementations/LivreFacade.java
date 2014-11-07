@@ -88,12 +88,6 @@ public class LivreFacade extends Facade implements ILivreFacade {
     public void vendre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
-        ExistingLoanException,
         ExistingReservationException,
         FacadeException {
         try {
@@ -101,6 +95,25 @@ public class LivreFacade extends Facade implements ILivreFacade {
                 livreDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
+
+        } catch(InvalidDTOClassException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(InvalidPrimaryKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(MissingDTOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(InvalidCriterionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(InvalidSortByPropertyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(ExistingLoanException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
