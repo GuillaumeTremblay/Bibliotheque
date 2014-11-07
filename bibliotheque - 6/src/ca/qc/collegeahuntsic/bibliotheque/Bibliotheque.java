@@ -266,12 +266,9 @@ public final class Bibliotheque {
             | FacadeException
             | MissingDTOException
             | InvalidDTOException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | ExistingLoanException
             | InvalidLoanLimitException
-            | ExistingReservationException
-            | InvalidDTOClassException e) {
+            | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
     }
@@ -295,14 +292,8 @@ public final class Bibliotheque {
             BibliothequeException
             | InvalidHibernateSessionException
             | InvalidDTOException
-            | InvalidPrimaryKeyException
-            | MissingDTOException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | MissingLoanException
-            | ExistingLoanException
             | ExistingReservationException
-            | InvalidDTOClassException
             | FacadeException e) {
             gestionBiblio.rollbackTransaction();
         }
@@ -327,13 +318,7 @@ public final class Bibliotheque {
             BibliothequeException
             | InvalidHibernateSessionException
             | InvalidDTOException
-            | InvalidPrimaryKeyException
-            | MissingDTOException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | MissingLoanException
-            | ExistingLoanException
-            | InvalidDTOClassException
             | FacadeException e) {
             gestionBiblio.rollbackTransaction();
         }
@@ -447,12 +432,9 @@ public final class Bibliotheque {
             | FacadeException
             | MissingDTOException
             | InvalidDTOException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | MissingLoanException
             | ExistingLoanException
-            | ExistingReservationException
-            | InvalidDTOClassException e) {
+            | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
     }
@@ -476,14 +458,9 @@ public final class Bibliotheque {
             BibliothequeException
             | InvalidHibernateSessionException
             | InvalidDTOException
-            | InvalidPrimaryKeyException
-            | MissingDTOException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | ExistingReservationException
             | ExistingLoanException
             | InvalidLoanLimitException
-            | InvalidDTOClassException
             | FacadeException e) {
             gestionBiblio.rollbackTransaction();
         }
