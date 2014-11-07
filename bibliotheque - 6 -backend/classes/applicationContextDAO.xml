@@ -1,0 +1,56 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - Application context
+   -
+   - Author: Jonathan Aumont
+-->
+
+<beans>
+  <!-- ========== DAOs =========================================================== -->
+  <bean name="livreDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.LivreDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="membreDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.MembreDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.MembreDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="pretDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.PretDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.PretDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+  <bean name="reservationDAO"
+        parent="transactionProxy">
+        <property name="target">
+                  <bean class="ca.qc.collegeahuntsic.bibliothequeBackEnd.dao.implementations.ReservationDAO">
+                        <constructor-arg>
+                          <value>ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO</value>
+                        </constructor-arg>
+                  </bean>
+        </property>
+  </bean>
+</beans>
