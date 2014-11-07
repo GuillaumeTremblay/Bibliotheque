@@ -20,7 +20,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKey
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.InvalidDAOException;
@@ -201,36 +200,16 @@ public class LivreService extends Service implements ILivreService {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
         }
-        if(livreDTO == null) {
-            throw new InvalidDTOException("Le livre ne peut être null");
-        }
-        LivreDTO unLivreDTO = null;
-        try {
-            unLivreDTO = getLivre(session,
-                livreDTO.getIdLivre());
-        } catch(InvalidPrimaryKeyException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        if(unLivreDTO == null) {
-            try {
-                throw new MissingDTOException("Le livre "
-                    + livreDTO.getIdLivre()
-                    + " n'existe pas");
-            } catch(MissingDTOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        final Set<PretDTO> prets = unLivreDTO.getPrets();
+
+        final Set<PretDTO> prets = livreDTO.getPrets();
         if(!prets.isEmpty()) {
             for(PretDTO pretDTO : prets) {
                 if(pretDTO.getDateRetour() == null) {
                     final MembreDTO emprunteur = pretDTO.getMembreDTO();
                     throw new ExistingLoanException("Le livre "
-                        + unLivreDTO.getTitre()
+                        + livreDTO.getTitre()
                         + " (ID de livre : "
-                        + unLivreDTO.getIdLivre()
+                        + livreDTO.getIdLivre()
                         + ") a été prêté à "
                         + emprunteur.getNom()
                         + " (ID de membre : "
@@ -239,14 +218,14 @@ public class LivreService extends Service implements ILivreService {
                 }
             }
         }
-        final List<ReservationDTO> reservations = new ArrayList<>(unLivreDTO.getReservations());
+        final List<ReservationDTO> reservations = new ArrayList<>(livreDTO.getReservations());
         if(!reservations.isEmpty()) {
             final ReservationDTO reservationDTO = reservations.get(0);
             final MembreDTO booker = reservationDTO.getMembreDTO();
             throw new ExistingReservationException("Le livre "
-                + unLivreDTO.getTitre()
+                + livreDTO.getTitre()
                 + " (ID de livre : "
-                + unLivreDTO.getIdLivre()
+                + livreDTO.getIdLivre()
                 + ") est réservé pour "
                 + booker.getNom()
                 + " (ID de membre : "
@@ -255,7 +234,7 @@ public class LivreService extends Service implements ILivreService {
         }
         try {
             deleteLivre(session,
-                unLivreDTO);
+                livreDTO);
         } catch(InvalidDTOClassException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

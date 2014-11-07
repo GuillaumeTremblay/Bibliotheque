@@ -17,7 +17,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKey
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.InvalidDAOException;
@@ -191,47 +190,32 @@ public class MembreService extends Service implements IMembreService {
     public void desinscrire(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
         ExistingLoanException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         ExistingReservationException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
         }
-        if(membreDTO == null) {
-            throw new InvalidDTOException("Le membre ne peut être null");
+        if(Integer.parseInt(membreDTO.getNbPret()) > 0) {
+            throw new ExistingLoanException("Le membre "
+                + membreDTO.getNom()
+                + " (ID de membre : "
+                + membreDTO.getIdMembre()
+                + ") a encore des prêts");
+        }
+        final List<ReservationDTO> reservations = new ArrayList<>(membreDTO.getReservations());
+        if(!reservations.isEmpty()) {
+            throw new ExistingReservationException("Le membre "
+                + membreDTO.getNom()
+                + " (ID de membre : "
+                + membreDTO.getIdMembre()
+                + ") a des réservations");
         }
         try {
-            final MembreDTO unMembreDTO = getMembre(session,
-                membreDTO.getIdMembre());
-            if(unMembreDTO == null) {
-                throw new MissingDTOException("Le membre "
-                    + membreDTO.getIdMembre()
-                    + " n'existe pas");
-            }
-            if(Integer.parseInt(unMembreDTO.getNbPret()) > 0) {
-                throw new ExistingLoanException("Le membre "
-                    + unMembreDTO.getNom()
-                    + " (ID de membre : "
-                    + unMembreDTO.getIdMembre()
-                    + ") a encore des prêts");
-            }
-            final List<ReservationDTO> reservations = new ArrayList<>(unMembreDTO.getReservations());
-            if(!reservations.isEmpty()) {
-                throw new ExistingReservationException("Le membre "
-                    + unMembreDTO.getNom()
-                    + " (ID de membre : "
-                    + unMembreDTO.getIdMembre()
-                    + ") a des réservations");
-            }
             deleteMembre(session,
-                unMembreDTO);
-        } catch(NumberFormatException numberFormatException) {
-            throw new ServiceException(numberFormatException);
+                membreDTO);
+        } catch(InvalidDTOClassException e) {
+            throw new ServiceException(e);
         }
     }
 }
