@@ -25,6 +25,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BibliothequeCreateur {
     private static final String SPRING_CONFIGURATION_FILE_NAME = "applicationContext.xml";
 
+    private static final String SPRING_CONFIGURATION_FILE_NAME_DTO = "applicationContextDTO.xml";
+
+    private static final String SPRING_CONFIGURATION_FILE_NAME_DAO = "applicationContextDAO.xml";
+
+    private static final String SPRING_CONFIGURATION_FILE_NAME_SERVICE = "applicationContextService.xml";
+
+    private static final String SPRING_CONFIGURATION_FILE_NAME_FACADE = "applicationContextFacade.xml";
+
+    private static final String[] SPRING_CONFIGURATION_FILE_NAME_TAB = {SPRING_CONFIGURATION_FILE_NAME,
+        SPRING_CONFIGURATION_FILE_NAME_DTO,
+        SPRING_CONFIGURATION_FILE_NAME_DAO,
+        SPRING_CONFIGURATION_FILE_NAME_SERVICE,
+        SPRING_CONFIGURATION_FILE_NAME_FACADE};
+
     private static final String SESSION_FACTORY_NAME = "sessionFactory";
 
     private static final String LIVRE_FACADE_NAME = "livreFacade";
@@ -35,7 +49,7 @@ public class BibliothequeCreateur {
 
     private static final String RESERVATION_FACADE_NAME = "reservationFacade";
 
-    private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(BibliothequeCreateur.SPRING_CONFIGURATION_FILE_NAME);
+    private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(BibliothequeCreateur.SPRING_CONFIGURATION_FILE_NAME_TAB);
 
     private SessionFactory sessionFactory;
 
