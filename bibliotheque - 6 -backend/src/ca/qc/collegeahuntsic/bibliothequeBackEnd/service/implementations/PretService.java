@@ -20,7 +20,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKey
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.InvalidDAOException;
@@ -204,20 +203,12 @@ public class PretService extends Service implements IPretService {
     public void commencer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         ExistingLoanException,
         InvalidLoanLimitException,
         ExistingReservationException,
-        InvalidDTOClassException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session Hibernate ne peut être null");
-        }
-        if(pretDTO == null) {
-            throw new InvalidDTOException("Le prêt ne peut être null");
         }
         final LivreDTO livreDTO = pretDTO.getLivreDTO();
         final List<PretDTO> prets = new ArrayList<>(livreDTO.getPrets());
@@ -258,8 +249,12 @@ public class PretService extends Service implements IPretService {
                 + booker.getIdMembre()
                 + ")");
         }
-        addPret(session,
-            pretDTO);
+        try {
+            addPret(session,
+                pretDTO);
+        } catch(InvalidDTOClassException e) {
+            throw new ServiceException(e);
+        }
     }
 
     /**
@@ -269,30 +264,14 @@ public class PretService extends Service implements IPretService {
     public void renouveler(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         MissingLoanException,
-        ExistingLoanException,
         ExistingReservationException,
-        InvalidDTOClassException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
         }
-        if(pretDTO == null) {
-            throw new InvalidDTOException("Le prêt ne peut être null");
-        }
-        final PretDTO unPretDTO = getPret(session,
-            pretDTO.getIdPret());
-        if(unPretDTO == null) {
-            throw new MissingDTOException("Le prêt "
-                + pretDTO.getIdPret()
-                + " n'existe pas");
-        }
-        final MembreDTO membreDTO = unPretDTO.getMembreDTO();
-        final LivreDTO livreDTO = unPretDTO.getLivreDTO();
+        final MembreDTO membreDTO = pretDTO.getMembreDTO();
+        final LivreDTO livreDTO = pretDTO.getLivreDTO();
         final List<PretDTO> prets = new ArrayList<>(livreDTO.getPrets());
         if(prets.isEmpty()) {
             throw new MissingLoanException("Le livre "
@@ -306,7 +285,7 @@ public class PretService extends Service implements IPretService {
             aEteEmprunteParMembre = membreDTO.equals(unAutrePretDTO.getMembreDTO());
         }
         if(!aEteEmprunteParMembre) {
-            throw new ExistingLoanException("Le livre "
+            throw new ServiceException("Le livre "
                 + livreDTO.getTitre()
                 + " (ID de livre : "
                 + livreDTO.getIdLivre()
@@ -330,10 +309,12 @@ public class PretService extends Service implements IPretService {
                 + booker.getIdMembre()
                 + ")");
         }
-        unPretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
-        unPretDTO.setDateRetour(null);
-        updatePret(session,
-            unPretDTO);
+        try {
+            updatePret(session,
+                pretDTO);
+        } catch(InvalidDTOClassException e) {
+            throw new ServiceException(e);
+        }
     }
 
     /**
@@ -343,29 +324,13 @@ public class PretService extends Service implements IPretService {
     public void terminer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         MissingLoanException,
-        ExistingLoanException,
-        InvalidDTOClassException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
         }
-        if(pretDTO == null) {
-            throw new InvalidDTOException("Le prêt ne peut être null");
-        }
-        final PretDTO unPretDTO = getPret(session,
-            pretDTO.getIdPret());
-        if(unPretDTO == null) {
-            throw new MissingDTOException("Le prêt "
-                + pretDTO.getIdPret()
-                + " n'existe pas");
-        }
-        final MembreDTO membreDTO = unPretDTO.getMembreDTO();
-        final LivreDTO livreDTO = unPretDTO.getLivreDTO();
+        final MembreDTO membreDTO = pretDTO.getMembreDTO();
+        final LivreDTO livreDTO = pretDTO.getLivreDTO();
         final List<PretDTO> prets = new ArrayList<>(livreDTO.getPrets());
         if(prets.isEmpty()) {
             throw new MissingLoanException("Le livre "
@@ -379,7 +344,7 @@ public class PretService extends Service implements IPretService {
             aEteEmprunteParMembre = membreDTO.equals(unAutrePretDTO.getMembreDTO());
         }
         if(!aEteEmprunteParMembre) {
-            throw new ExistingLoanException("Le livre "
+            throw new ServiceException("Le livre "
                 + livreDTO.getTitre()
                 + " (ID de livre : "
                 + livreDTO.getIdLivre()
@@ -389,12 +354,11 @@ public class PretService extends Service implements IPretService {
                 + membreDTO.getIdMembre()
                 + ")");
         }
-        unPretDTO.getMembreDTO().setNbPret(Integer.toString(Integer.parseInt(unPretDTO.getMembreDTO().getNbPret()) - 1));
-        if(Integer.parseInt(unPretDTO.getMembreDTO().getNbPret()) < 0) {
-            throw new InvalidDTOException("Le nombre de prets du membre est négative");
+        try {
+            updatePret(session,
+                pretDTO);
+        } catch(InvalidDTOClassException e) {
+            throw new ServiceException(e);
         }
-        unPretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));
-        updatePret(session,
-            unPretDTO);
     }
 }

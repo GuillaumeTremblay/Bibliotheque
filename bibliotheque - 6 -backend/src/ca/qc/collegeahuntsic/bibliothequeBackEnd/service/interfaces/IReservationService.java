@@ -12,7 +12,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByProp
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.InvalidLoanLimitException;
@@ -116,7 +115,7 @@ public interface IReservationService extends IService {
      * @throws MissingLoanException Si le livre n'a pas encore été prêté
      * @throws ExistingLoanException Si le livre est déjà prêté au membre
      * @throws ExistingReservationException Si le membre a déjà réservé ce livre
-     * @throws FacadeException S'il y a une erreur avec la base de données
+     * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void placer(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
@@ -124,7 +123,7 @@ public interface IReservationService extends IService {
         MissingLoanException,
         ExistingLoanException,
         ExistingReservationException,
-        FacadeException;
+        ServiceException;
 
     /**
      * Utilise une réservation.
@@ -138,7 +137,7 @@ public interface IReservationService extends IService {
      * @throws ExistingLoanException Si le livre est déjà prêté au membre
      * @throws InvalidLoanLimitException Si le membre a atteint sa limite de prêt
      *         celle que prend en charge le DAO
-     * @throws FacadeException S'il y a une erreur avec la base de données
+     * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void utiliser(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
@@ -146,7 +145,7 @@ public interface IReservationService extends IService {
         ExistingReservationException,
         ExistingLoanException,
         InvalidLoanLimitException,
-        FacadeException;
+        ServiceException;
 
     /**
      * Annule une réservation.

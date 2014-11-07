@@ -5,10 +5,8 @@
 package ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations;
 
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
@@ -77,20 +75,15 @@ public class ReservationFacade extends Facade implements IReservationFacade {
     public void placer(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         MissingLoanException,
         ExistingLoanException,
         ExistingReservationException,
-        InvalidDTOClassException,
         FacadeException {
         try {
             getReservationService().placer(session,
                 reservationDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
+        } catch(ServiceException e) {
+            throw new FacadeException(e);
         }
     }
 
@@ -101,20 +94,15 @@ public class ReservationFacade extends Facade implements IReservationFacade {
     public void utiliser(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         ExistingReservationException,
         ExistingLoanException,
         InvalidLoanLimitException,
-        InvalidDTOClassException,
         FacadeException {
         try {
             getReservationService().utiliser(session,
                 reservationDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
+        } catch(ServiceException e) {
+            throw new FacadeException(e);
         }
     }
 

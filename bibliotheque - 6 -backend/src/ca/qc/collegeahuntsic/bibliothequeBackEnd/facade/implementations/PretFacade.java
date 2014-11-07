@@ -5,13 +5,9 @@
 package ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations;
 
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.PretDTO;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.InvalidServiceException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
@@ -73,14 +69,9 @@ public class PretFacade extends Facade implements IPretFacade {
     public void commencer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         ExistingLoanException,
         InvalidLoanLimitException,
         ExistingReservationException,
-        InvalidDTOClassException,
         FacadeException {
         try {
             getPretService().commencer(session,
@@ -97,14 +88,8 @@ public class PretFacade extends Facade implements IPretFacade {
     public void renouveler(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         MissingLoanException,
-        ExistingLoanException,
         ExistingReservationException,
-        InvalidDTOClassException,
         FacadeException {
         try {
             getPretService().renouveler(session,
@@ -121,13 +106,7 @@ public class PretFacade extends Facade implements IPretFacade {
     public void terminer(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         MissingLoanException,
-        ExistingLoanException,
-        InvalidDTOClassException,
         FacadeException {
         try {
             getPretService().terminer(session,

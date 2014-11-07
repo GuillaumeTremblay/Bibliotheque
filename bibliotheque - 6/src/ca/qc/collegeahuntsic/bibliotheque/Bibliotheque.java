@@ -15,10 +15,8 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.MembreDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
@@ -62,10 +60,6 @@ public final class Bibliotheque {
     private Bibliotheque() {
         super();
     }
-
-    /**
-     * 
-     */
 
     /**
      * 
@@ -119,10 +113,12 @@ public final class Bibliotheque {
      */
     static String lireTransaction(BufferedReader reader) throws IOException {
         final String transaction = reader.readLine();
+
         if(transaction != null) {
             LOGGER.info(transaction);
+            return transaction;
         }
-        return transaction;
+        return "exit";
     }
 
     /**
@@ -242,7 +238,7 @@ public final class Bibliotheque {
             final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                 idMembre);
             if(membreDTO == null) {
-                throw new MissingDTOException("Le membre "
+                throw new BibliothequeException("Le membre "
                     + idMembre
                     + " n'existe pas");
             }
@@ -250,7 +246,7 @@ public final class Bibliotheque {
             final LivreDTO livreDTO = gestionBiblio.getLivreFacade().getLivre(gestionBiblio.getSession(),
                 idLivre);
             if(livreDTO == null) {
-                throw new MissingDTOException("Le livre "
+                throw new BibliothequeException("Le livre "
                     + idLivre
                     + " n'existe pas");
             }
@@ -264,7 +260,6 @@ public final class Bibliotheque {
             | InvalidHibernateSessionException
             | InvalidPrimaryKeyException
             | FacadeException
-            | MissingDTOException
             | InvalidDTOException
             | ExistingLoanException
             | InvalidLoanLimitException
@@ -283,20 +278,29 @@ public final class Bibliotheque {
     private static void renouveler(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
-            final PretDTO pretDTO = new PretDTO();
-            pretDTO.setIdPret(readString(tokenizer));
+            final String idPret = readString(tokenizer);
+            final PretDTO pretDTO = gestionBiblio.getPretFacade().getPret(gestionBiblio.getSession(),
+                idPret);
+            if(pretDTO == null) {
+                throw new BibliothequeException("Le pret"
+                    + idPret
+                    + "n'existe pas.");
+            }
+            pretDTO.setDatePret(new Timestamp(System.currentTimeMillis()));
+            pretDTO.setDateRetour(null);
             gestionBiblio.getPretFacade().renouveler(gestionBiblio.getSession(),
                 pretDTO);
             gestionBiblio.commitTransaction();
         } catch(
-            BibliothequeException
-            | InvalidHibernateSessionException
+            InvalidHibernateSessionException
+            | InvalidPrimaryKeyException
+            | FacadeException
             | InvalidDTOException
             | MissingLoanException
-            | ExistingReservationException
-            | FacadeException e) {
+            | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
+
     }
 
     /**
@@ -309,19 +313,32 @@ public final class Bibliotheque {
     private static void retourner(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
-            final PretDTO pretDTO = new PretDTO();
-            pretDTO.setIdPret(readString(tokenizer));
+            final String idPret = readString(tokenizer);
+            final PretDTO pretDTO = gestionBiblio.getPretFacade().getPret(gestionBiblio.getSession(),
+                idPret);
+            if(pretDTO == null) {
+                throw new BibliothequeException("Le pret"
+                    + idPret
+                    + "n'existe pas.");
+            }
+            pretDTO.getMembreDTO().setNbPret(Integer.toString(Integer.parseInt(pretDTO.getMembreDTO().getNbPret()) - 1));
+            if(Integer.parseInt(pretDTO.getMembreDTO().getNbPret()) < 0) {
+                throw new InvalidDTOException("Le nombre de prets du membre est négative");
+            }
+            pretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));
+
             gestionBiblio.getPretFacade().terminer(gestionBiblio.getSession(),
                 pretDTO);
-            gestionBiblio.commitTransaction();
         } catch(
-            BibliothequeException
+            NumberFormatException
             | InvalidHibernateSessionException
+            | InvalidPrimaryKeyException
+            | FacadeException
             | InvalidDTOException
-            | MissingLoanException
-            | FacadeException e) {
-            gestionBiblio.rollbackTransaction();
+            | MissingLoanException e) {
+            gestionBiblio.commitTransaction();
         }
+        gestionBiblio.rollbackTransaction();
     }
 
     /**
@@ -366,7 +383,7 @@ public final class Bibliotheque {
             final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                 idMembre);
             if(membreDTO == null) {
-                throw new MissingDTOException("Le membre "
+                throw new BibliothequeException("Le membre "
                     + idMembre
                     + " n'existe pas");
             }
@@ -378,12 +395,8 @@ public final class Bibliotheque {
             | InvalidHibernateSessionException
             | InvalidPrimaryKeyException
             | FacadeException
-            | MissingDTOException
             | InvalidDTOException
-            | InvalidDTOClassException
             | ExistingLoanException
-            | InvalidCriterionException
-            | InvalidSortByPropertyException
             | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
@@ -421,6 +434,7 @@ public final class Bibliotheque {
             }
             reservationDTO.setMembreDTO(membreDTO);
             reservationDTO.setLivreDTO(livreDTO);
+            reservationDTO.setDateReservation(new Timestamp(System.currentTimeMillis()));
             gestionBiblio.getReservationFacade().placer(gestionBiblio.getSession(),
                 reservationDTO);
             gestionBiblio.commitTransaction();
@@ -449,19 +463,25 @@ public final class Bibliotheque {
     private static void utiliser(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
-            final ReservationDTO reservationDTO = new ReservationDTO();
-            reservationDTO.setIdReservation(readString(tokenizer));
+            final String idReservation = readString(tokenizer);
+            final ReservationDTO reservationDTO = gestionBiblio.getReservationFacade().getReservation(gestionBiblio.getSession(),
+                idReservation);
+            if(reservationDTO == null) {
+                throw new BibliothequeException("La reservation "
+                    + idReservation
+                    + " n'existe pas.");
+            }
             gestionBiblio.getReservationFacade().utiliser(gestionBiblio.getSession(),
                 reservationDTO);
             gestionBiblio.commitTransaction();
         } catch(
-            BibliothequeException
-            | InvalidHibernateSessionException
+            InvalidHibernateSessionException
+            | InvalidPrimaryKeyException
+            | FacadeException
             | InvalidDTOException
             | ExistingReservationException
             | ExistingLoanException
-            | InvalidLoanLimitException
-            | FacadeException e) {
+            | InvalidLoanLimitException e) {
             gestionBiblio.rollbackTransaction();
         }
     }
@@ -474,8 +494,16 @@ public final class Bibliotheque {
     static void annuler(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             gestionBiblio.beginTransaction();
-            final ReservationDTO reservationDTO = new ReservationDTO();
-            reservationDTO.setIdReservation(readString(tokenizer));
+            final String idReservation = readString(tokenizer);
+            final ReservationDTO reservationDTO = gestionBiblio.getReservationFacade().getReservation(gestionBiblio.getSession(),
+                idReservation);
+            if(reservationDTO == null) {
+                throw new BibliothequeException("La reservation "
+                    + idReservation
+                    + " n'existe pas.");
+            }
+            final MembreDTO membreDTO = reservationDTO.getMembreDTO();
+            membreDTO.setNbPret(Integer.toString(Integer.parseInt(membreDTO.getNbPret()) + 1));
             gestionBiblio.getReservationFacade().annuler(gestionBiblio.getSession(),
                 reservationDTO);
             gestionBiblio.commitTransaction();
