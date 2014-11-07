@@ -195,11 +195,6 @@ public class LivreService extends Service implements ILivreService {
     public void vendre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
-        InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidCriterionException,
-        InvalidSortByPropertyException,
         ExistingLoanException,
         ExistingReservationException,
         ServiceException {
@@ -209,12 +204,23 @@ public class LivreService extends Service implements ILivreService {
         if(livreDTO == null) {
             throw new InvalidDTOException("Le livre ne peut être null");
         }
-        final LivreDTO unLivreDTO = getLivre(session,
-            livreDTO.getIdLivre());
+        LivreDTO unLivreDTO = null;
+        try {
+            unLivreDTO = getLivre(session,
+                livreDTO.getIdLivre());
+        } catch(InvalidPrimaryKeyException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         if(unLivreDTO == null) {
-            throw new MissingDTOException("Le livre "
-                + livreDTO.getIdLivre()
-                + " n'existe pas");
+            try {
+                throw new MissingDTOException("Le livre "
+                    + livreDTO.getIdLivre()
+                    + " n'existe pas");
+            } catch(MissingDTOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         final Set<PretDTO> prets = unLivreDTO.getPrets();
         if(!prets.isEmpty()) {
@@ -247,7 +253,12 @@ public class LivreService extends Service implements ILivreService {
                 + booker.getIdMembre()
                 + ")");
         }
-        deleteLivre(session,
-            unLivreDTO);
+        try {
+            deleteLivre(session,
+                unLivreDTO);
+        } catch(InvalidDTOClassException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

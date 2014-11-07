@@ -5,13 +5,10 @@
 package ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations;
 
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.InvalidServiceException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
@@ -96,21 +93,6 @@ public class LivreFacade extends Facade implements ILivreFacade {
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
 
-        } catch(InvalidDTOClassException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(InvalidPrimaryKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(MissingDTOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(InvalidCriterionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(InvalidSortByPropertyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch(ExistingLoanException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
