@@ -127,35 +127,39 @@ public final class Bibliotheque {
      */
     static void executerTransaction(StringTokenizer tokenizer) {
         final String command = tokenizer.nextToken();
-
         try {
-            if("aide".startsWith(command)) {
-                afficherAide();
-            } else if("acquerir".startsWith(command)) {
-                acquerire(tokenizer);
-            } else if("vendre".startsWith(command)) {
-                vendre(tokenizer);
-            } else if("preter".startsWith(command)) {
-                preter(tokenizer);
-            } else if("renouveler".startsWith(command)) {
-                renouveler(tokenizer);
-            } else if("retourner".startsWith(command)) {
-                retourner(tokenizer);
-            } else if("inscrire".startsWith(command)) {
-                inscrire(tokenizer);
-            } else if("desinscrire".startsWith(command)) {
-                desinscrire(tokenizer);
-            } else if("reserver".startsWith(command)) {
-                reserver(tokenizer);
-            } else if("utiliser".startsWith(command)) {
-                utiliser(tokenizer);
-            } else if("annuler".startsWith(command)) {
-                annuler(tokenizer);
-            } else if("--".startsWith(command)) {
-                // ne rien faire; c'est un commentaire
-                LOGGER.info("");
-            } else {
-                LOGGER.info("  Transactions non reconnue.  Essayer \"aide\"");
+            switch(command) {
+                case "aide":
+                    afficherAide();
+                    break;
+                case "acquerir":
+                    acquerire(tokenizer);
+                    break;
+                case "vendre":
+                    vendre(tokenizer);
+                    break;
+                case "preter":
+                    preter(tokenizer);
+                    break;
+                case "renouveler":
+                    renouveler(tokenizer);
+                    break;
+                case "inscrire":
+                    inscrire(tokenizer);
+                    break;
+                case "reserver":
+                    reserver(tokenizer);
+                    break;
+                case "utiliser":
+                    utiliser(tokenizer);
+                    break;
+                case "annuler":
+                    annuler(tokenizer);
+                    break;
+                case "--":
+                    break;
+                default:
+                    LOGGER.info("  Transactions non reconnue.  Essayer \"aide\"");
             }
         } catch(BibliothequeException e) {
             LOGGER.error(e);
@@ -305,44 +309,6 @@ public final class Bibliotheque {
 
     /**
      * 
-     * Methode pour retourner un livre.
-     *
-     * @param tokenizer recoit une string de commande en stringtokenizer
-     * @throws BibliothequeException lance l'exception BibliothequeException
-     */
-    private static void retourner(StringTokenizer tokenizer) throws BibliothequeException {
-        try {
-            gestionBiblio.beginTransaction();
-            final String idPret = readString(tokenizer);
-            final PretDTO pretDTO = gestionBiblio.getPretFacade().getPret(gestionBiblio.getSession(),
-                idPret);
-            if(pretDTO == null) {
-                throw new BibliothequeException("Le pret"
-                    + idPret
-                    + "n'existe pas.");
-            }
-            pretDTO.getMembreDTO().setNbPret(Integer.toString(Integer.parseInt(pretDTO.getMembreDTO().getNbPret()) - 1));
-            if(Integer.parseInt(pretDTO.getMembreDTO().getNbPret()) < 0) {
-                throw new InvalidDTOException("Le nombre de prets du membre est négative");
-            }
-            pretDTO.setDateRetour(new Timestamp(System.currentTimeMillis()));
-
-            gestionBiblio.getPretFacade().terminer(gestionBiblio.getSession(),
-                pretDTO);
-        } catch(
-            NumberFormatException
-            | InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
-            | FacadeException
-            | InvalidDTOException
-            | MissingLoanException e) {
-            gestionBiblio.commitTransaction();
-        }
-        gestionBiblio.rollbackTransaction();
-    }
-
-    /**
-     * 
      * Methode pour inscrire un membre.
      *
      * @param tokenizer recoit une string de commande en stringtokenizer
@@ -365,39 +331,6 @@ public final class Bibliotheque {
             | InvalidDTOException
             | InvalidDTOClassException
             | FacadeException e) {
-            gestionBiblio.rollbackTransaction();
-        }
-    }
-
-    /**
-     * 
-     * Methode pour desinscrire un membre.
-     *
-     * @param tokenizer recoit une string de commande en stringtokenizer
-     * @throws BibliothequeException lance l'exception BibliothequeException
-     */
-    private static void desinscrire(StringTokenizer tokenizer) throws BibliothequeException {
-        try {
-            gestionBiblio.beginTransaction();
-            final String idMembre = readString(tokenizer);
-            final MembreDTO membreDTO = gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
-                idMembre);
-            if(membreDTO == null) {
-                throw new BibliothequeException("Le membre "
-                    + idMembre
-                    + " n'existe pas");
-            }
-            gestionBiblio.getMembreFacade().desinscrire(gestionBiblio.getSession(),
-                membreDTO);
-            gestionBiblio.commitTransaction();
-        } catch(
-            BibliothequeException
-            | InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
-            | FacadeException
-            | InvalidDTOException
-            | ExistingLoanException
-            | ExistingReservationException e) {
             gestionBiblio.rollbackTransaction();
         }
     }
