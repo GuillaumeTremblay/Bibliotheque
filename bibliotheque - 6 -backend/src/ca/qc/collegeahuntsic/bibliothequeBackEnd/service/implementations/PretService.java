@@ -18,7 +18,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -80,7 +79,6 @@ public class PretService extends Service implements IPretService {
     public void addPret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getPretDAO().add(session,
@@ -113,7 +111,6 @@ public class PretService extends Service implements IPretService {
     public void updatePret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getPretDAO().update(session,
@@ -130,7 +127,6 @@ public class PretService extends Service implements IPretService {
     public void deletePret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getPretDAO().delete(session,
@@ -249,12 +245,8 @@ public class PretService extends Service implements IPretService {
                 + booker.getIdMembre()
                 + ")");
         }
-        try {
-            addPret(session,
-                pretDTO);
-        } catch(InvalidDTOClassException e) {
-            throw new ServiceException(e);
-        }
+        addPret(session,
+            pretDTO);
     }
 
     /**
@@ -309,12 +301,9 @@ public class PretService extends Service implements IPretService {
                 + booker.getIdMembre()
                 + ")");
         }
-        try {
-            updatePret(session,
-                pretDTO);
-        } catch(InvalidDTOClassException e) {
-            throw new ServiceException(e);
-        }
+        updatePret(session,
+            pretDTO);
+
     }
 
     /**
@@ -354,11 +343,7 @@ public class PretService extends Service implements IPretService {
                 + membreDTO.getIdMembre()
                 + ")");
         }
-        try {
-            updatePret(session,
-                pretDTO);
-        } catch(InvalidDTOClassException e) {
-            throw new ServiceException(e);
-        }
+        updatePret(session,
+            pretDTO);
     }
 }
