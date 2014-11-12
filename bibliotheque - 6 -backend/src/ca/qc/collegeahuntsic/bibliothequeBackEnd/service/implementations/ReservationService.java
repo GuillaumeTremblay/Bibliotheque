@@ -17,7 +17,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.DAOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
@@ -103,7 +102,6 @@ public class ReservationService extends Service implements IReservationService {
     public void addReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getReservationDAO().add(session,
@@ -119,12 +117,13 @@ public class ReservationService extends Service implements IReservationService {
     @Override
     public ReservationDTO getReservation(Session session,
         String idReservation) throws InvalidHibernateSessionException,
-        InvalidPrimaryKeyException,
         ServiceException {
         try {
             return (ReservationDTO) getReservationDAO().get(session,
                 idReservation);
-        } catch(DAOException daoException) {
+        } catch(
+            DAOException
+            | InvalidPrimaryKeyException daoException) {
             throw new ServiceException(daoException);
         }
     }
@@ -136,7 +135,6 @@ public class ReservationService extends Service implements IReservationService {
     public void updateReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getReservationDAO().update(session,
@@ -153,7 +151,6 @@ public class ReservationService extends Service implements IReservationService {
     public void deleteReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getReservationDAO().delete(session,
@@ -232,14 +229,9 @@ public class ReservationService extends Service implements IReservationService {
                     + ") est déjà réservé pour quelqu'un d'autre");
             }
         }
-        try {
-            addReservation(session,
-                reservationDTO);
-        } catch(
-            InvalidDTOClassException
-            | ServiceException e) {
-            throw new ServiceException(e);
-        }
+        addReservation(session,
+            reservationDTO);
+
     }
 
     /**
@@ -304,10 +296,7 @@ public class ReservationService extends Service implements IReservationService {
         try {
             annuler(session,
                 reservationDTO);
-        } catch(
-            InvalidPrimaryKeyException
-            | MissingDTOException
-            | InvalidDTOClassException e) {
+        } catch(MissingDTOException e) {
             throw new ServiceException(e);
         }
         final PretDTO unPretDTO = new PretDTO();
@@ -330,9 +319,7 @@ public class ReservationService extends Service implements IReservationService {
     public void annuler(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidPrimaryKeyException,
         MissingDTOException,
-        InvalidDTOClassException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");
