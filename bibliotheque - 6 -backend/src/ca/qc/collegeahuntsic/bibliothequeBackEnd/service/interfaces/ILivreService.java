@@ -21,29 +21,27 @@ import org.hibernate.Session;
 /**
  * Interface de base pour les services.<br />
  * Toutes les interfaces de service devrait en hériter.
- * 
+ *
  * @author Gilles Benichou
  */
 public interface ILivreService extends IService {
     /**
      * Ajoute un nouveau livre dans la base de données.
-     * 
+     *
      * @param session La session à utliser
      * @param livreDTO Le livre à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void addLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Lit un livre à partir de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param idLivre L'ID du livre à lire
      * @return Le livre
@@ -58,7 +56,7 @@ public interface ILivreService extends IService {
 
     /**
      * Met à jour un livre dans la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param livreDTO Le livre à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -69,12 +67,11 @@ public interface ILivreService extends IService {
     void updateLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Supprime un livre de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param livreDTO Le livre à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -85,7 +82,6 @@ public interface ILivreService extends IService {
     void deleteLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
@@ -106,7 +102,7 @@ public interface ILivreService extends IService {
     /**
      * Trouve les livres à partir d'un titre. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun livre
      * n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param titre Le titre à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
@@ -115,19 +111,19 @@ public interface ILivreService extends IService {
      * @throws InvalidCriterionException Si le titre est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidCriterionValueException 
+     * @throws InvalidCriterionValueException
      */
     List<LivreDTO> findLivreByTitre(Session session,
         String titre,
         String sortByPropertyName) throws InvalidHibernateSessionException,
         InvalidCriterionException,
+        InvalidCriterionValueException,
         InvalidSortByPropertyException,
-        ServiceException,
-        InvalidCriterionValueException;
+        ServiceException;
 
     /**
      * Acquiert un livre.
-     * 
+     *
      * @param session La session à utiliser
      * @param livreDTO Le livre à acquérir
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -135,15 +131,14 @@ public interface ILivreService extends IService {
      * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void acquerir(Session session,
+    void acquerirLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Vend un livre.
-     * 
+     *
      * @param session La session à utiliser
      * @param livreDTO Le livre à vendre
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -152,7 +147,7 @@ public interface ILivreService extends IService {
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void vendre(Session session,
+    void vendreLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingLoanException,

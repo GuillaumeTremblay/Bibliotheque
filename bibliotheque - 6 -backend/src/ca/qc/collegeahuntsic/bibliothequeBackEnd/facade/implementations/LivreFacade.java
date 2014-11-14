@@ -4,10 +4,11 @@
 
 package ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations;
 
+import java.util.List;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
+import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.InvalidServiceException;
@@ -28,7 +29,7 @@ public class LivreFacade extends Facade implements ILivreFacade {
 
     /**
      * Crée la façade de la table <code>livre</code>.
-     * 
+     *
      * @param livreService Le service de la table <code>livre</code>
      * @throws InvalidServiceException Si le service de livres est <code>null</code>
      */
@@ -60,45 +61,9 @@ public class LivreFacade extends Facade implements ILivreFacade {
     }
 
     // EndRegion Getters and Setters
-
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void acquerir(Session session,
-        LivreDTO livreDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        InvalidDTOClassException,
-        FacadeException {
-        try {
-            getLivreService().acquerir(session,
-                livreDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void vendre(Session session,
-        LivreDTO livreDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        ExistingReservationException,
-        FacadeException {
-        try {
-            getLivreService().vendre(session,
-                livreDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
-
-        } catch(ExistingLoanException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public LivreDTO getLivre(Session session,
         String idLivre) throws InvalidHibernateSessionException,
@@ -109,6 +74,72 @@ public class LivreFacade extends Facade implements ILivreFacade {
                 idLivre);
         } catch(ServiceException e) {
             throw new FacadeException(e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateLivre(Session session,
+        LivreDTO livreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        FacadeException {
+        try {
+            getLivreService().updateLivre(session,
+                livreDTO);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<LivreDTO> getAllLivres(Session session,
+        String sortByPropertyName) throws InvalidHibernateSessionException,
+        InvalidSortByPropertyException,
+        FacadeException {
+        try {
+            return getLivreService().getAllLivres(session,
+                sortByPropertyName);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void acquerirLivre(Session session,
+        LivreDTO livreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        FacadeException {
+        try {
+            getLivreService().acquerirLivre(session,
+                livreDTO);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void vendreLivre(Session session,
+        LivreDTO livreDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        ExistingReservationException,
+        FacadeException,
+        ExistingLoanException {
+        try {
+            getLivreService().vendreLivre(session,
+                livreDTO);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
         }
     }
 }

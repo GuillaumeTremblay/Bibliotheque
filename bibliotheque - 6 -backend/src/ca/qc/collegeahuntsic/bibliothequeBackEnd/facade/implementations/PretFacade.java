@@ -29,7 +29,7 @@ public class PretFacade extends Facade implements IPretFacade {
 
     /**
      * Crée la façade de la table <code>pret</code>.
-     * 
+     *
      * @param pretService Le service de la table <code>pret</code>
      * @throws InvalidServiceException Si le service de prêts est <code>null</code>
      */
@@ -66,60 +66,6 @@ public class PretFacade extends Facade implements IPretFacade {
      * {@inheritDoc}
      */
     @Override
-    public void commencer(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        ExistingLoanException,
-        InvalidLoanLimitException,
-        ExistingReservationException,
-        FacadeException {
-        try {
-            getPretService().commencer(session,
-                pretDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void renouveler(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        MissingLoanException,
-        ExistingReservationException,
-        FacadeException {
-        try {
-            getPretService().renouveler(session,
-                pretDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void terminer(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        MissingLoanException,
-        FacadeException {
-        try {
-            getPretService().terminer(session,
-                pretDTO);
-        } catch(ServiceException serviceException) {
-            throw new FacadeException(serviceException);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public PretDTO getPret(Session session,
         String idPret) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
@@ -127,6 +73,60 @@ public class PretFacade extends Facade implements IPretFacade {
         try {
             return getPretService().getPret(session,
                 idPret);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void commencerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        ExistingLoanException,
+        InvalidLoanLimitException,
+        ExistingReservationException,
+        FacadeException {
+        try {
+            getPretService().commencerPret(session,
+                pretDTO);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void renouvelerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        MissingLoanException,
+        ExistingReservationException,
+        FacadeException {
+        try {
+            getPretService().renouvelerPret(session,
+                pretDTO);
+        } catch(ServiceException serviceException) {
+            throw new FacadeException(serviceException);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void terminerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        MissingLoanException,
+        FacadeException {
+        try {
+            getPretService().terminerPret(session,
+                pretDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
         }

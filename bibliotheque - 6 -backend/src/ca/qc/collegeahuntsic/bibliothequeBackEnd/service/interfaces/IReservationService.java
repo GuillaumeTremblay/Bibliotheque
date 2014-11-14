@@ -7,6 +7,7 @@ package ca.qc.collegeahuntsic.bibliothequeBackEnd.service.interfaces;
 import java.util.List;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
+import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
@@ -19,13 +20,13 @@ import org.hibernate.Session;
 
 /**
  * Interface de service pour manipuler les réservations dans la base de données.
- * 
+ *
  * @author Gilles Benichou
  */
 public interface IReservationService extends IService {
     /**
      * Ajoute une nouvelle réservation dans la base de données.
-     * 
+     *
      * @param session La session à utliser
      * @param reservationDTO La réservation à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -39,20 +40,22 @@ public interface IReservationService extends IService {
 
     /**
      * Lit une réservation à partir de la base de données.
-     * 
-     * @param session La session à utiliser
+     *
+     * @param session La session Hibernate à utiliser
      * @param idReservation L'ID de la réservation à lire
      * @return La réservation
-     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidHibernateSessionException Si la session Hibernate est <code>null</code>
+     * @throws InvalidPrimaryKeyException Si la clef primaire de la réservation est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     ReservationDTO getReservation(Session session,
         String idReservation) throws InvalidHibernateSessionException,
+        InvalidPrimaryKeyException,
         ServiceException;
 
     /**
      * Met à jour une réservation dans la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param reservationDTO La réservation à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -66,7 +69,7 @@ public interface IReservationService extends IService {
 
     /**
      * Supprime une réservation de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param reservationDTO La réservation à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -81,7 +84,7 @@ public interface IReservationService extends IService {
     /**
      * Trouve toutes les réservations de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si
      * aucune réservation n'est trouvée, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste de toutes les réservations ; une liste vide sinon
@@ -96,7 +99,7 @@ public interface IReservationService extends IService {
 
     /**
      * Place une réservation.
-     * 
+     *
      * @param session La session à utiliser
      * @param reservationDTO La réservation à placer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -107,7 +110,7 @@ public interface IReservationService extends IService {
      * @throws ExistingReservationException Si le membre a déjà réservé ce livre
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void placer(Session session,
+    void placerReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         MissingLoanException,
@@ -117,7 +120,7 @@ public interface IReservationService extends IService {
 
     /**
      * Utilise une réservation.
-     * 
+     *
      * @param session La session à utiliser
      * @param reservationDTO La réservation à utiliser
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -129,7 +132,7 @@ public interface IReservationService extends IService {
      *         celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void utiliser(Session session,
+    void utiliserReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingReservationException,
@@ -139,7 +142,7 @@ public interface IReservationService extends IService {
 
     /**
      * Annule une réservation.
-     * 
+     *
      * @param session La session à utiliser
      * @param reservationDTO Le reservation à annuler
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -147,9 +150,8 @@ public interface IReservationService extends IService {
      * @throws MissingDTOException Si la réservation n'existe pas, si le membre n'existe pas ou si le livre n'existe pas
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void annuler(Session session,
+    void annulerReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        MissingDTOException,
         ServiceException;
 }

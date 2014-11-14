@@ -15,7 +15,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -74,7 +73,6 @@ public class MembreService extends Service implements IMembreService {
     public void addMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getMembreDAO().add(session,
@@ -107,7 +105,6 @@ public class MembreService extends Service implements IMembreService {
     public void updateMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getMembreDAO().update(session,
@@ -124,7 +121,6 @@ public class MembreService extends Service implements IMembreService {
     public void deleteMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getMembreDAO().delete(session,
@@ -174,11 +170,13 @@ public class MembreService extends Service implements IMembreService {
      * {@inheritDoc}
      */
     @Override
-    public void inscrire(Session session,
+    public void inscrireMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
+        if(session == null) {
+            throw new InvalidHibernateSessionException("La session ne peut être null");
+        }
         addMembre(session,
             membreDTO);
     }
@@ -187,7 +185,7 @@ public class MembreService extends Service implements IMembreService {
      * {@inheritDoc}
      */
     @Override
-    public void desinscrire(Session session,
+    public void desinscrireMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingLoanException,
@@ -211,11 +209,7 @@ public class MembreService extends Service implements IMembreService {
                 + membreDTO.getIdMembre()
                 + ") a des réservations");
         }
-        try {
-            deleteMembre(session,
-                membreDTO);
-        } catch(InvalidDTOClassException e) {
-            throw new ServiceException(e);
-        }
+        deleteMembre(session,
+            membreDTO);
     }
 }

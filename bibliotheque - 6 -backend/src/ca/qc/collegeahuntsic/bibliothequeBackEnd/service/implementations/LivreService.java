@@ -18,7 +18,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -78,7 +77,6 @@ public class LivreService extends Service implements ILivreService {
     public void addLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getLivreDAO().add(session,
@@ -111,7 +109,6 @@ public class LivreService extends Service implements ILivreService {
     public void updateLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getLivreDAO().update(session,
@@ -128,7 +125,6 @@ public class LivreService extends Service implements ILivreService {
     public void deleteLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         try {
             getLivreDAO().delete(session,
@@ -178,10 +174,9 @@ public class LivreService extends Service implements ILivreService {
      * {@inheritDoc}
      */
     @Override
-    public void acquerir(Session session,
+    public void acquerirLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException {
         addLivre(session,
             livreDTO);
@@ -191,7 +186,7 @@ public class LivreService extends Service implements ILivreService {
      * {@inheritDoc}
      */
     @Override
-    public void vendre(Session session,
+    public void vendreLivre(Session session,
         LivreDTO livreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingLoanException,
@@ -232,12 +227,7 @@ public class LivreService extends Service implements ILivreService {
                 + booker.getIdMembre()
                 + ")");
         }
-        try {
-            deleteLivre(session,
-                livreDTO);
-        } catch(InvalidDTOClassException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        deleteLivre(session,
+            livreDTO);
     }
 }

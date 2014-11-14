@@ -18,7 +18,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateS
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.InvalidDAOException;
@@ -180,7 +179,7 @@ public class ReservationService extends Service implements IReservationService {
      * {@inheritDoc}
      */
     @Override
-    public void placer(Session session,
+    public void placerReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         MissingLoanException,
@@ -238,7 +237,7 @@ public class ReservationService extends Service implements IReservationService {
      * {@inheritDoc}
      */
     @Override
-    public void utiliser(Session session,
+    public void utiliserReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingReservationException,
@@ -293,12 +292,8 @@ public class ReservationService extends Service implements IReservationService {
                 + " emprunt(s) maximum)");
         }
         reservations.remove(reservations.get(0));
-        try {
-            annuler(session,
-                reservationDTO);
-        } catch(MissingDTOException e) {
-            throw new ServiceException(e);
-        }
+        annulerReservation(session,
+            reservationDTO);
         final PretDTO unPretDTO = new PretDTO();
         unPretDTO.setMembreDTO(unMembreDTO);
         unPretDTO.setLivreDTO(unLivreDTO);
@@ -316,10 +311,9 @@ public class ReservationService extends Service implements IReservationService {
      * {@inheritDoc}
      */
     @Override
-    public void annuler(Session session,
+    public void annulerReservation(Session session,
         ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        MissingDTOException,
         ServiceException {
         if(session == null) {
             throw new InvalidHibernateSessionException("La session ne peut être null");

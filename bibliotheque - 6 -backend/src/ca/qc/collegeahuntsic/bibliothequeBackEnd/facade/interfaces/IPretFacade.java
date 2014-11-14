@@ -17,70 +17,13 @@ import org.hibernate.Session;
 
 /**
  * Interface de façade pour manipuler les prêts dans la base de données.
- * 
+ *
  * @author Gilles Benichou
  */
 public interface IPretFacade extends IFacade {
-    /**
-     * Commence un prêt.
-     * 
-     * @param session La session à utiliser
-     * @param pretDTO Le prêt à commencer
-     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
-     * @throws InvalidDTOException Si le prêt est <code>null</code>
-     *         <code>null</code>
-     * @throws ExistingLoanException Si le livre a été prêté
-     * @throws InvalidLoanLimitException Si le membre a atteint sa limite de prêt
-     * @throws ExistingReservationException Si le livre a été réservé
-     * @throws FacadeException S'il y a une erreur avec la base de données
-     */
-    void commencer(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        ExistingLoanException,
-        InvalidLoanLimitException,
-        ExistingReservationException,
-        FacadeException;
-
-    /**
-     * Renouvelle le prêt d'un livre.
-     * 
-     * @param session La session à utiliser
-     * @param pretDTO Le prêt à renouveler
-     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
-     * @throws InvalidDTOException Si le prêt est <code>null</code>
-     *         ou si la clef primaire du livre est <code>null</code>
-     * @throws MissingLoanException Si le livre n'a pas encore été prêté
-     * @throws ExistingReservationException Si le livre a été réservé
-     * @throws FacadeException S'il y a une erreur avec la base de données
-     */
-    void renouveler(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        MissingLoanException,
-        ExistingReservationException,
-        FacadeException;
-
-    /**
-     * Termine un prêt.
-     * 
-     * @param session La session à utiliser
-     * @param pretDTO Le prêt à terminer
-     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
-     * @throws InvalidDTOException Si le prêt est <code>null</code>
-     *         ou si la clef primaire du livre est <code>null</code>
-     * @throws MissingLoanException Si le livre n'a pas encore été prêté
-     *         celle que prend en charge le DAO
-     * @throws FacadeException S'il y a une erreur avec la base de données
-     */
-    void terminer(Session session,
-        PretDTO pretDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        MissingLoanException,
-        FacadeException;
 
     /**.
-     * 
+     *
      * Retourne un prêt à l'aide de son ID
      *
      * @param session La session à utiliser
@@ -94,4 +37,63 @@ public interface IPretFacade extends IFacade {
         String idPret) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
         FacadeException;
+
+    /**
+     * Commence un prêt.
+     *
+     * @param session La session à utiliser
+     * @param pretDTO Le prêt à commencer
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidDTOException Si le prêt est <code>null</code>
+     *         <code>null</code>
+     * @throws ExistingLoanException Si le livre a été prêté
+     * @throws InvalidLoanLimitException Si le membre a atteint sa limite de prêt
+     * @throws ExistingReservationException Si le livre a été réservé
+     * @throws FacadeException S'il y a une erreur avec la base de données
+     */
+    void commencerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        ExistingLoanException,
+        InvalidLoanLimitException,
+        ExistingReservationException,
+        FacadeException;
+
+    /**
+     * Renouvelle le prêt d'un livre.
+     *
+     * @param session La session à utiliser
+     * @param pretDTO Le prêt à renouveler
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidDTOException Si le prêt est <code>null</code>
+     *         ou si la clef primaire du livre est <code>null</code>
+     * @throws MissingLoanException Si le livre n'a pas encore été prêté
+     * @throws ExistingReservationException Si le livre a été réservé
+     * @throws FacadeException S'il y a une erreur avec la base de données
+     */
+    void renouvelerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        MissingLoanException,
+        ExistingReservationException,
+        FacadeException;
+
+    /**
+     * Termine un prêt.
+     *
+     * @param session La session à utiliser
+     * @param pretDTO Le prêt à terminer
+     * @throws InvalidHibernateSessionException Si la session est <code>null</code>
+     * @throws InvalidDTOException Si le prêt est <code>null</code>
+     *         ou si la clef primaire du livre est <code>null</code>
+     * @throws MissingLoanException Si le livre n'a pas encore été prêté
+     *         celle que prend en charge le DAO
+     * @throws FacadeException S'il y a une erreur avec la base de données
+     */
+    void terminerPret(Session session,
+        PretDTO pretDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        MissingLoanException,
+        FacadeException;
+
 }

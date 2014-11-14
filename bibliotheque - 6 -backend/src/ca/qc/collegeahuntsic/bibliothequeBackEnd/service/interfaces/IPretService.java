@@ -23,13 +23,13 @@ import org.hibernate.Session;
 
 /**
  * Interface de service pour manipuler les prêts dans la base de données.
- * 
+ *
  * @author Gilles Benichou
  */
 public interface IPretService extends IService {
     /**
      * Ajoute un nouveau prêt dans la base de données.
-     * 
+     *
      * @param session La session à utliser
      * @param pretDTO Le prêt à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -40,12 +40,11 @@ public interface IPretService extends IService {
     void addPret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Lit un prêt à partir de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param idPret L'ID du prêt à lire
      * @return Le prêt
@@ -60,7 +59,7 @@ public interface IPretService extends IService {
 
     /**
      * Met à jour un prêt dans la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param pretDTO Le prêt à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -71,12 +70,11 @@ public interface IPretService extends IService {
     void updatePret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Supprime un prêt de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param pretDTO Le prêt à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -87,13 +85,12 @@ public interface IPretService extends IService {
     void deletePret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Trouve tous les prêts de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste de tous les prêts ; une liste vide sinon
@@ -109,14 +106,14 @@ public interface IPretService extends IService {
     /**
      * Trouve les prêts à partir d'une date de prêt. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun prêt
      * n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param datePret La date de prêt à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste des prêts correspondants ; une liste vide sinon
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de prêt est <code>null</code>
-     * @throws InvalidCriterionValueException 
+     * @throws InvalidCriterionValueException
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -131,7 +128,7 @@ public interface IPretService extends IService {
     /**
      * Trouve les prêts à partir d'une date de retour. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * prêt n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param dateRetour La date de retour à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
@@ -139,7 +136,7 @@ public interface IPretService extends IService {
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws InvalidCriterionValueException 
+     * @throws InvalidCriterionValueException
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     List<PretDTO> findPretByDateRetour(Session session,
@@ -152,7 +149,7 @@ public interface IPretService extends IService {
 
     /**
      * Commence un prêt.
-     * 
+     *
      * @param session La session à utiliser
      * @param pretDTO Le prêt à commencer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -162,7 +159,7 @@ public interface IPretService extends IService {
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void commencer(Session session,
+    void commencerPret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingLoanException,
@@ -172,7 +169,7 @@ public interface IPretService extends IService {
 
     /**
      * Renouvelle le prêt d'un livre.
-     * 
+     *
      * @param session La session à utiliser
      * @param pretDTO Le prêt à renouveler
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -181,7 +178,7 @@ public interface IPretService extends IService {
      * @throws ExistingReservationException Si le livre a été réservé
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void renouveler(Session session,
+    void renouvelerPret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         MissingLoanException,
@@ -190,7 +187,7 @@ public interface IPretService extends IService {
 
     /**
      * Termine un prêt.
-     * 
+     *
      * @param session La session à utiliser
      * @param pretDTO Le prêt à terminer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -198,7 +195,7 @@ public interface IPretService extends IService {
      * @throws MissingLoanException Si le livre n'a pas encore été prêté
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void terminer(Session session,
+    void terminerPret(Session session,
         PretDTO pretDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         MissingLoanException,

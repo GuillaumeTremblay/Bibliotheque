@@ -20,13 +20,13 @@ import org.hibernate.Session;
 
 /**
  * Interface de service pour manipuler les membres dans la base de données.
- * 
+ *
  * @author Gilles Benichou
  */
 public interface IMembreService extends IService {
     /**
      * Ajoute un nouveau membre dans la base de données.
-     * 
+     *
      * @param session La session à utliser
      * @param membreDTO Le membre à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -37,12 +37,11 @@ public interface IMembreService extends IService {
     void addMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Lit un membre à partir de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param idMembre L'ID du membre à lire
      * @return Le membre
@@ -57,7 +56,7 @@ public interface IMembreService extends IService {
 
     /**
      * Met à jour un membre dans la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param membreDTO Le membre à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -68,12 +67,11 @@ public interface IMembreService extends IService {
     void updateMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Supprime un membre de la base de données.
-     * 
+     *
      * @param session La session à utiliser
      * @param membreDTO Le membre à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -84,13 +82,12 @@ public interface IMembreService extends IService {
     void deleteMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Trouve tous les membres de la base de données. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun
      * membre n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
      * @return La liste de tous les membres ; une liste vide sinon
@@ -106,7 +103,7 @@ public interface IMembreService extends IService {
     /**
      * Trouve les membres à partir d'un nom. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun membre n'est
      * trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session à utiliser
      * @param nom Le nom à trouver
      * @param sortByPropertyName The nom de la propriété à utiliser pour classer
@@ -115,7 +112,7 @@ public interface IMembreService extends IService {
      * @throws InvalidCriterionException Si le nom est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidCriterionValueException 
+     * @throws InvalidCriterionValueException
      */
     List<MembreDTO> findMembreByNom(Session session,
         String nom,
@@ -127,7 +124,7 @@ public interface IMembreService extends IService {
 
     /**
      * Inscrit un membre.
-     * 
+     *
      * @param session La session à utiliser
      * @param membreDTO Le membre à inscrire
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -135,15 +132,14 @@ public interface IMembreService extends IService {
      * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void inscrire(Session session,
+    void inscrireMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
-        InvalidDTOClassException,
         ServiceException;
 
     /**
      * Désincrit un membre.
-     * 
+     *
      * @param session La session à utiliser
      * @param membreDTO Le membre à désinscrire
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
@@ -152,7 +148,7 @@ public interface IMembreService extends IService {
      * @throws ExistingReservationException Si le membre a des réservations
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
-    void desinscrire(Session session,
+    void desinscrireMembre(Session session,
         MembreDTO membreDTO) throws InvalidHibernateSessionException,
         InvalidDTOException,
         ExistingLoanException,

@@ -7,9 +7,7 @@ package ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.InvalidServiceException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
@@ -72,54 +70,13 @@ public class ReservationFacade extends Facade implements IReservationFacade {
      * {@inheritDoc}
      */
     @Override
-    public void placer(Session session,
-        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        MissingLoanException,
-        ExistingLoanException,
-        ExistingReservationException,
-        FacadeException {
-        try {
-            getReservationService().placer(session,
-                reservationDTO);
-        } catch(ServiceException e) {
-            throw new FacadeException(e);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void utiliser(Session session,
-        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
-        ExistingReservationException,
-        ExistingLoanException,
-        InvalidLoanLimitException,
-        FacadeException {
-        try {
-            getReservationService().utiliser(session,
-                reservationDTO);
-        } catch(ServiceException e) {
-            throw new FacadeException(e);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void annuler(Session session,
-        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
-        InvalidDTOException,
+    public ReservationDTO getReservation(Session session,
+        String idReservation) throws InvalidHibernateSessionException,
         InvalidPrimaryKeyException,
-        MissingDTOException,
-        InvalidDTOClassException,
         FacadeException {
         try {
-            getReservationService().annuler(session,
-                reservationDTO);
+            return getReservationService().getReservation(session,
+                idReservation);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
         }
@@ -129,13 +86,51 @@ public class ReservationFacade extends Facade implements IReservationFacade {
      * {@inheritDoc}
      */
     @Override
-    public ReservationDTO getReservation(Session session,
-        String idReservation) throws InvalidHibernateSessionException,
-        InvalidPrimaryKeyException,
+    public void placerReservation(Session session,
+        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        MissingLoanException,
+        ExistingLoanException,
+        ExistingReservationException,
         FacadeException {
         try {
-            return getReservationService().getReservation(session,
-                idReservation);
+            getReservationService().placerReservation(session,
+                reservationDTO);
+        } catch(ServiceException e) {
+            throw new FacadeException(e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void utiliserReservation(Session session,
+        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        ExistingReservationException,
+        ExistingLoanException,
+        InvalidLoanLimitException,
+        FacadeException {
+        try {
+            getReservationService().utiliserReservation(session,
+                reservationDTO);
+        } catch(ServiceException e) {
+            throw new FacadeException(e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void annulerReservation(Session session,
+        ReservationDTO reservationDTO) throws InvalidHibernateSessionException,
+        InvalidDTOException,
+        FacadeException {
+        try {
+            getReservationService().annulerReservation(session,
+                reservationDTO);
         } catch(ServiceException serviceException) {
             throw new FacadeException(serviceException);
         }

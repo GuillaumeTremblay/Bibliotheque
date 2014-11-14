@@ -36,7 +36,7 @@ public class DAO implements Idao {
 
     /**
      * Crée un DAO.
-     * 
+     *
      * @param dtoClass La classe de DTO à utiliser
      * @throws InvalidDTOClassException Si la classe de DTO est <code>null</code>
      */
@@ -204,7 +204,7 @@ public class DAO implements Idao {
     /**
      * Trouve les DTOs à partir d'une propriété <code>propertyName</code> étant égale à une valeur <code>value</code>. La liste est classée par
      * ordre croissant sur <code>sortByPropertyName</code>. Si aucun DTO n'est trouvé, une {@link List} vide est retournée.
-     * 
+     *
      * @param session La session Hibernate à utiliser
      * @param propertyName Le nom de la propriété à utiliser
      * @param value La valeur à trouver
@@ -260,7 +260,7 @@ public class DAO implements Idao {
      * Trouve les DTOs à partir d'une propriété <code>propertyName</code> étant comprise entre la veille et le lendemain de la date
      * <code>date</code>. La liste est classée par ordre croissant sur <code>sortByPropertyName</code>. Si aucun DTO n'est trouvé, une
      * {@link List} vide est retournée.
-     * 
+     *
      * @param session La session Hibernate à utiliser
      * @param propertyName Le nom de la propriété à utiliser
      * @param date La date à trouver
