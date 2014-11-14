@@ -1,7 +1,7 @@
-/applicationContext-dao.xml
-/applicationContext-dto.xml
-/applicationContext-facade.xml
-/applicationContext-jdbc.xml
-/applicationContext-service.xml
+/applicationContext.xml
+/applicationContextDAO.xml
+/applicationContextDTO.xml
+/applicationContextFacade.xml
+/applicationContextService.xml
 /ca/
-/logs/
+/log4j.properties

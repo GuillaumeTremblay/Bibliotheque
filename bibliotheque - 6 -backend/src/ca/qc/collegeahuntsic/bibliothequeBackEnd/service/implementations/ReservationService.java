@@ -192,9 +192,9 @@ public class ReservationService extends Service implements IReservationService {
         if(reservationDTO == null) {
             throw new InvalidDTOException("La réservation ne peut être null");
         }
-        final MembreDTO membreDTO = reservationDTO.getMembreDTO();
+        reservationDTO.getMembreDTO();
         final LivreDTO livreDTO = reservationDTO.getLivreDTO();
-        final List<PretDTO> prets = new ArrayList<>(livreDTO.getPrets());
+        List<PretDTO> prets = new ArrayList<>(livreDTO.getPrets());
         if(prets.isEmpty()) {
             throw new MissingLoanException("Le livre "
                 + livreDTO.getTitre()
@@ -203,29 +203,32 @@ public class ReservationService extends Service implements IReservationService {
                 + ") n'est pas encore prêté");
         }
 
-        boolean aEteEmprunteParMembre = false;
+        prets = new ArrayList<>(reservationDTO.getMembreDTO().getPrets());
         for(PretDTO pretDTO : prets) {
-            aEteEmprunteParMembre = membreDTO.equals(pretDTO.getMembreDTO());
-        }
-        if(aEteEmprunteParMembre) {
-            throw new ExistingLoanException("Le livre "
-                + livreDTO.getTitre()
-                + " (ID de livre : "
-                + livreDTO.getIdLivre()
-                + ") est déjà prêté à "
-                + membreDTO.getNom()
-                + " (ID de membre : "
-                + membreDTO.getIdMembre()
-                + ")");
-        }
-        final List<ReservationDTO> reservations = new ArrayList<>(membreDTO.getReservations());
-        for(ReservationDTO uneAutreReservationDTO : reservations) {
-            if(livreDTO.equals(uneAutreReservationDTO.getLivreDTO())) {
-                throw new ExistingReservationException("Le livre "
-                    + livreDTO.getTitre()
+            if(pretDTO.getDateRetour() == null) {
+                throw new ExistingLoanException("Le livre "
+                    + pretDTO.getLivreDTO().getTitre()
                     + " (ID de livre : "
-                    + livreDTO.getIdLivre()
-                    + ") est déjà réservé pour quelqu'un d'autre");
+                    + pretDTO.getLivreDTO().getIdLivre()
+                    + ") est présentemment prêté à "
+                    + pretDTO.getMembreDTO().getNom()
+                    + " (ID de membre : "
+                    + pretDTO.getMembreDTO().getIdMembre()
+                    + ")");
+            }
+        }
+        final List<ReservationDTO> reservations = new ArrayList<>(reservationDTO.getMembreDTO().getReservations());
+        for(ReservationDTO uneReservationDTO : reservations) {
+            if(reservationDTO.getLivreDTO().equals(uneReservationDTO.getLivreDTO())) {
+                throw new ExistingReservationException("Le livre "
+                    + uneReservationDTO.getLivreDTO().getTitre()
+                    + " (ID de livre : "
+                    + uneReservationDTO.getLivreDTO().getIdLivre()
+                    + ") est déjà réservé pour "
+                    + uneReservationDTO.getMembreDTO().getNom()
+                    + " (ID de membre : "
+                    + uneReservationDTO.getMembreDTO().getIdMembre()
+                    + ")");
             }
         }
         addReservation(session,

@@ -17,7 +17,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.PretDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.ReservationDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.MissingDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
@@ -367,12 +366,12 @@ public final class Bibliotheque {
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
             InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
+            | InvalidDTOException
             | FacadeException
+            | InvalidPrimaryKeyException
             | MissingDTOException
             | ExistingLoanException
-            | ExistingReservationException
-            | InvalidDTOException e) {
+            | ExistingReservationException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             Bibliotheque.gestionBiblio.rollbackTransaction();
@@ -413,13 +412,13 @@ public final class Bibliotheque {
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
             InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
-            | FacadeException
             | InvalidDTOException
+            | FacadeException
+            | InvalidPrimaryKeyException
+            | MissingDTOException
             | ExistingLoanException
-            | InvalidLoanLimitException
             | ExistingReservationException
-            | MissingDTOException e) {
+            | InvalidLoanLimitException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             Bibliotheque.gestionBiblio.rollbackTransaction();
@@ -449,12 +448,12 @@ public final class Bibliotheque {
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
             InvalidHibernateSessionException
-            | FacadeException
             | InvalidDTOException
-            | MissingLoanException
-            | ExistingReservationException
+            | FacadeException
             | InvalidPrimaryKeyException
-            | MissingDTOException e) {
+            | MissingDTOException
+            | ExistingReservationException
+            | MissingLoanException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             gestionBiblio.rollbackTransaction();
@@ -506,7 +505,6 @@ public final class Bibliotheque {
     private static void reserver(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             Bibliotheque.gestionBiblio.beginTransaction();
-            Thread.sleep(1);
             final String idMembre = readString(tokenizer);
             final MembreDTO membreDTO = Bibliotheque.gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                 idMembre);
@@ -531,16 +529,14 @@ public final class Bibliotheque {
                 reservationDTO);
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
-            BibliothequeException
-            | InterruptedException
-            | InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
-            | FacadeException
-            | MissingDTOException
+            InvalidHibernateSessionException
             | InvalidDTOException
-            | MissingLoanException
+            | FacadeException
+            | InvalidPrimaryKeyException
+            | MissingDTOException
             | ExistingLoanException
-            | ExistingReservationException e) {
+            | ExistingReservationException
+            | MissingLoanException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             gestionBiblio.rollbackTransaction();
@@ -570,13 +566,13 @@ public final class Bibliotheque {
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
             InvalidHibernateSessionException
-            | InvalidPrimaryKeyException
-            | FacadeException
             | InvalidDTOException
-            | ExistingReservationException
+            | FacadeException
+            | InvalidPrimaryKeyException
+            | MissingDTOException
             | ExistingLoanException
-            | InvalidLoanLimitException
-            | MissingDTOException e) {
+            | ExistingReservationException
+            | InvalidLoanLimitException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             Bibliotheque.gestionBiblio.rollbackTransaction();
@@ -605,13 +601,11 @@ public final class Bibliotheque {
                 reservationDTO);
             Bibliotheque.gestionBiblio.commitTransaction();
         } catch(
-            BibliothequeException
-            | InvalidHibernateSessionException
+            InvalidHibernateSessionException
             | InvalidDTOException
+            | FacadeException
             | InvalidPrimaryKeyException
-            | MissingDTOException
-            | InvalidDTOClassException
-            | FacadeException e) {
+            | MissingDTOException e) {
             Bibliotheque.LOGGER.error(" **** "
                 + e.getMessage());
             Bibliotheque.gestionBiblio.rollbackTransaction();

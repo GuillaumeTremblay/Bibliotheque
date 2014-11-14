@@ -1,0 +1,13 @@
+||:ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException
+ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException
+java.lang.Exception
+||:ca.qc.collegeahuntsic.bibliotheque.Constants
+java.lang.Object
+ca.qc.collegeahuntsic.bibliotheque.Constants
+java.lang.Error
+||:ca.qc.collegeahuntsic.bibliotheque.package-info
+java.lang.Object
+ca.qc.collegeahuntsic.bibliotheque.package-info
+||:ca.qc.collegeahuntsic.bibliotheque.exception.package-info
+java.lang.Object
+ca.qc.collegeahuntsic.bibliotheque.exception.package-info
