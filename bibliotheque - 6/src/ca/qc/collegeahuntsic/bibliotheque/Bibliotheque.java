@@ -66,7 +66,6 @@ public final class Bibliotheque {
      * Ouverture de la BD, traitement des transactions et fermeture de la BD.
      *
      * @param argv = bibliotheque.dat
-     * @throws Exception lance une exception
      */
     public static void main(String[] argv) {
         // validation du nombre de paramètres
@@ -93,12 +92,11 @@ public final class Bibliotheque {
     /**
      * Traitement des transactions de la bibliothèque.
      * @param reader recoit un befferedreader
-     * @throws IOException
-     * @throws BibliothequeException
-     * @throws Exception lance Exception
+     * @throws IOException Erreur de fichier
+     * @throws BibliothequeException Erreur de lecture du fichier
      */
     private static void traiterTransactions(BufferedReader reader) throws IOException,
-    BibliothequeException {
+        BibliothequeException {
         Bibliotheque.afficherAide();
         Bibliotheque.LOGGER.info("\n\n\n");
         String transaction = lireTransaction(reader);
@@ -129,7 +127,7 @@ public final class Bibliotheque {
     /**
      * Décodage et traitement d'une transaction.
      * @param tokenizer recoit une string de commande en stringtokenizer
-     * @throws BibliothequeException
+     * @throws BibliothequeException Erreur de base de donnée
      */
     private static void executerTransaction(StringTokenizer tokenizer) throws BibliothequeException {
         final String command = tokenizer.nextToken();
@@ -210,7 +208,7 @@ public final class Bibliotheque {
 
     /**
      * Vérifie si la fin du traitement des transactions est atteinte.
-     * @param transaction
+     * @param transaction une ligne lue du fichier
      * @return retourne true ou false si la fichier est vide ou non
      */
     private static boolean finTransaction(String transaction) {

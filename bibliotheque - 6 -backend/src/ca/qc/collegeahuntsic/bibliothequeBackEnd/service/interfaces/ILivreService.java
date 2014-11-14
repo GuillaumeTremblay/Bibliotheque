@@ -11,7 +11,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -61,7 +60,6 @@ public interface ILivreService extends IService {
      * @param livreDTO Le livre à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void updateLivre(Session session,
@@ -76,7 +74,6 @@ public interface ILivreService extends IService {
      * @param livreDTO Le livre à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void deleteLivre(Session session,
@@ -111,7 +108,7 @@ public interface ILivreService extends IService {
      * @throws InvalidCriterionException Si le titre est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidCriterionValueException
+     * @throws InvalidCriterionValueException S'il y a une erreur avec la base de données
      */
     List<LivreDTO> findLivreByTitre(Session session,
         String titre,
@@ -128,7 +125,6 @@ public interface ILivreService extends IService {
      * @param livreDTO Le livre à acquérir
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le livre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du livre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void acquerirLivre(Session session,

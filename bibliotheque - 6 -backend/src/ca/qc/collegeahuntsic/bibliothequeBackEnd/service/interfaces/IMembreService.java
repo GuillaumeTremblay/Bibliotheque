@@ -11,7 +11,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -31,7 +30,6 @@ public interface IMembreService extends IService {
      * @param membreDTO Le membre à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le membre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void addMembre(Session session,
@@ -61,7 +59,6 @@ public interface IMembreService extends IService {
      * @param membreDTO Le membre à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le membre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void updateMembre(Session session,
@@ -76,7 +73,6 @@ public interface IMembreService extends IService {
      * @param membreDTO Le membre à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le membre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void deleteMembre(Session session,
@@ -112,7 +108,7 @@ public interface IMembreService extends IService {
      * @throws InvalidCriterionException Si le nom est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
-     * @throws InvalidCriterionValueException
+     * @throws InvalidCriterionValueException S'il y a une erreur avec la base de données
      */
     List<MembreDTO> findMembreByNom(Session session,
         String nom,
@@ -129,7 +125,6 @@ public interface IMembreService extends IService {
      * @param membreDTO Le membre à inscrire
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le membre est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du membre n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void inscrireMembre(Session session,

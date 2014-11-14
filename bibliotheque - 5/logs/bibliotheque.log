@@ -767,3 +767,6 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-02290: check c
 2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** Le membre 998 n'existe pas
 2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 4 n'existe pas
 2014-11-04 13:10:15-[main][ERROR][ca.qc.collegeahuntsic.bibliothequeBackEnd.Bibliotheque]-**** La réservation 3 n'existe pas
+2014-11-12 13:18:45-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: La reservation 1 n'existe pas.
+2014-11-12 13:18:46-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: La reservation 4 n'existe pas.
+2014-11-12 13:18:46-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]-ca.qc.collegeahuntsic.bibliotheque.exception.BibliothequeException: La reservation 3 n'existe pas.

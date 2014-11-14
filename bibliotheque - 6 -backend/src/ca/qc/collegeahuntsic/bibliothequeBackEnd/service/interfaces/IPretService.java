@@ -12,7 +12,6 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidCriterionV
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKeyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOClassException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
@@ -34,7 +33,6 @@ public interface IPretService extends IService {
      * @param pretDTO Le prêt à ajouter
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void addPret(Session session,
@@ -64,7 +62,6 @@ public interface IPretService extends IService {
      * @param pretDTO Le prêt à mettre à jour
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void updatePret(Session session,
@@ -79,7 +76,6 @@ public interface IPretService extends IService {
      * @param pretDTO Le prêt à supprimer
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidDTOException Si le prêt est <code>null</code>
-     * @throws InvalidDTOClassException Si la classe du prêt n'est pas celle que prend en charge le DAO
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     void deletePret(Session session,
@@ -113,7 +109,7 @@ public interface IPretService extends IService {
      * @return La liste des prêts correspondants ; une liste vide sinon
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de prêt est <code>null</code>
-     * @throws InvalidCriterionValueException
+     * @throws InvalidCriterionValueException S'il y a une erreur avec la base de données
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
@@ -136,7 +132,7 @@ public interface IPretService extends IService {
      * @throws InvalidHibernateSessionException Si la session est <code>null</code>
      * @throws InvalidCriterionException Si la date de retour est <code>null</code>
      * @throws InvalidSortByPropertyException Si la propriété à utiliser pour classer est <code>null</code>
-     * @throws InvalidCriterionValueException
+     * @throws InvalidCriterionValueException S'il y a une erreur avec la base de données
      * @throws ServiceException S'il y a une erreur avec la base de données
      */
     List<PretDTO> findPretByDateRetour(Session session,
