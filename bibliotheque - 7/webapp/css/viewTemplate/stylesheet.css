@@ -1,0 +1,62 @@
+﻿/************/
+/* Template */
+/************/
+/* Index template */
+DIV.index-template {
+  width: 980px;
+}
+
+/* Template */
+DIV.template {
+}
+
+/* Template header */
+DIV.template-header {
+  background-color: rgb(242,242,255);
+}
+
+/* Template body */
+DIV.template-body {
+  background-color: rgb(242,242,255);
+}
+
+/* Template footer */
+DIV.template-footer {
+  background-color: rgb(242,242,255);
+}
+
+/* Header */
+DIV.header {
+}
+DIV.header-logo {
+  width: 33%;
+}
+DIV.logo {
+}
+DIV.header-welcome {
+  width: 33%;
+}
+DIV.welcome {
+}
+DIV.header-flags {
+  width: 33%;
+  text-align: right;
+}
+DIV.flags {
+}
+DIV.french-flag {
+}
+DIV.english-flag {
+}
+
+
+/* Body */
+DIV.body {
+}
+
+/* Footer */
+DIV.footer {
+  font-size: 8pt;
+  color: rgb(87,93,110);
+  text-align: right;
+}

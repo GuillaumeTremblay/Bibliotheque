@@ -1,3 +1,7 @@
-/applicationContext.xml
+/applicationContext-dao.xml
+/applicationContext-dto.xml
+/applicationContext-facade.xml
+/applicationContext-jdbc.xml
+/applicationContext-service.xml
 /ca/
-/log4j.properties
+/logs/

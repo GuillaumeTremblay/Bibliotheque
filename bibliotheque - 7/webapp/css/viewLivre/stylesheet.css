@@ -1,0 +1,26 @@
+﻿/*********/
+/* Livre */
+/*********/
+DIV.id-livre {
+}
+DIV.titre {
+}
+DIV.auteur {
+}
+DIV.date-acquisition {
+}
+INPUT.livre-titre {
+  width: 500px
+}
+INPUT.livre-auteur {
+  width: 500px
+}
+INPUT.livre-date-acquisition {
+  width: 75px
+}
+DIV.submit {
+}
+INPUT.livre-submit {
+}
+DIV.retour {
+}

@@ -1,0 +1,10 @@
+ca.qc.collegeahuntsic.bibliotheque
+ca.qc.collegeahuntsic.bibliotheque.exception
+ca.qc.collegeahuntsic.bibliotheque.filter
+ca.qc.collegeahuntsic.bibliotheque.servlet
+ca.qc.collegeahuntsic.bibliotheque.servlet.action
+ca.qc.collegeahuntsic.bibliotheque.servlet.startup
+ca.qc.collegeahuntsic.bibliotheque.servlet.taglib
+ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.bean
+ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config
+ca.qc.collegeahuntsic.bibliotheque.util

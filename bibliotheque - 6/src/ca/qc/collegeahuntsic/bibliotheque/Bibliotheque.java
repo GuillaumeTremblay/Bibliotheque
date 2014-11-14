@@ -73,13 +73,14 @@ public final class Bibliotheque {
             Bibliotheque.LOGGER.info("Usage: java Biblio [<fichier-transactions>]");
         }
 
-        // ouverture du fichier de transactions
-        final InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
-            + argv[0]);
-        try(
-            BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
-            Bibliotheque.gestionBiblio = new BibliothequeCreateur();
-            Bibliotheque.traiterTransactions(reader);
+        try {
+            final InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
+                + argv[0]);
+            try(
+                BufferedReader reader = new BufferedReader(new InputStreamReader(sourceTransaction))) {
+                Bibliotheque.gestionBiblio = new BibliothequeCreateur();
+                Bibliotheque.traiterTransactions(reader);
+            }
         } catch(IOException ioException) {
             Bibliotheque.LOGGER.error(" **** "
                 + ioException.getMessage());
@@ -252,7 +253,8 @@ public final class Bibliotheque {
             } catch(ParseException e) {
                 throw new BibliothequeException("Date en format YYYY-MM-DD attendue à la place  de \""
                     + token
-                    + "\"");
+                    + "\""
+                    + e);
             }
         }
         throw new BibliothequeException("autre paramètre attendu");
@@ -387,7 +389,6 @@ public final class Bibliotheque {
     private static void preter(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             Bibliotheque.gestionBiblio.beginTransaction();
-            final PretDTO pretDTO = new PretDTO();
             final String idMembre = readString(tokenizer);
             final MembreDTO membreDTO = Bibliotheque.gestionBiblio.getMembreFacade().getMembre(Bibliotheque.gestionBiblio.getSession(),
                 idMembre);
@@ -404,6 +405,7 @@ public final class Bibliotheque {
                     + idLivre
                     + " n'existe pas");
             }
+            final PretDTO pretDTO = new PretDTO();
             pretDTO.setMembreDTO(membreDTO);
             pretDTO.setLivreDTO(livreDTO);
             Bibliotheque.gestionBiblio.getPretFacade().commencerPret(Bibliotheque.gestionBiblio.getSession(),
@@ -504,10 +506,7 @@ public final class Bibliotheque {
     private static void reserver(StringTokenizer tokenizer) throws BibliothequeException {
         try {
             Bibliotheque.gestionBiblio.beginTransaction();
-            // Juste pour éviter deux timestamps de réservation strictement
-            // identiques
             Thread.sleep(1);
-            final ReservationDTO reservationDTO = new ReservationDTO();
             final String idMembre = readString(tokenizer);
             final MembreDTO membreDTO = Bibliotheque.gestionBiblio.getMembreFacade().getMembre(gestionBiblio.getSession(),
                 idMembre);
@@ -524,6 +523,7 @@ public final class Bibliotheque {
                     + idLivre
                     + " n'existe pas");
             }
+            final ReservationDTO reservationDTO = new ReservationDTO();
             reservationDTO.setMembreDTO(membreDTO);
             reservationDTO.setLivreDTO(livreDTO);
             reservationDTO.setDateReservation(new Timestamp(System.currentTimeMillis()));
