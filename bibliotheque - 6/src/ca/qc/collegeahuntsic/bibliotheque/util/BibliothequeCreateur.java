@@ -19,25 +19,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Utilitaire de création des outils de la bibliothèque.
- *
+ * 
  * @author Gilles Benichou
  */
 public class BibliothequeCreateur {
-    private static final String SPRING_CONFIGURATION_FILE_NAME = "applicationContext.xml";
+    private static final String APPLICATION_CONTEXT_JDBC_FILENAME = "testApplicationContext-jdbc.xml";
 
-    private static final String SPRING_CONFIGURATION_FILE_NAME_DTO = "applicationContextDTO.xml";
+    private static final String APPLICATION_CONTEXT_DTO_FILENAME = "applicationContext-dto.xml";
 
-    private static final String SPRING_CONFIGURATION_FILE_NAME_DAO = "applicationContextDAO.xml";
+    private static final String APPLICATION_CONTEXT_DAO_FILENAME = "applicationContext-dao.xml";
 
-    private static final String SPRING_CONFIGURATION_FILE_NAME_SERVICE = "applicationContextService.xml";
+    private static final String APPLICATION_CONTEXT_SERVICE_FILENAME = "applicationContext-service.xml";
 
-    private static final String SPRING_CONFIGURATION_FILE_NAME_FACADE = "applicationContextFacade.xml";
+    private static final String APPLICATION_CONTEXT_FACADE_FILENAME = "applicationContext-facade.xml";
 
-    private static final String[] SPRING_CONFIGURATION_FILE_NAME_TAB = {SPRING_CONFIGURATION_FILE_NAME,
-        SPRING_CONFIGURATION_FILE_NAME_DTO,
-        SPRING_CONFIGURATION_FILE_NAME_DAO,
-        SPRING_CONFIGURATION_FILE_NAME_SERVICE,
-        SPRING_CONFIGURATION_FILE_NAME_FACADE};
+    private static final String APPLICATION_CONTEXT_FILENAME = "testApplicationContext.xml";
 
     private static final String SESSION_FACTORY_NAME = "sessionFactory";
 
@@ -49,7 +45,14 @@ public class BibliothequeCreateur {
 
     private static final String RESERVATION_FACADE_NAME = "reservationFacade";
 
-    private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(BibliothequeCreateur.SPRING_CONFIGURATION_FILE_NAME_TAB);
+    private static final String[] APPLICATION_CONTEXT_FILENAMES = new String[] {BibliothequeCreateur.APPLICATION_CONTEXT_JDBC_FILENAME,
+        BibliothequeCreateur.APPLICATION_CONTEXT_DTO_FILENAME,
+        BibliothequeCreateur.APPLICATION_CONTEXT_DAO_FILENAME,
+        BibliothequeCreateur.APPLICATION_CONTEXT_SERVICE_FILENAME,
+        BibliothequeCreateur.APPLICATION_CONTEXT_FACADE_FILENAME,
+        BibliothequeCreateur.APPLICATION_CONTEXT_FILENAME};
+
+    private static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_FILENAMES);
 
     private SessionFactory sessionFactory;
 
@@ -68,8 +71,7 @@ public class BibliothequeCreateur {
     /**
      * Crée le système transactionnel nécessaire à l'application bibliothèque.
      *
-     * @throws BibliothequeException
-     *             S'il y a une erreur avec la base de données
+     * @throws BibliothequeException S'il y a une erreur avec la base de données
      */
     public BibliothequeCreateur() throws BibliothequeException {
         super();
@@ -97,9 +99,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.sessionFactory</code>.
      *
-     * @param sessionFactory
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.sessionFactory</code>
+     * @param sessionFactory La valeur à utiliser pour la variable d'instance <code>this.sessionFactory</code>
      */
     private void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -117,9 +117,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.session</code>.
      *
-     * @param session
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.session</code>
+     * @param session La valeur à utiliser pour la variable d'instance <code>this.session</code>
      */
     private void setSession(Session session) {
         this.session = session;
@@ -137,9 +135,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.transaction</code>.
      *
-     * @param transaction
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.transaction</code>
+     * @param transaction La valeur à utiliser pour la variable d'instance <code>this.transaction</code>
      */
     private void setTransaction(Transaction transaction) {
         this.transaction = transaction;
@@ -157,9 +153,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.membreFacade</code>.
      *
-     * @param membreFacade
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.membreFacade</code>
+     * @param membreFacade La valeur à utiliser pour la variable d'instance <code>this.membreFacade</code>
      */
     private void setMembreFacade(IMembreFacade membreFacade) {
         this.membreFacade = membreFacade;
@@ -177,9 +171,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.livreFacade</code>.
      *
-     * @param livreFacade
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.livreFacade</code>
+     * @param livreFacade La valeur à utiliser pour la variable d'instance <code>this.livreFacade</code>
      */
     private void setLivreFacade(ILivreFacade livreFacade) {
         this.livreFacade = livreFacade;
@@ -197,9 +189,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.pretFacade</code>.
      *
-     * @param pretFacade
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.pretFacade</code>
+     * @param pretFacade La valeur à utiliser pour la variable d'instance <code>this.pretFacade</code>
      */
     private void setPretFacade(IPretFacade pretFacade) {
         this.pretFacade = pretFacade;
@@ -217,9 +207,7 @@ public class BibliothequeCreateur {
     /**
      * Setter de la variable d'instance <code>this.reservationFacade</code>.
      *
-     * @param reservationFacade
-     *            La valeur à utiliser pour la variable d'instance
-     *            <code>this.reservationFacade</code>
+     * @param reservationFacade La valeur à utiliser pour la variable d'instance <code>this.reservationFacade</code>
      */
     private void setReservationFacade(IReservationFacade reservationFacade) {
         this.reservationFacade = reservationFacade;
@@ -228,11 +216,10 @@ public class BibliothequeCreateur {
     // EndRegion Getters and Setters
 
     /**
-     * Ouvre une session.
+     * Ouvre une session Hibernate.
      * 
      * @return La session Hibernate
-     * @throws BibliothequeException
-     *             S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur
      */
     private Session openSession() throws BibliothequeException {
         try {
@@ -244,10 +231,9 @@ public class BibliothequeCreateur {
     }
 
     /**
-     * Ouvre une session.
+     * Ferme une session Hibernate.
      * 
-     * @throws BibliothequeException
-     *             S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur
      */
     private void closeSession() throws BibliothequeException {
         try {
@@ -260,8 +246,7 @@ public class BibliothequeCreateur {
     /**
      * Démarre une transaction.
      * 
-     * @throws BibliothequeException
-     *             S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur
      */
     public void beginTransaction() throws BibliothequeException {
         try {
@@ -274,8 +259,7 @@ public class BibliothequeCreateur {
     /**
      * Commit une transaction.
      * 
-     * @throws BibliothequeException
-     *             S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur
      */
     public void commitTransaction() throws BibliothequeException {
         try {
@@ -289,8 +273,7 @@ public class BibliothequeCreateur {
     /**
      * Rollback une transaction.
      * 
-     * @throws BibliothequeException
-     *             S'il y a une erreur
+     * @throws BibliothequeException S'il y a une erreur
      */
     public void rollbackTransaction() throws BibliothequeException {
         try {

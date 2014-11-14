@@ -5,3 +5,9 @@
 /applicationContextService.xml
 /ca/
 /log4j.properties
+/applicationContext-facade
+/applicationContext-facade.xml
+/applicationContext-service.xml
+/applicationContext-dao.xml
+/applicationContext-dto.xml
+/testApplicationContext-jdbc.xml

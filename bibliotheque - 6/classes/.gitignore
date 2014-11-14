@@ -1,3 +1,2 @@
-/bibliotheque.dat
-/ca/
-/log4j.properties
+/testApplicationContext-jdbc.xml
+/testApplicationContext.xml

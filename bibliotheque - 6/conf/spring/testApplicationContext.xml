@@ -1,0 +1,24 @@
+<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - Unit testing application context
+   -
+   - Author: Gilles Benichou
+-->
+
+<beans>
+  <!-- ========== Trace interceptor ============================================== -->
+  <bean name="traceInterceptor"
+        class="org.springframework.aop.interceptor.SimpleTraceInterceptor">
+  </bean>
+
+  <!-- ========== Performance monitor interceptor ================================ -->
+  <bean name="performanceMonitorInterceptor"
+        class="org.springframework.aop.interceptor.PerformanceMonitorInterceptor">
+  </bean>
+</beans>

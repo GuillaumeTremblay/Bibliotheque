@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"
+<?xml version="1.0"
       encoding="UTF-8"?>
 
 <!DOCTYPE beans PUBLIC
@@ -6,7 +6,7 @@
           "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <!--
-   - Application context
+   - JDBC application context for unit testing
    -
    - Author: Gilles Benichou
 -->
@@ -20,7 +20,7 @@
                   <value>oracle.jdbc.driver.OracleDriver</value>
         </property>
         <property name="jdbcUrl">
-                  <value>jdbc:oracle:thin:@localhost:1521:xe</value>
+                  <value>jdbc:oracle:thin:@localhost:1521:orcl</value>
         </property>
         <property name="properties">
                   <props>
@@ -34,6 +34,7 @@
                   </props>
         </property>
   </bean>
+
 
   <!-- ========== Transaction manager ============================================ -->
   <bean name="transactionManager"
@@ -63,15 +64,5 @@
                     <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
                   </props>
         </property>
-  </bean>
-
-  <!-- ========== Trace interceptor ============================================== -->
-  <bean name="traceInterceptor"
-        class="org.springframework.aop.interceptor.SimpleTraceInterceptor">
-  </bean>
-
-  <!-- ========== Performance monitor interceptor ================================ -->
-  <bean name="performanceMonitorInterceptor"
-        class="org.springframework.aop.interceptor.PerformanceMonitorInterceptor">
   </bean>
 </beans>
