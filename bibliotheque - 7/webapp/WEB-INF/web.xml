@@ -1,0 +1,138 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8" ?>
+
+<!DOCTYPE web-app PUBLIC
+          "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+          "http://svn.apache.org/repos/asf/beehive/trunk/netui/external/struts/web-app_2_3.dtd">
+
+<web-app>
+  <!-- ========== Filter definitions ============================================ -->
+  <filter>
+    <filter-name>ViewErrorPageFilter</filter-name>
+    <filter-class>ca.qc.collegeahuntsic.bibliotheque.filter.ViewErrorPageFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>UnicodeEncoderFilter</filter-name>
+    <filter-class>ca.qc.collegeahuntsic.bibliotheque.filter.UnicodeEncoderFilter</filter-class>
+  </filter>
+
+  <!-- ========== Filter mapping definitions ==================================== -->
+  <filter-mapping>
+    <filter-name>ViewErrorPageFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>UnicodeEncoderFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+  <!-- ========== Servlet definitions =========================================== -->
+  <servlet>
+    <servlet-name>applicationConfiguratorServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.startup.ApplicationConfiguratorServlet</servlet-class>
+    <init-param>
+      <param-name>applicationConfigurator</param-name>
+      <param-value>conf/applicationConfigurator</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>viewErrorPageServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.ViewErrorPageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>viewTemplateIndexServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.ViewTemplateIndexServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>changeLocaleServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.ChangeLocaleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getAllLivresServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.GetAllLivresServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getLivreServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.GetLivreServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>saveLivreServlet</servlet-name>
+    <servlet-class>ca.qc.collegeahuntsic.bibliotheque.servlet.action.SaveLivreServlet</servlet-class>
+  </servlet>
+
+  <!-- ========== Servlet mapping definitions =================================== -->
+  <servlet-mapping>
+    <servlet-name>viewErrorPageServlet</servlet-name>
+    <url-pattern>/viewErrorPage.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>viewTemplateIndexServlet</servlet-name>
+    <url-pattern>/viewTemplateIndex.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>changeLocaleServlet</servlet-name>
+    <url-pattern>/changeLocale.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getAllLivresServlet</servlet-name>
+    <url-pattern>/getAllLivres.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getLivreServlet</servlet-name>
+    <url-pattern>/getLivre.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>saveLivreServlet</servlet-name>
+    <url-pattern>/saveLivre.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- ========== Server setting definitions ==================================== -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/viewErrorPage.do</location>
+  </error-page>
+  <error-page>
+    <error-code>405</error-code>
+    <location>/viewErrorPage.do</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/viewErrorPage.do</location>
+  </error-page>
+  <error-page>
+    <error-code>505</error-code>
+    <location>/viewErrorPage.do</location>
+  </error-page>
+ 
+  <!-- ========== Taglib definitions ============================================ -->
+  <taglib>
+    <taglib-uri>bibliotheque-config</taglib-uri>
+    <taglib-location>/WEB-INF/tld/bibliotheque-config.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>bibliotheque-bean</taglib-uri>
+    <taglib-location>/WEB-INF/tld/bibliotheque-bean.tld</taglib-location>
+  </taglib>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:applicationContext-jdbc.xml,
+                 classpath*:applicationContext-dto.xml,
+                 classpath*:applicationContext-dao.xml,
+                 classpath*:applicationContext-service.xml,
+                 classpath*:applicationContext-facade.xml
+    </param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+</web-app>

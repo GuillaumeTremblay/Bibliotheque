@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE taglib PUBLIC
+          "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+          "https://svn.apache.org/repos/asf/velocity/tools/trunk/maven-velocity-tools-plugin/src/main/resources/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>bean</shortname>
+  <uri>bean</uri>
+  <info>Bean tag library.</info>
+  <tag>
+    <name>message</name>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.bean.MessageTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>Displays a resource bundle message.</info>
+    <attribute>
+      <name>key</name>
+      <required>true</required>
+    </attribute>
+  </tag>
+</taglib>
