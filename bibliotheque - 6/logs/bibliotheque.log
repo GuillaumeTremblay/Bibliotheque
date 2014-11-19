@@ -1,0 +1,24 @@
+2014-11-19 14:08:42-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:09:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:09:17-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:09:17-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** org.hibernate.exception.GenericJDBCException: Cannot open connection
+2014-11-19 14:11:44-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:12:19-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:12:19-[main][ERROR][org.hibernate.util.JDBCExceptionReporter]-Connections could not be acquired from the underlying database!
+2014-11-19 14:12:19-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** org.hibernate.exception.GenericJDBCException: Cannot open connection
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le prêt 2 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre 999 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le membre 999 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est déjà réservé pour Antonio (ID de membre : 2)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le prêt 3 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le prêt 3 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre 998 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Game_of_Thrones_Tome_1 (ID de livre : 2) a été prêté à Gilles (ID de membre : 1)
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le membre 998 n'existe pas
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** La reservation 4 n'existe pas.
+2014-11-19 14:15:04-[main][ERROR][ca.qc.collegeahuntsic.bibliotheque.Bibliotheque]- **** Le livre Life_&_Games_of_Mikhail_Tal (ID de livre : 1) est réservé pour Antonio (ID de membre : 2)

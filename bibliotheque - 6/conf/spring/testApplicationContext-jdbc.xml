@@ -20,7 +20,7 @@
                   <value>oracle.jdbc.driver.OracleDriver</value>
         </property>
         <property name="jdbcUrl">
-                  <value>jdbc:oracle:thin:@localhost:1521:orcl</value>
+                  <value>jdbc:oracle:thin:@localhost:1521:xe</value>
         </property>
         <property name="properties">
                   <props>
