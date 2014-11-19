@@ -71,7 +71,6 @@ public final class Bibliotheque {
         if(argv.length < 1) {
             Bibliotheque.LOGGER.info("Usage: java Biblio [<fichier-transactions>]");
         }
-
         try {
             final InputStream sourceTransaction = Bibliotheque.class.getResourceAsStream("/"
                 + argv[0]);

@@ -1,4 +1,4 @@
-// Fichier UnicodeEncoderFilter.java
+// Fichier ApplicationConfigurator.java
 // Auteur : Gilles Bénichou
 // Date de création : 2014-09-06
 
