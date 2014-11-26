@@ -1,1 +1,4 @@
 /chou.properties
+/.gitignore
+/.checkstyle
+/javadoc/

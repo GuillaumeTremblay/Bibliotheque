@@ -1,0 +1,1 @@
+﻿Spring config files for Struts injection.

@@ -1,0 +1,8 @@
+﻿eclipse.preferences.version=1
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/BibliothequeServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/ChangeLocaleServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/GetAllLivresServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/GetLivreServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/SaveLivreServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/ViewErrorPageServlet.java=UTF-8
+encoding//src/ca/qc/collegeahuntsic/bibliotheque/servlet/action/ViewTemplateIndexServlet.java=UTF-8

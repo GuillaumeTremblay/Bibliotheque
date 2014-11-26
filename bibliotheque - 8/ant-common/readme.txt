@@ -1,0 +1,1 @@
+﻿Default common build script for all JAVA projects.

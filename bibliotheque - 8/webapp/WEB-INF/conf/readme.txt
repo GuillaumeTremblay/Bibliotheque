@@ -1,0 +1,1 @@
+﻿Struts config files.
