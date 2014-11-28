@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - Struts application context for livre delegate action
+   -
+   - Author: Gilles Benichou
+-->
+
+<beans>
+  <!--   ========== View all livres ============================================== -->
+  <bean name="/livreManagement/viewAllLivres/event/viewAllLivres"
+        class="ca.qc.collegeahuntsic.bibliotheque.struts.action.ViewAllLivresAction">
+        <constructor-arg>
+          <ref bean="sessionFactory"/>
+        </constructor-arg>
+        <constructor-arg>
+          <ref bean="livreFacade"/>
+        </constructor-arg>
+  </bean>
+</beans>

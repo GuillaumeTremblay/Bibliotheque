@@ -1,0 +1,33 @@
+﻿/*******************/
+/* View All Livres */
+/*******************/
+/* all livres index */
+DIV.index-all-livres {
+  width: 980px;
+}
+
+/* all livres */
+DIV.all-livres {
+}
+
+/* all livres header */
+DIV.all-livres-header {
+  background-color: rgb(242,242,255);
+}
+
+/* all livres body */
+DIV.all-livres-body {
+  background-color: rgb(242,242,255);
+}
+
+/* all livres footer */
+DIV.all-livres-footer {
+  background-color: rgb(242,242,255);
+}
+
+/* body */
+DIV.body {
+}
+
+DIV.titre {
+}

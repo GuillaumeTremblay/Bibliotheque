@@ -1,0 +1,56 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <!-- ========== Action mapping definitions ===================================== -->
+  <action-mappings>
+    <!-- ========== View empty page ============================================== -->
+    <action path="/viewEmptyPage"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/"
+                     path="/layout/viewEmptyPage.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View English flag ============================================ -->
+    <action path="/viewEnglishFlag"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/"
+                     path="/layout/viewEnglishFlag.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View French flag ============================================= -->
+    <action path="/viewFrenchFlag"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/"
+                     path="/layout/viewFrenchFlag.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View logo College ============================================ -->
+    <action path="/viewLogoCollege"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/"
+                     path="/layout/viewLogoCollege.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View retour ================================================== -->
+    <action path="/viewRetour"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/"
+                     path="/layout/viewRetour.jsp">
+            </forward>
+    </action>
+  </action-mappings>
+</struts-config>

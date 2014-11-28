@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - Struts application context for common delegate action
+   -
+   - Author: Gilles Benichou
+-->
+
+<beans>
+  <!--   ========== Change locale ================================================ -->
+  <bean name="/common/viewTemplate/event/changeLocale"
+        class="ca.qc.collegeahuntsic.bibliotheque.struts.action.ChangeLocaleAction">
+        <constructor-arg>
+          <ref bean="sessionFactory"/>
+        </constructor-arg>
+  </bean>
+</beans>

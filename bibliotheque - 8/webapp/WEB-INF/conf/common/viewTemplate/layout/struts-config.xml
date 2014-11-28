@@ -1,0 +1,74 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <!-- ========== Action mapping definitions ===================================== -->
+  <action-mappings>
+    <!-- ========== View template ================================================ -->
+    <action path="/layout/viewTemplate"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewTemplate.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View header ================================================== -->
+    <action path="/layout/viewHeader"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewHeader.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View logo ===================================================== -->
+    <action path="/layout/viewLogo"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewLogo.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View welcome =================================================== -->
+    <action path="/layout/viewWelcome"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewWelcome.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View flags ==================================================== -->
+    <action path="/layout/viewFlags"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewFlags.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View body ===================================================== -->
+    <action path="/layout/viewBody"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewBody.jsp">
+            </forward>
+    </action>
+
+    <!-- ========== View footer ================================================== -->
+    <action path="/layout/viewFooter"
+            type="ca.qc.collegeahuntsic.bibliotheque.struts.action.Action">
+            <forward name="success"
+                     module="/WEB-INF/jsp/common/viewTemplate"
+                     path="/layout/viewFooter.jsp">
+            </forward>
+    </action>
+  </action-mappings>
+</struts-config>

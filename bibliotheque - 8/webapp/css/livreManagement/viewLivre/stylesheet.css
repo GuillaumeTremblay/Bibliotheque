@@ -1,0 +1,54 @@
+﻿/**************/
+/* View Livre */
+/**************/
+/* livre index */
+DIV.index-livre {
+  width: 980px;
+}
+
+/* livre */
+DIV.livre {
+}
+
+/* livre header */
+DIV.livre-header {
+  background-color: rgb(242,242,255);
+}
+
+/* livre body */
+DIV.livre-body {
+  background-color: rgb(242,242,255);
+}
+
+/* livre footer */
+DIV.livre-footer {
+  background-color: rgb(242,242,255);
+}
+
+/* body */
+DIV.body {
+}
+
+DIV.id-livre {
+}
+DIV.titre {
+}
+DIV.auteur {
+}
+DIV.date-acquisition {
+}
+INPUT.livre-titre {
+  width: 500px
+}
+INPUT.livre-auteur {
+  width: 500px
+}
+INPUT.livre-date-acquisition {
+  width: 75px
+}
+DIV.submit {
+}
+INPUT.livre-submit {
+}
+DIV.retour {
+}

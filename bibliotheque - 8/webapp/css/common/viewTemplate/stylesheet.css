@@ -1,0 +1,62 @@
+﻿/*****************/
+/* View Template */
+/*****************/
+/* template index */
+DIV.index-template {
+  width: 980px;
+}
+
+/* template */
+DIV.template {
+}
+
+/* template header */
+DIV.template-header {
+  background-color: rgb(242,242,255);
+}
+
+/* template body */
+DIV.template-body {
+  background-color: rgb(242,242,255);
+}
+
+/* template footer */
+DIV.template-footer {
+  background-color: rgb(242,242,255);
+}
+
+/* header */
+DIV.header {
+}
+DIV.header-logo {
+  width: 33%;
+}
+DIV.logo {
+}
+DIV.header-welcome {
+  width: 33%;
+}
+DIV.welcome {
+}
+DIV.header-flags {
+  width: 33%;
+  text-align: right;
+}
+DIV.flags {
+}
+DIV.french-flag {
+}
+DIV.english-flag {
+}
+
+
+/* body */
+DIV.body {
+}
+
+/* footer */
+DIV.footer {
+  font-size: 8pt;
+  color: rgb(87,93,110);
+  text-align: right;
+}

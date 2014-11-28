@@ -13,31 +13,31 @@
   <info>Configuration tag library.</info>
   <tag>
     <name>webappProtocol</name>
-    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config.WebappProtocolTag</tagclass>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.struts.taglib.config.WebappProtocolTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>Displays the web application protocol.</info>
   </tag>
   <tag>
     <name>webappPortNumber</name>
-    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config.WebappPortNumberTag</tagclass>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.struts.taglib.config.WebappPortNumberTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>Displays the web application port number.</info>
   </tag>
   <tag>
     <name>webappServerName</name>
-    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config.WebappServerNameTag</tagclass>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.struts.taglib.config.WebappServerNameTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>Displays the web application server name.</info>
   </tag>
   <tag>
     <name>webappPath</name>
-    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config.WebappPathTag</tagclass>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.struts.taglib.config.WebappPathTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>Displays the web application path.</info>
   </tag>
   <tag>
     <name>currentYear</name>
-    <tagclass>ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config.CurrentYearTag</tagclass>
+    <tagclass>ca.qc.collegeahuntsic.bibliotheque.struts.taglib.config.CurrentYearTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>Displays the current year.</info>
   </tag>

@@ -1,29 +1,29 @@
-// Fichier ChangeLocale.java
-// Auteur : 201205090
-// Date de création : 2014-11-26
+// Fichier LocaleActionForm.java
+// Auteur : Gilles Bénichou
+// Date de création : 2014-09-12
 
 package ca.qc.collegeahuntsic.bibliotheque.struts.form;
 
-/**.
- * The locale action form
+/**
+ * The locale action form.
  *
- * @author Chou Huynh
+ * @author Gilles Benichou
  */
 public class LocaleActionForm extends ActionForm {
-
     private static final long serialVersionUID = 1L;
 
     private String languageIsoCode;
 
     private String countryIsoCode;
 
-    /**.
+    /**
      * Default constructor.
      */
     public LocaleActionForm() {
         super();
     }
 
+    // Region Getters and Setters
     /**
      * Getter de la variable d'instance <code>this.languageIsoCode</code>.
      *
@@ -59,5 +59,5 @@ public class LocaleActionForm extends ActionForm {
     public void setCountryIsoCode(String countryIsoCode) {
         this.countryIsoCode = countryIsoCode;
     }
-
+    // EndRegion Getters and Setters
 }

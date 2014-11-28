@@ -55,9 +55,9 @@ public class UnicodeEncoderFilter implements Filter {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
         request.setCharacterEncoding(Constants.UTF_8_CHARACTER_ENCODING);
-        response.setContentType(Constants.UTF_8_CONTENT_TYPE);
         chain.doFilter(servletRequest,
             servletResponse);
+        response.setContentType(Constants.UTF_8_CONTENT_TYPE);
     }
 
     /**

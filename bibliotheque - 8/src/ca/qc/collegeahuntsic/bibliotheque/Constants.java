@@ -4,8 +4,6 @@
 
 package ca.qc.collegeahuntsic.bibliotheque;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import ca.qc.collegeahuntsic.bibliotheque.util.ApplicationConfigurator;
 
 /**
@@ -25,16 +23,6 @@ public interface Constants {
     Character QUOTE = new Character('\'');
 
     /**
-     * Character for the character '/'.
-     */
-    Character SLASH = new Character('/');
-
-    /**
-     * Character for the character ' '.
-     */
-    Character SPACE = new Character(' ');
-
-    /**
      * Application name ID.
      */
     String APPLICATION_NAME_ID = "app.name"; //$NON-NLS-1$
@@ -50,6 +38,28 @@ public interface Constants {
     String QUOTED_APPLICATION_NAME = Constants.QUOTE
         + Constants.APPLICATION_NAME
         + Constants.QUOTE;
+
+    /**
+     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.struts.plugIn.ApplicationConfiguratorPlugIn} object init
+     * parameter name.
+     */
+    String APPLICATION_CONFIGURATOR_INIT_PARAMETER_NAME = "applicationConfigurator"; //$NON-NLS-1$
+
+    /**
+     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.struts.plugIn.ApplicationConfiguratorPlugIn}
+     * object init message.
+     */
+    String APPLICATION_CONFIGURATOR_INIT_MESSAGE = "Application configurator loaded for application " //$NON-NLS-1$
+        + Constants.QUOTED_APPLICATION_NAME
+        + Constants.DOT;
+
+    /**
+     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.struts.plugIn.ApplicationConfiguratorPlugIn}
+     * object destroy message.
+     */
+    String APPLICATION_CONFIGURATOR_DESTROY_MESSAGE = "Application configurator unloaded for application " //$NON-NLS-1$
+        + Constants.QUOTED_APPLICATION_NAME
+        + Constants.DOT;
 
     /**
      * String literal for the UTF-8 character encoding.
@@ -72,28 +82,6 @@ public interface Constants {
     String OFF = "off"; //$NON-NLS-1$
 
     /**
-     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.servlet.startup.ApplicationConfiguratorServlet} object init
-     * parameter name.
-     */
-    String APPLICATION_CONFIGURATOR_INIT_PARAMETER_NAME = "applicationConfigurator"; //$NON-NLS-1$
-
-    /**
-     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.servlet.startup.ApplicationConfiguratorServlet}
-     * object init message.
-     */
-    String APPLICATION_CONFIGURATOR_INIT_MESSAGE = "Application configurator loaded for application " //$NON-NLS-1$
-        + Constants.QUOTED_APPLICATION_NAME
-        + Constants.DOT;
-
-    /**
-     * String literal for {@link ca.qc.collegeahuntsic.bibliotheque.servlet.startup.ApplicationConfiguratorServlet}
-     * object destroy message.
-     */
-    String APPLICATION_CONFIGURATOR_DESTROY_MESSAGE = "Application configurator unloaded for application " //$NON-NLS-1$
-        + Constants.QUOTED_APPLICATION_NAME
-        + Constants.DOT;
-
-    /**
      * String literal for the mail bundle name.
      */
     String MAIL_RESOURCE_BUNDLE_NAME = "conf/mail.properties"; //$NON-NLS-1$
@@ -109,43 +97,62 @@ public interface Constants {
     String MAIL_PASSWORD_KEY = "mail.password"; //$NON-NLS-1$
 
     /**
-     * String literal for the language resources bundle name.
+     * String array for the zero length String array.
      */
-    String LANGUAGE_RESOURCE_BUNDLE_NAME = "lang.ApplicationResources"; //$NON-NLS-1$
+    String[] ZERO_LENGTH_STRING_ARRAY = new String[0];
 
     /**
-     * String literal for the attribute name for Locale.
+     * String literal for the success action forward name.
      */
-    String LOCALE_ATTRIBUTE_NAME = "locale"; //$NON-NLS-1$
+    String SUCCESS = "success"; //$NON-NLS-1$
 
     /**
-     * String literal for the internationalized messages.
+     * String literal for the failure action forward name.
      */
-    String MESSAGES_ATTRIBUTE_NAME = "messages"; //$NON-NLS-1$
+    String FAILURE = "failure"; //$NON-NLS-1$
 
     /**
-     * String literal for the default language ID.
+     * String literal for the failed fetching of all livres.
      */
-    String DEFAULT_LANGUAGE_ID = ApplicationConfigurator.getProperty("defaultLanguageId"); //$NON-NLS-1$
+    String LIVRE_MANAGEMENT_VIEW_ALL_LIVRES_FAILED_MESSAGE_ID = "livreManagement.viewAllLivres.viewAllLivresFailed.displayMessage"; //$NON-NLS-1$
 
     /**
-     * String literal for the default country ID.
+     * String literal for the failed fetching of a livre.
      */
-    String DEFAULT_COUNTRY_ID = ApplicationConfigurator.getProperty("defaultCountryId"); //$NON-NLS-1$
+    String LIVRE_MANAGEMENT_VIEW_LIVRE_FAILED_MESSAGE_ID = "livreManagement.viewLivre.viewLivreFailed.displayMessage"; //$NON-NLS-1$
 
     /**
-     * Locale for the default Locale.
-     */
-    Locale DEFAULT_LOCALE = new Locale(Constants.DEFAULT_LANGUAGE_ID,
-        Constants.DEFAULT_COUNTRY_ID);
+      * String literal for the successful save of a livre.
+      */
+    String LIVRE_MANAGEMENT_SAVE_LIVRE_SUCCESSFUL_MESSAGE_ID = "livreManagement.viewLivre.saveSuccessful.displayMessage"; //$NON-NLS-1$
 
     /**
-     * String literal for the default date format.
+     * String literal for the failed save of a livre.
      */
-    String DEFAULT_DATE_FORMAT = ApplicationConfigurator.getProperty("defaultDateFormat"); //$NON-NLS-1$
+    String LIVRE_MANAGEMENT_SAVE_LIVRE_FAILED_MESSAGE_ID = "livreManagement.viewLivre.saveFailed.displayMessage"; //$NON-NLS-1$
 
     /**
-     * Default simple date format from the default date format.
+     * String literal for the admin email.
      */
-    SimpleDateFormat DEFAULT_SIMPLE_DATE_FORMAT = new SimpleDateFormat(Constants.DEFAULT_DATE_FORMAT);
+    String ADMIN_EMAIL_KEY = "admin.email"; //$NON-NLS-1$
+
+    /**
+     * String literal for the error from address.
+     */
+    String ERROR_FROM_ADDRESS_KEY = "error.from.address"; //$NON-NLS-1$
+
+    /**
+     * String literal for the error from name.
+     */
+    String ERROR_FROM_NAME_KEY = "error.from.name"; //$NON-NLS-1$
+
+    /**
+     * String literal for the error to address.
+     */
+    String ERROR_TO_ADDRESS_KEY = "error.to.address"; //$NON-NLS-1$
+
+    /**
+     * String literal for the error to name.
+     */
+    String ERROR_TO_NAME_KEY = "error.to.name"; //$NON-NLS-1$
 }

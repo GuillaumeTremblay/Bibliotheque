@@ -1,0 +1,81 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "https://svn.apache.org/repos/asf/commons/cms-site/trunk/content/resources/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+  <!-- ========== Global constant definitions ==================================== -->
+  <global>
+    <constant>
+      <constant-name>defaultTextMaxLength</constant-name>
+      <constant-value>@defaultTextMaxLength@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>defaultBigTextMaxLength</constant-name>
+      <constant-value>@defaultBigTextMaxLength@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>defaultMemoMaxLength</constant-name>
+      <constant-value>@defaultMemoMaxLength@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>defaultBigMemoMaxLength</constant-name>
+      <constant-value>@defaultBigMemoMaxLength@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>defaultDateMaxLength</constant-name>
+      <constant-value>@defaultDateMaxLength@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>defaultDateFormat</constant-name>
+      <constant-value>@defaultDateFormat@</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>lowerCaseLettersMask</constant-name>
+      <constant-value>^[A-Z]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>upperCaseLettersMask</constant-name>
+      <constant-value>^[a-z]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>lettersMask</constant-name>
+      <constant-value>^[a-zA-Z]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>numbersMask</constant-name>
+      <constant-value>^[0-9]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>lowerCaseLettersNumbersMask</constant-name>
+      <constant-value>^[a-z0-9]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>upperCaseLettersNumbersMask</constant-name>
+      <constant-value>^[A-Z0-9]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>lettersNumbersMask</constant-name>
+      <constant-value>^[a-zA-Z0-9]*$</constant-value>
+    </constant>
+
+    <constant>
+      <constant-name>lettersNumbersSpacesMask</constant-name>
+      <constant-value>^[a-zA-Z0-9\s]*$</constant-value>
+    </constant>
+  </global>
+</form-validation>

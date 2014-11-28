@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <!-- ========== Plug-in definitions ============================================ -->
+  <plug-in className="ca.qc.collegeahuntsic.bibliotheque.struts.plugIn.ApplicationConfiguratorPlugIn">
+  </plug-in>
+</struts-config>
