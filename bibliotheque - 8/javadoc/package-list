@@ -7,4 +7,7 @@ ca.qc.collegeahuntsic.bibliotheque.servlet.startup
 ca.qc.collegeahuntsic.bibliotheque.servlet.taglib
 ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.bean
 ca.qc.collegeahuntsic.bibliotheque.servlet.taglib.config
+ca.qc.collegeahuntsic.bibliotheque.struts.action
+ca.qc.collegeahuntsic.bibliotheque.struts.form
+ca.qc.collegeahuntsic.bibliotheque.struts.plugIn
 ca.qc.collegeahuntsic.bibliotheque.util
