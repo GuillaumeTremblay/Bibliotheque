@@ -57,7 +57,7 @@
       </param-value>
     </init-param>
 
-    <init-param>
+    <!--  <init-param>
       <param-name>config/livreManagement/viewLivre</param-name>
       <param-value>
         /WEB-INF/conf/core/message-resources/struts-config.xml,
@@ -65,7 +65,7 @@
         /WEB-INF/conf/livreManagement/viewLivre/event/struts-config.xml,
         /WEB-INF/conf/livreManagement/viewLivre/layout/struts-config.xml
       </param-value>
-    </init-param>
+    </init-param>-->
 
     <init-param>
       <param-name>applicationConfigurator</param-name>
