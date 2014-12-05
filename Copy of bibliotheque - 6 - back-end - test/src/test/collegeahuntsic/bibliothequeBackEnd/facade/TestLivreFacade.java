@@ -169,6 +169,13 @@ public class TestLivreFacade extends TestCase {
         }
     }
 
+    /**.
+     * 
+     * Test la fonction GetAllLivre()
+     *
+     * @throws TestCaseFailedException S'il y a une erreur
+     */
+
     public void testGetAllLivres() throws TestCaseFailedException {
         try {
             testAcquerirLivre();
@@ -196,6 +203,13 @@ public class TestLivreFacade extends TestCase {
             TestLivreFacade.LOGGER.error(e);
         }
     }
+
+    /**.
+     * 
+     * Test la fonction testUpdateLivre()
+     *
+     * @throws TestCaseFailedException S'il y a une erreur
+     */
 
     public void testUpdateLivre() throws TestCaseFailedException {
         try {
