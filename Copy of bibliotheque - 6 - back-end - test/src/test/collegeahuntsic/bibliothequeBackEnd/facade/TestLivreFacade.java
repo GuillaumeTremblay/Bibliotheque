@@ -202,6 +202,13 @@ public class TestLivreFacade extends TestCase {
         }
     }
 
+    /**.
+     * 
+     * Test la fonction testUpdateLivre()
+     *
+     * @throws TestCaseFailedException S'il y a une erreur
+     */
+
     public void testUpdateLivre() throws TestCaseFailedException {
         try {
             testAcquerirLivre();
