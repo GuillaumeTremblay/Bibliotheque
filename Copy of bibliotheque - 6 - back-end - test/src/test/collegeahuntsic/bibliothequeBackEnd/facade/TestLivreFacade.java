@@ -23,7 +23,7 @@ import test.collegeahuntsic.bibliothequeBackEnd.exception.TestCaseFailedExceptio
 /**
  * TODO Auto-generated class javadoc
  *
- * @author Chou Huynh
+ * @author Jonathan Aumont
  */
 public class TestLivreFacade extends TestCase {
 
@@ -65,7 +65,7 @@ public class TestLivreFacade extends TestCase {
 
     /**
      * 
-     * TODO Auto-generated method javadoc
+     * Declenche tout les test de la class TestLivreFacade
      *
      * @return Test The tests to be executed in this test case
      */
@@ -75,11 +75,11 @@ public class TestLivreFacade extends TestCase {
         return suite;
     }
 
-    /**
+    /**.
      * 
-     * TODO Auto-generated method javadoc
-     * @throws TestCaseFailedException 
+     * Test la fonction testAcquerirLivre()
      *
+     * @throws TestCaseFailedException S'il y a une erreur
      */
     public void testAcquerirLivre() throws TestCaseFailedException {
         try {
@@ -107,11 +107,11 @@ public class TestLivreFacade extends TestCase {
         }
     }
 
-    /**
+    /**.
      * 
-     * Tests if {@link ca.}.
+     * Test la fonction testGetLivre()
      *
-     * @throws TestCaseFailedException
+     * @throws TestCaseFailedException S'il y a une erreur
      */
     public void testGetLivre() throws TestCaseFailedException {
         try {
@@ -285,9 +285,9 @@ public class TestLivreFacade extends TestCase {
 
     /**
      * 
-     * TODO Auto-generated method javadoc
+     *Test la fonction testVendreLivre()
      *
-     * @throws TestCaseFailedException
+     * @throws TestCaseFailedException s'il y a une erreur
      */
     public void testVendreLivre() throws TestCaseFailedException {
         try {
