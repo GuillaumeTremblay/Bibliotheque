@@ -30,13 +30,14 @@ import org.hibernate.SessionFactory;
  */
 public class ViewAllLivresAction extends BibliothequeAction {
 
-    private LivreFacade livreFacade;
-
     private static final Log LOGGER = LogFactory.getLog(ViewAllLivresAction.class);
+
+    private LivreFacade livreFacade;
 
     /**
      * Default constructor.
-     *
+     * @param sessionFactory The session factory to use.
+     * @param livreFacade The livre facade to use.
      */
     public ViewAllLivresAction(SessionFactory sessionFactory,
         LivreFacade livreFacade) {
@@ -62,6 +63,15 @@ public class ViewAllLivresAction extends BibliothequeAction {
         this.livreFacade = livreFacade;
     }
 
+    /**
+     * Display all livres.
+     * @param mapping The mapping to use
+     * @param form The action form to use
+     * @param request The request to use
+     * @param response The response to use
+     * @return The appropriate action forward
+     * @throws Exception If an error occurs
+    */
     @Override
     public ActionForward execute(ActionMapping mapping,
         ActionForm form,
