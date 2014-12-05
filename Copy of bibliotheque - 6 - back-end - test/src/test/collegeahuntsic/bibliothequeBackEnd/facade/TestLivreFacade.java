@@ -14,6 +14,8 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidPrimaryKey
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dto.InvalidDTOException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
+import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingLoanException;
+import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.service.ExistingReservationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import test.collegeahuntsic.bibliothequeBackEnd.exception.TestCaseFailedException;
@@ -229,10 +231,8 @@ public class TestLivreFacade extends TestCase {
             commitTransaction();
 
             beginTransaction();
-            livres = getLivreFacade().getAllLivres(getSession(),
-                LivreDTO.TITRE_COLUMN_NAME);
-            assertFalse(livres.isEmpty());
-            livreDTO = livres.get(livres.size() - 1);
+            livreDTO = getLivreFacade().getLivre(getSession(),
+                idLivre);
             assertNotNull(livreDTO);
             assertNotNull(livreDTO.getAuteur());
             assertNotNull(livreDTO.getIdLivre());
@@ -258,7 +258,76 @@ public class TestLivreFacade extends TestCase {
             InvalidHibernateSessionException
             | InvalidSortByPropertyException
             | FacadeException
-            | InvalidDTOException e) {
+            | InvalidDTOException
+            | InvalidPrimaryKeyException e) {
+            try {
+                rollbackTransaction();
+            } catch(TestCaseFailedException e1) {
+                TestLivreFacade.LOGGER.error(e1);
+            }
+            TestLivreFacade.LOGGER.error(e);
+        }
+    }
+
+    /**
+     * 
+     * TODO Auto-generated method javadoc
+     *
+     * @throws TestCaseFailedException
+     */
+    public void testVendreLivre() throws TestCaseFailedException {
+        try {
+            testAcquerirLivre();
+            beginTransaction();
+            List<LivreDTO> livres = getLivreFacade().getAllLivres(getSession(),
+                LivreDTO.TITRE_COLUMN_NAME);
+            assertFalse(livres.isEmpty());
+            LivreDTO livreDTO = livres.get(livres.size() - 1);
+            assertNotNull(livreDTO);
+            assertNotNull(livreDTO.getAuteur());
+            assertNotNull(livreDTO.getIdLivre());
+            assertNotNull(livreDTO.getTitre());
+            assertNotNull(livreDTO.getDateAcquisition());
+            final String idLivre = livreDTO.getIdLivre();
+            final String titre = livreDTO.getTitre();
+            final String auteur = livreDTO.getAuteur();
+            final Timestamp dateAcquisition = livreDTO.getDateAcquisition();
+            commitTransaction();
+
+            beginTransaction();
+            livres.remove(livreDTO);
+            livreDTO.getPrets().clear();
+            getLivreFacade().vendreLivre(getSession(),
+                livreDTO);
+            commitTransaction();
+
+            beginTransaction();
+            livres = getLivreFacade().getAllLivres(getSession(),
+                LivreDTO.TITRE_COLUMN_NAME);
+            assertFalse(livres.isEmpty());
+            for(LivreDTO unlivreDTO : livres) {
+                assertNotNull(unlivreDTO);
+                assertNotNull(unlivreDTO.getIdLivre());
+                assertNotSame(idLivre,
+                    unlivreDTO.getIdLivre());
+                assertNotNull(unlivreDTO.getTitre());
+                assertNotSame(titre,
+                    unlivreDTO.getTitre());
+                assertNotNull(unlivreDTO.getAuteur());
+                assertNotSame(auteur,
+                    unlivreDTO.getAuteur());
+                assertNotNull(unlivreDTO.getDateAcquisition());
+                assertNotSame(dateAcquisition,
+                    unlivreDTO.getDateAcquisition());
+            }
+            commitTransaction();
+        } catch(
+            InvalidHibernateSessionException
+            | InvalidSortByPropertyException
+            | FacadeException
+            | InvalidDTOException
+            | ExistingLoanException
+            | ExistingReservationException e) {
             try {
                 rollbackTransaction();
             } catch(TestCaseFailedException e1) {
