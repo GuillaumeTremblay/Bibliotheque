@@ -167,6 +167,13 @@ public class TestLivreFacade extends TestCase {
         }
     }
 
+    /**.
+     * 
+     * Test la fonction GetAllLivre()
+     *
+     * @throws TestCaseFailedException S'il y a une erreur
+     */
+
     public void testGetAllLivres() throws TestCaseFailedException {
         try {
             testAcquerirLivre();
