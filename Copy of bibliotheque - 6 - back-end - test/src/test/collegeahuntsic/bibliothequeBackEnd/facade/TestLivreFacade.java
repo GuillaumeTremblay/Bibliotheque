@@ -41,7 +41,7 @@ public class TestLivreFacade extends TestCase {
      * Default constructor.
      *
      * @param name The name of the test case.
-     * @throws TestCaseFailedException 
+     * @throws TestCaseFailedException
      */
     public TestLivreFacade(String name) throws TestCaseFailedException {
         super(name);
@@ -64,7 +64,7 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**
-     * 
+     *
      * Declenche tout les test de la class TestLivreFacade
      *
      * @return Test The tests to be executed in this test case
@@ -76,7 +76,7 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**.
-     * 
+     *
      * Test la fonction testAcquerirLivre()
      *
      * @throws TestCaseFailedException S'il y a une erreur
@@ -108,7 +108,7 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**.
-     * 
+     *
      * Test la fonction testGetLivre()
      *
      * @throws TestCaseFailedException S'il y a une erreur
@@ -170,7 +170,7 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**.
-     * 
+     *
      * Test la fonction GetAllLivre()
      *
      * @throws TestCaseFailedException S'il y a une erreur
@@ -205,7 +205,7 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**.
-     * 
+     *
      * Test la fonction testUpdateLivre()
      *
      * @throws TestCaseFailedException S'il y a une erreur
@@ -284,10 +284,10 @@ public class TestLivreFacade extends TestCase {
     }
 
     /**
-     * 
-     *Test la fonction testVendreLivre()
      *
-     * @throws TestCaseFailedException s'il y a une erreur
+     * Teste la vente d'un livre
+     *
+     * @throws TestCaseFailedException
      */
     public void testVendreLivre() throws TestCaseFailedException {
         try {
@@ -306,16 +306,10 @@ public class TestLivreFacade extends TestCase {
             final String titre = livreDTO.getTitre();
             final String auteur = livreDTO.getAuteur();
             final Timestamp dateAcquisition = livreDTO.getDateAcquisition();
-            commitTransaction();
-
-            beginTransaction();
-            livres.remove(livreDTO);
             livreDTO.getPrets().clear();
+            livreDTO.getReservations().clear();
             getLivreFacade().vendreLivre(getSession(),
                 livreDTO);
-            commitTransaction();
-
-            beginTransaction();
             livres = getLivreFacade().getAllLivres(getSession(),
                 LivreDTO.TITRE_COLUMN_NAME);
             assertFalse(livres.isEmpty());
