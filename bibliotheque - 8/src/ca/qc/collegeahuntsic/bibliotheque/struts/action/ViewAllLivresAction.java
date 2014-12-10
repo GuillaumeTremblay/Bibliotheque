@@ -14,7 +14,7 @@ import ca.qc.collegeahuntsic.bibliothequeBackEnd.dto.LivreDTO;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidHibernateSessionException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.dao.InvalidSortByPropertyException;
 import ca.qc.collegeahuntsic.bibliothequeBackEnd.exception.facade.FacadeException;
-import ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.implementations.LivreFacade;
+import ca.qc.collegeahuntsic.bibliothequeBackEnd.facade.interfaces.ILivreFacade;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
@@ -32,7 +32,7 @@ public class ViewAllLivresAction extends BibliothequeAction {
 
     private static final Log LOGGER = LogFactory.getLog(ViewAllLivresAction.class);
 
-    private LivreFacade livreFacade;
+    private ILivreFacade livreFacade;
 
     /**
      * Default constructor.
@@ -40,7 +40,7 @@ public class ViewAllLivresAction extends BibliothequeAction {
      * @param livreFacade The livre facade to use.
      */
     public ViewAllLivresAction(SessionFactory sessionFactory,
-        LivreFacade livreFacade) {
+        ILivreFacade livreFacade) {
         super(sessionFactory);
         setLivreFacade(livreFacade);
     }
@@ -50,7 +50,7 @@ public class ViewAllLivresAction extends BibliothequeAction {
      *
      * @return La variable d'instance <code>this.livreFacade</code>
      */
-    private LivreFacade getLivreFacade() {
+    public ILivreFacade getLivreFacade() {
         return this.livreFacade;
     }
 
@@ -59,7 +59,7 @@ public class ViewAllLivresAction extends BibliothequeAction {
      *
      * @param livreFacade La valeur à utiliser pour la variable d'instance <code>this.livreFacade</code>
      */
-    private void setLivreFacade(LivreFacade livreFacade) {
+    public void setLivreFacade(ILivreFacade livreFacade) {
         this.livreFacade = livreFacade;
     }
 

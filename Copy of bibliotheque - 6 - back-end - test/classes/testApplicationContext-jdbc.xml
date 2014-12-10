@@ -1,0 +1,68 @@
+<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC
+          "-//SPRING//DTD BEAN//EN"
+          "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+   - JDBC application context for unit testing
+   -
+   - Author: Gilles Benichou
+-->
+
+<beans>
+  <!-- ========== Data source ==================================================== -->
+  <bean name="dataSource"
+        class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property name="driverClass">
+                  <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="jdbcUrl">
+                  <value>jdbc:oracle:thin:@localhost:1521:xe</value>
+        </property>
+        <property name="properties">
+                  <props>
+                    <prop key="c3p0.acquire_increment">1</prop>
+                    <prop key="c3p0.idle_test_period">10</prop>
+                    <prop key="c3p0.max_size">1</prop>
+                    <prop key="c3p0.max_statements">0</prop>
+                    <prop key="c3p0.min_size">1</prop>
+                    <prop key="user">bibliothequetest</prop>
+                    <prop key="password">123456</prop>
+                  </props>
+        </property>
+  </bean>
+
+
+  <!-- ========== Transaction manager ============================================ -->
+  <bean name="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+                  <ref bean="sessionFactory"/>
+        </property>
+  </bean>
+
+  <!-- ========== Base transaction proxy ========================================= -->
+  <bean name="transactionProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+        abstract="true">
+        <property name="transactionManager">
+                  <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+                  <props>
+                    <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                    <prop key="add*">PROPAGATION_REQUIRED</prop>
+                    <prop key="save*">PROPAGATION_REQUIRED</prop>
+                    <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                    <prop key="update*">PROPAGATION_REQUIRED</prop>
+                    <prop key="create*">PROPAGATION_REQUIRED</prop>
+                    <prop key="initiate*">PROPAGATION_REQUIRED</prop>
+                    <prop key="confirm*">PROPAGATION_REQUIRED</prop>
+                    <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+                  </props>
+        </property>
+  </bean>
+</beans>
