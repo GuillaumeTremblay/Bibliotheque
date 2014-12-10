@@ -20,13 +20,13 @@
             name="livreActionForm"
             scope="request"
             validate="false"
-            input="/event/ViewAllLivres.do">
+            input="/event/viewAllLivres.do">
             <forward name="success"
-                     module="/livreManagement/ViewAllLivres"
+                     module="/livreManagement/viewAllLivres"
                      path="/viewIndex.do">
             </forward>
             <forward name="failure"
-                     module="/livreManagement/ViewAllLivres"
+                     module="/livreManagement/viewAllLivres"
                      path="/viewIndex.do">
             </forward>
     </action>
