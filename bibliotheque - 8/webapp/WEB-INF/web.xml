@@ -57,7 +57,7 @@
       </param-value>
     </init-param>
 
-    <!--  <init-param>
+    <init-param>
       <param-name>config/livreManagement/viewLivre</param-name>
       <param-value>
         /WEB-INF/conf/core/message-resources/struts-config.xml,
@@ -65,7 +65,7 @@
         /WEB-INF/conf/livreManagement/viewLivre/event/struts-config.xml,
         /WEB-INF/conf/livreManagement/viewLivre/layout/struts-config.xml
       </param-value>
-    </init-param>-->
+    </init-param>
 
     <init-param>
       <param-name>applicationConfigurator</param-name>
@@ -133,8 +133,8 @@
                  classpath*:applicationContext-service.xml,
                  classpath*:applicationContext-facade.xml,
                  /WEB-INF/spring/common/applicationContext-struts.xml,
-                 /WEB-INF/spring/livreManagement/viewAllLivres/applicationContext-struts.xml<!--,
-                 /WEB-INF/spring/livreManagement/viewLivre/applicationContext-struts.xml  -->
+                 /WEB-INF/spring/livreManagement/viewAllLivres/applicationContext-struts.xml
+                 /WEB-INF/spring/livreManagement/viewLivre/applicationContext-struts.xml
     </param-value>
   </context-param>
 

@@ -1,0 +1,50 @@
+<?xml version="1.0"
+      encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <!-- ========== Form bean definitions ========================================== -->
+  <form-beans>
+    <form-bean name="livreActionForm"
+               type="ca.qc.collegeahuntsic.bibliotheque.struts.form.LivreActionForm">
+    </form-bean>
+  </form-beans>
+  <!-- ========== Action mapping definitions ===================================== -->
+  <action-mappings>
+    <!-- ========== Display a livre ================================================ -->
+    <action path="/event/viewLivre"
+            type="org.springframework.web.struts.DelegatingActionProxy"
+            name="livreActionForm"
+            scope="request"
+            validate="false"
+            input="/event/viewLivre.do">
+            <forward name="success"
+                     module="/livreManagement/viewLivre"
+                     path="/viewIndex.do">
+            </forward>
+            <forward name="failure"
+                     module="/livreManagement/viewLivre"
+                     path="/viewIndex.do">
+            </forward>
+    </action>
+    <!-- ========== Save a livre ================================================ -->
+    <action path="/event/saveLivre"
+            type="org.springframework.web.struts.DelegatingActionProxy"
+            name="livreActionForm"
+            scope="request"
+            validate="false"
+            input="/event/saveLivre.do">
+            <forward name="success"
+                     module="/livreManagement/viewLivre"
+                     path="/viewIndex.do">
+            </forward>
+            <forward name="failure"
+                     module="/livreManagement/viewLivre"
+                     path="/viewIndex.do">
+            </forward>
+    </action>
+  </action-mappings>
+</struts-config>
